@@ -1,13 +1,29 @@
-September 30:
+=============
 
-Matias and Jump: Asymmetric changes of growth and reproductive investment herald altitudinal and latitudinal range shifts of two woody species
+Paper catalogue for senior thesis
 
-Study on demographical structure (density, age and mortality rate), growth, reproduction investment and damage from herbivory of Pinus sylvestris and Juniperus communis. 
-Observations taken across latitudinal and altitudinal gradient (altitude data collected at southern edge). 
-Introduction holds very good information on types of range shifts, necessary characteristics of life strategies for trees that face population loss/gain at their southern and northern edges respectively. 
-Interesting graph/diagram of range limits and locations of data collection (use something like this in ArcGIS?) 
+=============
+
+9/30 Matias and Jump: Asymmetric changes of growth and reproductive investment herald
+altitudinal and latitudinal range shifts of two woody species
+
+=================================================================================
+
+Study on demographical structure (density, age and mortality rate), growth, 
+reproduction investment and damage from herbivory of Pinus sylvestris and Juniperus communis. 
+Observations taken across latitudinal and altitudinal gradient (altitude data 
+collected at southern edge). 
+Introduction holds very good information on types of range shifts, necessary 
+characteristics of life strategies for trees that face population loss/gain at their 
+southern and northern edges respectively. 
+Interesting graph/diagram of range limits and locations of data collection (use 
+something like this in ArcGIS?) 
 Study used generalized linear mixed models. 
 Look up Akaike information criterion and Schwarz’s Bayesian information criterion. 
-Proportion of saplings for P. sylvestris <10cm to larger individuals was much higher at the northern range limit (no such pattern for J. communis). 
-Authors caution generalizing across latitudinal range, suggesting consideration of atmospheric pressure, temperature, or variations in seasonal changes and photoperiods. 
+Proportion of saplings for P. sylvestris <10cm to larger individuals was much higher 
+at the northern range limit (no such pattern for J. communis). 
+Authors caution generalizing across latitudinal range, suggesting consideration of 
+atmospheric pressure, temperature, or variations in seasonal changes and photoperiods. 
 Also consider biotic factors (land use and ecological disturbances)
+
+==================================================================================
