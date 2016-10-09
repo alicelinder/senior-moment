@@ -4,26 +4,77 @@ Paper catalogue for senior thesis
 
 =============
 
-9/30 Matias and Jump: Asymmetric changes of growth and reproductive investment herald
-altitudinal and latitudinal range shifts of two woody species
+* 10/7 Doak and Morris 2010
+** Demographic compensation and tipping points in climate-induced range shifts
 
-=================================================================================
+———————————————————————————————————————————————————————————————————————————————————
 
-Study on demographical structure (density, age and mortality rate), growth, 
-reproduction investment and damage from herbivory of Pinus sylvestris and Juniperus communis. 
-Observations taken across latitudinal and altitudinal gradient (altitude data 
+- understand why species respond differently, some in range shifts and some in range
+contractions
+- evidence for (latitudinal and elevational) range shifts in recent decades from 
+Intergovernmental Panel on Climate Change
+- looked at 2 species of tundra plants: moss campion and distort
+- also included size of plants in models
+- both species exhibited die-out in the southern limits of their latitudinal extreme
+- provides evidence for stronger plants in their range limits, with factors such as
+survival, fruits/area, and growth
+- measured vital rates across 4 sites on a latitudinal gradient
+- survival and growth rates, as well as reproductive factors
+
+==================================================================================
+
+* 10/7 Ettinger and HilleRisLambers 2013
+** CLIMATE ISN’T EVERYTHING: COMPETITIVE INTERACTIONS AND VARIATION BY LIFE STAGE
+***  WILL ALSO AFFECT RANGE SHIFTS IN A WARMING WORLD
+
+———————————————————————————————————————————————————————————————————————————————————
+
+- great paper for citations/good starting off point for recent literature
+- overall study examines competitive and climatic factors on growth of saplings and
+adults of three conifer species in Mt. Rainier Park
+- discussion about “climate envelope” moving up and possible 4 effects on tree species
+ranges, climate vs. competition controlling limits?
+- quantified annual growth at 7 sites using ring widths across elevational gradient
+- hypothesized that climate limits upper range limits at high elevations and competitive
+ interactions limit growth at lower range limits
+- include descriptions of sites in Methods (study sites and species)
+- look up PET (potential evapotranspiration)
+- consider putting in climate variables to isolate further effects of range extremes
+- fit linear mixed effects models using maximum likelihood estimates
+- climate variables related to snowpack were best predictors of growth
+- increased sensitivity to climate at treeline
+- did “strength of climatic influence on growth” WHAT IS THIS STAT FROM?
+- competition influenced sapling growth more than adult tree growth
+- suggests examining whether tree is in the overstory
+- competition and climate likely both play a part in determining range extremes — worth
+writing about in my paper if the data is available?
+- bioclimatic models should include both biotic interactions and information from
+multiple life history stages
+
+===================================================================================
+
+* 9/30 Matias and Jump
+** Asymmetric changes of growth and reproductive investment herald altitudinal 
+*** and latitudinal range shifts of two woody species
+
+———————————————————————————————————————————————————————————————————————————————————
+
+- Study on demographical structure (density, age and mortality rate), growth, 
+reproduction investment and damage from herbivory of Pinus sylvestris and Juniperus 
+communis. 
+- Observations taken across latitudinal and altitudinal gradient (altitude data 
 collected at southern edge). 
-Introduction holds very good information on types of range shifts, necessary 
+- Introduction holds very good information on types of range shifts, necessary 
 characteristics of life strategies for trees that face population loss/gain at their 
 southern and northern edges respectively. 
-Interesting graph/diagram of range limits and locations of data collection (use 
+- Interesting graph/diagram of range limits and locations of data collection (use 
 something like this in ArcGIS?) 
-Study used generalized linear mixed models. 
-Look up Akaike information criterion and Schwarz’s Bayesian information criterion. 
-Proportion of saplings for P. sylvestris <10cm to larger individuals was much higher 
+- Study used generalized linear mixed models. 
+- Look up Akaike information criterion and Schwarz’s Bayesian information criterion. 
+- Proportion of saplings for P. sylvestris <10cm to larger individuals was much higher 
 at the northern range limit (no such pattern for J. communis). 
-Authors caution generalizing across latitudinal range, suggesting consideration of 
+- Authors caution generalizing across latitudinal range, suggesting consideration of 
 atmospheric pressure, temperature, or variations in seasonal changes and photoperiods. 
-Also consider biotic factors (land use and ecological disturbances)
+- Also consider biotic factors (land use and ecological disturbances)
 
 ==================================================================================
