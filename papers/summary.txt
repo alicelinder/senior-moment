@@ -4,10 +4,52 @@ Paper catalogue for senior thesis
 
 =============
 
+================================================================================
+
+* 11/14 Kraft et. al 2008
+** Functional Traits and Niche-Based Tree Community Assembly in an Amazonian
+Forest
+
+——————————————————————————————————————————————————————————————————————————————————————
+
+- importance of strategy differentiation among species in maintaining species
+ diversity
+- two categories of current coexistence theories:
+	1. differences in ecological strategy (niche)
+	2. neutral theory: those that rely on dispersal and stochastic 
+demographic
+ processes (these assume equivalent per capita fitness of species)
+- test both approaches:
+	- environmental filtering should limit range of strategies found in a 
+community
+	- niche differentiation spreads individuals evenly along strategy axes
+- combined trait information with species co-occurrence data to develop estimates
+of community trait distribution at the 20x20m scale
+- prediction: if habitat filtering is occurring at the quadratic scale, the range of
+observed trait values will be smaller than the null expectation — CHECK
+CORNWELL 2006
+- topographic habitats support communities with divergent strategies despite close
+physical proximity between the two habitat types
+- species with a broad distribution of trait values co-occur more often than predicted
+- presence of detectable, significant, plot-wide niche differentiation effects indicate
+there is evidence against a purely neutral explanation of species coexistence
+- could not test for trait effects at the earliest life stages
+- indicated that 1 to 10cm were saplings or >10cm in dbh were adults (SHOULD
+I DO THIS?)
+- citation for direct competition: Stubbs + Wilson, BJ (2004) J. Ecology
+- closely related plants have similar ecological strategies
+- niche-based processes known to have stabilizing effects on diversity
+- support niche-based  view of tropical forest dynamics
+	1. habitat specialization
+	2. strategy differentiation
+lead to species coexistence
+
+================================================================================
+
 * 11/13 Ackerly 2003
 ** Community Assembly, Niche Conservatism, and Adaptive Evolution in Changing Environments
 
-————————————————————————————————————————————————————————————————————————————————————
+——————————————————————————————————————————————————————————————————————————————————————
 
 - Exploring connection between community assemble (and other ecological sorting
 processes as causes for functional trait distributions at local/landscape level)
@@ -59,7 +101,7 @@ can’t track preferred environment simultaneously in multiple dimensions
  for factors with narrow tolerances, counteracting potential for stronger selection
  (“relative niche breadth” hypothesis)
 
-==================================================================================
+================================================================================
 
 * 10/7 Doak and Morris 2010
 ** Demographic compensation and tipping points in climate-induced range shifts

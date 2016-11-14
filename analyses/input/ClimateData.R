@@ -1,7 +1,8 @@
 # Getting Climate Data
 ## Alice Nov. 9
 
-setwd("~/GitHub/senior-moment/analyses/input")
+rm(list = ls())
+setwd("~/Library/Mobile Documents/com~apple~CloudDocs/Harvard Semester 7/Thesis/Spatial")
 library(sp)
 library(spdep)
 library(raster)
