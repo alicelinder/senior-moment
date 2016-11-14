@@ -14,17 +14,17 @@ processes as causes for functional trait distributions at local/landscape level)
 - Based on theory that plants in saturated communities occupy areas that are optimal
 or near-optimal environments for them -> functional traits reflect this stabilizing
 selection
-- Climate change and trailing edge populations causing a mismatch between environmental
-conditions and the environmental niche a species occupies
-- Distribution of plant species = influence of abiotic and biotic interactions (community assembly
- process)
+- Climate change and trailing edge populations causing a mismatch between 
+environmental conditions and the environmental niche a species occupies
+- Distribution of plant species = influence of abiotic and biotic interactions 
+(community assembly process)
 - plasticity within species changes functional traits
-- local variation in functional traits reflects niche partitioning in heterogenous environments 
-within the community
+- local variation in functional traits reflects niche partitioning in heterogenous 
+environments within the community
 - concept of phylogenetic conservation of traits (how similar are functional traits on a
 phylogeny?
-- Hutchinsonian niche space: physiological tolerances (fundamental niche) and performance in the
- presence of competitors and other biotic interactions (realized niche)
+- Hutchinsonian niche space: physiological tolerances (fundamental niche) and 
+performance in the presence of competitors and other biotic interactions (realized niche)
 - A population may exhibit one or more of several responses to changing environments: 
 	1) local shifts in microhabitat or altitudinal distribution 
 	2) large-scale changes in geographic distribution, entailing both range expansions 
@@ -33,14 +33,15 @@ and range extirpation in the former range
 	4) extinction
 - populations are not likely to adapt genetically fast enough to resist eventual invasion of
  competitors from adjacent positions
-- history of rapid migration supports the view that species replacement usually outpaces local adaptation
+- history of rapid migration supports the view that species replacement usually outpace
+ local adaptation
 - leading edge will be either:
 	1. the site of extinction
 	2. site of range shift (populations track favored conditions)
 - if there is a lack of competitors, then there is greater dispersal capability in a species
 - if climate change is rapid, then adaptive responses may be more prevalent (trailing edge hypothesis)
-- moving a species north would move the species to areas of lower rainfall; this shift is tolerated
-due to the greater niche breadth along the precipitation axis
+- moving a species north would move the species to areas of lower rainfall; this shift is
+ tolerated due to the greater niche breadth along the precipitation axis
 - potential for adaptive evolution is observed for the same factor for which the species has a broader fundamental niche
 - See Fig. 7 for diagram indicating responses of species with asymmetric niche breadths to changing environments
 - Look for model including multiple species, overlapping niche distributions, and simultaneous
