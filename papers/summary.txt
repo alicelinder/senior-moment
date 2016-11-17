@@ -6,6 +6,22 @@ Paper catalogue for senior thesis
 
 ================================================================================
 
+* 11/17 Chen et. al  2011
+** Rapid Range Shifts of Species Associated with Climate Warming
+
+——————————————————————————————————————————————————————————————————————————————————————
+
+- distributions of terrestrial organisms shifting in latitude or elevation
+- specifies rates of shift: 16.9 km/decade (2-3x previously reported)
+- greatest distances in studies showing highest level =s of warming
+- individual species vary greatly in rates of change (range shift of
+each species depends o multiple internal species traits)
+- 
+
+
+================================================================================
+================================================================================
+
 * 11/17 Cornwell et. al 2006
 ** Trait-based Test for Habitat Filtering
 
@@ -40,10 +56,8 @@ economics” spectrum
 logarithmic scale
 - CHM allows incorporation of intra-specific variation due to plasticity and genotypic
 differentiation into an analysis
-- 
 
 
-================================================================================
 ================================================================================
 
 * 11/14 Kraft et. al 2008
