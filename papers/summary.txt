@@ -6,11 +6,41 @@ Paper catalogue for senior thesis
 
 ================================================================================
 
-* 11/15 Cornwell et. al 2006
+* 11/17 Cornwell et. al 2006
 ** Trait-based Test for Habitat Filtering
 
 ——————————————————————————————————————————————————————————————————————————————————————
 
+- community assembly theory: 2 processes affect distribution of trait values within
+communities
+	1. competition
+	2. habitat filtering
+- convex hull volume: statistical effect for effects of competition
+- n-dimensional measure of the volume of trait space occupied by species in a
+community.
+	- combined with ecological null models
+- results show plant communities occupy less trait space than expected from
+ random assembly (consistent with habitat filtering)
+- classical competition theory predicts a limit to the ecological similarity of 
+coexisting species
+- traits used to infer ecological strategy
+- Habitat filtering: reduction in the range of successful strategies among 
+coexisting species
+- Main question: is there evidence for the effects of multivariate habitat
+ filtering in this natural system? (is trait volume less than expected by chance?)
+- describe different functional traits
+	1. SLA: part of a suite of traits associated with leaf life span and “leaf
+economics” spectrum
+	2. leaf area related to energy balance
+- compared relationship between species richness and trait volume
+- different ways to weigh traits:
+	1. equal weighting: trait scaled relative to local mean and variance
+	2. global weighting: trait scaled relative to global mean and variance
+	3. logarithmic weighting: weights traits by observed variance on
+logarithmic scale
+- CHM allows incorporation of intra-specific variation due to plasticity and genotypic
+differentiation into an analysis
+- 
 
 
 ================================================================================
