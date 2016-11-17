@@ -105,7 +105,7 @@ lead to species coexistence
 
 ——————————————————————————————————————————————————————————————————————————————————————
 
-- Exploring connection between community assemble (and other ecological sorting
+- Exploring connection between community assembly (and other ecological sorting
 processes as causes for functional trait distributions at local/landscape level)
 - Based on theory that plants in saturated communities occupy areas that are optimal
 or near-optimal environments for them -> functional traits reflect this stabilizing
