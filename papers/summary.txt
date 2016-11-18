@@ -4,6 +4,31 @@ Paper catalogue for senior thesis
 
 =============
 
+* 11/18 Pigot and Tobias 2013
+** Species interactions constrain geographic range expansion over evolutionary time
+
+——————————————————————————————————————————————————————————————————————————————————————
+
+- test whether biotic interactions constrain transition to secondary sympatry following
+speciation
+- empirical research has highlighted strong associations between range limits and
+aspects of the physical environment
+- Read sources list!! Especially Peterson et. al 2011
+- widespread perception that environmental determinism and biogeographical history
+overwhelm any influence of species at large spacial scales
+
+================================================================================
+================================================================================
+
+* 11/18 Parmesan 2006
+** Ecological and Evolutionary Responses to Recent Climate Change
+
+——————————————————————————————————————————————————————————————————————————————————————
+
+- studies in distributional shifts infer large-scale range shifts from
+small-scale observations across sections of a range boundary
+
+================================================================================
 ================================================================================
 
 * 11/17 Chen et. al  2011
@@ -16,8 +41,14 @@ Paper catalogue for senior thesis
 - greatest distances in studies showing highest level =s of warming
 - individual species vary greatly in rates of change (range shift of
 each species depends o multiple internal species traits)
-- 
-
+- species move away from the Equator
+- observed latitudinal and elevational shifts much greater in studies with
+higher levels of warming
+- species migrate to environment that records same temperature as in
+the start of the temperature it resides in
+- three processes likely to alter response: time delays in response,
+individualistic physiological constraints, and alternative and interacting
+drivers of change
 
 ================================================================================
 ================================================================================
