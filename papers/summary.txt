@@ -4,6 +4,19 @@ Paper catalogue for senior thesis
 
 =============
 
+* 11/18 Weiher et. al 1998
+** Community Assembly Rules, Morphological Dispersion, and the Coexistence of Plant Species
+
+
+——————————————————————————————————————————————————————————————————————————————————————
+
+- found significant checkerboard and nestedness patterns in wetland plant composition
+- morphological assembly rules that constrain wetland plant community composition
+- 
+
+================================================================================
+================================================================================
+
 * 11/18 Pigot and Tobias 2013
 ** Species interactions constrain geographic range expansion over evolutionary time
 
@@ -16,6 +29,10 @@ aspects of the physical environment
 - Read sources list!! Especially Peterson et. al 2011
 - widespread perception that environmental determinism and biogeographical history
 overwhelm any influence of species at large spacial scales
+- spatial signals of biotic interactions normally compare whether static patterns of
+co-occurrence differ from expected if species see independent distribution
+- ecological competition is strongest between close relatives — competition
+relatedness hypothesis
 
 ================================================================================
 ================================================================================
