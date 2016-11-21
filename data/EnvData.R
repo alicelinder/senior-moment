@@ -58,6 +58,9 @@ extent.NE <- extent(coords)
 bio1<-crop(clim[[1]], extent.NE)
 plot(bio1)
 
+bio11<-crop(clim[[11]], extent.NE)
+plot(bio11)
+
 bio12<-crop(clim[[12]], extent.NE)
 plot(bio12)
 
