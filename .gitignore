@@ -2,3 +2,9 @@
 *.aux
 
 *.log
+
+*.bil
+
+*.hdr
+
+*.zip
