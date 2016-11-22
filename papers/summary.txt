@@ -3,6 +3,33 @@
 Paper catalogue for senior thesis
 
 =============
+=============
+
+* 11/21 Case et. al 2005
+** The community content of species’ borders: ecological and evolutionary perspectives
+
+——————————————————————————————————————————————————————————————————————————————————————
+
+- look up Lotka-Volterra competition equations
+- geographic range of species with low movement rates and slow population growth
+may not yet be at equilibrium with respect to past climate change and continuing
+habitat alteration
+
+
+================================================================================
+================================================================================
+
+* 11/21 Sexton et. al 2009
+** Evolution and Ecology of Species Range Limits
+
+——————————————————————————————————————————————————————————————————————————————————————
+
+- range edges characterized by: increased genetic isolation, genetic differentiation,
+variability in individual and population performance
+- competition findings: Case et al. 2005, Fowler & Levin 1984, Yodzis 1978
+
+================================================================================
+================================================================================
 
 * 11/18 Weiher et. al 1998
 ** Community Assembly Rules, Morphological Dispersion, and the Coexistence of Plant Species
