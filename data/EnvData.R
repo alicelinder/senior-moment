@@ -84,3 +84,11 @@ View(env.data)
 TreeLatLongs["AnnualTemp"] <- env.data
 
 ## remember: mean annual temperatures are multiplied by 10 in data points
+
+# look into PCA with climatic variables
+## characterize climatic space for each species based on the PCAs
+## looking at relationship with climatic variables as a continuous variable
+## MDS but for climatic variables
+## PCA for each site, across all sites to visualize climatic space
+## summarize competition across all species within each site
+
