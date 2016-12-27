@@ -8,6 +8,7 @@ library(tidyr)
 library(reshape)
 library(plyr)
 library(reshape2)
+library(ggplot2)
 
 rm(list = ls())
 setwd("~/GitHub/senior-moment/data")
@@ -32,8 +33,6 @@ over.all <- as.data.frame(acast(d, Individual ~ value, length))
 head(over.all)
 over.all <- t(over.all)
 head(over.all)
-
-summary(over.all)
 
 # Analysis and summarizing richness of the overstory
 richness <- apply(over.all, 2, sum)
@@ -64,8 +63,8 @@ colz = alpha(c("#E7298A", "#1B9E77", "#D95F02", "#7570B3"), 0.5)
 # plot MDS overstory
 plot(mds1, type = "n",
      xlim = c(-2, 2),
-     ylim = c(-1.2, 2)
-)
+     ylim = c(-1.2, 2),
+     cex.lab = 2)
 
 count = 1
 for(i in unique(overcomp$site)){
@@ -79,9 +78,9 @@ legend("topleft",
        fill = colz,
        legend = c("Harvard Forest", "White Mountains", "Grant", "St. Hippolyte"),
        bty = "n",
-       cex = .75)
-title("Overstory", 
-      cex = 150)
+       cex = 2)
+title("Overstory", cex.main = 3)
+?'x.lab'
 
 rm(list = ls())
 
@@ -145,7 +144,7 @@ for(i in unique(undercomp$site)){
 legend("topleft",
        fill = colz,
        legend = c("Harvard Forest", "White Mountains", "Grant", "St. Hippolyte"),
-       bty = "n")
+       bty = "n",
+       cex = 1.2)
 
-title("Understory",
-      cex = 150)       
+title("Overstory", cex.main = 1.5)      
