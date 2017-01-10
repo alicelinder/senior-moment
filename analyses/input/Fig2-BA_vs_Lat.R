@@ -2,18 +2,18 @@
 
 ## July 28, 2016
 
-setwd("~/Dropbox/Summer 2016 Forest/Data") # setwd("~/Dropbox/Work/Harvard/Summer 2016 Forest/Data") 
+setwd("~/GitHub/senior-moment/data") # setwd("~/Dropbox/Work/Harvard/Summer 2016 Forest/Data") 
 
 
 library(vegan) # install.packages("vegan")
 library(lme4)# install.packages("lme4")
 library(scales)# install.packages("scales")
 library(ggplot2) # install.packages("ggplot2")
-library(sjPlot) # install.packages("sjPlot")
+# library(sjPlot) # install.packages("sjPlot")
 
-focal.dbh <- read.csv("Individual.DBH.Test.csv")
+focal.dbh <- read.csv("focal.species.dbh.csv")
 
-other.dbh <- read.csv("Trees.DBH.test.csv")
+other.dbh <- read.csv("all.species.dbh.csv")
 
 # sum up other basal areas
 head(other.dbh)
@@ -32,6 +32,11 @@ other.dbh$DBH[other.dbh$DBH == "less.than.2"] = 1 # make all <2 measures into 1
 other.dbh$DBH <- as.numeric(as.character(other.dbh$DBH)) # convert from factor to numeric
 
 summary(other.dbh$DBH) # should not be any NA
+
+# loop to find all DBH larger than focal DBH
+# unique(other.dbh$Individual)
+other.dbh["focal.dbh"] <- focal.dbh$DBH
+rbind(df1[,cols], df2[,cols])
 
 # convert dbh to basal area and dbh to m from cm
 other.dbh$BA <- (other.dbh$DBH/200)^2*pi

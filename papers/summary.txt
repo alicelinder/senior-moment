@@ -5,6 +5,28 @@ Paper catalogue for senior thesis
 =============
 =============
 
+* 1/9 Contreras et. al 2011
+** Evaluating tree competition indices as predictors of basal area increment in western
+Montana forests
+
+——————————————————————————————————————————————————————————————————————————————————————
+
+- Radtke et al., 2003, Keddy 1989
+- CI1 is Reineke’s (1933) stand density index, based on the number of trees per ha
+ in a competition plot (N) and their quadratic mean diameter
+- which method works best?
+- CI2 and CI4 for Douglas fir
+- CI2 and CI3 for Ponderosa pine
+- CI2 and CI3 for Western Larch
+- try CI3: sum of basal areas of neighbor trees larger than the cored tree 
+(Wykoff et. al 1982)
+- or CI4 in Schroder and Gadow
+
+
+================================================================================
+================================================================================
+
+
 * 11/21 Case et. al 2005
 ** The community content of species’ borders: ecological and evolutionary perspectives
 
