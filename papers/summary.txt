@@ -21,7 +21,8 @@ Montana forests
 - try CI3: sum of basal areas of neighbor trees larger than the cored tree 
 (Wykoff et. al 1982)
 - or CI4 in Schroder and Gadow
-
+- appears that Wykoff is the best source based on 2 studies and distance-
+independent competitive indices
 
 ================================================================================
 ================================================================================

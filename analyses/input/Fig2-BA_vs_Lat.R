@@ -3,7 +3,7 @@
 ## July 28, 2016
 
 rm(list = ls())
-setwd("~/GitHub/senior-moment/data") # setwd("~/Dropbox/Work/Harvard/Summer 2016 Forest/Data") 
+setwd("~/GitHub/senior-moment/data")
 
 
 library(vegan) # install.packages("vegan")
@@ -59,8 +59,8 @@ compet["fBA"] <- .5*pi*(compet$fDBH)^2
 # sum the basal area for each individual
 focal.dbh["competing.BA"] <- data.frame(tapply(compet$BA, compet$Individual, sum))
 focal.dbh["log.cBA"] <- log(focal.dbh$competing.BA)
-focal.dbh$log.cBA <- as.character(focal.dbh$log.cBA)
-focal.dbh$competing.BA <- as.character(focal.dbh$competing.BA)
+focal.dbh$log.cBA <- as.integer(as.factor(as.character(focal.dbh$log.cBA)))
+focal.dbh$competing.BA <- as.integer(as.factor(as.character(focal.dbh$competing.BA)))
 class(focal.dbh$log.cBA)
 
 # Site and species information based on last 2 letters of individuals
@@ -106,7 +106,7 @@ ggplot(focal.dbh,
   facet_wrap(~sp, ncol=4)
 
 ggplot(focal.dbh,
-       aes(as.numeric(Site), as.numeric(log.cBA), color = sp)) +
+       aes(as.numeric(Site), log.cBA, color = sp)) +
          geom_point() + xlab("Site") +
          facet_wrap(~sp, ncol=4)
 
