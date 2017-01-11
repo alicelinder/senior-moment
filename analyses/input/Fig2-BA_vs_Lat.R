@@ -2,6 +2,7 @@
 
 ## July 28, 2016
 
+rm(list = ls())
 setwd("~/GitHub/senior-moment/data") # setwd("~/Dropbox/Work/Harvard/Summer 2016 Forest/Data") 
 
 
@@ -9,74 +10,74 @@ library(vegan) # install.packages("vegan")
 library(lme4)# install.packages("lme4")
 library(scales)# install.packages("scales")
 library(ggplot2) # install.packages("ggplot2")
-# library(sjPlot) # install.packages("sjPlot")
-
+library(plyr)
+library(reshape)
+#library(sjPlot) # install.packages("sjPlot")
+detach("package:dplyr", unload=TRUE)
 focal.dbh <- read.csv("focal.species.dbh.csv")
+focal.dbh <- rename(focal.dbh, c("DBH" = "fDBH"))
+
+head(focal.dbh)
 
 other.dbh <- read.csv("all.species.dbh.csv")
-
-# sum up other basal areas
+other.dbh["index"] <- 1:3893
 head(other.dbh)
 
-other.dbh$Individual <- as.character(other.dbh$Individual) # convert from factor to character
-focal.dbh$Individual <- as.character(focal.dbh$Individual)
+# merge datasets
+all.dbh <- merge(focal.dbh, other.dbh, by = "Individual")
+
+head(all.dbh)
 
 # Clean up DBH measures
-other.dbh$DBH <- as.character(other.dbh$DBH) # convert from factor to character
-focal.dbh$DBH <- as.character(focal.dbh$DBH)
+all.dbh$DBH <- as.character(all.dbh$DBH) # convert from factor to character
+all.dbh$fDBH <- as.character(all.dbh$fDBH)
 
-other.dbh$DBH[other.dbh$DBH == "less.than.1"] = 0.5 # make all less.than.1 into .5
-focal.dbh$DBH[focal.dbh$DBH == "less.than.1"] = 0.5 # make all less.than.1 into .5
-other.dbh$DBH[other.dbh$DBH == "less.than.2"] = 1 # make all <2 measures into 1
+all.dbh$DBH[all.dbh$DBH == "less.than.1"] = 0.5 # make all less.than.1 into .5
+all.dbh$fDBH[all.dbh$fDBH == "less.than.1"] = 0.5 # make all less.than.1 into .5
+all.dbh$DBH[all.dbh$DBH == "less.than.2"] = 1 # make all <2 measures into 1
 
-other.dbh$DBH <- as.numeric(as.character(other.dbh$DBH)) # convert from factor to numeric
+all.dbh$DBH <- as.numeric(as.character(all.dbh$DBH))
+all.dbh$fDBH <- as.numeric(as.character(all.dbh$fDBH))# convert from factor to numeric
 
-summary(other.dbh$DBH) # should not be any NA
+summary(all.dbh$DBH) # should not be any NA
+#View(all.dbh)
 
-# loop to find all DBH larger than focal DBH
-# unique(other.dbh$Individual)
-other.dbh["focal.dbh"] <- focal.dbh$DBH
-rbind(df1[,cols], df2[,cols])
+# say whether focal DBH is smaller than competing individual
+all.dbh$greater <- all.dbh$fDBH < all.dbh$DBH
+all.dbh <- as.data.frame(all.dbh)
+#View(all.dbh)
 
-# convert dbh to basal area and dbh to m from cm
-other.dbh$BA <- (other.dbh$DBH/200)^2*pi
-summary(other.dbh$BA)
+# filter  data so only individiuals with DBHs greater than the focal DBH exist
+library(dplyr)
+compet <- filter(all.dbh, DBH > fDBH)
 
-# Summing
-data.frame(tapply(other.dbh$BA, other.dbh$Individual, sum))
+# create basal area variables of only those individuals
+compet["BA"] <- .5*pi*(compet$DBH)^2
+compet["fBA"] <- .5*pi*(compet$fDBH)^2
 
-# focal dbh to basal area
-focal.dbh$DBH <- as.numeric(as.character(focal.dbh$DBH)) # convert from factor to numeric
-focal.dbh$BA <- (focal.dbh$DBH/200)^2*pi
 
-# check any individuals that are missing
-(notinfocal <- other.dbh$Individual[!other.dbh$Individual %in% focal.dbh$Individual])
-(notinother <- focal.dbh$Individual[!focal.dbh$Individual %in% other.dbh$Individual])
-
-# sort out individuals to compare DBHs
-focal.dbh <- focal.dbh[order(focal.dbh$Individual),]
-
-# add column in focal.dbh to compare BAs
-focal.dbh["BAother"] <- data.frame(tapply(other.dbh$BA, other.dbh$Individual, sum))
-focal.dbh["total.BA"] <- focal.dbh$BA + focal.dbh$BAother
-focal.dbh["BA.Percentage"] <- focal.dbh$BA/focal.dbh$total.BA
+# sum the basal area for each individual
+focal.dbh["competing.BA"] <- data.frame(tapply(compet$BA, compet$Individual, sum))
+focal.dbh["log.cBA"] <- log(focal.dbh$competing.BA)
+focal.dbh$log.cBA <- as.character(focal.dbh$log.cBA)
+focal.dbh$competing.BA <- as.character(focal.dbh$competing.BA)
+class(focal.dbh$log.cBA)
 
 # Site and species information based on last 2 letters of individuals
+focal.dbh$Individual <- as.character(focal.dbh$Individual)
+
 focal.dbh$Site <- unlist(
   lapply(strsplit(focal.dbh[,1], "_"),
          function(x) x[[2]]))
 focal.dbh$sp <- substr(focal.dbh$Individual, 1, 6)
 
+class(focal.dbh$Site)
+class(focal.dbh)
+class(focal.dbh$log.cBA)
+
 # looking at data summaries, species at each site across gradient
-boxplot(focal.dbh$BA.Percentage ~ focal.dbh$sp)
-
-boxplot(BA.Percentage ~ sp, focal.dbh)
-
-boxplot(BA.Percentage ~ Site, focal.dbh)
-
-focal.dbh$Site <- as.factor(focal.dbh$Site)
-levels(focal.dbh$Site) <- c(3, 1, 4, 2)
-focal.dbh$Site <- factor(as.numeric(as.character(focal.dbh$Site)), labels = c("HF", "WM", "GR", "SH"))
+#levels(focal.dbh$Site) <- c(3, 1, 4, 2)
+#focal.dbh$Site <- factor(as.numeric(focal.dbh$Site), levels = c("HF", "WM", "GR", "SH"))
 
 coralt <- focal.dbh[focal.dbh$sp == "CORALT",]
 hamvir <- focal.dbh[focal.dbh$sp == "HAMVIR",]
@@ -90,12 +91,31 @@ faggra <- focal.dbh[focal.dbh$sp == "FAGGRA",]
 quealb <- focal.dbh[focal.dbh$sp == "QUEALB",]
 focal.large <- rbind(betpap, faggra, quealb)
 
+# grah shows numbers (possibly due to infinite log values?)
 ggplot(focal.small, 
-       aes(as.numeric(Site), BA.Percentage, color = sp)) + 
+       aes(as.numeric(Site), log.cBA, color = sp)) + 
   #geom_smooth( se = F, aes(color = sp)) +
   geom_point()  + xlab("Site") + 
-  scale_x_continuous(labels = 
-                       c("HF","WM","GR","SH")) +
+  facet_wrap(~sp, ncol = 2) +
+  ylab("Fraction of total Basal Area")
+
+# no points appear on this graph
+ggplot(focal.dbh,
+       aes(as.numeric(Site), as.numeric(competing.BA), color = sp)) +
+  geom_point() + xlab("Site") +
+  facet_wrap(~sp, ncol=4)
+
+ggplot(focal.dbh,
+       aes(as.numeric(Site), as.numeric(log.cBA), color = sp)) +
+         geom_point() + xlab("Site") +
+         facet_wrap(~sp, ncol=4)
+
+ggplot(focal.small, 
+       aes(as.numeric(Site), log.cBA, color = sp)) + 
+  #geom_smooth( se = F, aes(color = sp)) +
+  geom_point()  + xlab("Site") + 
+  #scale_x_continuous(labels = 
+                       #c("HF","WM","GR","SH")) +
   facet_wrap(~sp, ncol = 2) +
   ylab("Fraction of total Basal Area") 
 #ggtitle("Dominance of Small Woody Species")
