@@ -14,17 +14,22 @@ library(plyr)
 library(reshape)
 #library(sjPlot) # install.packages("sjPlot")
 detach("package:dplyr", unload=TRUE)
-focal.dbh <- read.csv("focal.species.dbh.csv")
-focal.dbh <- rename(focal.dbh, c("DBH" = "fDBH"))
+focal <- read.csv("focal.species.dbh.csv")
+focal <- rename(focal, c("DBH" = "fDBH"))
+lat.long <- read.csv("DBH.Lat.Long.csv")
+focal <- merge(lat.long, focal, by = "Individual")
+focal <- focal[,-2:-3]
+focal <- focal[, -4:-10]
+focal <- rename(focal, c("Height.y" = "Height"))
 
-head(focal.dbh)
+head(focal)
 
 other.dbh <- read.csv("all.species.dbh.csv")
 other.dbh["index"] <- 1:3893
 head(other.dbh)
 
 # merge datasets
-all.dbh <- merge(focal.dbh, other.dbh, by = "Individual")
+all.dbh <- merge(focal, other.dbh, by = "Individual")
 
 head(all.dbh)
 
@@ -57,39 +62,62 @@ compet["fBA"] <- .5*pi*(compet$fDBH)^2
 
 
 # sum the basal area for each individual
-focal.dbh["competing.BA"] <- data.frame(tapply(compet$BA, compet$Individual, sum))
-focal.dbh["log.cBA"] <- log(focal.dbh$competing.BA)
-focal.dbh$log.cBA <- as.integer(as.factor(as.character(focal.dbh$log.cBA)))
-focal.dbh$competing.BA <- as.integer(as.factor(as.character(focal.dbh$competing.BA)))
-class(focal.dbh$log.cBA)
+focal["competing.BA"] <- data.frame(tapply(compet$BA, compet$Individual, sum))
+focal["log.cBA"] <- log(focal$competing.BA)
+focal$log.cBA <- as.integer(as.factor(as.character(focal$log.cBA)))
+focal$competing.BA <- as.integer(as.factor(as.character(focal$competing.BA)))
+class(focal$log.cBA)
 
 # Site and species information based on last 2 letters of individuals
-focal.dbh$Individual <- as.character(focal.dbh$Individual)
+focal$Individual <- as.character(focal$Individual)
 
-focal.dbh$Site <- unlist(
-  lapply(strsplit(focal.dbh[,1], "_"),
+focal$Site <- unlist(
+  lapply(strsplit(focal[,1], "_"),
          function(x) x[[2]]))
-focal.dbh$sp <- substr(focal.dbh$Individual, 1, 6)
+focal$sp <- substr(focal$Individual, 1, 6)
 
-class(focal.dbh$Site)
-class(focal.dbh)
-class(focal.dbh$log.cBA)
+class(focal$Site)
+class(focal)
+class(focal$log.cBA)
 
 # looking at data summaries, species at each site across gradient
-#levels(focal.dbh$Site) <- c(3, 1, 4, 2)
-#focal.dbh$Site <- factor(as.numeric(focal.dbh$Site), levels = c("HF", "WM", "GR", "SH"))
+#levels(focal$Site) <- c(3, 1, 4, 2)
+#focal$Site <- factor(as.numeric(focal$Site), levels = c("HF", "WM", "GR", "SH"))
 
-coralt <- focal.dbh[focal.dbh$sp == "CORALT",]
-hamvir <- focal.dbh[focal.dbh$sp == "HAMVIR",]
-sorame <- focal.dbh[focal.dbh$sp == "SORAME",]
-acepen <- focal.dbh[focal.dbh$sp == "ACEPEN",]
+coralt <- focal[focal$sp == "CORALT",]
+hamvir <- focal[focal$sp == "HAMVIR",]
+sorame <- focal[focal$sp == "SORAME",]
+acepen <- focal[focal$sp == "ACEPEN",]
 focal.small <- rbind(coralt, sorame, hamvir, acepen)
 #focal.medium <- rbind(hamvir, acepen)
 
-betpap <- focal.dbh[focal.dbh$sp == "BETPAP",]
-faggra <- focal.dbh[focal.dbh$sp == "FAGGRA",]
-quealb <- focal.dbh[focal.dbh$sp == "QUEALB",]
+betpap <- focal[focal$sp == "BETPAP",]
+faggra <- focal[focal$sp == "FAGGRA",]
+quealb <- focal[focal$sp == "QUEALB",]
 focal.large <- rbind(betpap, faggra, quealb)
+
+# graph based on latitude
+ggplot(focal,
+       aes(Lat, competing.BA, color = sp)) +
+  geom_point() + 
+  geom_smooth(method="lm", se=F) +
+  facet_wrap(~sp, ncol = 4)
+
+ggplot(focal,
+       aes(Lat, log.cBA, color = sp)) +
+  geom_point() + 
+  geom_smooth(method="lm", se=F) +
+  facet_wrap(~sp, ncol = 4)
+
+ggplot(focal[-42,], 
+       aes(as.numeric(Site), Height, color = sp)) + 
+  geom_smooth( se = F, aes(color = sp)) +
+  geom_point()  + xlab("Site") + 
+  scale_x_continuous(labels = 
+                       c("HF","WM","GR","SH")) +
+  facet_wrap(~sp, ncol = 4) +
+  ylab("Height (m)") +
+  ggtitle("Shifts in Performance")
 
 # grah shows numbers (possibly due to infinite log values?)
 ggplot(focal.small, 
@@ -100,12 +128,12 @@ ggplot(focal.small,
   ylab("Fraction of total Basal Area")
 
 # no points appear on this graph
-ggplot(focal.dbh,
+ggplot(focal,
        aes(as.numeric(Site), as.numeric(competing.BA), color = sp)) +
   geom_point() + xlab("Site") +
   facet_wrap(~sp, ncol=4)
 
-ggplot(focal.dbh,
+ggplot(focal,
        aes(as.numeric(Site), log.cBA, color = sp)) +
          geom_point() + xlab("Site") +
          facet_wrap(~sp, ncol=4)
@@ -133,13 +161,13 @@ ggplot(focal.large,
 # relationship between height and BA.percentage
 ## do it for 4 different sites for each species
 
-ggplot(focal.dbh,
+ggplot(focal,
        aes(Site, Height, color = sp)) +
   geom_point() + 
   # geom_smooth(method="lm", se=F) +
   facet_wrap(~sp, ncol = 4)
-which(focal.dbh$Height>100)
-ggplot(focal.dbh[-42,], 
+which(focal$Height>100)
+ggplot(focal[-42,], 
        aes(as.numeric(Site), Height, color = sp)) + 
   geom_smooth( se = F, aes(color = sp)) +
   geom_point()  + xlab("Site") + 
@@ -151,20 +179,17 @@ ggplot(focal.dbh[-42,],
 
 # Analysis. Single linear models, very simple analysis here.
 
-summary(lm1 <- lm(BA.Percentage ~ as.numeric(Site), data = focal.dbh[focal.dbh$sp == "ACEPEN",]))
+summary(lm1 <- lm(log.cBA ~ Lat, data = focal[focal$sp == "ACEPEN",]))
+summary(lm2 <- lm(log.cBA ~ Lat, data = focal[focal$sp == "BETPAP",]))
+summary(lm3 <- lm(log.cBA ~ Lat, data = focal[focal$sp == "CORALT",]))
+summary(lm4 <- lm(log.cBA ~ Lat, data = focal[focal$sp == "FAGGRA",]))
+summary(lm5 <- lm(log.cBA ~ Lat, data = focal[focal$sp == "HAMVIR",]))
+summary(lm6 <- lm(log.cBA ~ Lat, data = focal[focal$sp == "QUEALB",]))
+summary(lm7 <- lm(log.cBA ~ Lat, data = focal[focal$sp == "SORAME",]))
 
-summary(lm2 <- lm(BA.Percentage ~ as.numeric(Site), data = focal.dbh[focal.dbh$sp == "BETPAP",]))
-
-summary(lm3 <- lm(BA.Percentage ~ as.numeric(Site), data = focal.dbh[focal.dbh$sp == "CORALT",]))
-
-summary(lm4 <- lm(BA.Percentage ~ as.numeric(Site), data = focal.dbh[focal.dbh$sp == "FAGGRA",])) 
-
-summary(lm5 <- lm(BA.Percentage ~ as.numeric(Site), data = focal.dbh[focal.dbh$sp == "HAMVIR",]))
-
-summary(lm6 <- lm(BA.Percentage ~ as.numeric(Site), data = focal.dbh[focal.dbh$sp == "SORAME",]))
 
 # Mixed effect model to use all species in single analysis
-lme1 <- lmer(BA.Percentage ~ as.numeric(Site) + (as.numeric(Site) | sp), data = focal.dbh)
+lme1 <- lmer(competing.BA ~ Lat + (Lat | sp), data = focal)
 
 fixef(lme1)
 ranef(lme1)
@@ -176,23 +201,23 @@ ranef <- ranef(lme1)
 
 # height analysis
 
-summary(lm7 <- lm(Height ~ as.numeric(Site), data = focal.dbh[focal.dbh$sp == "ACEPEN",]))
+summary(lm7 <- lm(Height ~ as.numeric(Site), data = focal[focal$sp == "ACEPEN",]))
 
-summary(lm8 <- lm(Height ~ as.numeric(Site), data = focal.dbh[focal.dbh$sp == "BETPAP",]))
+summary(lm8 <- lm(Height ~ as.numeric(Site), data = focal[focal$sp == "BETPAP",]))
 
-summary(lm9 <- lm(Height ~ as.numeric(Site), data = focal.dbh[focal.dbh$sp == "CORALT",]))
+summary(lm9 <- lm(Height ~ as.numeric(Site), data = focal[focal$sp == "CORALT",]))
 
-summary(lm10 <- lm(Height ~ as.numeric(Site), data = focal.dbh[focal.dbh$sp == "FAGGRA",])) 
+summary(lm10 <- lm(Height ~ as.numeric(Site), data = focal[focal$sp == "FAGGRA",])) 
 
-summary(lm11 <- lm(Height ~ as.numeric(Site), data = focal.dbh[focal.dbh$sp == "HAMVIR",]))
+summary(lm11 <- lm(Height ~ as.numeric(Site), data = focal[focal$sp == "HAMVIR",]))
 
-summary(lm12 <- lm(BA.Percentage ~ as.numeric(Site), data = focal.dbh[focal.dbh$sp == "SORAME",]))
+summary(lm12 <- lm(BA.Percentage ~ as.numeric(Site), data = focal[focal$sp == "SORAME",]))
 
 
-lme2 <- lmer(Height ~  as.numeric(Site) +  (1 | sp), data = focal.dbh)
+lme2 <- lmer(Height ~  as.numeric(Site) +  (1 | sp), data = focal)
 
 # as factor, can see SH is really different from other sites
-lme2 <- lmer(Height ~  as.numeric(Site) + (as.numeric(Site) | sp), data = focal.dbh[!is.na(focal.dbh$Height),])
+lme2 <- lmer(Height ~  as.numeric(Site) + (as.numeric(Site) | sp), data = focal[!is.na(focal$Height),])
 
 fixef(lme2)
 ranef(lme2)

@@ -5,6 +5,21 @@ Paper catalogue for senior thesis
 =============
 =============
 
+* 1/11 Zimmerman et. al
+** Climatic extremes improve predictions of spatial patterns of tree species
+
+——————————————————————————————————————————————————————————————————————————————————————
+
+- Fig. 1 is conceptual graph explaining possible effects of climatic and biotic 
+constraints of species niches with its effects on range limits along simple
+gradients of climatic means
+- look at R package mgcv
+- look up R packages for using climatic and range extremes
+
+================================================================================
+================================================================================
+
+
 * 1/9 Contreras et. al 2011
 ** Evaluating tree competition indices as predictors of basal area increment in western
 Montana forests
