@@ -196,31 +196,3 @@ ranef(lme1)
 summary(lme1)
 
 ranef <- ranef(lme1)
-
-# There is no overall effect, because species are doing different things: Notably, Bet pap becomes proprotionally larger with increasing latitude (towards the center of its distribution, away from edge) while all others at multiple sites become proportionally larger members of their communities with decreasing latitudes (away from edge).
-
-# height analysis
-
-summary(lm7 <- lm(Height ~ as.numeric(Site), data = focal[focal$sp == "ACEPEN",]))
-
-summary(lm8 <- lm(Height ~ as.numeric(Site), data = focal[focal$sp == "BETPAP",]))
-
-summary(lm9 <- lm(Height ~ as.numeric(Site), data = focal[focal$sp == "CORALT",]))
-
-summary(lm10 <- lm(Height ~ as.numeric(Site), data = focal[focal$sp == "FAGGRA",])) 
-
-summary(lm11 <- lm(Height ~ as.numeric(Site), data = focal[focal$sp == "HAMVIR",]))
-
-summary(lm12 <- lm(BA.Percentage ~ as.numeric(Site), data = focal[focal$sp == "SORAME",]))
-
-
-lme2 <- lmer(Height ~  as.numeric(Site) +  (1 | sp), data = focal)
-
-# as factor, can see SH is really different from other sites
-lme2 <- lmer(Height ~  as.numeric(Site) + (as.numeric(Site) | sp), data = focal[!is.na(focal$Height),])
-
-fixef(lme2)
-ranef(lme2)
-summary(lme2)
-
-
