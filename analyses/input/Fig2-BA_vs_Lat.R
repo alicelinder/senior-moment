@@ -5,7 +5,6 @@
 rm(list = ls())
 setwd("~/GitHub/senior-moment/data")
 
-
 library(vegan) # install.packages("vegan")
 library(lme4)# install.packages("lme4")
 library(scales)# install.packages("scales")
@@ -56,10 +55,18 @@ all.dbh <- as.data.frame(all.dbh)
 library(dplyr)
 compet <- filter(all.dbh, DBH > fDBH)
 
+# separate out same species to measure intra-specific competition
+compet$sp <- substr(compet$Individual, 1, 6)
+compet["intra.sp"] <- compet$Comp.Species == compet$sp
+intra.compet <- filter(compet, compet$intra.sp == TRUE & compet$fDBH < compet$DBH) 
+intra.compet["BA"] <- .5*pi*(intra.compet$DBH)^2
+intra.compet["fBA"] <- .5*pi*(intra.compet$fDBH)^2
+focal["intra.comp.BA"] <- data.frame(tapply(intra.compet$BA, intra.compet$Individual, sum))
+
+
 # create basal area variables of only those individuals
 compet["BA"] <- .5*pi*(compet$DBH)^2
 compet["fBA"] <- .5*pi*(compet$fDBH)^2
-
 
 # sum the basal area for each individual
 focal["competing.BA"] <- data.frame(tapply(compet$BA, compet$Individual, sum))
@@ -95,6 +102,19 @@ betpap <- focal[focal$sp == "BETPAP",]
 faggra <- focal[focal$sp == "FAGGRA",]
 quealb <- focal[focal$sp == "QUEALB",]
 focal.large <- rbind(betpap, faggra, quealb)
+
+
+# plot intraspecific competition
+ggplot(focal,
+       aes(Lat, intra.comp.BA, color = sp)) +
+  geom_point() + 
+  geom_smooth(method="lm", se=F) +
+  facet_wrap(~sp, ncol = 4)
+
+# model intraspecific competition
+summary(lm1 <- lm(intra.comp.BA ~ Lat, data = focal[focal$sp == "ACEPEN",]))
+summary(lm2 <- lm(intra.comp.BA ~ Lat, data = focal[focal$sp == "BETPAP",]))
+lme1 <- lmer(intra.comp.BA ~ Lat + (Lat | sp), data = focal)
 
 # graph based on latitude
 ggplot(focal,
