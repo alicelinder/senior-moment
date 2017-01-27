@@ -16,3 +16,5 @@ tree.traits["leaf.mass"] <- tree.traits$Fresh.mass - tree.traits$Dry.mass
 tree.traits <- tree.traits[,-13:-17]
 tree.traits <- tree.traits[,-14:-21]
 
+# 
+
