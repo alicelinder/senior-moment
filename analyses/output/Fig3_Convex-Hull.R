@@ -8,6 +8,7 @@ setwd("~/GitHub/senior-moment/data")
 # LIBRARIES HERE
 library(geometry)
 library(FD)
+library(dplyr)
 
 # load data
 tree.traits <- read.csv("tree-traits.csv")
@@ -18,9 +19,12 @@ tree.traits["leaf.mass"] <- tree.traits$Fresh.mass - tree.traits$Dry.mass
 tree.traits <- tree.traits[,-13:-17]
 tree.traits <- tree.traits[,-14:-21]
 
-# create matrix containing abundances of the species or presence/absence with rows = sites and species = columns
+# clean up data and subset it
+traits <- select(tree.traits, Site, Species, Leaf.area, Stem.volume, 
+                 Height, DBH, X.N, X.C, Stomatal.Length, Stomatal.Density, 
+                 leaf.mass)
 
-# quantify convex hull for community
-?dbFD
-dbFD(tree.traits, )
+# create matrix containing abundances of the species or presence/absence with 
+## rows = sites and species = columns
 
+#convhulln(tree.traits$)
