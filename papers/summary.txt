@@ -6,17 +6,10 @@ Paper catalogue for senior thesis
 =============
 
 Next on to-do list:
+- Ask Dan:
+	- how do you deal with convex hull across latitudes? plot multiple convex hulls for each species?
 - look up the boxcar effect (Urban et. al 2011)
 - look up thermal competitive breadth (Urban et. al 2011)
-- find papers:
-	- Davis, A. J., Jenkinson, L. S., Lawton, J. H., Shorrocks, B. & Wood, S. 1998 Making mistakes when predicting shifts in species range in response to global warming
-	- Gilman, S. E., Urban, M. C., Tewksbury, J., Gilchrist, G. W. & Holt, R. D. 2010 A framework for community interactions under climate change. Trends Ecol. Evol. 25, 325–331. (doi:10.1016/j.tree.2010.03.002)
-	- Van der Putten, W. H., Macel, M. & Visser, M. E. 2010 Predicting species distribution and abundance responses to climate change: why it is essential to include biotic interactions across trophic levels. Phil. Trans. R. Soc. B
-	- Angert, A. L., Crozier, L. G., Rissler, L. J., Gilman, S. E., Tewksbury, J. J. & Chunco, A. J. 2011 Do species’ traits predict recent shifts at expanding range edges?
-	- Moorcroft, P. R., Pacala, S. W. & Lewis, M. A. 2006 Potential role of natural enemies during tree range expansions following climate change. J. Theor. Biol.
-	- Soberon, J. 2007 Grinnellian and Eltonian niches and geographic distributions of species. Ecol. Lett. 10
-	- Urban, M. C., De Meester, L., Vellend, M., Stoks, R. & Vanoverbeke, J. In press. A crucial step toward realism: responses to climate change from an evolving metacommu- nity perspective.
-
 
 * 1/16 Urban et. al
 ** On a collision course: competition and dispersal differences create no-analogue
@@ -166,6 +159,7 @@ drivers of change
 
 ——————————————————————————————————————————————————————————————————————————————————————
 
+- great for determining which functional traits are associated with what
 - community assembly theory: 2 processes affect distribution of trait values within
 communities
 	1. competition
