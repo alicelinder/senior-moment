@@ -1,6 +1,7 @@
 # Functional traits convex hull value
 ## by Alice Linder
 ### written Jan. 16, 2017
+### used "Functional and Phylogenetic Ecology in R" by Nathan G. Swenson
 
 rm(list = ls())
 setwd("~/GitHub/senior-moment/data")
@@ -9,6 +10,8 @@ setwd("~/GitHub/senior-moment/data")
 library(geometry)
 library(FD)
 library(dplyr)
+library(reshape2)
+library(plyr)
 
 # load data
 tree.traits <- read.csv("tree-traits.csv")
@@ -26,6 +29,10 @@ traits <- select(tree.traits, Site, Species, Leaf.area, Stem.volume,
 
 class(traits)
 traits <- na.omit(traits)
+
+# create data frame to store convex hull values with 176 rows x 9 columns
+con.hull <- data.frame(NA, nrow = 176, ncol = 9, row.names = "")
+?data.frame
 
 # find max and min values of each trait within each species
 range.function <- function(x) {
