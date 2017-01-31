@@ -11,6 +11,8 @@
 rm(list = ls())
 setwd("~/GitHub/senior-moment/data")
 
+# setwd("~/Documents/git/senior-moment/data")
+
 # LIBRARIES HERE
 library(geometry)
 library(FD)
@@ -54,21 +56,41 @@ range.function <- function(x) {
   apply(traits[com.names, ], MARGIN = 2, min)
 }
 
-acepen <- max(traits[traits$Species == i, 2])
 
-# create matrix containing abundances of the species or presence/absence with 
-## rows = sites and species = columns
-convhulln(traits)
+# create matrix containing traits of the species with rows = species and columns = traits for one species, at one site
+head(traits)
 
-#convhulln(tree.traits$)
+traits$SLA = traits$Leaf.area / traits$leaf.mass
 
-range.function <- function(x) {
-  ## Get names of the species present in our community
-  com.names <- unique(as.data.frame(traits$Species))
-  
-  ## Calculate the range for each trait
-  apply(traits[com.names, ], MARGIN = 2, max)
-  
+ex <- subset(traits, Site == "GR" & Species == "ACEPEN")
+
+# choose traits
+tr <- c("SLA", "Stem.volume", "DBH", "X.N") 
+
+# Find complete cases for this set
+ex <- ex[complete.cases(ex[tr]),]
+
+vol = convhulln(ex[tr], "FA")$vol
+
+# now apply this across all species and sites
+chvols = vector()
+
+for(site in unique(traits$Site)){
+  for(sp in unique(traits$Species)){
+    
+    ex <- subset(traits, Site == site & Species == sp)
+    
+    # Find complete cases for this set
+    ex <- ex[complete.cases(ex[tr]),]
+    
+    if(nrow(ex) < length(tr)) vol = NA
+    else  vol = convhulln(ex[tr], "FA")$vol
+    
+    chvols = rbind(chvols, data.frame(site, sp, vol, n = nrow(ex)))
+  }
 }
+    
+    
 
-max(traits[com.names, ])
+
+
