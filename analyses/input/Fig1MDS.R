@@ -13,6 +13,8 @@ library(ggplot2)
 rm(list = ls())
 setwd("~/GitHub/senior-moment/data")
 
+# setwd("~/Documents/git/senior-moment/data") # For Dan
+
 # MDS overstory
 d <- read.csv("all.species.dbh.csv", row.names = NULL)
 d <- d[,1:3]

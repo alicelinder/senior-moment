@@ -8,6 +8,11 @@
 *.hdr
 
 *.zip
+<<<<<<< Updated upstream
 .Rproj.user
 
 papers/InsanityMax30_Calendar_MaxOutCalendar_AbMaximizerCalendar.pdf
+=======
+
+.DS_Store
+>>>>>>> Stashed changes

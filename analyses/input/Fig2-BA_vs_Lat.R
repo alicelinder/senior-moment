@@ -5,6 +5,8 @@
 rm(list = ls())
 setwd("~/GitHub/senior-moment/data")
 
+# setwd("~/Documents/git/senior-moment/data") # For Dan
+
 library(vegan) # install.packages("vegan")
 library(lme4)# install.packages("lme4")
 library(scales)# install.packages("scales")
@@ -13,9 +15,13 @@ library(plyr)
 library(reshape)
 #library(sjPlot) # install.packages("sjPlot")
 detach("package:dplyr", unload=TRUE)
+
 focal <- read.csv("focal.species.dbh.csv")
+
 focal <- rename(focal, c("DBH" = "fDBH"))
+
 lat.long <- read.csv("DBH.Lat.Long.csv")
+
 focal <- merge(lat.long, focal, by = "Individual")
 focal <- focal[,-2:-3]
 focal <- focal[, -4:-10]
@@ -69,11 +75,18 @@ compet["BA"] <- .5*pi*(compet$DBH)^2
 compet["fBA"] <- .5*pi*(compet$fDBH)^2
 
 # sum the basal area for each individual
-focal["competing.BA"] <- data.frame(tapply(compet$BA, compet$Individual, sum))
-focal["log.cBA"] <- log(focal$competing.BA)
-focal$log.cBA <- as.integer(as.factor(as.character(focal$log.cBA)))
-focal$competing.BA <- as.integer(as.factor(as.character(focal$competing.BA)))
-class(focal$log.cBA)
+
+# This is very problamatic... made a 'numeric' data frame composed of just the level values
+# focal["competing.BA"] <- data.frame(tapply(compet$BA, compet$Individual, sum))
+# This is what you wanted to do
+focal <- data.frame(focal, competing.BA = tapply(compet$BA, compet$Individual, sum))
+
+
+focal$log.cBA <- log(focal$competing.BA) # what are NAs from? Some have no competing BA values apparently
+
+# ??? Why integer? leave these as numeric values
+#focal$log.cBA <- as.integer(as.factor(as.character(focal$log.cBA)))
+#focal$competing.BA <- as.integer(as.factor(as.character(focal$competing.BA)))
 
 # Site and species information based on last 2 letters of individuals
 focal$Individual <- as.character(focal$Individual)
@@ -83,9 +96,14 @@ focal$Site <- unlist(
          function(x) x[[2]]))
 focal$sp <- substr(focal$Individual, 1, 6)
 
-class(focal$Site)
-class(focal)
-class(focal$log.cBA)
+typeof(focal$Site)
+typeof(focal)
+typeof(focal$log.cBA)
+
+# Better is to leave it as a factor, and re-order in a logical way
+focal$Site <- factor(focal$Site, labels = c("3GR", "1HF", "4SH", "2WM"))
+focal$Site <- as.factor(as.character(focal$Site))
+levels(focal$Site) = c("HF", "WM", "GR", "SH")
 
 # looking at data summaries, species at each site across gradient
 #levels(focal$Site) <- c(3, 1, 4, 2)
@@ -129,8 +147,9 @@ ggplot(focal,
   geom_smooth(method="lm", se=F) +
   facet_wrap(~sp, ncol = 4)
 
+# Why excluding this individual Too large?
 ggplot(focal[-42,], 
-       aes(as.numeric(Site), Height, color = sp)) + 
+       aes(Site, Height, color = sp)) + 
   geom_smooth( se = F, aes(color = sp)) +
   geom_point()  + xlab("Site") + 
   scale_x_continuous(labels = 
@@ -140,26 +159,30 @@ ggplot(focal[-42,],
   ggtitle("Shifts in Performance")
 
 # grah shows numbers (possibly due to infinite log values?)
+# not sure what you are expecting, this looks correct now
+
 ggplot(focal.small, 
-       aes(as.numeric(Site), log.cBA, color = sp)) + 
+       aes(Site, log.cBA, color = sp)) + 
   #geom_smooth( se = F, aes(color = sp)) +
   geom_point()  + xlab("Site") + 
   facet_wrap(~sp, ncol = 2) +
   ylab("Fraction of total Basal Area")
 
 # no points appear on this graph
+# Site was not a factor previously, so as.numeric just makes a vector of NA -- can turn into a factor and then numeric, but not sure why you want this!
 ggplot(focal,
-       aes(as.numeric(Site), as.numeric(competing.BA), color = sp)) +
+       aes(as.numeric(as.factor(Site)), as.numeric(competing.BA), color = sp)) +
   geom_point() + xlab("Site") +
   facet_wrap(~sp, ncol=4)
 
+# Better, just use the factor Site
 ggplot(focal,
-       aes(as.numeric(Site), log.cBA, color = sp)) +
+       aes(Site, log.cBA, color = sp)) +
          geom_point() + xlab("Site") +
          facet_wrap(~sp, ncol=4)
 
 ggplot(focal.small, 
-       aes(as.numeric(Site), log.cBA, color = sp)) + 
+       aes(Site, log.cBA, color = sp)) + 
   #geom_smooth( se = F, aes(color = sp)) +
   geom_point()  + xlab("Site") + 
   #scale_x_continuous(labels = 
@@ -169,7 +192,7 @@ ggplot(focal.small,
 #ggtitle("Dominance of Small Woody Species")
 
 ggplot(focal.large, 
-       aes(as.numeric(Site), BA.Percentage, color = sp)) +  
+       aes(Site, BA.Percentage, color = sp)) +  
   #geom_smooth( se = F, aes(color = sp)) +
   geom_point()  + xlab("Site") + 
   scale_x_continuous(labels = 
