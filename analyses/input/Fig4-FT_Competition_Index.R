@@ -7,7 +7,7 @@ setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data"
 
 library(dplyr)
 
-# Principal components analysis of functional traits
+# Principal components analysis of functional traits to plot against competitiveness index
 tree.traits <- read.csv("tree-traits.csv")
 
 # calculate mass
@@ -31,3 +31,21 @@ species <- traits[, 2]
 traits.pca <- prcomp(log.traits,
                  center = TRUE,
                  scale = TRUE)
+
+# view standard deviation and PC via print method and summary method
+print(traits.pca)
+summary(traits.pca)
+
+# view PCA on graph
+library(devtools)
+install_github("ggbiplot", "vqv")
+
+library(ggbiplot)
+g <- ggbiplot(traits.pca, obs.scale = 1, var.scale = 1, 
+              groups = species, ellipse = TRUE, 
+              circle = TRUE)
+g <- g + scale_color_discrete(name = '')
+g <- g + theme(legend.direction = 'horizontal', 
+               legend.position = 'top')
+print(g)
+

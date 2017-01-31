@@ -3,6 +3,11 @@
 ### written Jan. 16, 2017
 ### used "Functional and Phylogenetic Ecology in R" by Nathan G. Swenson
 
+# Seems that convex hull (functional richness) only works for communities in which all 
+## individuals have been sampled for traits. Any way around this? I'm thinking at the
+## moment that I should just complete a PCA with functional traits and plot this
+## or coefficient of variance across ranges.
+
 rm(list = ls())
 setwd("~/GitHub/senior-moment/data")
 

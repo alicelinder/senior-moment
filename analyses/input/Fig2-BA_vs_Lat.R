@@ -3,7 +3,7 @@
 ## July 28, 2016
 
 rm(list = ls())
-setwd("~/GitHub/senior-moment/data")
+setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 
 # setwd("~/Documents/git/senior-moment/data") # For Dan
 
