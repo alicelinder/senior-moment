@@ -5,6 +5,8 @@
 rm(list = ls())
 setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 
+library(dplyr)
+
 # Principal components analysis of functional traits
 tree.traits <- read.csv("tree-traits.csv")
 
@@ -13,13 +15,19 @@ tree.traits["leaf.mass"] <- tree.traits$Fresh.mass - tree.traits$Dry.mass
 tree.traits <- tree.traits[,-13:-17]
 tree.traits <- tree.traits[,-14:-21]
 
+# clean up data and subset it based on species
+traits <- select(tree.traits, Site, Species, Leaf.area, Stem.volume, 
+                 Height, DBH, X.N, X.C, Stomatal.Length, Stomatal.Density, 
+                 leaf.mass)
+traits <- na.omit(traits)
+
 # apply skewness transformation, center and scale the variables prior to the application of PCA
 # log transform 
-log.traits <- log(traits[, 1:4])
-ir.species <- iris[, 5]
+log.traits <- log(traits[, 3:11])
+species <- traits[, 2]
 
-# apply PCA - scale. = TRUE is highly 
-# advisable, but default is FALSE. 
-ir.pca <- prcomp(log.ir,
+## GETTING ERROR HERE -- "INFINITE OR MISSING VALUES IN X" (something wrong with na.omit?)
+# apply PCA - scale. = TRUE is highly advisable, but default is FALSE. 
+traits.pca <- prcomp(log.traits,
                  center = TRUE,
-                 scale. = TRUE)
+                 scale = TRUE)
