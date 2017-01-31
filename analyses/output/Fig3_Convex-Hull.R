@@ -35,11 +35,11 @@ class(traits)
 # create data frame to store convex hull values with 176 rows x 9 columns
 con.hull <- data.frame(matrix(NA, nrow = 176, ncol = 10))
 rownames(con.hull) <- NULL 
-colnames(con.hull) <- c("Species", "Leaf.area", "Stem.volume", "Height", 
+colnames(con.hull) <- c("Species", "Site", "Leaf.area", "Stem.volume", "Height", 
                         "DBH", "X.N", "X.C", "Stomatal.Length", 
                         "Stomatal.Density", "leaf.mass")
 
-
+?convhulln
 
 # find max and min values of each trait within each species
 range.function <- function(x) {
@@ -49,10 +49,6 @@ range.function <- function(x) {
   apply(traits[com.names, ], MARGIN = 2, min)
 }
 
-apply()
-
-
-?apply
 acepen <- max(traits[traits$Species == i, 2])
 
 # create matrix containing abundances of the species or presence/absence with 
