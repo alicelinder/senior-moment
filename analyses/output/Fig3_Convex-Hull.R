@@ -28,11 +28,18 @@ traits <- select(tree.traits, Site, Species, Leaf.area, Stem.volume,
                  leaf.mass)
 
 class(traits)
-traits <- na.omit(traits)
+
+## DO I NEED TO DO THIS?
+#traits <- na.omit(traits)
 
 # create data frame to store convex hull values with 176 rows x 9 columns
-con.hull <- data.frame(NA, nrow = 176, ncol = 9, row.names = "")
-?data.frame
+con.hull <- data.frame(matrix(NA, nrow = 176, ncol = 10))
+rownames(con.hull) <- NULL 
+colnames(con.hull) <- c("Species", "Leaf.area", "Stem.volume", "Height", 
+                        "DBH", "X.N", "X.C", "Stomatal.Length", 
+                        "Stomatal.Density", "leaf.mass")
+
+# insert species names into blank data frame 
 
 # find max and min values of each trait within each species
 range.function <- function(x) {

@@ -8,6 +8,7 @@ Paper catalogue for senior thesis
 Next on to-do list:
 - Ask Dan:
 	- how do you deal with convex hull across latitudes? plot multiple convex hulls for each species?
+	- do I need to remove all NAs
 - look up the boxcar effect (Urban et. al 2011)
 - look up thermal competitive breadth (Urban et. al 2011)
 
