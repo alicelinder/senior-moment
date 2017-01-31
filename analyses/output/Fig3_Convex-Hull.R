@@ -39,7 +39,7 @@ colnames(con.hull) <- c("Species", "Leaf.area", "Stem.volume", "Height",
                         "DBH", "X.N", "X.C", "Stomatal.Length", 
                         "Stomatal.Density", "leaf.mass")
 
-# insert species names into blank data frame 
+
 
 # find max and min values of each trait within each species
 range.function <- function(x) {
