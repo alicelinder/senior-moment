@@ -31,39 +31,28 @@ tree.traits <- tree.traits[,-13:-17]
 tree.traits <- tree.traits[,-14:-21]
 
 # calculate stem density
-Stem.density <- tree.traits$Stem.mass/tree.traits$Stem.volume
+tree.traits$Stem.density = tree.traits$Stem.mass/tree.traits$Stem.volume
 
 # calculate SLA
-SLA <- tree.traits$Leaf.area / tree.traits$Dry.mass
+tree.traits$SLA = tree.traits$Leaf.area / tree.traits$Dry.mass
 
-# calculate ratio C:N
-c.n <- tree.traits$X.C / tree.traits$X.N
-tree.traits <- data.frame(tree.traits, Stem.density, SLA, c.n)
+# calculate C:N ratio
+tree.traits$c.n = tree.traits$X.C / tree.traits$X.N
 
 # clean up data and subset it based on species
-traits <- select(tree.traits, Site, Species, SLA, Stem.density, 
-                 Height, DBH, c.n)
+#traits <- select(tree.traits, Site, Species, SLA, Stem.density, 
+                 #Height, DBH, X.N, X.C, Stomatal.Length, Stomatal.Density)
 
 # remove all empty values
-stopifnot(complete.cases(traits) != is.na(traits))
-ok <- complete.cases(traits)
-sum(!ok) # how many are not "ok" ?
-traits <- traits[ok,]
+#stopifnot(complete.cases(traits) != is.na(traits))
+#ok <- complete.cases(traits)
+#sum(!ok) # how many are not "ok" ?
+#traits <- traits[ok,]
 
-# create data frame to store convex hull values with 176 rows x 9 columns
-# con.hull <- data.frame(matrix(NA, nrow = 176, ncol = 10))
-# rownames(con.hull) <- NULL 
-# colnames(con.hull) <- c("Species", "Site", "Leaf.area", "Stem.volume", "Height", 
-                        # "DBH", "X.N", "X.C", "Stomatal.Length", 
-                        # "Stomatal.Density", "leaf.mass")
-
-# create matrix containing traits of the species with rows = species and columns = traits for one species, at one site
-head(traits)
-
-ex <- subset(traits, Site == "GR" & Species == "ACEPEN")
+ex <- subset(tree.traits, Site == "GR" & Species == "ACEPEN")
 
 # choose traits
-tr <- c("SLA", "Stem.density", "DBH", "X.N") 
+tr <- c("SLA", "Stem.volume", "DBH", "X.N") 
 
 # Find complete cases for this set
 ex <- ex[complete.cases(ex[tr]),]
