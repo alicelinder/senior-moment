@@ -9,7 +9,7 @@
 ## or coefficient of variance across ranges.
 
 rm(list = ls())
-setwd("~/GitHub/senior-moment/data")
+setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 
 # setwd("~/Documents/git/senior-moment/data")
 
@@ -24,53 +24,51 @@ library(plyr)
 tree.traits <- read.csv("tree-traits.csv")
 class(tree.traits$Fresh.mass)
 
-# calculate mass
-tree.traits["leaf.mass"] <- tree.traits$Fresh.mass - tree.traits$Dry.mass
+# remove Distance, bottom.angle, top.angle, bottom.m, Top.m
 tree.traits <- tree.traits[,-13:-17]
+
+# remove DBH.1-DBH.5, notes, route, and date sampled
 tree.traits <- tree.traits[,-14:-21]
 
+# calculate stem density
+Stem.density <- tree.traits$Stem.mass/tree.traits$Stem.volume
+
+# calculate SLA
+SLA <- tree.traits$Leaf.area / tree.traits$Dry.mass
+
+# calculate ratio C:N
+c.n <- tree.traits$X.C / tree.traits$X.N
+tree.traits <- data.frame(tree.traits, Stem.density, SLA, c.n)
+
 # clean up data and subset it based on species
-traits <- select(tree.traits, Site, Species, Leaf.area, Stem.volume, 
-                 Height, DBH, X.N, X.C, Stomatal.Length, Stomatal.Density, 
-                 leaf.mass)
+traits <- select(tree.traits, Site, Species, SLA, Stem.density, 
+                 Height, DBH, c.n)
 
-class(traits)
-
-## DO I NEED TO DO THIS?
-#traits <- na.omit(traits)
+# remove all empty values
+stopifnot(complete.cases(traits) != is.na(traits))
+ok <- complete.cases(traits)
+sum(!ok) # how many are not "ok" ?
+traits <- traits[ok,]
 
 # create data frame to store convex hull values with 176 rows x 9 columns
-con.hull <- data.frame(matrix(NA, nrow = 176, ncol = 10))
-rownames(con.hull) <- NULL 
-colnames(con.hull) <- c("Species", "Site", "Leaf.area", "Stem.volume", "Height", 
-                        "DBH", "X.N", "X.C", "Stomatal.Length", 
-                        "Stomatal.Density", "leaf.mass")
-
-?convhulln
-
-# find max and min values of each trait within each species
-range.function <- function(x) {
-  com.names <- unique(as.data.frame(traits$Species))
-  
-  apply(traits[com.names, ], MARGIN = 2, max) -
-  apply(traits[com.names, ], MARGIN = 2, min)
-}
-
+# con.hull <- data.frame(matrix(NA, nrow = 176, ncol = 10))
+# rownames(con.hull) <- NULL 
+# colnames(con.hull) <- c("Species", "Site", "Leaf.area", "Stem.volume", "Height", 
+                        # "DBH", "X.N", "X.C", "Stomatal.Length", 
+                        # "Stomatal.Density", "leaf.mass")
 
 # create matrix containing traits of the species with rows = species and columns = traits for one species, at one site
 head(traits)
 
-traits$SLA = traits$Leaf.area / traits$leaf.mass
-
 ex <- subset(traits, Site == "GR" & Species == "ACEPEN")
 
 # choose traits
-tr <- c("SLA", "Stem.volume", "DBH", "X.N") 
+tr <- c("SLA", "Stem.density", "DBH", "X.N") 
 
 # Find complete cases for this set
 ex <- ex[complete.cases(ex[tr]),]
 
-vol = convhulln(ex[tr], "FA")$vol
+vol = convhulln(ex, "FA")$vol
 
 # now apply this across all species and sites
 chvols = vector()
