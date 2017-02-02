@@ -9,6 +9,7 @@
 ## or coefficient of variance across ranges.
 
 rm(list = ls())
+
 setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 
 # setwd("~/Documents/git/senior-moment/data")
@@ -49,34 +50,62 @@ tree.traits$c.n = tree.traits$X.C / tree.traits$X.N
 #sum(!ok) # how many are not "ok" ?
 #traits <- traits[ok,]
 
-ex <- subset(tree.traits, Site == "GR" & Species == "ACEPEN")
+ex <- subset(tree.traits, Site == "GR" & Species == "KALANG")
+ex <- subset(tree.traits, Site == "GR" & Species == "MYRGAL")
 
 # choose traits
-tr <- c("SLA", "Stem.volume", "DBH", "X.N") 
+tr <- c("SLA", "Stem.density", "DBH", "c.n") 
 
 # Find complete cases for this set
-ex <- ex[complete.cases(ex[tr]),]
+### TO DO I'm getting an error on this for some reason -- formatted correctly?
+ex <- ex[complete.cases(ex[,tr]),]
+ex
 
-vol = convhulln(ex, "FA")$vol
+vol = convhulln(ex[,tr], "FA")$vol
+
+# select only species of interest because KALANG and MYRGAL are being problematic
+speciestokeep <- as.factor(c("ACEPEN", "BETPAP", "CORALT", "FAGGRA", "SORAME"))
+tree.traits.interest <- tree.traits[which(tree.traits$Species %in% speciestokeep),]
 
 # now apply this across all species and sites
+# TO DO still getting error with species of interest with CORALT -- what is causing this?
 chvols = vector()
 
-for(site in unique(traits$Site)){
-  for(sp in unique(traits$Species)){
+for(site in unique(tree.traits.interest$Site)){
+  for(sp in unique(tree.traits.interest$Species)){
     
-    ex <- subset(traits, Site == site & Species == sp)
+    ex <- subset(tree.traits.interest, Site == site & Species == sp)
     
     # Find complete cases for this set
     ex <- ex[complete.cases(ex[tr]),]
     
     if(nrow(ex) < length(tr)) vol = NA
-    else  vol = convhulln(ex[tr], "FA")$vol
+    else  vol = convhulln(ex[,tr], "FA")$vol
     
     chvols = rbind(chvols, data.frame(site, sp, vol, n = nrow(ex)))
   }
 }
+  
+# for loop not working, try with other sites
+
+tr <- c("SLA", "Stem.density", "DBH", "c.n") 
+
+chvols = vector()
+
+for(site in unique(tree.traits$Site)){
+  for(sp in unique(tree.traits$Species)){
     
+    ex <- subset(tree.traits, Site == site & Species == sp)
+    
+    # Find complete cases for this set
+    ex <- ex[complete.cases(ex[tr]),]
+    ex <- ex[tr]
+    
+    vol = convhulln(ex, "FA")$vol
+    
+    chvols = rbind(chvols, data.frame(site, sp, vol, n = nrow(ex)))
+  }
+}  
     
 
 
