@@ -55,6 +55,7 @@ ex <- subset(tree.traits, Site == "GR" & Species == "MYRGAL")
 
 # choose traits
 tr <- c("SLA", "Stem.density", "DBH", "c.n") 
+tr.2 <- c("SLA", "Stem.density", "c.n")
 
 # Find complete cases for this set
 ### TO DO I'm getting an error on this for some reason -- formatted correctly?
@@ -66,6 +67,12 @@ vol = convhulln(ex[,tr], "FA")$vol
 # select only species of interest because KALANG and MYRGAL are being problematic
 speciestokeep <- as.factor(c("ACEPEN", "BETPAP", "CORALT", "FAGGRA", "SORAME"))
 tree.traits.interest <- tree.traits[which(tree.traits$Species %in% speciestokeep),]
+
+tr.species <- c("Site", "Species", "SLA", "Stem.density", "c.n")
+tree.traits.tr <- tree.traits.interest[,tr.species]
+
+coralt <- subset(tree.traits.tr, Site == "HF" & Species == "CORALT")
+vol = convhulln(coralt[,tr.2], "FA")$vol
 
 # now apply this across all species and sites
 # TO DO still getting error with species of interest with CORALT -- what is causing this?
