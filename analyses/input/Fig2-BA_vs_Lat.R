@@ -16,80 +16,115 @@ library(reshape)
 #library(sjPlot) # install.packages("sjPlot")
 detach("package:dplyr", unload=TRUE)
 
-focal <- read.csv("focal.species.dbh.csv")
+# load data from centroid and latitudinal data with focal individuals
 
-focal <- rename(focal, c("DBH" = "fDBH"))
+centroid <- read.csv("centroid_data.csv")
+centroid$sp = c("ACEPEN", "BETPAP", "CORALT", "FAGGRA", "HAMVIR")
+centroid <- subset(centroid, select = c("sp","minLat", "maxLat", "midLat", "minTemp", "maxTemp", "midTemp", 
+                       "minPrec", "maxPrec", "midPrec"))
+
+focal <- read.csv("focal.species.dbh.csv")
+names(focal)
+focal$Height <- NULL
+focal$DBH <- NULL
 
 lat.long <- read.csv("DBH.Lat.Long.csv")
+lat.long <- subset(lat.long, select = c("Individual", "DBH", "Height", "Lat", "Long"))
 
 focal <- merge(lat.long, focal, by = "Individual")
-focal <- focal[,-2:-3]
-focal <- focal[, -4:-10]
-focal <- rename(focal, c("Height.y" = "Height"))
-
-head(focal)
+names(focal)
 
 other.dbh <- read.csv("all.species.dbh.csv")
-other.dbh["index"] <- 1:3893
-head(other.dbh)
 
-# merge datasets
-all.dbh <- merge(focal, other.dbh, by = "Individual")
+# merge datasets -- NAs appearing in CORALTs so check this
+setdiff(unique(other.dbh$Individual), unique(focal$Individual))
+all.dbh <- merge(focal, other.dbh, by = "Individual", all.x = TRUE, all.y = TRUE, suffixes = c(".focal", ".other"))
 
 head(all.dbh)
 
+#index
+all.dbh[which(is.na(all.dbh$DBH.focal) == TRUE), ]
+
 # Clean up DBH measures
-all.dbh$DBH <- as.character(all.dbh$DBH) # convert from factor to character
-all.dbh$fDBH <- as.character(all.dbh$fDBH)
+all.dbh$DBH.other <- as.character(all.dbh$DBH.other) # convert from factor to character
+all.dbh$DBH.focal <- as.character(all.dbh$DBH.focal)
 
-all.dbh$DBH[all.dbh$DBH == "less.than.1"] = 0.5 # make all less.than.1 into .5
-all.dbh$fDBH[all.dbh$fDBH == "less.than.1"] = 0.5 # make all less.than.1 into .5
-all.dbh$DBH[all.dbh$DBH == "less.than.2"] = 1 # make all <2 measures into 1
+all.dbh$DBH.other[all.dbh$DBH.other == "less.than.1"] = 0.5 # make all less.than.1 into .5
+all.dbh$DBH.focal[all.dbh$DBH.focal == "less.than.1"] = 0.5 # make all less.than.1 into .5
+all.dbh$DBH.other[all.dbh$DBH.other == "less.than.2"] = 1 # make all <2 measures into 1
 
-all.dbh$DBH <- as.numeric(as.character(all.dbh$DBH))
-all.dbh$fDBH <- as.numeric(as.character(all.dbh$fDBH))# convert from factor to numeric
+all.dbh$DBH.other <- as.numeric(as.character(all.dbh$DBH.other))
+all.dbh$DBH.focal <- as.numeric(as.character(all.dbh$DBH.focal))# convert from factor to numeric
 
-summary(all.dbh$DBH) # should not be any NA
-#View(all.dbh)
+summary(all.dbh$DBH.other) # should not be any NA
 
 # say whether focal DBH is smaller than competing individual
-all.dbh$greater <- all.dbh$fDBH < all.dbh$DBH
-all.dbh <- as.data.frame(all.dbh)
+all.dbh["greater"] <- all.dbh$DBH.focal < all.dbh$DBH.other
 #View(all.dbh)
 
 # filter  data so only individiuals with DBHs greater than the focal DBH exist
-library(dplyr)
-compet <- filter(all.dbh, DBH > fDBH)
+compet <- all.dbh[which(all.dbh$DBH.other > all.dbh$DBH.focal),]
+
+dim(all.dbh[which(all.dbh$greater == TRUE) ,])
 
 # separate out same species to measure intra-specific competition
-compet$sp <- substr(compet$Individual, 1, 6)
-compet["intra.sp"] <- compet$Comp.Species == compet$sp
-intra.compet <- filter(compet, compet$intra.sp == TRUE & compet$fDBH < compet$DBH) 
-intra.compet["BA"] <- .5*pi*(intra.compet$DBH)^2
-intra.compet["fBA"] <- .5*pi*(intra.compet$fDBH)^2
-focal["intra.comp.BA"] <- data.frame(tapply(intra.compet$BA, intra.compet$Individual, sum))
-
+compet$sp = substr(compet$Individual, 1, 6)
+compet$intra.sp <- compet$Comp.Species == compet$sp
+head(compet)
+intra.compet <- compet[which(compet$intra.sp == TRUE & compet$DBH.focal < compet$DBH.other),]
+intra.compet$BA = .5*pi*(intra.compet$DBH.other)^2
+intra.compet$fBA = .5*pi*(intra.compet$DBH.focal)^2
+intra.comp.BA <- data.frame(tapply(intra.compet$BA, intra.compet$Individual, sum))
 
 # create basal area variables of only those individuals
-compet["BA"] <- .5*pi*(compet$DBH)^2
-compet["fBA"] <- .5*pi*(compet$fDBH)^2
+compet$BA = .5*pi*(compet$DBH.other)^2
+compet$fBA = .5*pi*(compet$DBH.focal)^2
 
 # sum the basal area for each individual
 
-# This is very problamatic... made a 'numeric' data frame composed of just the level values
+# This is very problematic... made a 'numeric' data frame composed of just the level values
 # focal["competing.BA"] <- data.frame(tapply(compet$BA, compet$Individual, sum))
 # This is what you wanted to do
-focal <- data.frame(focal, competing.BA = tapply(compet$BA, compet$Individual, sum))
+# focal <- data.frame(focal, competing.BA = tapply(compet$BA, compet$Individual, sum))
+
+sum.BA <- tapply(compet$BA, compet$Individual, sum)
+sum.BA.df <- data.frame(Individual = names(sum.BA), sum.BA = sum.BA)
+focal.ba <- merge(focal, sum.BA.df, by = "Individual", all.y = TRUE, all.x = TRUE)
+head(focal.ba)
+
+focal.ba$log.cBA <- log(focal.ba$sum.BA) # what are NAs from? Some have no competing BA values apparently
+
+head(focal.ba)
+
+# create new species variable
+focal.ba$sp = substr(focal.ba$Individual, 1, 6)
+
+# merge focal.ba with centroid data
+head(centroid)
+
+coralt <- focal.ba[focal.ba$sp == "CORALT",]
+hamvir <- focal.ba[focal.ba$sp == "HAMVIR",]
+sorame <- focal.ba[focal.ba$sp == "SORAME",]
+acepen <- focal.ba[focal.ba$sp == "ACEPEN",]
+focal.small <- rbind(coralt, sorame, hamvir, acepen)
+
+betpap <- focal.ba[focal.ba$sp == "BETPAP",]
+faggra <- focal.ba[focal.ba$sp == "FAGGRA",]
+quealb <- focal.ba[focal$sp == "QUEALB",]
+focal.large <- rbind(betpap, faggra, quealb)
 
 
-focal$log.cBA <- log(focal$competing.BA) # what are NAs from? Some have no competing BA values apparently
 
-# ??? Why integer? leave these as numeric values
-#focal$log.cBA <- as.integer(as.factor(as.character(focal$log.cBA)))
-#focal$competing.BA <- as.integer(as.factor(as.character(focal$competing.BA)))
+# plot competition based on centroid
+ggplot(focal.ba,
+       aes(, intra.comp.BA, color = sp)) +
+  geom_point() + 
+  geom_smooth(method="lm", se=F) +
+  facet_wrap(~sp, ncol = 4)
+
+### earlier version of figure without centroid data
 
 # Site and species information based on last 2 letters of individuals
-focal$Individual <- as.character(focal$Individual)
 
 focal$Site <- unlist(
   lapply(strsplit(focal[,1], "_"),

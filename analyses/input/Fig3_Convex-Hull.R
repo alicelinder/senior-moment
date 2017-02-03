@@ -23,7 +23,6 @@ library(plyr)
 
 # load data
 tree.traits <- read.csv("tree-traits.csv")
-class(tree.traits$Fresh.mass)
 
 # remove Distance, bottom.angle, top.angle, bottom.m, Top.m
 tree.traits <- tree.traits[,-13:-17]
@@ -55,27 +54,28 @@ ex <- subset(tree.traits, Site == "GR" & Species == "MYRGAL")
 
 # choose traits
 tr <- c("SLA", "Stem.density", "DBH", "c.n") 
-tr.2 <- c("SLA", "Stem.density", "c.n")
+
+# getting error with DBH (causing loop to stop) so trying it w/o DBH
+#tr.2 <- c("SLA", "Stem.density", "c.n")
 
 # Find complete cases for this set
 ### TO DO I'm getting an error on this for some reason -- formatted correctly?
 ex <- ex[complete.cases(ex[,tr]),]
-ex
 
 vol = convhulln(ex[,tr], "FA")$vol
 
 # select only species of interest because KALANG and MYRGAL are being problematic
-speciestokeep <- as.factor(c("ACEPEN", "BETPAP", "CORALT", "FAGGRA", "SORAME"))
-tree.traits.interest <- tree.traits[which(tree.traits$Species %in% speciestokeep),]
+#speciestokeep <- as.factor(c("ACEPEN", "BETPAP", "CORALT", "FAGGRA", "SORAME"))
+#tree.traits.interest <- tree.traits[which(tree.traits$Species %in% speciestokeep),]
 
-tr.species <- c("Site", "Species", "SLA", "Stem.density", "c.n")
-tree.traits.tr <- tree.traits.interest[,tr.species]
+#tr.species <- c("Site", "Species", "SLA", "Stem.density", "c.n")
+#tree.traits.tr <- tree.traits.interest[,tr.species]
 
-coralt <- subset(tree.traits.tr, Site == "HF" & Species == "CORALT")
-vol = convhulln(coralt[,tr.2], "FA")$vol
+#coralt <- subset(tree.traits.tr, Site == "HF" & Species == "CORALT")
+#vol = convhulln(coralt[,tr.2], "FA")$vol
 
 # now apply this across all species and sites
-# TO DO still getting error with species of interest with CORALT -- what is causing this?
+# TO DO still getting error with species of interest with CORALT -- DBHs all 1 causing this
 chvols = vector()
 
 for(site in unique(tree.traits.interest$Site)){
@@ -84,36 +84,11 @@ for(site in unique(tree.traits.interest$Site)){
     ex <- subset(tree.traits.interest, Site == site & Species == sp)
     
     # Find complete cases for this set
-    ex <- ex[complete.cases(ex[tr]),]
+    ex <- ex[complete.cases(ex[tr.2]),]
     
-    if(nrow(ex) < length(tr)) vol = NA
-    else  vol = convhulln(ex[,tr], "FA")$vol
+    if(nrow(ex) < length(tr.2)) vol = NA
+    else  vol = convhulln(ex[,tr.2], "FA")$vol
     
     chvols = rbind(chvols, data.frame(site, sp, vol, n = nrow(ex)))
   }
 }
-  
-# for loop not working, try with other sites
-
-tr <- c("SLA", "Stem.density", "DBH", "c.n") 
-
-chvols = vector()
-
-for(site in unique(tree.traits$Site)){
-  for(sp in unique(tree.traits$Species)){
-    
-    ex <- subset(tree.traits, Site == site & Species == sp)
-    
-    # Find complete cases for this set
-    ex <- ex[complete.cases(ex[tr]),]
-    ex <- ex[tr]
-    
-    vol = convhulln(ex, "FA")$vol
-    
-    chvols = rbind(chvols, data.frame(site, sp, vol, n = nrow(ex)))
-  }
-}  
-    
-
-
-
