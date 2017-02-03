@@ -10,9 +10,22 @@ library(spdep)
 library(raster)
 library (rgdal)
 library (maptools)
+library(rgeos)
+
+
+# load species ranges
+distribution.matrix<-read.csv("Nam_trees_incidence_matrix_I.csv")
+IDs.env.matrix<-read.csv("Ids_lon_lats.csv")
+crswgs84=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+
+coords<-cbind(IDs.env.matrix$longitude,IDs.env.matrix$latitude)
+lonlats<-SpatialPoints(coords,proj4string=crswgs84)
+extent(lonlats)
 
 # download raster information
-clim <- getData('worldclim', var='bio', res=.5, lon=-71, lat=44)
+?getData
+clim <- getData('worldclim', var = 'bio', res=10)
+#clim <- getData('worldclim', var='bio', res=.5, lon=-71, lat=44)
 #clim2 <- getData('worldclim', var='bio', res=.5, lon=-72, lat=42)
 #clim3 <- getData('worldclim', var='bio', res=.5, lon=-74, lat=46)
 #clim4 <- getData('worldclim', var='bio', res=.5, lon=-74, lat=45)
@@ -27,15 +40,19 @@ extent.NA <- extent(clim)
 ##' the following command would not be necessary as the extent of each layer in clim
 ##' is that of the rasterbrick/stack
 
-## mean annual temperature
-bio1<-clim[[1]]
+## Max Temperature of Warmest Month
+max.temp<-clim[[5]]
 
-# mean annual precipitation
-bio12<-clim[[12]]
+# Min Temperature of Coldest Month
+min.temp<-clim[[6]]
+
+# Temperature Annual Range
+range.temp<-clim[[7]]
 
 # check on data
-plot(bio1)
-plot(bio12)
+plot(max.temp)
+plot(min.temp)
+plot(range.temp)
 
 # make new coordinates to crop map
 ## cbind() will bind lat and long into 2 col. matrix

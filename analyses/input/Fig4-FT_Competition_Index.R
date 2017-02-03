@@ -47,7 +47,5 @@ print(traits.pca)
 summary(traits.pca)
 
 autoplot(prcomp(log.traits))
-traits.pca
 
 # view on graph -- HOW TO DO THIS?
-

@@ -2,6 +2,9 @@
 
 ## July 28, 2016
 
+## TO DO: scale center of basal areas to account for trend of decreasing DBHs as you increase latitude
+### command for this: scale(x, center = TRUE, scale = FALSE)
+
 rm(list = ls())
 setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 
@@ -129,7 +132,7 @@ focal.large <- rbind(betpap, faggra, quealb)
 # plot competition based on centroid
 hist(focal.centroid$BA)
 
-# ignore large value
+# ignore extra large DBH for FAGGUS value
 focal.centroid <- focal.centroid[-which(focal.centroid$sp == "FAGGRA" & focal.centroid$sum.BA > 20000),] 
 head(focal.centroid)
 
