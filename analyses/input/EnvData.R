@@ -2,7 +2,7 @@
 ## Alice Nov. 9
 
 rm(list = ls())
-setwd("~/GitHub/senior-moment/data")
+setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 #setwd("C:/Users/wiwit_000/Documents/MEGA/Work_Harvard_postdoc/")
 
 library(sp)

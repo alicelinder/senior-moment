@@ -34,6 +34,10 @@ lat.long <- subset(lat.long, select = c("Individual", "DBH", "Height", "Lat", "L
 focal <- merge(lat.long, focal, by = "Individual")
 names(focal)
 
+focal$DBH[focal$DBH == "less.than.1"] = 0.5 # make all less.than.1 into .5
+focal$DBH[focal$DBH == "less.than.1"] = 0.5 # make all less.than.1 into .5
+focal$DBH[focal$DBH == "less.than.2"] = 1 # make all <2 measures into 1
+
 other.dbh <- read.csv("all.species.dbh.csv")
 
 # merge datasets -- NAs appearing in CORALTs so check this
@@ -90,37 +94,81 @@ compet$fBA = .5*pi*(compet$DBH.focal)^2
 sum.BA <- tapply(compet$BA, compet$Individual, sum)
 sum.BA.df <- data.frame(Individual = names(sum.BA), sum.BA = sum.BA)
 focal.ba <- merge(focal, sum.BA.df, by = "Individual", all.y = TRUE, all.x = TRUE)
+focal.ba$DBH = as.numeric(focal.ba$DBH)
+focal.ba$BA = .5*pi*(focal.ba$DBH)^2
+class(focal.ba$DBH)
 head(focal.ba)
 
-focal.ba$log.cBA <- log(focal.ba$sum.BA) # what are NAs from? Some have no competing BA values apparently
-
+focal.ba$log.cBA = log(focal.ba$sum.BA) # what are NAs from? Some have no competing BA values apparently
+focal.ba$relative.BA = focal.ba$BA / focal.ba$sum.BA
 head(focal.ba)
 
 # create new species variable
 focal.ba$sp = substr(focal.ba$Individual, 1, 6)
 
 # merge focal.ba with centroid data
-head(centroid)
+focal.centroid <- merge(focal.ba, centroid, by = "sp", all.x = TRUE, all.y = TRUE)
 
-coralt <- focal.ba[focal.ba$sp == "CORALT",]
-hamvir <- focal.ba[focal.ba$sp == "HAMVIR",]
-sorame <- focal.ba[focal.ba$sp == "SORAME",]
-acepen <- focal.ba[focal.ba$sp == "ACEPEN",]
+# create new variable with difference between centroid and latitude of site
+focal.centroid$centroid.diff = focal.centroid$Lat - focal.centroid$minLat
+hist(focal.centroid$centroid.diff)
+hist(focal.centroid$Lat)
+
+# subset by species for graphing/modeling purposes
+coralt <- focal.centroid[focal.centroid$sp == "CORALT",]
+hamvir <- focal.centroid[focal.centroid$sp == "HAMVIR",]
+sorame <- focal.centroid[focal.centroid$sp == "SORAME",]
+acepen <- focal.centroid[focal.centroid$sp == "ACEPEN",]
 focal.small <- rbind(coralt, sorame, hamvir, acepen)
 
-betpap <- focal.ba[focal.ba$sp == "BETPAP",]
-faggra <- focal.ba[focal.ba$sp == "FAGGRA",]
-quealb <- focal.ba[focal$sp == "QUEALB",]
+betpap <- focal.centroid[focal.centroid$sp == "BETPAP",]
+faggra <- focal.centroid[focal.centroid$sp == "FAGGRA",]
+quealb <- focal.centroid[focal$sp == "QUEALB",]
 focal.large <- rbind(betpap, faggra, quealb)
 
-
-
 # plot competition based on centroid
-ggplot(focal.ba,
-       aes(, intra.comp.BA, color = sp)) +
+hist(focal.centroid$BA)
+
+# ignore large value
+focal.centroid <- focal.centroid[-which(focal.centroid$sp == "FAGGRA" & focal.centroid$sum.BA > 20000),] 
+head(focal.centroid)
+
+ggplot(focal.centroid,
+       aes(centroid.diff, relative.BA, color = sp)) +
   geom_point() + 
   geom_smooth(method="lm", se=F) +
-  facet_wrap(~sp, ncol = 4)
+  facet_wrap(~sp, ncol = 4, scales = "free")
+
+# run model to find coefficients in lmer
+
+summary(lm1 <- lm(relative.BA ~ centroid.diff, data = focal.centroid[focal.centroid$sp == "ACEPEN",]))
+summary(lm2 <- lm(relative.BA ~ centroid.diff, data = focal.centroid[focal.centroid$sp == "BETPAP",]))
+summary(lm3 <- lm(relative.BA ~ centroid.diff, data = focal.centroid[focal.centroid$sp == "CORALT",]))
+summary(lm4 <- lm(relative.BA ~ centroid.diff, data = focal.centroid[focal.centroid$sp == "FAGGRA",]))
+summary(lm5 <- lm(relative.BA~ centroid.diff, data = focal.centroid[focal.centroid$sp == "HAMVIR",]))
+summary(lm6 <- lm(relative.BA ~ centroid.diff, data = focal.centroid[focal.centroid$sp == "QUEALB",]))
+summary(lm7 <- lm(relative.BA ~ centroid.diff, data = focal.centroid[focal.centroid$sp == "SORAME",]))
+
+
+# Mixed effect model to use all species in single analysis
+lme1 <- lmer(relative.BA ~ centroid.diff + (centroid.diff | sp), data = focal.centroid)
+
+fixef(lme1)
+ranef(lme1)
+summary(lme1)
+
+ranef <- ranef(lme1)
+
+
+
+
+
+
+
+
+
+
+
 
 ### earlier version of figure without centroid data
 
