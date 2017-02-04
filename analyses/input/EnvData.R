@@ -65,24 +65,24 @@ plot(range.temp)
 
 
 ##' try the following coordinates within North America
-coords = cbind(-75:-67, 40:48)  
-points(coords[,1],coords[,2],pch=19)
+#coords = cbind(-75:-67, 40:48)  
+#points(coords[,1],coords[,2],pch=19)
 help(points)
 coords=SpatialPoints(coords)
 
 # zoom into map
 extent.NE <- extent(coords)
-bio1<-crop(clim[[1]], extent.NE)
-plot(bio1)
+bio5<-crop(clim[[5]], extent.NE)
+plot(bio5)
 
-bio11<-crop(clim[[11]], extent.NE)
-plot(bio11)
+bio6<-crop(clim[[6]], extent.NE)
+plot(bio6)
 
-bio12<-crop(clim[[12]], extent.NE)
-plot(bio12)
+bio7<-crop(clim[[7]], extent.NE)
+plot(bio7)
 
 # view points on the map
-points(coords[,1],coords[,2],pch=19)
+# points(coords[,1],coords[,2],pch=19)
 
 # load latitudes and longitudes in from data
 TreeLatLongs = read.csv("DBH.Lat.Long.csv")
@@ -93,12 +93,16 @@ points(tree.coords[,1],tree.coords[,2],pch=19)
 
 # extract data from raster files
 ## multiply by 0.1 to 
-env.data<-extract(bio1, tree.coords)*0.1
+env.data.5<-extract(bio5, lonlats)*0.1
+env.data.6<-extract(bio6, lonlats)*0.1
+env.data.7<-extract(bio7, lonlats)*0.1
 
-View(env.data)
+IDs.env.matrix$max.temp = env.data.5
+IDs.env.matrix$min.temp = env.data.6
+IDs.env.matrix$range.temp = env.data.7
 
 # add env.data to TreeLatLongs
-TreeLatLongs["AnnualTemp"] <- env.data
+# TreeLatLongs$AnnualTemp = env.data
 
 ## remember: mean annual temperatures are multiplied by 10 in data points
 

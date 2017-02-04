@@ -66,5 +66,5 @@ for(i in 1:length(target.spp)){
   
   }
 
-
+write.csv(min.max.lats.each.sps, "centroid_data.csv")
 
