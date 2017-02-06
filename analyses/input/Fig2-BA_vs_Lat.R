@@ -10,12 +10,14 @@ setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data"
 
 # setwd("~/Documents/git/senior-moment/data") # For Dan
 
+# set libraries
 library(vegan) # install.packages("vegan")
 library(lme4)# install.packages("lme4")
 library(scales)# install.packages("scales")
 library(ggplot2) # install.packages("ggplot2")
 library(plyr)
 library(reshape)
+
 #library(sjPlot) # install.packages("sjPlot")
 # detach("package:dplyr", unload=TRUE)
 
