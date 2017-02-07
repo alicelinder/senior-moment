@@ -5,6 +5,9 @@ rm(list = ls())
 setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 #setwd("C:/Users/wiwit_000/Documents/MEGA/Work_Harvard_postdoc/")
 
+setwd("~/Documents/git/senior-moment/data")
+
+
 library(sp)
 library(spdep)
 library(raster)

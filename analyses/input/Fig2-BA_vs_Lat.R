@@ -22,7 +22,7 @@ library(reshape)
 # detach("package:dplyr", unload=TRUE)
 
 # load all data from source code
-#source("Fig2-source.R")
+source("Fig2-source.R")
 
 
 # plot intraspecific competition

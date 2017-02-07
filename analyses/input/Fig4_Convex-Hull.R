@@ -104,3 +104,7 @@ for(site in unique(tree.traits$Site)){
 }
 
 save(chvols, file = "Species Level CHV.csv", row.names=F)
+
+# Now community level
+
+
