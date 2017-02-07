@@ -1,11 +1,17 @@
 ---
-title: "Thesis Draft"
+title: NULL
 output: pdf_document
+fontsize: 11pt
+geometry: margin=1in
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+\begin{center}
+\textbf{\large{The Functional Rollercoaster: Community composition and functional traits of deciduous trees across their ranges}}
+\end{center}
 
 ## Abstract
 
@@ -33,14 +39,14 @@ Different functional traits correspond to varying plant life strategies. Taking 
   
 *Predictions and hypotheses - *
 To determine the nature of woody species’ future responses to climate change, I sampled six species of woody deciduous trees across four different sites on a latitudinal gradient in the northeastern United States and into Quebec. I predicted that:  
-H1: a species would become less competitive as they approached their latitudinal and climatic range limits, since populations at their geographic range edges more frequently experience strong, limiting factors (Sexton et. al 2009).   
-A1: Alternatively, a species could grow more competitive as it approaches its range limit due to the presence of fewer competitors, thus leading to a greater realized niche.   
-A2: Finally, it is a possibility that competition is not predicted by position in its climatic or latitudinal range, indicating that local factors (such as …) might matter more within each population. Similarly, other factors could determine competitiveness, such as community composition and local adaptation, rather than a species’ position within its range limit. It is possible that a local community composition around each tree is most predictive of its competitive success, with little overall pattern across the latitudinal gradient.  
+**H1:** a species would become less competitive as they approached their latitudinal and climatic range limits, since populations at their geographic range edges more frequently experience strong, limiting factors (Sexton et. al 2009).   
+**A1:** Alternatively, a species could grow more competitive as it approaches its range limit due to the presence of fewer competitors, thus leading to a greater realized niche.   
+**A2:** Finally, it is a possibility that competition is not predicted by position in its climatic or latitudinal range, indicating that local factors (such as …) might matter more within each population. Similarly, other factors could determine competitiveness, such as community composition and local adaptation, rather than a species’ position within its range limit. It is possible that a local community composition around each tree is most predictive of its competitive success, with little overall pattern across the latitudinal gradient.  
 Looking at a woody species’ competitiveness across a latitudinal gradient provides information into the part that biotic factors play in its realized niche, and the possible effects of those biotic factors in a warming environment. Since species often track their optimal environment (Ackerly 2003), strong limiting factors due to competitiveness may indicate that a species will not be able to migrate at a rate sufficient to account for population loss at their southern range edge.  
-H2: I also predicted that trees at their range extremes would exhibit altered suites of functional traits from trees in the range interior (Weiher & Keddy 1998). Similar to the prediction (H1) above, because populations at their range limits often see more extreme environments, I predicted that their functional traits would altered plasticity compared to functional traits of individuals at their range interiors. Studies have shown that a species’ functional traits that are linked to life strategies vary based on the latitude of their origin (Cavender-Bares 2007).  
-	A1: Increases in intraspecific trait variation across a latitudinal gradient at the range limit would indicate increased genetic adaptation and/or increased plasticity. Since populations at their range extremes (and at more northern latitudes) face harsher environments than populations in their range interior, this could be due to a plant’s attempts to limit its phylogenetic similarity in the face of competitors in a sub-optimal environment, or simply because it is exhibiting greater plasticity in response to the more extreme environment.  
-	A2: Alternatively, decreased intraspecific trait variation approaching a range limit would indicate that only one combination of traits is successful in that particular limiting environment (Burns & Straus 2012).  
-	A3: Finally, no clear pattern in intra-specific variation in functional traits approaching the range limit of a species would indicate that other rules of community assembly are playing a larger part in the determining of range limits, such as competition or other biotic factors.  
+**H2:** I also predicted that trees at their range extremes would exhibit altered suites of functional traits from trees in the range interior (Weiher & Keddy 1998). Similar to the prediction (H1) above, because populations at their range limits often see more extreme environments, I predicted that their functional traits would altered plasticity compared to functional traits of individuals at their range interiors. Studies have shown that a species’ functional traits that are linked to life strategies vary based on the latitude of their origin (Cavender-Bares 2007).  
+**A1:** Increases in intraspecific trait variation across a latitudinal gradient at the range limit would indicate increased genetic adaptation and/or increased plasticity. Since populations at their range extremes (and at more northern latitudes) face harsher environments than populations in their range interior, this could be due to a plant’s attempts to limit its phylogenetic similarity in the face of competitors in a sub-optimal environment, or simply because it is exhibiting greater plasticity in response to the more extreme environment.  
+**A2:** Alternatively, decreased intraspecific trait variation approaching a range limit would indicate that only one combination of traits is successful in that particular limiting environment (Burns & Straus 2012).  
+**A3:** Finally, no clear pattern in intra-specific variation in functional traits approaching the range limit of a species would indicate that other rules of community assembly are playing a larger part in the determining of range limits, such as competition or other biotic factors.  
 By examining community composition of certain woody species in conjunction with their corresponding functional traits across this latitudinal gradient, we can better predict how species composition will change at the forest level. In looking at both the community composition of species at these sites and their functional traits specifically at the range limits, we can understand which species are most at risk with the changing environment, and why they might not survive. *You should add here something along the lines of ‘Here I report on a study to test the hypotheses by doing X, Y, Z.’*  
 
 
@@ -58,15 +64,24 @@ Each species was selected based on (a) which species had been included in past s
 		  
 *Competition and community data* - For each of the six species, I tagged six (or found some previously tagged) individuals at each site that the individuals were present in. I compared total basal area of the focal individual with trees in the competitive environment around each focal individual. The direct competitive environment was estimated as being within a 5-m radius around the focal tree. I recorded the DBH of all trees falling within this circle. I took note of the presence and absence of species in the understory, including species of saplings appearing under 1.3m. To determine competitiveness of our focal individuals, I used the percentage of total basal area attributable to the focal individuals as a proxy for competitive advantage in each plot.  
   
+Competition index was calculated according to methods outlined in Biging and Dobertin 1995. I calculated the sum of the trees larger than the focal tree, and took the ratio of the basal area of the focal tree to this sum. By using relative basal area, the trend of decreasing DBH as species increase in latitude would not show in the model.
+  
 *Functional traits* - For functional trait data, I used the data collected the previous summer by Harry Stone during the Harvard Forest REU Summer Program in 2015. The height of individuals not measured summer 2015 was measured through a clinometer. Additionally, I measured the Diameter at Breast Height (DBH) of any newly-tagged individuals (in cases where an individual is too close to another focal plant). Functional traits for newly-tagged individuals were not measured, but instead the traits measured in 2015 served as a representation of the traits of all species within that site.  
     
 Data on the functional traits Specific Leaf Area (SLA), Leaf N%, leaf dry matter content, and height were all collected for at least six individuals of the six species across the four sites (when applicable). Samples were processed in the John Torrey laboratory at the Harvard Forest. When possible, leaf samples were collected near the center of the tree canopy. Leaf size was measured using the LI-COR 3100 leaf area meter. To account for variation within an individual, a wide range of leaf sizes were measured to achieve a representative average size. Specific leaf area (SLA) was determined by the leaf size divided by dry mass of the leaves (Cornelissen 2003). The leaves were weighed after drying for than 24 hours at 60 OC.  
 		  
 Harry Stone and colleagues measured leaf dry matter content by comparing the fresh mass of the leaves, determined immediately after removal from the individual and the dried weight. Height of the individual was measured using a clinometer from 15 meters away from the tree. Stem specific density was measured by comparing the volume of the stem sample to the dried mass. The volume of the stem was calculated by submersion in a container of water and the volume of the water displaced is equivalent to the volume of the stem. Then the stems were dried in excess of 24 hours in the drying oven at 60 OC. 
-
   
-   
-## Results
+\pagebreak  
+
+## Results  
+  
+There was little to no correlation between increasing latitude (approaching northern edges) and the competitive index of the focal trees. 
+
+
+## Figures
+
+**Figure 1**
 
 ```{r results='asis', echo=FALSE, include=FALSE,}
 # load all libaries
@@ -100,3 +115,32 @@ ggplot(focal.centroid,
   xlab("Distance from Min. Latitude") +
   ylab("Relative Basal Area")
 ```
+  
+\pagebreak  
+**Figure 2**  
+
+```{r, echo=FALSE}
+# load all data from source code
+source("Fig2-source.R")
+
+clim <- read.csv("climatic_data.csv")
+clim <- subset(clim, select = c("Individual", "distance.to.climatic.centroid"))
+
+# plot intraspecific competition
+# ignore extra large DBH for FAGGUS value
+focal.centroid <- focal.centroid[-which(focal.centroid$sp == "FAGGRA" & focal.centroid$sum.BA > 20000),] 
+
+# ignore QUEALB for graphing purposes
+focal.centroid <- focal.centroid[-which(focal.centroid$sp == "QUEALB"),]
+
+clim.focal <- merge(focal.centroid, clim, by = "Individual")
+
+ggplot(clim.focal,
+       aes(distance.to.climatic.centroid, relative.BA, color = sp)) +
+  geom_point() + 
+  geom_smooth(method="lm", se=F) +
+  facet_wrap(~sp, ncol = 3, scales = "free") +
+  xlab("Distance from Climatic Centroid") +
+  ylab("Relative Basal Area")
+```
+
