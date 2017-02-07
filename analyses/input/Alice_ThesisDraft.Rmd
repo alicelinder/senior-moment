@@ -99,13 +99,10 @@ library(scales)# install.packages("scales")
 library(ggplot2) # install.packages("ggplot2")
 library(plyr)
 library(reshape)
-library(dplyr)
-library(tidyr)
-library(reshape2)
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-source("Fig1-MDS.R")
+```{r results='asis', echo=FALSE, include=FALSE,}
+
 ```
 
 \pagebreak  
@@ -113,27 +110,12 @@ source("Fig1-MDS.R")
 **Figure 2**
 
 
-
-
 ```{r, echo=FALSE, warning=FALSE}
 ## Figure 2: graph of Basal Area across latitudes
 
 # load all data from source code
-source("Fig2-source.R")
+source("Fig2-BA_vs_Lat.R")
 
-# ignore extra large DBH for FAGGUS value
-focal.centroid <- focal.centroid[-which(focal.centroid$sp == "FAGGRA" & focal.centroid$sum.BA > 20000),] 
-
-# ignore QUEALB for graphing purposes
-focal.centroid <- focal.centroid[-which(focal.centroid$sp == "QUEALB"),]
-
-ggplot(focal.centroid,
-       aes(minLatdiff, relative.BA, color = sp)) +
-  geom_point() + 
-  geom_smooth(method="lm", se=F) +
-  facet_wrap(~sp, ncol = 3, scales = "free") +
-  xlab("Distance from Min. Latitude") +
-  ylab("Relative Basal Area")
 ```
   
 \bigskip      
