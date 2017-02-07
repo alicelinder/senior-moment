@@ -17,9 +17,10 @@ setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data"
 # LIBRARIES HERE
 library(geometry)
 library(FD)
+library(plyr)
 library(dplyr)
 library(reshape2)
-library(plyr)
+
 
 # load data
 tree.traits <- read.csv("tree-traits.csv")
@@ -49,6 +50,15 @@ tree.traits$c.n = tree.traits$X.C / tree.traits$X.N
 #sum(!ok) # how many are not "ok" ?
 #traits <- traits[ok,]
 
+### TO DO I'm getting an error on this for some reason -- formatted correctly?
+## Problem is that DBH is always 0.5 for these small ones. So here I add a small amount of random noise to the 0.5 dbh individuals
+zerofives <- tree.traits$DBH == 0.5 & !is.na(tree.traits$DBH) 
+tree.traits$DBH[zerofives] = 0.5 + runif(length(tree.traits$DBH[zerofives]), max = 0.01)
+
+# same for exactly 1 cm
+ones <- tree.traits$DBH == 1 & !is.na(tree.traits$DBH) 
+tree.traits$DBH[ones] = 1 + runif(length(tree.traits$DBH[ones]), max = 0.01)
+
 ex <- subset(tree.traits, Site == "GR" & Species == "KALANG")
 ex <- subset(tree.traits, Site == "GR" & Species == "MYRGAL")
 
@@ -59,7 +69,6 @@ tr <- c("SLA", "Stem.density", "DBH", "c.n")
 #tr.2 <- c("SLA", "Stem.density", "c.n")
 
 # Find complete cases for this set
-### TO DO I'm getting an error on this for some reason -- formatted correctly?
 ex <- ex[complete.cases(ex[,tr]),]
 
 vol = convhulln(ex[,tr], "FA")$vol
@@ -76,19 +85,22 @@ vol = convhulln(ex[,tr], "FA")$vol
 
 # now apply this across all species and sites
 # TO DO still getting error with species of interest with CORALT -- DBHs all 1 causing this
+
 chvols = vector()
 
-for(site in unique(tree.traits.interest$Site)){
-  for(sp in unique(tree.traits.interest$Species)){
+for(site in unique(tree.traits$Site)){
+  for(sp in unique(tree.traits$Species)){
     
-    ex <- subset(tree.traits.interest, Site == site & Species == sp)
+    ex <- subset(tree.traits, Site == site & Species == sp)
     
     # Find complete cases for this set
-    ex <- ex[complete.cases(ex[tr.2]),]
+    ex <- ex[complete.cases(ex[tr]),]
     
-    if(nrow(ex) < length(tr.2)) vol = NA
-    else  vol = convhulln(ex[,tr.2], "FA")$vol
+    if(nrow(ex) <= length(tr)) vol = NA
+    else  vol = convhulln(ex[,tr], "FA")$vol
     
     chvols = rbind(chvols, data.frame(site, sp, vol, n = nrow(ex)))
   }
 }
+
+save(chvols, file = "Species Level CHV.csv", row.names=F)
