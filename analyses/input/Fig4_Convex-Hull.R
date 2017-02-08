@@ -105,4 +105,23 @@ save(chvols, file = "Species Level CHV.csv", row.names=F)
 
 sp.tr <- c("Species", "Site", "SLA", "Stem.density", "DBH", "c.n")
 sp.tr <- tree.traits[,sp.tr]
-trait.means <- aggregate(sp.tr, list(Species = sp.tr$Species, Site = sp.tr$Site), mean)
+trait.means <- aggregate(sp.tr, list(Species = sp.tr$Species, Site = sp.tr$Site), FUN = mean, na.rm=TRUE)
+
+
+chvols.comm = vector()
+
+for(site in unique(trait.means$Site)){
+  for(sp in unique(trait.means$Species)){
+    
+    ex <- subset(trait.means, Site == site & Species == sp)
+    
+    # Find complete cases for this set
+    ex <- ex[complete.cases(ex[tr]),]
+    
+    if(nrow(ex) <= length(tr)) vol = NA
+    else  vol = convhulln(ex[,tr], "FA")$vol
+    
+    chvols.comm = rbind(chvols.comm, data.frame(site, sp, vol, n = nrow(ex)))
+  }
+}
+
