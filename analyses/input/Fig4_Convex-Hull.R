@@ -20,6 +20,7 @@ library(FD)
 library(plyr)
 library(dplyr)
 library(reshape2)
+library(stringr)
 
 
 # load data
@@ -103,10 +104,14 @@ save(chvols, file = "Species Level CHV.csv", row.names=F)
 
 # Now community level
 
-sp.tr <- c("Species", "Site", "SLA", "Stem.density", "DBH", "c.n")
+sp.tr <- c("SLA", "Stem.density", "DBH", "c.n")
 sp.tr <- tree.traits[,sp.tr]
-trait.means <- aggregate(sp.tr, list(Species = sp.tr$Species, Site = sp.tr$Site), FUN = mean, na.rm=TRUE)
-
+sp.tr
+trait.means <- aggregate(sp.tr, list(Species = tree.traits$Species, Site = tree.traits$Site), FUN = mean, na.rm=TRUE)
+trait.means[is.nan(trait.means$SLA), ]$SLA <- NA
+trait.means[is.nan(trait.means$DBH), ]$DBH <- NA
+trait.means[is.nan(trait.means$Stem.density), ]$Stem.density <- NA
+trait.means[is.nan(trait.means$c.n), ]$c.n <- NA
 
 chvols.comm = vector()
 
@@ -116,12 +121,44 @@ for(site in unique(trait.means$Site)){
     ex <- subset(trait.means, Site == site & Species == sp)
     
     # Find complete cases for this set
-    ex <- ex[complete.cases(ex[tr]),]
+    #ex <- trait.means[complete.cases(trait.means),]
     
-    if(nrow(ex) <= length(tr)) vol = NA
-    else  vol = convhulln(ex[,tr], "FA")$vol
+
     
     chvols.comm = rbind(chvols.comm, data.frame(site, sp, vol, n = nrow(ex)))
   }
 }
+
+ex <- trait.means[complete.cases(trait.means),]
+
+
+d <- read.csv("all.species.dbh.csv", row.names = NULL)
+d <- d[,1:3]
+#d <- d2[,-2]
+
+
+# put data into correct format
+overstory <- distinct(d)
+overstory <- rename(overstory, Species = Comp.Species)
+
+d2 <- melt(overstory, id = "Individual", measure.vars = "Species" )
+
+over.all <- as.data.frame(acast(d2, Individual ~ value, length))
+
+head(over.all)
+over.all <- t(over.all)
+head(over.all)
+
+# get sites of each individual for presence/absence matrix
+x <- colnames(over.all)
+
+x.site <- str_sub(x,-2,-1)
+
+d.hf <- over.all[,x.site == "HF"]
+d.gr <- over.all[,x.site == "GR"]
+d.wm <- over.all[,x.site == "WM"]
+d.sh <- over.all[,x.site == "SH"]
+
+# find species present in each
+
 
