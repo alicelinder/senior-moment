@@ -44,12 +44,6 @@ tree.traits$c.n = tree.traits$X.C / tree.traits$X.N
 #traits <- select(tree.traits, Site, Species, SLA, Stem.density, 
                  #Height, DBH, X.N, X.C, Stomatal.Length, Stomatal.Density)
 
-# remove all empty values
-#stopifnot(complete.cases(traits) != is.na(traits))
-#ok <- complete.cases(traits)
-#sum(!ok) # how many are not "ok" ?
-#traits <- traits[ok,]
-
 ### TO DO I'm getting an error on this for some reason -- formatted correctly?
 ## Problem is that DBH is always 0.5 for these small ones. So here I add a small amount of random noise to the 0.5 dbh individuals
 zerofives <- tree.traits$DBH == 0.5 & !is.na(tree.traits$DBH) 
@@ -103,8 +97,12 @@ for(site in unique(tree.traits$Site)){
   }
 }
 
+
+
 save(chvols, file = "Species Level CHV.csv", row.names=F)
 
 # Now community level
 
-
+sp.tr <- c("Species", "Site", "SLA", "Stem.density", "DBH", "c.n")
+sp.tr <- tree.traits[,sp.tr]
+trait.means <- aggregate(sp.tr, list(Species = sp.tr$Species, Site = sp.tr$Site), mean)
