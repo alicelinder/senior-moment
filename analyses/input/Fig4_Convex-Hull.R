@@ -123,11 +123,13 @@ for(site in unique(trait.means$Site)){
     # Find complete cases for this set
     ex <- trait.means[complete.cases(trait.means),]
     
-
+  
     
     chvols.comm = rbind(chvols.comm, data.frame(site, sp, vol, n = nrow(ex)))
   }
 }
+
+chvols.comm
 
 ex <- trait.means[complete.cases(trait.means),]
 
@@ -139,7 +141,8 @@ d <- d[,1:3]
 
 # put data into correct format
 overstory <- distinct(d)
-overstory <- rename(overstory, Species = Comp.Species)
+names(overstory)[3] = "Species"
+#overstory <- rename(overstory, Comp.Species = "Species")
 
 d2 <- melt(overstory, id = "Individual", measure.vars = "Species" )
 
@@ -150,20 +153,19 @@ over.all <- t(over.all)
 head(over.all)
 
 # get sites of each individual for presence/absence matrix
-x <- colnames(over.all)
+# x <- colnames(over.all)
+# 
+# x.site <- xstr_sub(x,-2,-1)
+ over.all <- t(over.all)
+# rownames(over.all) <- x.site
 
-x.site <- str_sub(x,-2,-1)
-over.all <- t(over.all)
-rownames(over.all) <- x.site
-d.hf <- over.all[x.site == "HF",]
-d.gr <- over.all[x.site == "GR",]
-d.hf <- over.all[x.site == "WM",]
-d.sh <- over.all[x.site == "SH",]
+d.hf <- over.all[grep("_HF", rownames(over.all)),]
+d.gr <- over.all[grep("_GR", rownames(over.all)),]
+d.wm <- over.all[grep("_WM", rownames(over.all)),]
+d.sh <- over.all[grep("_SH", rownames(over.all)),]
 
 head(over.all)
 over.all
-
-
 
 
 # find species present in each
@@ -179,10 +181,11 @@ d.hf <- d.hf[,sp.t]
 d.hf.sp <- colnames(d.hf)
 indata.hf <- m.hf$Species[m.hf$Species %in% d.hf.sp]
 d.hf <- subset(d.hf, select = c(indata.hf))
+
 rownames(m.hf) <- m.hf$Species
-m.hf <- t(m.hf)
-m.hf <- subset(m.hf, select = c(indata.hf))
-m.hf <- t(m.hf)
+
+m.hf <- m.hf[rownames(m.hf) %in% indata.hf,]
+
 
 
 
@@ -199,6 +202,7 @@ m.gr <- subset(m.gr, select = c(indata.gr))
 m.gr <- t(m.gr)
 
 # white mountains
+
 d.wm.sp <- colnames(d.wm)
 indata.wm <- m.wm$Species[m.wm$Species %in% d.wm.sp]
 d.wm <- subset(d.wm, select = c(indata.wm))
@@ -219,4 +223,6 @@ m.sh <- t(m.sh)
 
 
 # functional richness -- getting an error here "x must be atomic for 'sort.list'"
-dbFD(m.hf, d.hf)$FRic
+d.hf <- d.hf[rowSums(d.hf) != 0,]
+
+dbFD(m.hf[3:6], d.hf, corr = 'none')$FRic

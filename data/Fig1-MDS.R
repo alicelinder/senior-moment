@@ -15,6 +15,8 @@ rm(list = ls())
 
 # setwd("~/Documents/git/senior-moment/data") # For Dan
 
+load("NMDS Output.RData")
+
 # MDS overstory
 d <- read.csv("all.species.dbh.csv", row.names = NULL)
 d <- d[,1:3]
@@ -23,7 +25,7 @@ d <- d[,1:3]
 # put data into correct format
 overstory <- distinct(d)
 head(overstory)
-#overstory <- rename(overstory, c("Comp.Species" = "Species")) 
+#overstory <- rename(overstory, c("Comp.Species" = "Species"))
 
 # check
 names(overstory)
@@ -40,7 +42,8 @@ head(over.all)
 # Analysis and summarizing richness of the overstory
 richness <- apply(over.all, 2, sum)
 
-invisible(mds1 <- metaMDS(t(over.all), try = 100)) # use t() to change it so that the communities are rows, and species are columns, which is the format that vegan uses
+##### COMMENTING OUT NMDS RUN 
+# invisible(mds1 <- metaMDS(t(over.all), try = 100)) # use t() to change it so that the communities are rows, and species are columns, which is the format that vegan uses
 
 #plot(mds1) # ok, lots of scatter, good ordination
 
@@ -48,7 +51,7 @@ overcomp <- data.frame(mds1$points)
 
 overcomp$s <- richness # add our species richness calculations to this data frame
 
-overcomp$sp <- substr(rownames(overcomp), 1, 6)  
+overcomp$sp <- substr(rownames(overcomp), 1, 6)
 
 # Get the site by getting the last two characters of the overcomp rownames
 overcomp$site <- unlist(
@@ -82,8 +85,6 @@ legend("topleft",
        bty = "n")
 title("Overstory")
 
-rm(list = ls())
-
 # plot MDS understory
 
 d2 <- read.csv("understory.csv")
@@ -102,7 +103,8 @@ head(d2)
 
 richness <- apply(d2, 2, sum)
 
-invisible(mds2 <- metaMDS(t(d2), try = 100)) # use t() to change it so that the communities are rows, and species are columns, which is the format that vegan uses
+########## COMMENTING OUT THE RUN
+# invisible(mds2 <- metaMDS(t(d2), try = 100)) # use t() to change it so that the communities are rows, and species are columns, which is the format that vegan uses
 
 #plot(mds2) # ok, lots of scatter, good ordination
 
@@ -148,3 +150,5 @@ legend("topleft",
        cex = 1.2)
 
 title("Understory")      
+
+# save(list = c("mds1", "mds2"), file="NMDS Output.RData")
