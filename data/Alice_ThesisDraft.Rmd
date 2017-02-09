@@ -59,29 +59,37 @@ By examining community composition of certain woody species in conjunction with 
 \end{center}      
 To understand community composition and functional traits in response to range limits, I examined the immediate vicinity of six deciduous tree species. I collected data on the community composition of the understory species, as well as current competitive environment for each focal tree. Data on functional traits for some of the same individuals were collected the year prior across all four sites through the summer.  
 
-*Sites* – I collected data at four sites, all spaced approximately one latitudinal degree apart from each other. Individuals of the six species had previously been tagged for past lab work. All sites were temperate deciduous forests with a small amount of human disturbance. The southernmost site was Harvard Forest, an LTER in Petersham, Massachusetts. The Harvard Forest spans approximately 3000 acres, and lies 110 kilometers west of Boston. The second site was located in the southern White Mountains in New Hampshire, off the Kancamagus Highway. As the southernmost part of the White Mountains, the site does not lie within a protected research area. However, as part of a national forest, it is fairly protected from human intrusion. The third site was in the Dartmouth College Second Grant, a site maintained by Dartmouth College for logging, recreational use, and scientific research. The Grant in northern New Hampshire, near the border of Maine. Finally, the northernmost site was located at the Station de biologie des Laurentide in Quebec. The Station de biologie des Laurentide is slightly larger than Harvard Forest, spanning 4000 acres, and is 75 kilometers northeast of Montreal. Due to the varying latitudes, the northern-most sites see a climate of colder winters and shorter growing seasons. All follow mild summers.  
+\textbf{\textit{Sites}} – I collected data at four sites, all spaced approximately one latitudinal degree apart from each other. Individuals of the six species had previously been tagged for past lab work. All sites were temperate deciduous forests with a small amount of human disturbance. The southernmost site was Harvard Forest, an LTER in Petersham, Massachusetts. The Harvard Forest spans approximately 3000 acres, and lies 110 kilometers west of Boston. The second site was located in the southern White Mountains in New Hampshire, off the Kancamagus Highway. As the southernmost part of the White Mountains, the site does not lie within a protected research area. However, as part of a national forest, it is fairly protected from human intrusion. The third site was in the Dartmouth College Second Grant, a site maintained by Dartmouth College for logging, recreational use, and scientific research. The Grant in northern New Hampshire, near the border of Maine. Finally, the northernmost site was located at the Station de biologie des Laurentide in Quebec. The Station de biologie des Laurentide is slightly larger than Harvard Forest, spanning 4000 acres, and is 75 kilometers northeast of Montreal. Due to the varying latitudes, the northern-most sites see a climate of colder winters and shorter growing seasons. All follow mild summers.  
   
 All four sites had previously been used by the Wolkovich lab for research in temporal ecology into the species used for this experiment, thus ensuring the presence of suitable individuals at each site. Nearly all sampling sites occurred in closed canopy forests, except for some sampling plots of Cornus alternifolia and Sorbus americana which frequently appear on forest edges.  
   
-*Species selection* – I sampled six different species of deciduous woody plants that are abundant across the latitudinal range of our sites in the Eastern US. The species’ ranges vary, though all reach a range extreme near one of our four sites. The species in question are: Acer pensylvanicum, Betula papyrifera, Cornus alternifolia, Fagus grandifolia, Hamamelis virginiana, and Sorbus americana. Four of the six species reach their northern range extremes within or just outside of the latitudinal range covered by the four study sites. Two species, Betula papyrifera and Sorbus americana, reach their southern limits just below the southern-most site at Harvard Forest. Hamamelis virginiana, on the other hand, reaches its northern limit near our second southern-most site in the White Mountains.  
+\textbf{\textit{Species selection}} – I sampled six different species of deciduous woody plants that are abundant across the latitudinal range of our sites in the Eastern US. The species’ ranges vary, though all reach a range extreme near one of our four sites. The species in question are: Acer pensylvanicum, Betula papyrifera, Cornus alternifolia, Fagus grandifolia, Hamamelis virginiana, and Sorbus americana. Four of the six species reach their northern range extremes within or just outside of the latitudinal range covered by the four study sites. Two species, Betula papyrifera and Sorbus americana, reach their southern limits just below the southern-most site at Harvard Forest. Hamamelis virginiana, on the other hand, reaches its northern limit near our second southern-most site in the White Mountains.  
   
 Each species was selected based on (a) which species had been included in past studies at the four sites as part of the Wolkovich lab’s work, and (b) the location of its range limits with relation to the four sites. I found each species’ latitudinal range limits through the websites bonap.org, plants.usda.gov, and gbif.org. This was to account for records of tree species that were recorded outside their latitudinal limits (as evidenced by highly decreased abundance), but had still been recorded as appearing in different counties.  
 		  
-*Competition and community data* - For each of the six species, I tagged six (or found some previously tagged) individuals at each site that the individuals were present in. I compared total basal area of the focal individual with trees in the competitive environment around each focal individual. The direct competitive environment was estimated as being within a 5-m radius around the focal tree. I recorded the DBH of all trees falling within this circle. I took note of the presence and absence of species in the understory, including species of saplings appearing under 1.3m. To determine competitiveness of our focal individuals, I used the percentage of total basal area attributable to the focal individuals as a proxy for competitive advantage in each plot.  
+\textbf{\textit{Competition and community data}} - For each of the six species, I tagged six (or found some previously tagged) individuals at each site that the individuals were present in. I compared total basal area of the focal individual with trees in the competitive environment around each focal individual. The direct competitive environment was estimated as being within a 5-m radius around the focal tree. I recorded the DBH of all trees falling within this circle. I took note of the presence and absence of species in the understory, including species of saplings appearing under 1.3m. To determine competitiveness of our focal individuals, I used the percentage of total basal area attributable to the focal individuals as a proxy for competitive advantage in each plot.  
   
 Competition index was calculated according to methods outlined in Biging and Dobertin 1995. I calculated the sum of the trees larger than the focal tree, and took the ratio of the basal area of the focal tree to this sum. By using relative basal area, the trend of decreasing DBH as species increase in latitude would not show in the model.
   
-*Functional traits* - For functional trait data, I used the data collected the previous summer by Harry Stone during the Harvard Forest REU Summer Program in 2015. The height of individuals not measured summer 2015 was measured through a clinometer. Additionally, I measured the Diameter at Breast Height (DBH) of any newly-tagged individuals (in cases where an individual is too close to another focal plant). Functional traits for newly-tagged individuals were not measured, but instead the traits measured in 2015 served as a representation of the traits of all species within that site.  
+\textbf{\textit{Functional traits}} - For functional trait data, I used the data collected the previous summer by Harry Stone during the Harvard Forest REU Summer Program in 2015. The height of individuals not measured summer 2015 was measured through a clinometer. Additionally, I measured the Diameter at Breast Height (DBH) of any newly-tagged individuals (in cases where an individual is too close to another focal plant). Functional traits for newly-tagged individuals were not measured, but instead the traits measured in 2015 served as a representation of the traits of all species within that site.  
     
 Data on the functional traits Specific Leaf Area (SLA), Leaf N%, leaf dry matter content, and height were all collected for at least six individuals of the six species across the four sites (when applicable). Samples were processed in the John Torrey laboratory at the Harvard Forest. When possible, leaf samples were collected near the center of the tree canopy. Leaf size was measured using the LI-COR 3100 leaf area meter. To account for variation within an individual, a wide range of leaf sizes were measured to achieve a representative average size. Specific leaf area (SLA) was determined by the leaf size divided by dry mass of the leaves (Cornelissen 2003). The leaves were weighed after drying for than 24 hours at 60 OC.  
 		  
-Harry Stone and colleagues measured leaf dry matter content by comparing the fresh mass of the leaves, determined immediately after removal from the individual and the dried weight. Height of the individual was measured using a clinometer from 15 meters away from the tree. Stem specific density was measured by comparing the volume of the stem sample to the dried mass. The volume of the stem was calculated by submersion in a container of water and the volume of the water displaced is equivalent to the volume of the stem. Then the stems were dried in excess of 24 hours in the drying oven at 60 OC. 
+Harry Stone and colleagues measured leaf dry matter content by comparing the fresh mass of the leaves, determined immediately after removal from the individual and the dried weight. Height of the individual was measured using a clinometer from 15 meters away from the tree. Stem specific density was measured by comparing the volume of the stem sample to the dried mass. The volume of the stem was calculated by submersion in a container of water and the volume of the water displaced is equivalent to the volume of the stem. Then the stems were dried in excess of 24 hours in the drying oven at 60 OC.
+
+\textbf{\textit{Statistical analyses}} – \textit{Competition-Latitude Relationships} – I used both linear mixed effects models and simple linear models to evaluate the relationship beween competition and latitude for each species at each sampling location. Using the simple linear models allowed me to quantify the basic relationship between distance from minimum latitude and the competition index.
+
+-- where to include MDS plots?
+
   
 \pagebreak  
 \begin{center}  
 \textbf{Results}  
 \end{center}  
-There was little to no correlation between increasing latitude (approaching northern edges) and the competitive index of the focal trees. 
+The species composition across the four sites, as evidenced by the multi-dimensional scalar plots (Fig. 1), show a marked difference between the species compositions of Harvard Forest and the other three sites. This is mirrored in both the overstory and understory species composition, suggesting that the type of competition seen by the deciduous trees present in Harvard Forest may differ from that of the other three sites. 
+   
+The strength of competition index - latitude relationships differed by species, with no clear pattern across all six species. There was little to no correlation between increasing latitude (approaching northern edges) and the competitive index of the focal trees. 
+
 
   
 \pagebreak
@@ -156,6 +164,27 @@ ggplot(focal.centroid,
     \bottomrule
   \end{tabular}
 \end{table}  
+
+\smallskip      
+      
+\begin{table}[h!]
+  \centering
+  \caption{Linear mixed-effects coefficients for Latitude}
+  \smallskip
+  \label{tab:table2}
+  \begin{tabular}{cc}
+    \toprule
+    Species & Coefficient\\
+    \midrule
+    Acer pensylvanicum & -0.184\\
+    Betula papyrifera & -0.1407\\
+    Corylus alternifolia & -0.068\\
+    Faggus grandifolia & 0.117\\
+    Hamamelis virginiana & -2.049\\
+    Sorbus americana & 0.250\\
+    \bottomrule
+  \end{tabular}
+\end{table} 
 
   
 \pagebreak  

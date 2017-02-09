@@ -38,7 +38,8 @@ ggplot(focal.centroid,
   xlab("Distance from Min. Latitude") +
   ylab("Relative Basal Area")
 
-
+relative.BA
+minLatdiff
 # model intraspecific competition
 #summary(lm1 <- lm(relative.BA ~ minLatdiff, data = focal.centroid[focal.centroid$sp == "ACEPEN",]))
 #summary(lm1 <- lm(relative.BA ~ minLatdiff, data = focal.centroid[focal.centroid$sp == "BETPAP",]))
@@ -47,7 +48,7 @@ ggplot(focal.centroid,
 #summary(lm1 <- lm(relative.BA ~ minLatdiff, data = focal.centroid[focal.centroid$sp == "HAMVIR",]))
 #summary(lm1 <- lm(relative.BA ~ minLatdiff, data = focal.centroid[focal.centroid$sp == "SORAME",]))
 
-#lme1 <- lmer(intra.comp.BA ~ Lat + (Lat | sp), data = focal)
+lme1 <- lmer(relative.BA ~ Lat + (Lat | sp), data = focal)
 
 # model competition
 #summary(lm1 <- lm(relative.BA ~ Lat, data = focal[focal$sp == "ACEPEN",]))

@@ -51,14 +51,13 @@ ggplot(clim.focal,
 
 
 # Analysis. Single linear models, very simple analysis here.
-
+?lme
 summary(lm1 <- lm(relative.BA ~ distance.to.climatic.centroid, data = clim.focal[clim.focal$sp == "ACEPEN",]))
 summary(lm1 <- lm(relative.BA ~ distance.to.climatic.centroid, data = clim.focal[clim.focal$sp == "BETPAP",]))
 summary(lm1 <- lm(relative.BA ~ distance.to.climatic.centroid, data = clim.focal[clim.focal$sp == "CORALT",]))
 summary(lm1 <- lm(relative.BA ~ distance.to.climatic.centroid, data = clim.focal[clim.focal$sp == "FAGGRA",]))
 summary(lm1 <- lm(relative.BA ~ distance.to.climatic.centroid, data = clim.focal[clim.focal$sp == "HAMVIR",]))
 summary(lm1 <- lm(relative.BA ~ distance.to.climatic.centroid, data = clim.focal[clim.focal$sp == "SORAME",]))
-
 
 # Mixed effect model to use all species in single analysis
 lme1 <- lmer(relative.BA ~ distance.to.climatic.centroid + (distance.to.climatic.centroid | sp), data = clim.focal)
