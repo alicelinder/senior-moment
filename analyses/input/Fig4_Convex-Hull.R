@@ -9,7 +9,7 @@
 ## or coefficient of variance across ranges.
 
 rm(list = ls())
-
+options(stringsAsFactors = FALSE)
 setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 
 # setwd("~/Documents/git/senior-moment/data")
@@ -75,7 +75,7 @@ vol = convhulln(ex[,tr], "FA")$vol
 #tr.species <- c("Site", "Species", "SLA", "Stem.density", "c.n")
 #tree.traits.tr <- tree.traits.interest[,tr.species]
 
-#coralt <- subset(tree.traits.tr, Site == "HF" & Species == "CORALT")
+#coralt <- subset(tree.traits.tr, Site == "hf" & Species == "CORALT")
 #vol = convhulln(coralt[,tr.2], "FA")$vol
 
 # now apply this across all species and sites
@@ -121,7 +121,7 @@ for(site in unique(trait.means$Site)){
     ex <- subset(trait.means, Site == site & Species == sp)
     
     # Find complete cases for this set
-    #ex <- trait.means[complete.cases(trait.means),]
+    ex <- trait.means[complete.cases(trait.means),]
     
 
     
@@ -153,12 +153,70 @@ head(over.all)
 x <- colnames(over.all)
 
 x.site <- str_sub(x,-2,-1)
+over.all <- t(over.all)
+rownames(over.all) <- x.site
+d.hf <- over.all[x.site == "HF",]
+d.gr <- over.all[x.site == "GR",]
+d.hf <- over.all[x.site == "WM",]
+d.sh <- over.all[x.site == "SH",]
 
-d.hf <- over.all[,x.site == "HF"]
-d.gr <- over.all[,x.site == "GR"]
-d.wm <- over.all[,x.site == "WM"]
-d.sh <- over.all[,x.site == "SH"]
+head(over.all)
+over.all
+
+
+
 
 # find species present in each
+m.hf <- trait.means[trait.means$Site == "HF",]
+m.gr <- trait.means[trait.means$Site == "GR",]
+m.wm <- trait.means[trait.means$Site == "WM",]
+m.sh <- trait.means[trait.means$Site == "SH",]
+
+# check for species that are missing
+# harvard forest
+sp.t <- colSums(d.hf) != 0
+d.hf <- d.hf[,sp.t]
+d.hf.sp <- colnames(d.hf)
+indata.hf <- m.hf$Species[m.hf$Species %in% d.hf.sp]
+d.hf <- subset(d.hf, select = c(indata.hf))
+rownames(m.hf) <- m.hf$Species
+m.hf <- t(m.hf)
+m.hf <- subset(m.hf, select = c(indata.hf))
+m.hf <- t(m.hf)
 
 
+
+# grant site
+sp.t <- colSums(d.gr) != 0
+d.gr <- d.gr[,sp.t]
+
+d.gr.sp <- colnames(d.gr)
+indata.gr <- m.gr$Species[m.gr$Species %in% d.gr.sp]
+d.gr <- subset(d.gr, select = c(indata.gr))
+rownames(m.gr) <- m.gr$Species
+m.gr <- t(m.gr)
+m.gr <- subset(m.gr, select = c(indata.gr))
+m.gr <- t(m.gr)
+
+# white mountains
+d.wm.sp <- colnames(d.wm)
+indata.wm <- m.wm$Species[m.wm$Species %in% d.wm.sp]
+d.wm <- subset(d.wm, select = c(indata.wm))
+rownames(m.wm) <- m.wm$Species
+m.wm <- t(m.wm)
+m.wm <- subset(m.wm, select = c(indata.wm))
+m.wm <- t(m.wm)
+
+
+# saint hippolyte
+d.sh.sp <- colnames(d.sh)
+indata.sh <- m.sh$Species[m.sh$Species %in% d.sh.sp]
+d.sh <- subset(d.sh, select = c(indata.sh))
+rownames(m.sh) <- m.sh$Species
+m.sh <- t(m.sh)
+m.sh <- subset(m.sh, select = c(indata.sh))
+m.sh <- t(m.sh)
+
+
+# functional richness -- getting an error here "x must be atomic for 'sort.list'"
+dbFD(m.hf, d.hf)$FRic
