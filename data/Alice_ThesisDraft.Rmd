@@ -233,6 +233,22 @@ ggplot(clim.focal,
   \end{tabular}
 \end{table}  
   
+\smallskip      
+      
+\begin{table}[h!]
+  \centering
+  \caption{Linear mixed effects model results}
+  \medskip
+  \label{tab:table4}
+  \begin{tabular}{cccc}
+    \toprule
+    Coeff. of fixed general effects & \textit{CI} & \textit{p} value & \textit{SD} of random effects\\
+    \midrule
+    -0.23 & -0.59-.14 & 2.666 & 0.221\\
+    \bottomrule
+  \end{tabular}
+\end{table} 
+  
 \pagebreak  
 
 **Figure 4**

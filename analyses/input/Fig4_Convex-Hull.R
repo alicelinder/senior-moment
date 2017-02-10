@@ -15,12 +15,12 @@ setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data"
 # setwd("~/Documents/git/senior-moment/data")
 
 # LIBRARIES HERE
-library(geometry)
-library(FD)
-library(plyr)
-library(dplyr)
-library(reshape2)
-library(stringr)
+library(geometry) # install.packages("vegan")
+library(FD) # install.packages("FD")
+library(plyr) # install.packages("plyr")
+library(dplyr) # install.packages("dplyr")
+library(reshape2) # install.packages("reshape2")
+library(stringr) # install.packages("stringr")
 
 
 # load data
@@ -115,23 +115,23 @@ trait.means[is.nan(trait.means$c.n), ]$c.n <- NA
 
 chvols.comm = vector()
 
-for(site in unique(trait.means$Site)){
-  for(sp in unique(trait.means$Species)){
+#for(site in unique(trait.means$Site)){
+  #for(sp in unique(trait.means$Species)){
     
-    ex <- subset(trait.means, Site == site & Species == sp)
+    #ex <- subset(trait.means, Site == site & Species == sp)
     
     # Find complete cases for this set
-    ex <- trait.means[complete.cases(trait.means),]
+    #ex <- trait.means[complete.cases(trait.means),]
     
   
     
-    chvols.comm = rbind(chvols.comm, data.frame(site, sp, vol, n = nrow(ex)))
-  }
-}
+    #chvols.comm = rbind(chvols.comm, data.frame(site, sp, vol, n = nrow(ex)))
+  #}
+#}
 
-chvols.comm
+#chvols.comm
 
-ex <- trait.means[complete.cases(trait.means),]
+#ex <- trait.means[complete.cases(trait.means),]
 
 
 d <- read.csv("all.species.dbh.csv", row.names = NULL)
@@ -149,30 +149,53 @@ d2 <- melt(overstory, id = "Individual", measure.vars = "Species" )
 over.all <- as.data.frame(acast(d2, Individual ~ value, length))
 
 head(over.all)
+focal.indiv
 over.all <- t(over.all)
-head(over.all)
 
+head(over.all)
+# add in focal individual into matrix manually
+acepen <- substr(rownames(over.all), 1, 6) == "ACEPEN"
+acepen.col <- colnames(over.all) == "ACEPEN"
+over.all[acepen, acepen.col] <- 1
+
+betpap <- substr(rownames(over.all), 1, 6) == "BETPAP"
+betpap.col <- colnames(over.all) == "BETPAP"
+over.all[betpap, betpap.col] <- 1
+
+coralt <- substr(rownames(over.all), 1, 6) == "CORALT"
+coralt.col <- colnames(over.all) == "CORALT"
+over.all[coralt, coralt.col] <- 1
+
+faggra <- substr(rownames(over.all), 1, 6) == "FAGGRA"
+faggra.col <- colnames(over.all) == "FAGGRA"
+over.all[faggra, faggra.col] <- 1
+
+hamvir <- substr(rownames(over.all), 1, 6) == "HAMVIR"
+hamvir.col <- colnames(over.all) == "HAMVIR"
+over.all[hamvir, hamvir.col] <- 1
+
+head(over.all)
 # get sites of each individual for presence/absence matrix
 # x <- colnames(over.all)
 # 
 # x.site <- xstr_sub(x,-2,-1)
- over.all <- t(over.all)
 # rownames(over.all) <- x.site
-
-<<<<<<< Updated upstream
+head(over.all)
+ 
+# Updated upstream
 d.hf <- over.all[grep("_HF", rownames(over.all)),]
 d.gr <- over.all[grep("_GR", rownames(over.all)),]
 d.wm <- over.all[grep("_WM", rownames(over.all)),]
 d.sh <- over.all[grep("_SH", rownames(over.all)),]
-=======
-x.site <- str_sub(x,-2,-1)
-over.all <- t(over.all)
-rownames(over.all) <- x.site
-d.hf <- over.all[x.site == "HF",]
-d.gr <- over.all[x.site == "GR",]
-d.wm <- over.all[x.site == "WM",]
-d.sh <- over.all[x.site == "SH",]
->>>>>>> Stashed changes
+
+#x.site <- str_sub(x,-2,-1)
+#over.all <- t(over.all)
+#rownames(over.all) <- x.site
+#d.hf <- over.all[x.site == "HF",]
+#d.gr <- over.all[x.site == "GR",]
+#d.wm <- over.all[x.site == "WM",]
+#d.sh <- over.all[x.site == "SH",]
+# Stashed changes
 
 head(over.all)
 over.all
@@ -195,8 +218,6 @@ d.hf <- subset(d.hf, select = c(indata.hf))
 rownames(m.hf) <- m.hf$Species
 
 m.hf <- m.hf[rownames(m.hf) %in% indata.hf,]
-
-
 
 
 # grant site
@@ -234,5 +255,10 @@ m.sh <- t(m.sh)
 
 # functional richness -- getting an error here "x must be atomic for 'sort.list'"
 d.hf <- d.hf[rowSums(d.hf) != 0,]
+dim(d.hf)
+head(d.hf)
+dim(m.hf)
+chvols.comm <- dbFD(m.hf[3:6], d.hf, corr = 'none')$FRic
+hf <- as.data.frame(chvols.comm)
 
-dbFD(m.hf[3:6], d.hf, corr = 'none')$FRic
+

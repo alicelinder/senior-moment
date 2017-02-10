@@ -66,3 +66,4 @@ ranef(lme1)
 summary(lme1)
 
 ranef <- ranef(lme1)
+sjt.lmer(lme1)
