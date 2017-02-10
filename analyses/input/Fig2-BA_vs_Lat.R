@@ -18,8 +18,7 @@ library(ggplot2) # install.packages("ggplot2")
 library(plyr)
 library(reshape)
 
-#library(sjPlot) # install.packages("sjPlot")
-# detach("package:dplyr", unload=TRUE)
+library(sjPlot) # install.packages("sjPlot")
 
 # load all data from source code
 source("Fig2-source.R")
@@ -48,7 +47,17 @@ minLatdiff
 #summary(lm1 <- lm(relative.BA ~ minLatdiff, data = focal.centroid[focal.centroid$sp == "HAMVIR",]))
 #summary(lm1 <- lm(relative.BA ~ minLatdiff, data = focal.centroid[focal.centroid$sp == "SORAME",]))
 
+lme1 <- lmer(relative.BA ~ minLatdiff + (minLatdiff | sp), data = focal.centroid)
+
+fixef(lme1)
+ranef(lme1)
+summary(lme1)
+
+ranef <- ranef(lme1)
+
 lme1 <- lmer(relative.BA ~ Lat + (Lat | sp), data = focal)
+
+sjt.lmer(lme1)
 
 # model competition
 #summary(lm1 <- lm(relative.BA ~ Lat, data = focal[focal$sp == "ACEPEN",]))

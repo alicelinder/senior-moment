@@ -171,19 +171,14 @@ ggplot(focal.centroid,
       
 \begin{table}[h!]
   \centering
-  \caption{Linear mixed-effects coefficients for Latitude}
-  \smallskip
+  \caption{Linear mixed effects model results}
+  \medskip
   \label{tab:table2}
-  \begin{tabular}{cc}
+  \begin{tabular}{cccc}
     \toprule
-    Species & Coefficient\\
+    Coeff. of fixed general effects & \textit{p} value & \textit{CI} & \textit{SD} of random effects\\
     \midrule
-    Acer pensylvanicum & -0.184\\
-    Betula papyrifera & -0.1407\\
-    Corylus alternifolia & -0.068\\
-    Faggus grandifolia & 0.117\\
-    Hamamelis virginiana & -2.049\\
-    Sorbus americana & 0.250\\
+    -0.0317 & -0.18-.12 & .677 & 2.911\\
     \bottomrule
   \end{tabular}
 \end{table} 

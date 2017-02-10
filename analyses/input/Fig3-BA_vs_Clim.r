@@ -22,8 +22,7 @@ library(scales)# install.packages("scales")
 library(ggplot2) # install.packages("ggplot2")
 library(plyr) # install.packages("plyr")
 library(reshape) # install.packages("reshape")
-
-#library(sjPlot) # install.packages("sjPlot")
+library(sjPlot) # install.packages("sjPlot")
 # detach("package:dplyr", unload=TRUE)
 
 # load all data from source code
