@@ -159,10 +159,20 @@ head(over.all)
  over.all <- t(over.all)
 # rownames(over.all) <- x.site
 
+<<<<<<< Updated upstream
 d.hf <- over.all[grep("_HF", rownames(over.all)),]
 d.gr <- over.all[grep("_GR", rownames(over.all)),]
 d.wm <- over.all[grep("_WM", rownames(over.all)),]
 d.sh <- over.all[grep("_SH", rownames(over.all)),]
+=======
+x.site <- str_sub(x,-2,-1)
+over.all <- t(over.all)
+rownames(over.all) <- x.site
+d.hf <- over.all[x.site == "HF",]
+d.gr <- over.all[x.site == "GR",]
+d.wm <- over.all[x.site == "WM",]
+d.sh <- over.all[x.site == "SH",]
+>>>>>>> Stashed changes
 
 head(over.all)
 over.all
