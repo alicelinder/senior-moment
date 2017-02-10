@@ -283,11 +283,9 @@ chvols.comm <- dbFD(m.hf[3:6], d.hf, corr = 'none')$FRic
 hf <- as.data.frame(chvols.comm)
 
 d.wm <- d.wm[rowSums(d.wm) != 0,]
-dim(d.wm)
-head(d.wm)
-dim(m.wm)
-chvols.comm.wm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
-wm <- as.data.frame(chvols.comm.wm)
+
+#chvols.comm.wm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
+#wm <- as.data.frame(chvols.comm.wm)
 
 #d.gr <- d.gr[rowSums(d.gr) != 0,]
 dim(d.gr)
@@ -302,16 +300,12 @@ gr <- as.data.frame(chvols.comm)
 chvols.comm <- dbFD(m.sh[3:6], d.sh, corr = 'none')$FRic
 sh <- as.data.frame(chvols.comm)
 
-?rbind
-rbind(hf, wm, gr, sh)
-dim(hf)
-dim(wm)
-dim(gr)
-gr[31:35,] <- NA
-sh[31:35,] <- NA
+## TO DO: getting error with White Mountain data for some reason.
+#rbind(hf, wm, gr, sh)
+
 dim(sh)
-cbind(hf, wm)
 x <- rbind(hf, gr, sh)
+x
 x$Species = substr(rownames(x), 1, 6)
 
 x$Site <- unlist(
