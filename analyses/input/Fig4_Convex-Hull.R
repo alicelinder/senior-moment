@@ -3,11 +3,6 @@
 ### written Jan. 16, 2017
 ### used "Functional and Phylogenetic Ecology in R" by Nathan G. Swenson
 
-# Seems that convex hull (functional richness) only works for communities in which all 
-## individuals have been sampled for traits. Any way around this? I'm thinking at the
-## moment that I should just complete a PCA with functional traits and plot this
-## or coefficient of variance across ranges.
-
 rm(list = ls())
 options(stringsAsFactors = FALSE)
 setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
@@ -148,11 +143,9 @@ d2 <- melt(overstory, id = "Individual", measure.vars = "Species" )
 
 over.all <- as.data.frame(acast(d2, Individual ~ value, length))
 
-head(over.all)
-focal.indiv
-over.all <- t(over.all)
+#head(over.all)
+#over.all <- t(over.all)
 
-head(over.all)
 # add in focal individual into matrix manually
 acepen <- substr(rownames(over.all), 1, 6) == "ACEPEN"
 acepen.col <- colnames(over.all) == "ACEPEN"
@@ -180,7 +173,7 @@ head(over.all)
 # 
 # x.site <- xstr_sub(x,-2,-1)
 # rownames(over.all) <- x.site
-head(over.all)
+#head(over.all)
  
 # Updated upstream
 d.hf <- over.all[grep("_HF", rownames(over.all)),]
@@ -207,58 +200,115 @@ m.gr <- trait.means[trait.means$Site == "GR",]
 m.wm <- trait.means[trait.means$Site == "WM",]
 m.sh <- trait.means[trait.means$Site == "SH",]
 
+
 # check for species that are missing
 # harvard forest
-sp.t <- colSums(d.hf) != 0
-d.hf <- d.hf[,sp.t]
+
+# check that there are observations in some and remove all columns with 0 species
+x <- colSums(d.hf) != 0
+d.hf <- subset(d.hf, select = x)
+colSums(d.hf)
+
+
+sp.t.hf <- colSums(d.hf) != 0
+d.hf <- d.hf[,sp.t.hf]
 d.hf.sp <- colnames(d.hf)
 indata.hf <- m.hf$Species[m.hf$Species %in% d.hf.sp]
-d.hf <- subset(d.hf, select = c(indata.hf))
 
 rownames(m.hf) <- m.hf$Species
-
+d.hf <- d.hf[,colnames(d.hf) %in% indata.hf]
 m.hf <- m.hf[rownames(m.hf) %in% indata.hf,]
 
-
 # grant site
-sp.t <- colSums(d.gr) != 0
-d.gr <- d.gr[,sp.t]
+d.gr <- d.gr[,colSums(d.gr) != 0]
+colSums(d.gr)
 
+sp.t.gr <- colSums(d.gr) != 0
+d.gr <- d.gr[,sp.t.gr]
 d.gr.sp <- colnames(d.gr)
 indata.gr <- m.gr$Species[m.gr$Species %in% d.gr.sp]
-d.gr <- subset(d.gr, select = c(indata.gr))
+#d.gr <- subset(d.gr, select = c(indata.gr))
+
 rownames(m.gr) <- m.gr$Species
-m.gr <- t(m.gr)
-m.gr <- subset(m.gr, select = c(indata.gr))
-m.gr <- t(m.gr)
+d.gr <- d.gr[,colnames(d.gr) %in% indata.gr]
+m.gr <- m.gr[rownames(m.gr) %in% indata.gr,]
+
+colnames(d.gr)
+rownames(m.gr)
 
 # white mountains
 
+x <- colSums(d.wm) != 0
+d.wm <- subset(d.wm, select = x)
+colSums(d.wm)
+
+sp.t.wm <- colSums(d.wm) != 0
+d.wm <- d.wm[,sp.t.wm]
 d.wm.sp <- colnames(d.wm)
 indata.wm <- m.wm$Species[m.wm$Species %in% d.wm.sp]
 d.wm <- subset(d.wm, select = c(indata.wm))
+
 rownames(m.wm) <- m.wm$Species
-m.wm <- t(m.wm)
-m.wm <- subset(m.wm, select = c(indata.wm))
-m.wm <- t(m.wm)
+d.wm <- d.wm[,colnames(d.wm) %in% indata.wm]
+m.wm <- m.wm[rownames(m.wm) %in% indata.wm,]
+
+
 
 
 # saint hippolyte
+
+x <- colSums(d.sh) != 0
+d.sh <- subset(d.sh, select = x)
+colSums(d.sh)
+
+sp.t.sh <- colSums(d.sh) != 0
+d.sh <- d.sh[,sp.t.sh]
 d.sh.sp <- colnames(d.sh)
 indata.sh <- m.sh$Species[m.sh$Species %in% d.sh.sp]
 d.sh <- subset(d.sh, select = c(indata.sh))
+
 rownames(m.sh) <- m.sh$Species
-m.sh <- t(m.sh)
-m.sh <- subset(m.sh, select = c(indata.sh))
-m.sh <- t(m.sh)
+d.sh <- d.sh[,colnames(d.sh) %in% indata.sh]
+m.sh <- m.sh[rownames(m.sh) %in% indata.sh,]
 
 
-# functional richness -- getting an error here "x must be atomic for 'sort.list'"
+
+# functional richness
 d.hf <- d.hf[rowSums(d.hf) != 0,]
+d.hf
 dim(d.hf)
 head(d.hf)
 dim(m.hf)
 chvols.comm <- dbFD(m.hf[3:6], d.hf, corr = 'none')$FRic
 hf <- as.data.frame(chvols.comm)
 
+d.wm <- d.wm[rowSums(d.wm) != 0,]
+dim(d.wm)
+head(d.wm)
+dim(m.wm)
+chvols.comm.wm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
+wm <- as.data.frame(chvols.comm.wm)
 
+#d.gr <- d.gr[rowSums(d.gr) != 0,]
+dim(d.gr)
+head(d.gr)
+dim(m.gr)
+m.gr
+d.gr
+chvols.comm <- dbFD(m.gr[3:6], d.gr, corr = 'none')$FRic
+gr <- as.data.frame(chvols.comm)
+
+# saint hippolyte
+chvols.comm <- dbFD(m.sh[3:6], d.sh, corr = 'none')$FRic
+sh <- as.data.frame(chvols.comm)
+
+?rbind
+rbind(hf, wm, gr, sh)
+dim(hf)
+dim(wm)
+dim(gr)
+gr[31:35,] <- NA
+sh[31:35,] <- NA
+dim(sh)
+cbind(hf, wm)
+x <- rbind(hf, wm)
