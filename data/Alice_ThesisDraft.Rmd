@@ -88,7 +88,7 @@ Harry Stone and colleagues measured leaf dry matter content by comparing the fre
 \end{center}  
 The species composition across the four sites, as evidenced by the multi-dimensional scalar plots (Fig. 1), show a marked difference between the species compositions of Harvard Forest and the other three sites. This is mirrored in both the overstory and understory species composition, suggesting that the type of competition seen by the deciduous trees present in Harvard Forest may differ from that of the other three sites.
    
-The strength of competition index - latitude relationships differed by species, with no clear pattern across all six species. There was little to no correlation between increasing latitude (approaching northern edges) and the competitive index of the focal trees. *Acer pensylvanicum* showed a slight negative correlation ($R^{2}$ = -0.011) between the relative basal area of the focal individuals to the distance from the minimum latitude. This indicates a general trend of *Acer pensylvanicum* individuals growing less competitive as they grow more northward (closer to the species' northern range limit). *Betula papyrifera*, whose distribution lies predominantly north of Harvard Forest (with the center near the northern-most testing site), shows a slight negative correlation ($R^{2}$ = -0.033) between its relative basal area and its distance from its minimum latitude.
+The strength of competition index - latitude relationships differed by species, with no clear pattern across all six species. There was little to no correlation between increasing latitude (approaching northern edges) and the competitive index of the focal trees. *Acer pensylvanicum* showed a slight negative correlation ($R^{2}$ = -0.011) between the relative basal area of the focal individuals to the distance from the minimum latitude. This indicates a general trend of *Acer pensylvanicum* individuals growing less competitive as they grow more northward (closer to the species' northern range limit). *Betula papyrifera*, whose distribution lies predominantly north of Harvard Forest (with the center near the northern-most testing site), shows a slight negative correlation ($R^{2}$ = -0.033) between its relative basal area and its distance from its minimum latitude. 
 
 
   
@@ -110,6 +110,11 @@ library(reshape)
 library(dplyr)
 library(tidyr)
 library(reshape2)
+```
+
+```{r echo=FALSE}
+# load MDS figures
+source("Fig1-MDS.R")
 ```
 
 

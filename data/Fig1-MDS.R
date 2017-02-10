@@ -11,7 +11,7 @@ library(reshape2)
 library(ggplot2)
 
 rm(list = ls())
-#setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
+setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 
 # setwd("~/Documents/git/senior-moment/data") # For Dan
 
@@ -24,20 +24,20 @@ d <- d[,1:3]
 
 # put data into correct format
 overstory <- distinct(d)
-head(overstory)
+# head(overstory)
 #overstory <- rename(overstory, c("Comp.Species" = "Species"))
 
 # check
-names(overstory)
+#names(overstory)
 
 # SOMETHING WRONG HERE
 d <- melt(overstory, id = "Individual", measure.vars = "Comp.Species" )
 
 over.all <- as.data.frame(acast(d, Individual ~ value, length))
 
-head(over.all)
+#head(over.all)
 over.all <- t(over.all)
-head(over.all)
+#head(over.all)
 
 # Analysis and summarizing richness of the overstory
 richness <- apply(over.all, 2, sum)
@@ -95,7 +95,7 @@ d2 <- read.csv("understory.csv")
 rownames(d2) = d2[,1] # move species names into rows
 d2 <- d2[,-1]
 
-head(d2)
+#head(d2)
 
 # Analysis
 # Summarizing the richness of the understory 
@@ -128,7 +128,6 @@ undercomp$site <- factor(as.numeric(as.character(undercomp$site)), labels = c("H
 
 # Clear differences with site, changing space along MDS1
 colz = alpha(c("#E7298A", "#1B9E77", "#D95F02", "#7570B3"), 0.5)
-
 
 plot(mds2, type = "n",
      xlim = c(-1.5, 1.5),
