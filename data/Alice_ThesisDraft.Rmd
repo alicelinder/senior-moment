@@ -5,20 +5,27 @@ fontsize: 11pt
 geometry: margin=1in
 header-includes:
    - \usepackage{booktabs}
+   - \usepackage{setspace}
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+\vspace{20 mm}
 \begin{center}
 \textbf{\large{The Functional Rollercoaster: Community composition and functional traits of deciduous trees across their ranges}}
 \end{center}
 
+\pagebreak  
+\doublespacing
 \begin{center}  
 \textbf{Abstract}
 \end{center}  
 Plant species’ ranges are determined through biotic and abiotic factors such as competition and stressful environments. Tree species in broadleaf temperate forests in the Northeast face changes to these ecological limitations due to shifting temperatures across their range. The effect of this shift is predicted to be most apparent at the species’ range limits, where such a change in conditions that previously halted population expansion can cause a range shift. By examining species at their range limits, we can predict their future responses to climate change and the implications for their distribution and success. The goal of this study was to determine how species richness and composition of competitive neighborhoods in broadleaf temperate forests in the Northeast change across a latitudinal and climatic gradient. I examined whether focal deciduous tree species face a competitive disadvantage at their range, represented by the competitive index of relative basal area of trees larger than the focal individual (a distance-independent strategy). To accomplish this, I recorded the size and community composition of seven deciduous tree species at their range limits, varying from the northeastern United States to southeastern Quebec. Additionally, using data a previous student collected on the functional traits of the same species across the four sites, I will examine the relationship between the competitiveness of a species at its limits and the variation in its functional traits. Using convex hull values for each species at each site, I will examine whether the variation in the suites of functional traits for each species points to evidence of habitat filtering or niche differentiation. This experiment can thus provide valuable insight into how the species will respond to changing temperatures in the future by determining the relative influence of biotic and abiotic factors on each species at their range extremes.
+  
+  \pagebreak
   
 \begin{center}  
 \textbf{Introduction}
@@ -53,7 +60,7 @@ Looking at a woody species’ competitiveness across a latitudinal gradient prov
 **A3:** Finally, no clear pattern in intra-specific variation in functional traits approaching the range limit of a species would indicate that other rules of community assembly are playing a larger part in the determining of range limits, such as competition or other biotic factors.  
 By examining community composition of certain woody species in conjunction with their corresponding functional traits across this latitudinal gradient, we can better predict how species composition will change at the forest level. In looking at both the community composition of species at these sites and their functional traits specifically at the range limits, we can understand which species are most at risk with the changing environment, and why they might not survive. *You should add here something along the lines of ‘Here I report on a study to test the hypotheses by doing X, Y, Z.’*  
   
-
+\pagebreak
 \begin{center}  
 \textbf{Methods}
 \end{center}      
@@ -69,17 +76,23 @@ Each species was selected based on (a) which species had been included in past s
 		  
 \textbf{\textit{Competition and community data}} - For each of the six species, I tagged six (or found some previously tagged) individuals at each site that the individuals were present in. I compared total basal area of the focal individual with trees in the competitive environment around each focal individual. The direct competitive environment was estimated as being within a 5-m radius around the focal tree. I recorded the DBH of all trees falling within this circle. I took note of the presence and absence of species in the understory, including species of saplings appearing under 1.3m. To determine competitiveness of our focal individuals, I used the percentage of total basal area attributable to the focal individuals as a proxy for competitive advantage in each plot.  
   
-Competition index was calculated according to methods outlined in Biging and Dobertin 1995. I calculated the sum of the trees larger than the focal tree, and took the ratio of the basal area of the focal tree to this sum. By using relative basal area, the trend of decreasing DBH as species increase in latitude would not show in the model.
+Competition index was calculated according to methods outlined in Biging and Dobertin 1995. I calculated the sum of the trees larger than the focal tree, and took the ratio of the basal area of the focal tree to this sum. By using relative basal area, the trend of decreasing DBH as species increase in latitude would not show in the model.   
+
+Species composition in each site was recorded in both the overstory (in the form of recording the DBH of the surrounding trees over 1.3m tall) and the understory, including saplings. I used this data to generate a species presence/absence matrix for both the understory and overstory. This data was then used in the multi-dimensional scalar plots (Figs. 1 and 2). The multi-dimensional scalar plots were generated using the \textit{vegan} package in \textit{R}.
+
+\textbf{\textit{Climate data}} – Climatic centroid data was derived from data from the 30 arc-second WorldClim database (the highest resolution, available at http://www.worldclim.org/) across each species' recorded distributions. Once the data was downloaded, it was then averaged within an equal area grid of 50km^{2}. The variables used to compute the climatic envelope in multi-dimensional space were average temperature (BIO1 Raster), mean diurnal range (BIO2 Raster), temperature seasonality (BIO4 Raster, akin to standard deviation*100), and annual precipitation (BIO12 Raster). This data was then used to calculate the climatic envelope by conducting a principal components analysis on the bioclimatic variables used. These two axes were then averaged for each species to find the coordinates of the climatic centroid. I then quantifed the distance from the climatic centroid and each of the focal individuals used in the study based on a climatic envelope specific to their species and their species' distribution. This was done through the formula for euclidean distance, putting in the coordinates of the climatic centroid and the coordinates of the location of each individual at its point in climatic space.
   
 \textbf{\textit{Functional traits}} - For functional trait data, I used the data collected the previous summer by Harry Stone during the Harvard Forest REU Summer Program in 2015. The height of individuals not measured summer 2015 was measured through a clinometer. Additionally, I measured the Diameter at Breast Height (DBH) of any newly-tagged individuals (in cases where an individual is too close to another focal plant). Functional traits for newly-tagged individuals were not measured, but instead the traits measured in 2015 served as a representation of the traits of all species within that site.  
     
 Data on the functional traits Specific Leaf Area (SLA), Leaf N%, leaf dry matter content, and height were all collected for at least six individuals of the six species across the four sites (when applicable). Samples were processed in the John Torrey laboratory at the Harvard Forest. When possible, leaf samples were collected near the center of the tree canopy. Leaf size was measured using the LI-COR 3100 leaf area meter. To account for variation within an individual, a wide range of leaf sizes were measured to achieve a representative average size. Specific leaf area (SLA) was determined by the leaf size divided by dry mass of the leaves (Cornelissen 2003). The leaves were weighed after drying for than 24 hours at 60 OC.  
 		  
-Harry Stone and colleagues measured leaf dry matter content by comparing the fresh mass of the leaves, determined immediately after removal from the individual and the dried weight. Height of the individual was measured using a clinometer from 15 meters away from the tree. Stem specific density was measured by comparing the volume of the stem sample to the dried mass. The volume of the stem was calculated by submersion in a container of water and the volume of the water displaced is equivalent to the volume of the stem. Then the stems were dried in excess of 24 hours in the drying oven at 60 OC.
+Harry Stone and colleagues measured leaf dry matter content by comparing the fresh mass of the leaves, determined immediately after removal from the individual and the dried weight. Height of the individual was measured using a clinometer from 15 meters away from the tree. Stem specific density was measured by comparing the volume of the stem sample to the dried mass. The volume of the stem was calculated by submersion in a container of water and the volume of the water displaced is equivalent to the volume of the stem. Then the stems were dried in excess of 24 hours in the drying oven at 60 OC.   
+   
+Functional traits were analyzed using the convex analysis framework proposed in Cornwell et. al 2006. The convex hull is defined as the smallest convex shape enclosing a set of points. As defined in CornwellIn a multivariate trait space, the following criterion defines which portions of the space should be found within the convex hull: if in an n- dimensional trait space we find two individuals in a community, one with trait values (a1, a2 . . . an) and the other with trait values (b1, b2 . . . bn), then for any value t with 0   t   1, an individual with trait values
+1⁄2ta1 þð1 tÞb1;ta2 þð1 tÞb2 ...tan þð1 tÞbn  will also be in our convex hull volume.With functional traits, convex hulls Convex hull volumes were calculated using the three traits specific leaf area (SLA), stem density, DBH, and ratio of percent carbon to percent nitrogen content. The convex hull Volumes were calculated at both the species level for each site 
 
-\textbf{\textit{Statistical analyses}} – \textit{Competition-Latitude Relationships} – I used both linear mixed effects models and simple linear models to evaluate the relationship beween competition and latitude for each species at each sampling location. Using the simple linear models allowed me to quantify the basic relationship between distance from minimum latitude and the competition index.
+\textbf{\textit{Statistical analyses}} – I used both linear mixed effects models and simple linear models to evaluate the relationship beween competition and latitude for each species at each sampling location. Using the simple linear models allowed me to quantify the basic relationship between distance from minimum latitude and the competition index. I did the same for quantifying the relationship between the distance from the climatic centroid and the relative basal area.
 
--- where to include MDS plots?
 
   
 \pagebreak  
@@ -251,15 +264,101 @@ ggplot(clim.focal,
   
 \pagebreak  
 
-**Figure 4**
+**Figure 4**  
 
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+load("CHVols.RData")
+#chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA" | sp == "HAMVIR" | sp == "SORAME")
+
+ggplot(chvols.focal,
+       aes(lat, relative.vol, color = sp)) +
+  geom_point() + 
+  geom_smooth(method="lm", se=F) +
+  facet_wrap(~sp, ncol = 3) +
+  xlab("Latitude") +
+  ylab("Relative Convex Hull Volume")
+
+
+```  
+
+\bigskip      
+      
+\begin{table}[h!]
+  \centering
+  \caption{Linear coefficients for Fig. 2}
+  \smallskip
+  \label{tab:table2}
+  \begin{tabular}{cccc}
+    \toprule
+    Species & Coefficient & $R^{2}$ & $p$ value\\
+    \midrule
+    Acer pensylvanicum & XXX & XXX & XXX\\
+    Betula papyrifera & XXXX & XXXX & XXXX\\
+    Corylus alternifolia & XXXX & XXXX & XXXX\\
+    Faggus grandifolia & XXXX & XXXX & XXXX\\
+    Hamamelis virginiana & XXX & XXX & XXX\\
+    \bottomrule
+  \end{tabular}
+\end{table}  
+  
+\smallskip  
+  
   
 \pagebreak  
 
 
 
-**Figure 5**
+**Figure 5**  
 
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+load("CHVols.RData")
+
+load("Focal-Centroid.RData")
+
+focal.centroid$Site <- unlist(
+  lapply(strsplit(focal.centroid$Individual, "_"),
+         function(x) x[[2]]))
+
+comp.index.mean <- aggregate(focal.centroid$relative.BA, list(Species = focal.centroid$sp, Site = focal.centroid$Site), FUN = mean, na.rm=TRUE)
+colnames(comp.index.mean) <- c("sp", "site", "Mean.Rel.BA")
+
+ba.chvols <- merge(chvols.focal, comp.index.mean, by = c("sp", "site"))
+
+ggplot(ba.chvols,
+       aes(vol, Mean.Rel.BA, color = sp)) +
+  geom_point() + 
+  geom_smooth(method="lm", se=F) +
+  facet_wrap(~sp, ncol = 3, scales = "free") +
+  xlab("Convex Hull Volume") +
+  ylab("Relative Basal Area")
+
+
+```  
+
+\bigskip      
+      
+\begin{table}[h!]
+  \centering
+  \caption{Linear coefficients for Fig. 2}
+  \smallskip
+  \label{tab:table2}
+  \begin{tabular}{cccc}
+    \toprule
+    Species & Coefficient & $R^{2}$ & $p$ value\\
+    \midrule
+    Acer pensylvanicum & XXX & XXX & XXX\\
+    Betula papyrifera & XXXX & XXXX & XXXX\\
+    Corylus alternifolia & XXXX & XXXX & XXXX\\
+    Faggus grandifolia & XXXX & XXXX & XXXX\\
+    Hamamelis virginiana & XXX & XXX & XXX\\
+    \bottomrule
+  \end{tabular}
+\end{table}  
+  
+\smallskip      
+  
   
 \pagebreak  
 
@@ -267,7 +366,7 @@ ggplot(clim.focal,
 
 **References**  
 \bigskip  
-
+\singlespacing
 Ackerly, David D. "Community Assembly, Niche Conservatism, and Adaptive Evolution in Changing Environments." International journal of plant sciences 164 (2003): S165-84. Print.
 
 Bertrand, Romain, et al. "Changes in Plant Community Composition Lag Behind Climate Warming in Lowland Forests." Nature 479.7374 (2011): 517. Print.

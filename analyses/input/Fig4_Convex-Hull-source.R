@@ -4,10 +4,12 @@
 ### used "Functional and Phylogenetic Ecology in R" by Nathan G. Swenson
 
 rm(list = ls())
-options(stringsAsFactors = FALSE)
+#options(stringsAsFactors = FALSE)
 setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 
 # setwd("~/Documents/git/senior-moment/data")
+
+source("Fig2-source.R")
 
 # LIBRARIES HERE
 library(geometry) # install.packages("vegan")
@@ -313,3 +315,56 @@ x$Site <- unlist(
          function(x) x[[2]]))
 
 chvols.comm <- select(x, vol = chvols.comm, Species, Site)
+
+# find average functional richness at each site
+chvols.mean <- aggregate(x$chvols.comm, list(Site = x$Site), FUN = mean, na.rm=TRUE)
+
+# find proportion of average functional richness/convex hull for each species (esp. focal species)
+
+chvols$relative.vol <- NA
+chvols[chvols$site == "HF",]$relative.vol <- chvols[chvols$site == "HF",]$vol/(chvols.mean[chvols.mean$Site == "HF", chvols.mean$x])
+chvols[chvols$site == "GR",]$relative.vol <- chvols[chvols$site == "GR",]$vol/(chvols.mean[chvols.mean$Site == "GR", chvols.mean$x])
+
+chvols[chvols$site == "SH",]$relative.vol <- chvols[chvols$site == "SH",]$vol/(chvols.mean[chvols.mean$Site == "SH", chvols.mean$x])
+
+
+
+
+
+# find lat longs of each site
+focal.centroid$Site <- unlist(
+  lapply(strsplit(focal.centroid$Individual, "_"),
+         function(x) x[[2]]))
+lat.mean <- aggregate(focal.centroid$Lat, list(Site = focal.centroid$Site), FUN = mean, na.rm=TRUE)
+long.mean <- aggregate(focal.centroid$Long, list(Site = focal.centroid$Site), FUN = mean, na.rm=TRUE)
+lat.long.mean <- cbind(lat.mean, long.mean)
+lat.long.mean <- lat.long.mean[,-3]
+colnames(lat.long.mean) <- c("Site", "Lat", "Long")
+chvols$lat[chvols$site == "GR"] <- lat.mean[lat.mean$Site == "GR",]$x
+chvols$lat[chvols$site == "WM"] <- lat.mean[lat.mean$Site == "WM",]$x
+chvols$lat[chvols$site == "HF"] <- lat.mean[lat.mean$Site == "HF",]$x
+chvols$lat[chvols$site == "SH"] <- lat.mean[lat.mean$Site == "SH",]$x
+
+chvols$long[chvols$site == "GR"] <- long.mean[long.mean$Site == "GR",]$x
+chvols$long[chvols$site == "WM"] <- long.mean[long.mean$Site == "WM",]$x
+chvols$long[chvols$site == "HF"] <- long.mean[long.mean$Site == "HF",]$x
+chvols$long[chvols$site == "SH"] <- long.mean[long.mean$Site == "SH",]$x
+
+chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA" | sp == "HAMVIR" | sp == "SORAME")
+
+save(list = c("chvols.focal"), file="CHVols.RData")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

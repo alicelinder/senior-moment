@@ -38,6 +38,7 @@ head(over.all)
 
 # Analysis and summarizing richness of the overstory
 richness <- apply(over.all, 2, sum)
+?metaMDS
 
 mds1 <- metaMDS(t(over.all), try = 100) # use t() to change it so that the communities are rows, and species are columns, which is the format that vegan uses
 

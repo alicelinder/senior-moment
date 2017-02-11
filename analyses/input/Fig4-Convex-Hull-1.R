@@ -14,26 +14,20 @@ library(plyr) # install.packages("plyr")
 library(dplyr) # install.packages("dplyr")
 library(reshape2) # install.packages("reshape2")
 library(stringr) # install.packages("stringr")
+library(ggplot2)
 
-source('~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/analyses/input/Fig4_Convex-Hull-source.R')
+# plot the relationship
 
-# find average functional richness at each site
-chvols.mean <- aggregate(x$chvols.comm, list(Site = x$Site), FUN = mean, na.rm=TRUE)
+# subset just to include focal individuals
+load("CHVols.RData")
+#chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA" | sp == "HAMVIR" | sp == "SORAME")
 
-# find proportion of average functional richness/convex hull for each species (esp. focal species)
-
-head(chvols.mean)
-chvols[chvols$site == "GR",]$vol/(chvols.mean[chvols.mean$Site == "GR", chvols.mean$x])
-
-# for some reason getting numbers where there should be NAs...not sure why this is happening
-
-for(site in unique(chvols$site)){
-  for(sp in chvols$sp){
-    if(is.na(chvols$vol)){
-      chvols$relative.vol = NA
-    }
-    else (chvols$relative.vol = chvols[chvols$site == site,]$vol/(chvols.mean[chvols.mean$Site == site, chvols.mean$x]))
-  }
-}
+ggplot(chvols.focal,
+       aes(site, relative.vol, color = sp)) +
+  geom_point() + 
+  geom_smooth(method="lm", se=F) +
+  facet_wrap(~sp, ncol = 3) +
+  xlab("Distance from Climatic Centroid") +
+  ylab("Relative Basal Area")
 
 

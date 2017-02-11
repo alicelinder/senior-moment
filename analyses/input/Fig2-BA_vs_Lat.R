@@ -23,11 +23,7 @@ library(sjPlot) # install.packages("sjPlot")
 # load all data from source code
 source("Fig2-source.R")
 
-# ignore extra large DBH for FAGGUS value
-focal.centroid <- focal.centroid[-which(focal.centroid$sp == "FAGGRA" & focal.centroid$sum.BA > 20000),] 
 
-# ignore QUEALB for graphing purposes
-focal.centroid <- focal.centroid[-which(focal.centroid$sp == "QUEALB"),]
 
 ggplot(focal.centroid,
        aes(minLatdiff, relative.BA, color = sp)) +

@@ -107,3 +107,10 @@ betpap <- focal.centroid[focal.centroid$sp == "BETPAP",]
 faggra <- focal.centroid[focal.centroid$sp == "FAGGRA",]
 quealb <- focal.centroid[focal$sp == "QUEALB",]
 focal.large <- rbind(betpap, faggra, quealb)
+
+
+# ignore extra large DBH for FAGGUS value
+focal.centroid <- focal.centroid[-which(focal.centroid$sp == "FAGGRA" & focal.centroid$sum.BA > 20000),] 
+
+# ignore QUEALB for graphing purposes
+focal.centroid <- focal.centroid[-which(focal.centroid$sp == "QUEALB"),]

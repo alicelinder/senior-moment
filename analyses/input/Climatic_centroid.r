@@ -7,13 +7,13 @@ options(stringsAsFactors=FALSE)
 setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 
 ## read in Sorbus americana
-library(sp)
-library(maptools)
-library(raster)
-library(rgeos)
-library(sp)
-library(rgdal)
-library(spatstat)
+library(sp) # install.packages("sp")
+library(maptools) # install.packages("maptools")
+library(raster) # install.packages("raster")
+library(rgeos) # install.packages("rgeos")
+library(sp) #install.packages("sp")
+library(rgdal) #install.packages("rgdal")
+library(spatstat) # install.packages("spatstat")
 
 ## load in files
 distribution.matrix<-read.csv("Nam_trees_incidence_matrix_I.csv")
@@ -104,6 +104,7 @@ climate.env.i<-subset(climate.env.i,Avg_temper!=0)
 pca.spsi <- prcomp(climate.env.i,center = T,scale. = T)
 pca.spsi$rotation=-pca.spsi$rotation
 pca.spsi$x=-pca.spsi$x
+
 
 pca.axis1<- pca.spsi$x[,1]
 pca.axis2<- pca.spsi$x[,2]

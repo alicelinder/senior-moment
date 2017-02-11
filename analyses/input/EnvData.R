@@ -5,15 +5,15 @@ rm(list = ls())
 setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 #setwd("C:/Users/wiwit_000/Documents/MEGA/Work_Harvard_postdoc/")
 
-setwd("~/Documents/git/senior-moment/data")
+#setwd("~/Documents/git/senior-moment/data")
 
 
-library(sp)
-library(spdep)
-library(raster)
-library (rgdal)
-library (maptools)
-library(rgeos)
+library(sp) # install.packages("sp")
+library(spdep) # install.packages("spdep")
+library(raster) # install.packages("raster")
+library (rgdal) # install.packages("rgdal")
+library (maptools) # install.packages("maptools")
+library(rgeos) # install.packages("rgeos")
 
 
 # load species ranges
@@ -27,7 +27,8 @@ extent(lonlats)
 
 # download raster information
 ?getData
-clim <- getData('worldclim', var = 'bio', res=10)
+clim <- getData('worldclim', var = 'bio', res=.5, lon = -71, lat=44)
+clim <- getData('worldclim', var='bio', res=0.5, lon=-71, lat=44)
 #clim <- getData('worldclim', var='bio', res=.5, lon=-71, lat=44)
 #clim2 <- getData('worldclim', var='bio', res=.5, lon=-72, lat=42)
 #clim3 <- getData('worldclim', var='bio', res=.5, lon=-74, lat=46)
@@ -36,6 +37,7 @@ clim <- getData('worldclim', var = 'bio', res=10)
 
 # delineate extents on raster image
 extent.NA <- extent(clim)
+?getData
 
 # separate out first bioclimatic variable
 
