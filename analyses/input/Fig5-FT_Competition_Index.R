@@ -20,22 +20,37 @@ focal.centroid$Site <- unlist(
   lapply(strsplit(focal.centroid$Individual, "_"),
          function(x) x[[2]]))
 
+names(focal.centroid)[names(focal.centroid) == "Site"] <- "site"
+
+
 comp.index.mean <- aggregate(focal.centroid$relative.BA, list(Species = focal.centroid$sp, Site = focal.centroid$Site), FUN = mean, na.rm=TRUE)
-colnames(comp.index.mean) <- c("sp", "site", "Mean.Rel.BA")
+?rename
+ba.chvols <- merge(chvols.focal, focal.centroid, by = c("sp", "site"))
 
-ba.chvols <- merge(chvols.focal, comp.index.mean, by = c("sp", "site"))
 
-summary(lm1 <- lm(Mean.Rel.BA ~ vol, data = ba.chvols[ba.chvols$sp == "ACEPEN",]))
-summary(lm1 <- lm(Mean.Rel.BA ~ vol, data = ba.chvols[ba.chvols$sp == "BETPAP",]))
-summary(lm1 <- lm(Mean.Rel.BA ~ vol, data = ba.chvols[ba.chvols$sp == "CORALT",]))
-summary(lm1 <- lm(Mean.Rel.BA ~ vol, data = ba.chvols[ba.chvols$sp == "FAGGRA",]))
-summary(lm1 <- lm(Mean.Rel.BA ~ vol, data = ba.chvols[ba.chvols$sp == "HAMVIR",]))
-summary(lm1 <- lm(Mean.Rel.BA ~ vol, data = ba.chvols[ba.chvols$sp == "SORAME",]))
 
-#lme1 <- lmer(Mean.Rel.BA ~ vol + (Mean.Rel.BA | sp), data = ba.chvols)
+summary(lm1 <- lm(relative.BA ~ vol, data = ba.chvols[ba.chvols$sp == "ACEPEN",]))
+summary(lm1 <- lm(relative.BA ~ vol, data = ba.chvols[ba.chvols$sp == "BETPAP",]))
+summary(lm1 <- lm(relative.BA ~ vol, data = ba.chvols[ba.chvols$sp == "CORALT",]))
+summary(lm1 <- lm(relative.BA ~ vol, data = ba.chvols[ba.chvols$sp == "FAGGRA",]))
+summary(lm1 <- lm(relative.BA ~ vol, data = ba.chvols[ba.chvols$sp == "HAMVIR",]))
+summary(lm1 <- lm(relative.BA ~ vol, data = ba.chvols[ba.chvols$sp == "SORAME",]))
+
+acepen <- ba.chvols[ba.chvols$sp == "ACEPEN",]
+betpap <- ba.chvols[ba.chvols$sp == "BETPAP",]
+coralt <- ba.chvols[ba.chvols$sp == "CORALT",]
+faggra <- ba.chvols[ba.chvols$sp == "FAGGRA",]
+
+ba.chvols.focal <- rbind(acepen, betpap, coralt, faggra)
+ba.chvols.focal$vol <- log(ba.chvols.focal$vol)
+ba.chvols.focal$relative.BA <- log(ba.chvols.focal$relative.BA)
+
+
+#lme1 <- lmer(relative.BA ~ vol + (relative.BA | sp), data = ba.chvols.focal)
+ranef(lme1)
 
 ggplot(ba.chvols,
-       aes(vol, Mean.Rel.BA, color = sp)) +
+       aes(vol,relative.BA, color = sp)) +
   geom_point() + 
   geom_smooth(method="lm", se=F) +
   facet_wrap(~sp, ncol = 3, scales = "free") +

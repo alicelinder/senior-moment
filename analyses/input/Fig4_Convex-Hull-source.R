@@ -240,34 +240,32 @@ rownames(m.gr)
 
 # white mountains
 
-x <- colSums(d.wm) != 0
-d.wm <- subset(d.wm, select = x)
+d.wm <- d.wm[,colSums(d.wm) != 0]
 colSums(d.wm)
 
 sp.t.wm <- colSums(d.wm) != 0
 d.wm <- d.wm[,sp.t.wm]
 d.wm.sp <- colnames(d.wm)
 indata.wm <- m.wm$Species[m.wm$Species %in% d.wm.sp]
-d.wm <- subset(d.wm, select = c(indata.wm))
+#d.wm <- subset(d.wm, select = c(indata.wm))
 
 rownames(m.wm) <- m.wm$Species
 d.wm <- d.wm[,colnames(d.wm) %in% indata.wm]
 m.wm <- m.wm[rownames(m.wm) %in% indata.wm,]
 
-
-
+class(m.wm)
+dist(m.wm)
 
 # saint hippolyte
 
-x <- colSums(d.sh) != 0
-d.sh <- subset(d.sh, select = x)
+d.sh <- d.sh[,colSums(d.sh) != 0]
 colSums(d.sh)
 
 sp.t.sh <- colSums(d.sh) != 0
 d.sh <- d.sh[,sp.t.sh]
 d.sh.sp <- colnames(d.sh)
 indata.sh <- m.sh$Species[m.sh$Species %in% d.sh.sp]
-d.sh <- subset(d.sh, select = c(indata.sh))
+#d.sh <- subset(d.sh, select = c(indata.sh))
 
 rownames(m.sh) <- m.sh$Species
 d.sh <- d.sh[,colnames(d.sh) %in% indata.sh]
@@ -286,7 +284,7 @@ hf <- as.data.frame(chvols.comm)
 
 d.wm <- d.wm[rowSums(d.wm) != 0,]
 
-#chvols.comm.wm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
+chvols.comm.wm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
 #wm <- as.data.frame(chvols.comm.wm)
 
 #d.gr <- d.gr[rowSums(d.gr) != 0,]

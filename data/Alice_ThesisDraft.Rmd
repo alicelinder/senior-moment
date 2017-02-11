@@ -88,10 +88,10 @@ Data on the functional traits Specific Leaf Area (SLA), Leaf N%, leaf dry matter
 		  
 Harry Stone and colleagues measured leaf dry matter content by comparing the fresh mass of the leaves, determined immediately after removal from the individual and the dried weight. Height of the individual was measured using a clinometer from 15 meters away from the tree. Stem specific density was measured by comparing the volume of the stem sample to the dried mass. The volume of the stem was calculated by submersion in a container of water and the volume of the water displaced is equivalent to the volume of the stem. Then the stems were dried in excess of 24 hours in the drying oven at 60 OC.   
    
-Functional traits were analyzed using the convex analysis framework proposed in Cornwell et. al 2006. The convex hull is defined as the smallest convex shape enclosing a set of points. As defined in CornwellIn a multivariate trait space, the following criterion defines which portions of the space should be found within the convex hull: if in an n- dimensional trait space we find two individuals in a community, one with trait values (a1, a2 . . . an) and the other with trait values (b1, b2 . . . bn), then for any value t with 0   t   1, an individual with trait values
-1⁄2ta1 þð1 tÞb1;ta2 þð1 tÞb2 ...tan þð1 tÞbn  will also be in our convex hull volume.With functional traits, convex hulls Convex hull volumes were calculated using the three traits specific leaf area (SLA), stem density, DBH, and ratio of percent carbon to percent nitrogen content. The convex hull Volumes were calculated at both the species level for each site 
+Functional traits were analyzed using the convex analysis framework proposed in Cornwell et. al (2006). The convex hull is defined as the smallest convex shape enclosing a set of points. While most functional trait analyses take the mean of each trait for each species at a given site, using the convex hull method allows me to account for intraspecific variation in traits due to plasticity. This is particularly relevant given my hypothesis that the variation in traits will vary across a species' latitudinal distribution, indicating varying levels of effectiveness in different suites of traits for the plants' survival.  
+Convex hull volumes were calculated using the three traits specific leaf area (SLA), stem density, DBH, and ratio of percent carbon to percent nitrogen content. The convex hull volumes were calculated at both the species level for each site, as well as the community level for each site. For the species level at each site, I used the \textit{R} package \textit{geometry} to find the convex hull volume for all the species. For the community level, I used the \textit{R} package \textit{FD}. The package requires a presence/absence matrix for species composition to calculate the Functional Richness value (the same as the convex hull volume). I used the mean trait values for each species at each site and this presence and absence matrix to calculate the functional richness at each of the four sites. I then used this data to calculate the relative convex hull volume of my focal species to the community functional richness (or convex hull volume). This then quantifies the relationship between the focal species' convex hull volumes to the overall community's functional richness.
 
-\textbf{\textit{Statistical analyses}} – I used both linear mixed effects models and simple linear models to evaluate the relationship beween competition and latitude for each species at each sampling location. Using the simple linear models allowed me to quantify the basic relationship between distance from minimum latitude and the competition index. I did the same for quantifying the relationship between the distance from the climatic centroid and the relative basal area.
+\textbf{\textit{Statistical analyses}} – I used both linear mixed effects models and simple linear models to evaluate the relationship beween competition and latitude for each species at each sampling location. Using the simple linear models allowed me to quantify the basic relationship between distance from minimum latitude and the competition index for each species (Fig. 2). The linear mixed effects model allows me to quantify the general behavior of a species' competition index in relation to its distance from its minimum latitude for all species across their latitudinal distributions. I did the same for quantifying the relationship between the distance from the climatic centroid and the relative basal area (Fig. 3). I also used a simple linear model to quantify the correlation between the relative convex hull trait volume for each focal species and the sites' latitude, as well as for the species' relative convex hull trait volume in relation to their relative basal area (Figs. 4 and 5, respectively).
 
 
   
@@ -314,20 +314,18 @@ ggplot(chvols.focal,
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
 load("CHVols.RData")
-
 load("Focal-Centroid.RData")
 
 focal.centroid$Site <- unlist(
   lapply(strsplit(focal.centroid$Individual, "_"),
          function(x) x[[2]]))
 
-comp.index.mean <- aggregate(focal.centroid$relative.BA, list(Species = focal.centroid$sp, Site = focal.centroid$Site), FUN = mean, na.rm=TRUE)
-colnames(comp.index.mean) <- c("sp", "site", "Mean.Rel.BA")
+names(focal.centroid)[names(focal.centroid) == "Site"] <- "site"
 
-ba.chvols <- merge(chvols.focal, comp.index.mean, by = c("sp", "site"))
+ba.chvols <- merge(chvols.focal, focal.centroid, by = c("sp", "site"))
 
 ggplot(ba.chvols,
-       aes(vol, Mean.Rel.BA, color = sp)) +
+       aes(vol,relative.BA, color = sp)) +
   geom_point() + 
   geom_smooth(method="lm", se=F) +
   facet_wrap(~sp, ncol = 3, scales = "free") +
@@ -381,6 +379,8 @@ Chen, I. C., et al. "Rapid Range Shifts of Species Associated with High Levels o
 
 Cornelissen, J. H. C., et al. "A handbook of protocols for standardised and easy measurement of plant functional traits worldwide." Australian journal of Botany 51.4 (2003): 335-380. 
 
+ADD CORNWELL 2006
+
 Darwin, Charles. On the Origin of Species. Ed. Jim Endersby. Cambridge ; New York:, 2009. Print.
 
 Davis, M. B., and R. G. Shaw. Range Shifts and Adaptive Responses to Quaternary Climate Change. 292 Vol, 2001. Print.
@@ -416,3 +416,16 @@ Thomas, Chris D., Aldina M. A. Franco, and Jane K. Hill. "Range Retractions and 
 Urban, Mark C., Josh J. Tewksbury, and Kimberly S. Sheldon. "On a Collision Course: Competition and Dispersal Differences Create no- Analogue Communities and Cause Extinctions during Climate Change." Proceedings of the Royal Society B 279.1735 (2012): 2072-80. Print.
 
 Weiher, Evan, and Paul A. Keddy. "Community Assembly Rules, Morphological Dispersion, and the Coexistence of Plant Species." Oikos 81.2 (1998): 309-22. Print.
+
+
+
+
+
+
+
+
+
+
+
+Questions for next steps:  
+1. Should I include a map with climatic data?
