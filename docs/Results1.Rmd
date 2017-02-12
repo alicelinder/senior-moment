@@ -1,0 +1,42 @@
+---
+title: NULL
+output: pdf_document
+fontsize: 12pt
+geometry: margin=1in
+
+header-includes:
+   - \usepackage{booktabs}
+   - \usepackage{setspace}
+   - \setlength\parindent{24pt}
+---
+\doublespacing
+\begin{center}  
+\textbf{Results}  
+\end{center}  
+The species composition across the four sites, as evidenced by the multi-dimensional scalar plots (Fig. 1), shows a marked difference between the species compositions of Harvard Forest and the other three sites. This is mirrored in both the overstory and understory species composition, suggesting that the type of competition seen by the deciduous trees present in Harvard Forest may differ from that of the other three sites. The multi-dimensional scalar plots show the differences in combinations of species, meaning that the three overlapping convex hulls (representing the White Mountains, the Grant site, and St. Hippolyte in increasing latitudes) saw very similar combinations of species in both the overstory and the understory, whereas Harvard Forest saw very different combinations of species from the other three sites. The plots are dimensionless, and serve to represent the convex hull of unique combinations of species. For example, a larger polygon would indicate more unique combinations of species present (such as in the White Mountains site), whereas the Grant plot sees a smaller diversity of species combinations. The understory in general was composed of smaller diversity of species combinations as compared to the overstory.
+
+The strength of competition index - latitude relationships differed by species, with no clear pattern across all six species. There was little to no correlation between increasing latitude (approaching northern edges) and the competitive index of the focal trees. *Acer pensylvanicum* (denoted by ACEPEN in the figures) showed a slight negative correlation ($R^{2}$ = -0.011) between the relative basal area of the focal individuals to the distance from the minimum latitude. This indicates a general trend of *Acer pensylvanicum* individuals growing less competitive as they grow more northward (closer to the species' northern range limit). *Betula papyrifera* (denoted by BETPAP in the figures), whose distribution lies predominantly north of Harvard Forest (with the center near the northern-most testing site), shows a slight negative correlation ($R^{2}$ = -0.033) between its relative basal area and its distance from its minimum latitude. Similarly, *Cornus alternifolia* (denoted by CORALT) showed the same slight (though statistically insignificant) trend downwards ($R^{2}$ = -0.068), as did *Hamamelis virginiana* (HAMVIR, $R^{2}$ = -2.049). In other words, *A. pensylvanicum*, *B. papyrifera*, *C. alternifolia*, and *H. virginiana* ($R^{2}$ = -2.049) all show a decreasing level of competition (in the form of relative basal area to surrounding individuals larger than they are) as they go north in latitude.   
+
+In terms of species distributions playing a part in the competitiveness of a species at a location, this would indicate there is no significant correlation between a species' place within its range and its competitiveness. *B. papyrifera* approaches its range interior (its distribution lies mostly north of the Saint Hippolyte experimental site). Thus, the data suggests that *B. papyrifera* grows less competitive as it approaches its range interior. Similarly, *Faggus grandifolia* (FAGGRA) shows a trend towards increasing competitiveness as it approaches its range extreme. Both trends are inconsistent with my hypothesis that a species would decrease in competitiveness towards its range limit, and increase towards its range interior.  
+
+Like *B. papyrifera*, *Sorbus americana* (SORAME) also approaches its range interior across distance from the minimum latitude represented in the data. Yet unlike *B. papyrifera*, *Sorbus americana* shows a positive correlation between its position in its latitudinal rnge and its relative basal area - and thus its competition index ($R^{2}$ = 0.250). In other words, as *S. americana* approaches its range interior, the more competitive it becomes relative to trees around it. This is consistent with my hypothesis that a species would grow less competitive as it approached its range extreme due to constrained resources and niche limitations. This is mirrored as well in the results of the linear mixed effects model (Table 2), which shows a coefficient of fixed general effects to be -0.0317. Thus, the general trend is for species to decrease in competitiveness as they go north, taking into account the random effects.
+  
+In contrast to the biotic interactions that might be limiting a species at its range limit, measuring the euclidean distance from a species' climatic centroid in relation to its relative basal area shows how limiting the climatic factors are to a species. Since the main discussion over what is limiting a species at its range limits often emphasizes climatic variables or biotic factors, it follows that a discussion of competitiveness should include its relationship with a plant's distance from its climatic centroid. Plotting this relationship reveals an inconsistent pattern across all six species (Fig. 3). *A. pensylvanicum* ($R^{2}$ = -0.050), *B. papyrifera* ($R^{2}$ = -0.033), and *F. grandifolia* ($R^{2}$ = -0.049) all show very little correlation between an individual's euclidean distance from its climatic centroid and its relative basal area to the surrounding individuals. *C. alternifolia*, on the other hand, shows a positive correlation between its distance from the climatic centroid and its relative basal area. *It is worth noting that CORALT is generally quite a small tree, and thus is usually the least competitive within a given plot* (include this?). This correlation indicates that as *C. alternifolia* individuals grow farther from their climatic centroid, the more competitive they become. This is contrary to my hypothesis that the farther an individual is from its climatic centroid (theorized as the place it grows best), the less basal area it occupies relative to the individuals in the surrounding area.  
+  
+Unlike *C. alternifolia*, *H. virginiana* and *S. americana* show a negative correlation between the distance from their climatic centroid and the focal individuals' relative basal areas ($R^{2}$ = 0.047 and $R^{2}$ = 0.187 with a $p$ value of 0.047 respectively). This indicates that for *H. virginiana* and *S. americana*, climate is correlated with limitations in its competitiveness. Although there could be other factors present in limiting the competitiveness of *S. americana*, this suggests that distance from climatic centroid could be a major factor in limiting the spread of the trees.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

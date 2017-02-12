@@ -1,0 +1,86 @@
+---
+title: "Citations"
+output: pdf_document
+fontsize: 12pt
+geometry: margin=1in
+header-includes:
+   - \usepackage{booktabs}
+   - \usepackage{setspace}
+   - \setlength\parindent{24pt}
+fig_caption: true
+---
+
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+\setlength{\parskip}{8pt}
+
+**References**  
+
+\singlespacing
+Ackerly, David D. "Community Assembly, Niche Conservatism, and Adaptive Evolution in Changing Environments." International journal of plant sciences 164 (2003): S165-84. Print.
+
+Bertrand, Romain, et al. "Changes in Plant Community Composition Lag Behind Climate Warming in Lowland Forests." Nature 479.7374 (2011): 517. Print.
+
+ADD BIGING & DOBERTIN
+
+Brown, James H., George C. Stevens, and Dawn M. Kaufman. "The Geographic Range: Size, Shape, Boundaries, and Internal Structure." Annual Review of Ecology and Systematics 27 (1996): 597-623. Print.
+
+Burns, Jean H., and Sharon Y. Strauss. "Effects of Competition on Phylogenetic Signal and Phenotypic Plasticity in Plant Functional Traits." Ecology 93 (2012): S126-37. Print.
+
+Cavender-Bares, J. 2007. Chilling and freezing stress in live oaks (Quercus section Virentes): intra- and inter-specific variation in PSII sensitivity corresponds to latitude of origin. Photosynthesis Research 94. (2007): 437-53. Print.
+
+Chen, I. C., et al. "Rapid Range Shifts of Species Associated with High Levels of Climate Warming.” Science 333.6045 (2011): 1024. Print.
+
+ADD CONTRERAS et. al
+
+Cornelissen, J. H. C., et al. "A handbook of protocols for standardised and easy measurement of plant functional traits worldwide." Australian journal of Botany 51.4 (2003): 335-380. 
+
+ADD CORNWELL 2006
+
+Darwin, Charles. On the Origin of Species. Ed. Jim Endersby. Cambridge ; New York:, 2009. Print.
+
+Davis, M. B., and R. G. Shaw. Range Shifts and Adaptive Responses to Quaternary Climate Change. 292 Vol, 2001. Print.
+
+De Frenne, Pieter, et al. "Latitudinal Gradients as Natural Laboratories to Infer Species' Responses to Temperature." The Journal of Ecology 101.3 (2013): 784. Print.
+
+Doak, Daniel F., and William F. Morris. "Demographic Compensation and Tipping Points in Climate- Induced Range Shifts." Nature 467.7318 (2010): 959. Print.
+
+ADD HOLT 1987
+
+Hubbell, S. P. The unified neutral theory of biodiversity and biogeography. Princeton University Press, Princeton, New Jersey, USA. (2001).
+
+Jump, Alistair S., Csaba Mátyás, and Josep Peñuelas. "The Altitude-for- Latitude Disparity in the Range Retractions of Woody Species." Trends in Ecology & Evolution 24.12 (2009): 694-701. Print.
+
+Kraft, Nathan J. B., Renato Valencia, and David D. Ackerly. "Functional Traits and Niche- Based Tree Community Assembly in an Amazonian Forest." Science (New York, N.Y.) 322.5901 (2008): 580. Print.
+
+Louthan, Am, Df Doak, and A. L. Angert. Where and when do Species Interactions Set Range Limits? 30 Vol., 2015. Print.
+
+Matías, Luis, and Alistair S. Jump. "Asymmetric Changes of Growth and Reproductive Investment Herald Altitudinal and Latitudinal Range Shifts of Two Woody Species." Global Change Biology 21.2 (2015): 882-96. Print.
+
+ADD MCKENNEY ET AL 2007
+
+ADD NAKAWATASE, J. M., AND D. L. PETERSON 2006
+
+Parmesan, Camille. "Ecological and Evolutionary Responses to Recent Climate Change." Annual Review of Ecology, Evolution, and Systematics 37 (2006): 637. Print.
+
+Peterson, A. T., J. Soberón, and V. Sánchez-Cordero. "Conservatism of Ecological Niches in Evolutionary Time." Science 285.5431 (1999): 1265-7. Print.
+
+Pigot, Alex L., and Joseph A. Tobias. "Species Interactions Constrain Geographic Range Expansion Over Evolutionary Time." Ecology Letters 16.3 (2013): 330-8. Print.
+
+**ADD THIS CITATION**: Rouvinen, S., Kuuluvainen, T., 1997. Structure and asymmetry of tree crowns in relation to local competition in a natural mature Scot pine forest. Can. J. For. Res.
+27, 890–902.
+
+Sexton, Jason, et al. "Evolution and Ecology of Species Range Limits." Annual Review of Ecology, Evolution, and Systematics 40 (2009): 415. Print.
+
+Stahl, Ulrike, Björn Reu, and Christian Wirth. "Predicting Species' Range Limits from Functional Traits for the Tree Flora of North America." Proceedings of the National Academy of Sciences of the United States of America 111.38 (2014): 13739. Print.
+
+Suttle, K. B., Meredith A. Thomsen, and Mary E. Power. "Species Interactions Reverse Grassland Responses to Changing Climate." Science (New York, N.Y.) 315.5812 (2007): 640. Print.
+
+Thomas, Chris D., Aldina M. A. Franco, and Jane K. Hill. "Range Retractions and Extinction in the Face of Climate Warming." Trends in Ecology & Evolution 21.8 (2006): 415-6. Print.
+
+Urban, Mark C., Josh J. Tewksbury, and Kimberly S. Sheldon. "On a Collision Course: Competition and Dispersal Differences Create no- Analogue Communities and Cause Extinctions during Climate Change." Proceedings of the Royal Society B 279.1735 (2012): 2072-80. Print.
+
+Weiher, Evan, and Paul A. Keddy. "Community Assembly Rules, Morphological Dispersion, and the Coexistence of Plant Species." Oikos 81.2 (1998): 309-22. Print.
+
+
+ADD ZHU ET. AL 2012
