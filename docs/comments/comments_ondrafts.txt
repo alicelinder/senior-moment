@@ -1,0 +1,76 @@
+Started 16 Feb 2017
+Comments on Alice’s thesis draft (round 1)
+
+
+<><><><><><><><><><><>
+12 Feb 2017 draft
+
+Overall comments:
+
+Awesome that it’s in Rmd! I don’t use Rmd so much but I use its sister Sweave. I can make comments and edits directly in your draft if you let me know how to make comments (in Sweave it’s % or # … do you know what it is in Rmd?). And I will try to text you when I work on it so we do not edit it at the same time (be sure to sync often). 
+
+Is it possible to move the draft to docs folder? If it’s a file paths issue I can help make the paths relative (just let me know).
+
+Do you have formatting requirements for the thesis?
+
+Why is the convex hull or Betpap so giant compared to the other values?
+
+Small to do items:
+- Add degrees of freedom to all statistics. 
+- Italicize species names everywhere, even in tables. 
+- Avoid abbreviations, even in figures if you can. If you must have them (e.g., BETPAP) give a legend or define in caption clearly. 
+- Avoid colloquial terms like “in other words.”
+- Refer to sites as ‘the sites’ not ‘my sites.’ It just how we do it in the literature. 
+- Add legends and captions to all figures in the next full draft (and put one figure or table per page). Format figures as they do in scientific papers — so (1) delete the figure labels at the top and label them at the caption (e.g., Figure 1: Caption text). The table captions look great in terms of formatting, they just need a little more explanation. Take a look at a handful of scientific papers and follow their format. Cross reference figures and tables in captions, where appropriate (e.g., if you show the stats for a figure in a table, refer to that table in the caption). 
+
+
+Comments on specific sections of text:
+
+Results:
+- Can you look at the NMDS results with Dan and better describe what differences in Harvard Forest they are capturing?
+- Need to create order and transitions in the results. You may just need to add sub-headers like “Composition differences of sites” etc..
+
+In general you’re already good at explaining the findings, like here ”This indicates a general trend of Acer pensylvanicum individuals growing less competitive as they grow more northward (closer to the species’ northern range limit). Betula papyrifera (denoted by BETPAP in the figures), whose distribution lies predominantly north of Harvard Forest (with the center near the northern-most testing site)….” But, be careful that you always explain the biology and not the statistics. For example, The strength of competition index - latitude relationships differed by species, with no clear pattern across all six species.  
+Could be:
+Across the six species, competition did not vary predictably by latitude (cite stats, figure and tables)
+
+Be careful of what you put in the results section. For example:
+
+In contrast to the biotic interactions that might be limiting a species at its range limit, measuring the euclidean distance from a species’ climatic centroid in relation to its relative basal area shows how limiting the climatic factors are to a species. Since the main discussion over what is limiting a species at its range limits often emphasizes climatic variables or biotic factors, it follows that a discussion of competitiveness should include its relationship with a plant’s distance from its climatic centroid.
+
+Is information that would fit better in the intro (discussing biotic versus climatic controls) and methods (linking this idea of climatic controls to methods on how you will measure the distance). Go through your whole results section and be sure you are comfortable with what’s there (it would also be good to check the OEB formatting guidelines about what can and cannot go in each section). 
+
+
+Discussion
+
+You can cite figures and tables in the discussion I believe (again, check if we have OEB guidelines to follow and if they speak to  this). I think that’s usually a good idea if allowed (because it helps the reader see what you are referring to). 
+
+Be thoughtful about your paragraph structure. Make sure each paragraph has one main message and you don’t mix too many messages across paragraphs. For example you start an example in the first paragraph that sort of fits with that paragraph, but fits much better with the topic sentence of the next paragraph. This, to me, suggests you need to think a little more on your order and organization. You might consider following your hypotheses as an order (i.e., you could have 2-4 subsections after the first one or two paragraphs of the introduction: H1: species become less competitive at their range limits, H2: trees exhibit altered suites of functional traits at their range extremes, and conclusions or ‘areas for future research’ or such).
+
+Great topic sentences in general, including this one: The lack of significance and conflicting results indicate that there are other factors playing a part in determining a species’ range limits that prevent a clear pattern from emerging. 
+
+
+Figures etc.
+
+
+Figure 1? Yes, include, but make the caption clearer … something like “Map of four study sites. Colors represent the mean annual temperature (compiled from the 30 arcsecond layer from http://worldclim.org) and be sure to add info to the legend and names to the sites. 
+
+Figure 1 caption: Anthropogenic warming, in altering the climate, cause a shift in a species’ ideal “climate envelope”.
+
+Watch out for sentences like this — the verb and noun don’t agree (warming causes, not warming cause), which happens easily when you have sentences with tricky clauses. Go for simple sentences when you can. An alternative version (since you used warming, I am not sure you need the info about altered climate):
+
+Anthropogenic warming may cause a shift in a species’ ideal “climate envelope.” 
+
+Also, what is an *ideal* climate envelope? You should introduce this phrasing (or fundamental climate envelope? or such?) in the introduction. 
+
+Also, mention in the caption what color means what. For example, say “realized niche (green) …”
+
+
+Figure 3 (and 4): Can you try plotting all the dots and lines on one figure? It would help compare the results. It would be hard to do in ggplot but you can just use the base graphics to do it. I can help if you point me to code where you make the figure *and* where you do the related model.
+
+Tables 3 and 4: We should meet and discuss what models you’re using and why. I’d prefer if you present simple linear fits *or* a mixed effects model, but not both. Your text is written as being really about across-species patterns so you might stick with the mixed-effects model and plot the output of that (again, I can help). 
+
+
+Questions at the end:
+- Yes, you should show the species ranges in a figure (and the site). If you do this you might be able to skip Figure 1 but having both if sort of nice and theses are big documents. A couple extra figures is not bad. 
+- And yes, you’ll need to explain to the reader why you approached the question both from the latitude and the climatic range perspective (and why you picked what climate variable you picked). 
