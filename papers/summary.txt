@@ -6,11 +6,12 @@ Paper catalogue for senior thesis
 =============
 
 Next on to-do list:
-- Ask Dan:
-	- how do you deal with convex hull across latitudes? plot multiple convex hulls for each species?
-	- do I need to remove all NAs
-- look up the boxcar effect (Urban et. al 2011)
-- look up thermal competitive breadth (Urban et. al 2011)
+- Writing discussion:
+	- Hargreaves 2014 shows very little change in relative performance beyond latitudinal ranges
+	- most range limits fell short of niche limits in geographic ranges, as opposed
+to elevational range limits
+	- suggests increasing importance of biotic interactions at warmer and more-species-rich range limits
+
 
 * 1/16 Urban et. al
 ** On a collision course: competition and dispersal differences create no-analogue
