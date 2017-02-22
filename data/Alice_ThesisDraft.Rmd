@@ -473,11 +473,15 @@ De Frenne, Pieter, et al. "Latitudinal Gradients as Natural Laboratories to Infe
 
 Doak, Daniel F., and William F. Morris. "Demographic Compensation and Tipping Points in Climate- Induced Range Shifts." Nature 467.7318 (2010): 959. Print.
 
+ADD FUNES ET AL 1999
+
 ADD HARGREAVES 2014
 
 Holt, Robert. "Population Dynamics and Evolutionary Processes: The Manifold Roles of Habitat Selection." Evolutionary Ecology 1.4 (1987): 331-47. Print.
 
 Jump, Alistair S., Csaba Mátyás, and Josep Peñuelas. "The Altitude-for- Latitude Disparity in the Range Retractions of Woody Species." Trends in Ecology & Evolution 24.12 (2009): 694-701. Print.
+
+ADD JUNG ET AL 2010
 
 Kraft, Nathan J. B., Renato Valencia, and David D. Ackerly. "Functional Traits and Niche- Based Tree Community Assembly in an Amazonian Forest." Science (New York, N.Y.) 322.5901 (2008): 580. Print.
 
@@ -486,6 +490,8 @@ Louthan, Am, Df Doak, and A. L. Angert. Where and when do Species Interactions S
 ADD MACARTHUR 1967
 
 Matías, Luis, and Alistair S. Jump. "Asymmetric Changes of Growth and Reproductive Investment Herald Altitudinal and Latitudinal Range Shifts of Two Woody Species." Global Change Biology 21.2 (2015): 882-96. Print.
+
+ADD MCGILL 2006
 
 McKenney, Daniel W., et al. "Potential Impacts of Climate Change on the Distribution of North American Trees." Bioscience 57.11 (2007): 939-48. Print
 
@@ -506,6 +512,8 @@ Stahl, Ulrike, Björn Reu, and Christian Wirth. "Predicting Species' Range Limit
 Suttle, K. B., Meredith A. Thomsen, and Mary E. Power. "Species Interactions Reverse Grassland Responses to Changing Climate." Science (New York, N.Y.) 315.5812 (2007): 640. Print.
 
 Thomas, Chris D., Aldina M. A. Franco, and Jane K. Hill. "Range Retractions and Extinction in the Face of Climate Warming." Trends in Ecology & Evolution 21.8 (2006): 415-6. Print.
+
+ADD THOMSON ET AL 1993
 
 Urban, Mark C., Josh J. Tewksbury, and Kimberly S. Sheldon. "On a Collision Course: Competition and Dispersal Differences Create no- Analogue Communities and Cause Extinctions during Climate Change." Proceedings of the Royal Society B 279.1735 (2012): 2072-80. Print.
 
