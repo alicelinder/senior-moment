@@ -461,7 +461,7 @@ Chen, I. C., et al. "Rapid Range Shifts of Species Associated with High Levels o
 
 Contreras, Marco A., David Affleck, and Woodam Chung. "Evaluating Tree Competition Indices as Predictors of Basal Area Increment in Western Montana Forests." Forest Ecology and Management 262.11 (2011): 1939-49. Print.
 
-Cornelissen, J. H. C., et al. "A handbook of protocols for standardised and easy measurement of plant functional traits worldwide." Australian journal of Botany 51.4 (2003): 335-380. 
+Cornelissen, J. H. C., et al. "A handbook of protocols for standardised and easy measurement of plant functional traits worldwide." Australian Journal of Botany 51.4 (2003): 335-380. 
 
 Cornwell, William K., and David D. Ackerly. "Community Assembly and Shifts in Plant Trait Distributions Across an Environmental Gradient in Coastal California." Ecological Monographs 79.1 (2009): 109-26. Print.
 
@@ -477,13 +477,13 @@ ADD HARGREAVES 2014
 
 Holt, Robert. "Population Dynamics and Evolutionary Processes: The Manifold Roles of Habitat Selection." Evolutionary Ecology 1.4 (1987): 331-47. Print.
 
-Hubbell, S. P. The unified neutral theory of biodiversity and biogeography. Princeton University Press, Princeton, New Jersey, USA. (2001).
-
 Jump, Alistair S., Csaba Mátyás, and Josep Peñuelas. "The Altitude-for- Latitude Disparity in the Range Retractions of Woody Species." Trends in Ecology & Evolution 24.12 (2009): 694-701. Print.
 
 Kraft, Nathan J. B., Renato Valencia, and David D. Ackerly. "Functional Traits and Niche- Based Tree Community Assembly in an Amazonian Forest." Science (New York, N.Y.) 322.5901 (2008): 580. Print.
 
 Louthan, Am, Df Doak, and A. L. Angert. Where and when do Species Interactions Set Range Limits? 30 Vol., 2015. Print.
+
+ADD MACARTHUR 1967
 
 Matías, Luis, and Alistair S. Jump. "Asymmetric Changes of Growth and Reproductive Investment Herald Altitudinal and Latitudinal Range Shifts of Two Woody Species." Global Change Biology 21.2 (2015): 882-96. Print.
 
