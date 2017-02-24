@@ -33,7 +33,7 @@ ggplot(focal.centroid,
   xlab("Distance from Min. Latitude") +
   ylab("Relative Basal Area")
 
-relative.BA
+focal.centroid$relative.BA
 minLatdiff
 # model intraspecific competition
 #summary(lm1 <- lm(relative.BA ~ minLatdiff, data = focal.centroid[focal.centroid$sp == "ACEPEN",]))
@@ -54,6 +54,22 @@ ranef <- ranef(lme1)
 lme1 <- lmer(relative.BA ~ Lat + (Lat | sp), data = focal)
 
 sjt.lmer(lme1)
+
+# plotting lines (works in base, not sure about ggplot)
+myspecieslist <- unique(focal.centroid$sp)
+mycolors <- rep(c("green", "red", "blue"), 10) # need 6 really!
+
+plot(focal.centroid$minLatdiff,focal.centroid$relative.BA, type="n")
+
+for (i in c(1:length(myspecieslist))){
+  subby <- subset(focal.centroid, sp==myspecieslist[i])
+  points(subby$minLatdiff, subby$relative.BA, col=mycolors[i], pch=16)
+  # pch is symbol shape
+}
+
+abline(0.129447941, -0.006064695, col="black", lwd=3) # overall mean
+abline(-0.107918109, 0.0065249743, col="green", lwd=1) # here's ACEPEN, change for each ranef (you'll need 6 total)
+
 
 # model competition
 #summary(lm1 <- lm(relative.BA ~ Lat, data = focal[focal$sp == "ACEPEN",]))

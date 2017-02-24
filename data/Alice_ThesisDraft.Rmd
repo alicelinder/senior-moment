@@ -16,7 +16,7 @@ fig_caption: true
 knitr::opts_chunk$set(echo = TRUE)
 ```
 \doublespacing
-
+<!-- comments go here! -->
 \pagebreak  
 
 # Abstract  
@@ -188,25 +188,29 @@ focal.centroid <- focal.centroid[-which(focal.centroid$sp == "FAGGRA" & focal.ce
 # ignore QUEALB for graphing purposes
 focal.centroid <- focal.centroid[-which(focal.centroid$sp == "QUEALB"),]
 
-ggplot(focal.centroid,
-       aes(minLatdiff, relative.BA, color = sp)) +
-  geom_point() + 
-  geom_smooth(method="lm", se=F) +
-  facet_wrap(~sp, ncol = 3, scales = "free") +
-  xlab("Distance from Min. Latitude") +
-  ylab("Relative Basal Area")
+#ggplot(focal.centroid,
+       #aes(minLatdiff, relative.BA, color = sp)) +
+  #geom_point() + 
+  #geom_smooth(method="lm", se=F) +
+  #facet_wrap(~sp, ncol = 3, scales = "free") +
+  #xlab("Distance from Min. Latitude") +
+  #ylab("Relative Basal Area")
 
 # plot by size
 ggplot(focal.high,
        aes(minLatdiff, relative.BA, color = sp)) +
   geom_point() +
-  geom_smooth(method="lm", se=F)
+  geom_smooth(method="lm", se=F) +
+xlab("Distance from Min. Latitude") +
+  ylab("Relative Basal Area")
 
 ggplot(focal.low,
        aes(minLatdiff, relative.BA, color = sp)) +
   geom_point() +
-  geom_smooth(method="lm", se=F)
-head(focal.low)
+  geom_smooth(method="lm", se=F) +
+xlab("Distance from Min. Latitude") +
+  ylab("Relative Basal Area")
+
 ```
   
 \bigskip      
@@ -267,12 +271,30 @@ focal.centroid <- focal.centroid[-which(focal.centroid$sp == "QUEALB"),]
 
 clim.focal <- merge(focal.centroid, clim, by = "Individual")
 
-ggplot(clim.focal,
-       aes(distance.to.climatic.centroid, relative.BA, color = sp)) +
-  geom_point() + 
+clim.high <- rbind(clim.focal[clim.focal$sp == "FAGGRA",], clim.focal[clim.focal$sp == "HAMVIR",], clim.focal[clim.focal$sp == "CORALT",])
+clim.low <- rbind(clim.focal[clim.focal$sp == "ACEPEN",], clim.focal[clim.focal$sp == "BETPAP",], clim.focal[clim.focal$sp == "SORAME",])
+
+
+#ggplot(clim.focal,
+       #aes(distance.to.climatic.centroid, relative.BA, color = sp)) +
+  #geom_point() + 
+  #geom_smooth(method="lm", se=F) +
+  #facet_wrap(~sp, ncol = 3, scales = "free") +
+  #xlab("Distance from Climatic Centroid") +
+  #ylab("Relative Basal Area")
+
+ggplot(clim.low,
+       aes(minLatdiff, relative.BA, color = sp)) +
+  geom_point() +
   geom_smooth(method="lm", se=F) +
-  facet_wrap(~sp, ncol = 3, scales = "free") +
-  xlab("Distance from Climatic Centroid") +
+xlab("Distance from Min. Latitude") +
+  ylab("Relative Basal Area")
+
+ggplot(clim.high,
+       aes(minLatdiff, relative.BA, color = sp)) +
+  geom_point() +
+  geom_smooth(method="lm", se=F) +
+xlab("Distance from Min. Latitude") +
   ylab("Relative Basal Area")
 ```
 

@@ -300,6 +300,16 @@ gr <- as.data.frame(chvols.comm)
 chvols.comm <- dbFD(m.sh[3:6], d.sh, corr = 'none')$FRic
 sh <- as.data.frame(chvols.comm)
 
+# white mountains troubles
+myproblemspecies <- unique(m.wm$Species)[-1]
+# note: irun <- unique(m.wm$Species)[-c(1:4)]
+try <- m.wm[3:6][which(m.wm$Species %in% myproblemspecies),]
+d.wm.try <- d.wm[,which(colnames(d.wm) %in% row.names(try))]
+chvols.comm <- dbFD(try, d.wm.try, corr = 'none')$FRic
+
+chvols.comm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
+wm <- as.data.frame(chvols.comm)
+
 ## TO DO: getting error with White Mountain data for some reason.
 #rbind(hf, wm, gr, sh)
 
