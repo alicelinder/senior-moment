@@ -101,3 +101,7 @@ faggra <- focal.centroid[focal.centroid$sp == "FAGGRA",]
 quealb <- focal.centroid[focal$sp == "QUEALB",]
 focal.large <- rbind(betpap, faggra, quealb)
 
+focal.high <- rbind(focal.centroid[focal.centroid$sp == "FAGGRA",], focal.centroid[focal.centroid$sp == "HAMVIR",], focal.centroid[focal.centroid$sp == "CORALT",])
+focal.low <- rbind(focal.centroid[focal.centroid$sp == "ACEPEN",], focal.centroid[focal.centroid$sp == "BETPAP",], focal.centroid[focal.centroid$sp == "SORAME",])
+
+

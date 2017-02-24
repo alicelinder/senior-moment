@@ -103,10 +103,13 @@ sorame <- focal.centroid[focal.centroid$sp == "SORAME",]
 acepen <- focal.centroid[focal.centroid$sp == "ACEPEN",]
 focal.small <- rbind(coralt, sorame, hamvir, acepen)
 
+
 betpap <- focal.centroid[focal.centroid$sp == "BETPAP",]
 faggra <- focal.centroid[focal.centroid$sp == "FAGGRA",]
 quealb <- focal.centroid[focal$sp == "QUEALB",]
 focal.large <- rbind(betpap, faggra, quealb)
+
+
 
 
 # ignore extra large DBH for FAGGUS value
@@ -114,3 +117,9 @@ focal.centroid <- focal.centroid[-which(focal.centroid$sp == "FAGGRA" & focal.ce
 
 # ignore QUEALB for graphing purposes
 focal.centroid <- focal.centroid[-which(focal.centroid$sp == "QUEALB"),]
+
+focal.high <- rbind(focal.centroid[focal.centroid$sp == "FAGGRA",], focal.centroid[focal.centroid$sp == "HAMVIR",], focal.centroid[focal.centroid$sp == "CORALT",])
+focal.low <- rbind(focal.centroid[focal.centroid$sp == "ACEPEN",], focal.centroid[focal.centroid$sp == "BETPAP",], focal.centroid[focal.centroid$sp == "SORAME",])
+
+save(focal.high, file="focal.high.Rdata")
+save(focal.high, file="focal.low.Rdata")

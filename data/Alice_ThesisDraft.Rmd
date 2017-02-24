@@ -195,6 +195,18 @@ ggplot(focal.centroid,
   facet_wrap(~sp, ncol = 3, scales = "free") +
   xlab("Distance from Min. Latitude") +
   ylab("Relative Basal Area")
+
+# plot by size
+ggplot(focal.high,
+       aes(minLatdiff, relative.BA, color = sp)) +
+  geom_point() +
+  geom_smooth(method="lm", se=F)
+
+ggplot(focal.low,
+       aes(minLatdiff, relative.BA, color = sp)) +
+  geom_point() +
+  geom_smooth(method="lm", se=F)
+head(focal.low)
 ```
   
 \bigskip      
