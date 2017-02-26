@@ -7,6 +7,7 @@ m.wm <- read.csv("m.wm.csv")
 
 
 
+
 d.wm <- d.wm[,colSums(d.wm) != 0]
 colSums(d.wm)
 
@@ -20,3 +21,48 @@ d.wm <- d.wm[,colnames(d.wm) %in% indata.wm]
 m.wm <- m.wm[rownames(m.wm) %in% indata.wm,]
 
 chvols.comm.wm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
+
+
+chvols[chvols$site == "WM",]$vol/(chvols.mean[chvols.mean$Site == "WM", chvols.mean$x])
+
+
+
+
+
+
+load("CHVols.RData")
+#chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA" | sp == "HAMVIR" | sp == "SORAME")
+
+# ggplot(chvols.focal,
+#        aes(lat, relative.vol, color = sp)) +
+#   geom_point() + 
+#   geom_smooth(method="lm", se=F) +
+#   facet_wrap(~sp, ncol = 3) +
+#   xlab("Latitude") +
+#   ylab("Relative Convex Hull Volume")
+
+
+myspecieslist <- unique(chvols.focal$sp)
+mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10) # need 6 really!
+
+
+# plot in base package
+plot(chvols.focal$lat, chvols.focal$relative.vol, type="n", main="Relative Convex Hull Volume across Latitudes", xlab="Latitude", ylab="Relative Convex Hull Volume")
+
+for (i in c(1:length(myspecieslist))){
+  subby <- subset(chvols.focal, sp==myspecieslist[i])
+  points(subby$lat, subby$relative.vol, col=mycolors[i], pch=16)
+  # pch is symbol shape
+}
+
+chvols.focal$log.relative.vol <- log(chvols.focal$relative.vol)
+
+# plotting linear mixed effects model
+lme1 <- lmer(log.relative.vol ~ lat + (lat | sp), data = chvols.focal)
+
+fixef(lme1)
+ranef(lme1)
+summary(lme1)
+
+ranef <- ranef(lme1)
+sjt.lmer(lme1)

@@ -97,7 +97,7 @@ for(site in unique(tree.traits$Site)){
 
 
 
-save(chvols, file = "Species Level CHV.csv", row.names=F)
+#save(chvols, file = "Species Level CHV.csv", row.names=F)
 
 # Now community level
 
@@ -110,25 +110,8 @@ trait.means[is.nan(trait.means$DBH), ]$DBH <- NA
 trait.means[is.nan(trait.means$Stem.density), ]$Stem.density <- NA
 trait.means[is.nan(trait.means$c.n), ]$c.n <- NA
 
-chvols.comm = vector()
 
-#for(site in unique(trait.means$Site)){
-  #for(sp in unique(trait.means$Species)){
-    
-    #ex <- subset(trait.means, Site == site & Species == sp)
-    
-    # Find complete cases for this set
-    #ex <- trait.means[complete.cases(trait.means),]
-    
-  
-    
-    #chvols.comm = rbind(chvols.comm, data.frame(site, sp, vol, n = nrow(ex)))
-  #}
-#}
 
-#chvols.comm
-
-#ex <- trait.means[complete.cases(trait.means),]
 
 
 d <- read.csv("all.species.dbh.csv", row.names = NULL)
@@ -290,8 +273,8 @@ hf <- as.data.frame(chvols.comm)
 d.wm <- d.wm[rowSums(d.wm) != 0,]
 
 
-chvols.comm.wm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
-#wm <- as.data.frame(chvols.comm.wm)
+chvols.comm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
+wm <- as.data.frame(chvols.comm)
 
 #d.gr <- d.gr[rowSums(d.gr) != 0,]
 dim(d.gr)
@@ -306,15 +289,15 @@ gr <- as.data.frame(chvols.comm)
 chvols.comm <- dbFD(m.sh[3:6], d.sh, corr = 'none')$FRic
 sh <- as.data.frame(chvols.comm)
 
-# white mountains troubles
-myproblemspecies <- unique(m.wm$Species)[-1]
-# note: irun <- unique(m.wm$Species)[-c(1:4)]
-try <- m.wm[3:6][which(m.wm$Species %in% myproblemspecies),]
-d.wm.try <- d.wm[,which(colnames(d.wm) %in% row.names(try))]
-chvols.comm <- dbFD(try, d.wm.try, corr = 'none')$FRic
-
-chvols.comm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
-wm <- as.data.frame(chvols.comm)
+# # white mountains troubles
+# myproblemspecies <- unique(m.wm$Species)[-1]
+# # note: irun <- unique(m.wm$Species)[-c(1:4)]
+# try <- m.wm[3:6][which(m.wm$Species %in% myproblemspecies),]
+# d.wm.try <- d.wm[,which(colnames(d.wm) %in% row.names(try))]
+# chvols.comm <- dbFD(try, d.wm.try, corr = 'none')$FRic
+# 
+# chvols.comm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
+# wm <- as.data.frame(chvols.comm)
 
 ## TO DO: getting error with White Mountain data for some reason.
 #rbind(hf, wm, gr, sh)
@@ -338,7 +321,7 @@ chvols.mean <- aggregate(x$chvols.comm, list(Site = x$Site), FUN = mean, na.rm=T
 chvols$relative.vol <- NA
 chvols[chvols$site == "HF",]$relative.vol <- chvols[chvols$site == "HF",]$vol/(chvols.mean[chvols.mean$Site == "HF", chvols.mean$x])
 chvols[chvols$site == "GR",]$relative.vol <- chvols[chvols$site == "GR",]$vol/(chvols.mean[chvols.mean$Site == "GR", chvols.mean$x])
-chvols[chvols$site == "SH",]$relative.vol <- chvols[chvols$site == "WM",]$vol/(chvols.mean[chvols.mean$Site == "WM", chvols.mean$x])
+chvols[chvols$site == "WM",]$relative.vol <- chvols[chvols$site == "WM",]$vol/(chvols.mean[chvols.mean$Site == "WM", chvols.mean$x])
 chvols[chvols$site == "SH",]$relative.vol <- chvols[chvols$site == "SH",]$vol/(chvols.mean[chvols.mean$Site == "SH", chvols.mean$x])
 
 

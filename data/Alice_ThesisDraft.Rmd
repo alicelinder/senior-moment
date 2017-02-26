@@ -219,6 +219,9 @@ abline(0.005347238, -0.0003233062, col="#66A61E", lwd=2)
 #SORAME
 abline(-0.135078160,  0.0081671327, col="#E6AB02", lwd=2)
 
+legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola", "H. virginiana", "S. americana"), 
+       lty=1, col=mycolors, bty='n', cex=.75)
+
 ```
   
 \bigskip      
@@ -361,17 +364,21 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
 ## Figure 5  
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-
 load("CHVols.RData")
-#chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA" | sp == "HAMVIR" | sp == "SORAME")
 
-ggplot(chvols.focal,
-       aes(lat, relative.vol, color = sp)) +
-  geom_point() + 
-  geom_smooth(method="lm", se=F) +
-  facet_wrap(~sp, ncol = 3) +
-  xlab("Latitude") +
-  ylab("Relative Convex Hull Volume")
+myspecieslist <- unique(chvols.focal$sp)
+mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10) # need 6 really!
+
+
+# plot in base package
+plot(chvols.focal$lat, chvols.focal$relative.vol, type="n", main="Relative Convex Hull Volume across Latitudes", xlab="Latitude", ylab="Relative Convex Hull Volume")
+
+for (i in c(1:length(myspecieslist))){
+  subby <- subset(chvols.focal, sp==myspecieslist[i])
+  points(subby$lat, subby$relative.vol, col=mycolors[i], pch=16)
+  # pch is symbol shape
+}
+
 
 
 ```  
