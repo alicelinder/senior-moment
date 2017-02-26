@@ -1,3 +1,4 @@
+
 ## source code for Fig. 2 Basal Area vs. Competition Index
 
 centroid <- read.csv("centroid_data.csv")
@@ -72,7 +73,7 @@ compet$fBA = .5*pi*(compet$DBH.focal)^2
 sum.BA <- tapply(compet$BA, compet$Individual, sum)
 sum.BA.df <- data.frame(Individual = names(sum.BA), sum.BA = sum.BA)
 focal.ba <- merge(focal, sum.BA.df, by = "Individual", all.y = TRUE, all.x = TRUE)
-focal.ba$DBH = as.numeric(focal.ba$DBH)
+focal.ba$DBH = as.numeric(as.character(focal.ba$DBH))
 focal.ba$BA = .5*pi*(focal.ba$DBH)^2
 
 focal.ba$log.cBA = log(focal.ba$sum.BA) # what are NAs from? Some have no competing BA values apparently
@@ -88,20 +89,5 @@ focal.centroid <- merge(focal.ba, centroid, by = "sp", all.x = TRUE, all.y = TRU
 focal.centroid$minLatdiff = focal.centroid$Lat - focal.centroid$minLat
 
 focal.centroid$centroiddiff = focal.centroid$Lat - focal.centroid$midLat
-
-# subset by species for graphing/modeling purposes
-coralt <- focal.centroid[focal.centroid$sp == "CORALT",]
-hamvir <- focal.centroid[focal.centroid$sp == "HAMVIR",]
-sorame <- focal.centroid[focal.centroid$sp == "SORAME",]
-acepen <- focal.centroid[focal.centroid$sp == "ACEPEN",]
-focal.small <- rbind(coralt, sorame, hamvir, acepen)
-
-betpap <- focal.centroid[focal.centroid$sp == "BETPAP",]
-faggra <- focal.centroid[focal.centroid$sp == "FAGGRA",]
-quealb <- focal.centroid[focal$sp == "QUEALB",]
-focal.large <- rbind(betpap, faggra, quealb)
-
-focal.high <- rbind(focal.centroid[focal.centroid$sp == "FAGGRA",], focal.centroid[focal.centroid$sp == "HAMVIR",], focal.centroid[focal.centroid$sp == "CORALT",])
-focal.low <- rbind(focal.centroid[focal.centroid$sp == "ACEPEN",], focal.centroid[focal.centroid$sp == "BETPAP",], focal.centroid[focal.centroid$sp == "SORAME",])
 
 

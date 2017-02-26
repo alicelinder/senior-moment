@@ -1,7 +1,8 @@
 ## source code for Fig. 2 Basal Area vs. Competition Index
 
+
 centroid <- read.csv("centroid_data.csv")
-centroid$sp = c("ACEPEN", "BETPAP", "CORALT", "FAGGRA", "HAMVIR")
+centroid$sp = c("ACEPEN", "BETPAP", "CORALT", "FAGGRA", "HAMVIR", "SORAME")
 centroid <- subset(centroid, select = c("sp","minLat", "maxLat", "midLat", "minTemp", "maxTemp", "midTemp", 
                                         "minPrec", "maxPrec", "midPrec"))
 
@@ -71,12 +72,14 @@ compet$fBA = .5*pi*(compet$DBH.focal)^2
 # This is very problematic... made a 'numeric' data frame composed of just the level values
 # focal["competing.BA"] <- data.frame(tapply(compet$BA, compet$Individual, sum))
 # This is what you wanted to do
-# focal <- data.frame(focal, competing.BA = tapply(compet$BA, compet$Individual, sum))
+focal <- data.frame(focal, competing.BA = tapply(compet$BA, compet$Individual, sum))
 
 sum.BA <- tapply(compet$BA, compet$Individual, sum)
 sum.BA.df <- data.frame(Individual = names(sum.BA), sum.BA = sum.BA)
 focal.ba <- merge(focal, sum.BA.df, by = "Individual", all.y = TRUE, all.x = TRUE)
-focal.ba$DBH = as.numeric(focal.ba$DBH)
+
+
+focal.ba$DBH = as.numeric(as.character(focal.ba$DBH))
 focal.ba$BA = .5*pi*(focal.ba$DBH)^2
 class(focal.ba$DBH)
 head(focal.ba)
@@ -93,21 +96,20 @@ focal.centroid <- merge(focal.ba, centroid, by = "sp", all.x = TRUE, all.y = TRU
 
 # create new variable with difference between centroid and latitude of site
 focal.centroid$centroid.diff = focal.centroid$Lat - focal.centroid$minLat
-hist(focal.centroid$centroid.diff)
-hist(focal.centroid$Lat)
+
 
 # subset by species for graphing/modeling purposes
-coralt <- focal.centroid[focal.centroid$sp == "CORALT",]
-hamvir <- focal.centroid[focal.centroid$sp == "HAMVIR",]
-sorame <- focal.centroid[focal.centroid$sp == "SORAME",]
-acepen <- focal.centroid[focal.centroid$sp == "ACEPEN",]
-focal.small <- rbind(coralt, sorame, hamvir, acepen)
+# coralt <- focal.centroid[focal.centroid$sp == "CORALT",]
+# hamvir <- focal.centroid[focal.centroid$sp == "HAMVIR",]
+# sorame <- focal.centroid[focal.centroid$sp == "SORAME",]
+# acepen <- focal.centroid[focal.centroid$sp == "ACEPEN",]
+# focal.small <- rbind(coralt, sorame, hamvir, acepen)
 
 
-betpap <- focal.centroid[focal.centroid$sp == "BETPAP",]
-faggra <- focal.centroid[focal.centroid$sp == "FAGGRA",]
-quealb <- focal.centroid[focal$sp == "QUEALB",]
-focal.large <- rbind(betpap, faggra, quealb)
+# betpap <- focal.centroid[focal.centroid$sp == "BETPAP",]
+# faggra <- focal.centroid[focal.centroid$sp == "FAGGRA",]
+# quealb <- focal.centroid[focal$sp == "QUEALB",]
+# focal.large <- rbind(betpap, faggra, quealb)
 
 
 
@@ -117,9 +119,3 @@ focal.centroid <- focal.centroid[-which(focal.centroid$sp == "FAGGRA" & focal.ce
 
 # ignore QUEALB for graphing purposes
 focal.centroid <- focal.centroid[-which(focal.centroid$sp == "QUEALB"),]
-
-focal.high <- rbind(focal.centroid[focal.centroid$sp == "FAGGRA",], focal.centroid[focal.centroid$sp == "HAMVIR",], focal.centroid[focal.centroid$sp == "CORALT",])
-focal.low <- rbind(focal.centroid[focal.centroid$sp == "ACEPEN",], focal.centroid[focal.centroid$sp == "BETPAP",], focal.centroid[focal.centroid$sp == "SORAME",])
-
-save(focal.high, file="focal.high.Rdata")
-save(focal.high, file="focal.low.Rdata")
