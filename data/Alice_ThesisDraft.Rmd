@@ -376,9 +376,12 @@ plot(chvols.focal$lat, chvols.focal$relative.vol, type="n", main="Relative Conve
 for (i in c(1:length(myspecieslist))){
   subby <- subset(chvols.focal, sp==myspecieslist[i])
   points(subby$lat, subby$relative.vol, col=mycolors[i], pch=16)
-  # pch is symbol shape
+
 }
 
+
+legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola", "H. virginiana", "S. americana"), 
+       lty=1, col=mycolors, bty='n', cex=.75)
 
 
 ```  
@@ -413,6 +416,7 @@ for (i in c(1:length(myspecieslist))){
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
+
 load("CHVols.RData")
 load("Focal-Centroid.RData")
 
@@ -424,13 +428,97 @@ names(focal.centroid)[names(focal.centroid) == "Site"] <- "site"
 
 ba.chvols <- merge(chvols.focal, focal.centroid, by = c("sp", "site"))
 
-ggplot(ba.chvols,
-       aes(vol,relative.BA, color = sp)) +
-  geom_point() + 
-  geom_smooth(method="lm", se=F) +
-  facet_wrap(~sp, ncol = 3, scales = "free") +
-  xlab("Convex Hull Volume") +
-  ylab("Relative Basal Area")
+
+myspecieslist <- unique(ba.chvols$sp)
+mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10) # need 6 really!
+
+
+# plot in base package
+plot(ba.chvols$centroiddiff, ba.chvols$relative.vol, type="n", main="Relative Convex Hull Volume across Climatic Envelope", xlab="Distance from Climatic Centroid", ylab="Relative Convex Hull Volume")
+
+for (i in c(1:length(myspecieslist))){
+  subby <- subset(ba.chvols, sp==myspecieslist[i])
+  points(subby$centroiddiff, subby$relative.vol, col=mycolors[i], pch=16)
+  
+}
+
+
+legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola", "H. virginiana", "S. americana"), 
+       lty=1, col=mycolors, bty='n', cex=.75)
+
+
+# 
+# ggplot(ba.chvols,
+#        aes(vol,relative.BA, color = sp)) +
+#   geom_point() + 
+#   geom_smooth(method="lm", se=F) +
+#   facet_wrap(~sp, ncol = 3, scales = "free") +
+#   xlab("Convex Hull Volume") +
+#   ylab("Relative Basal Area")
+
+
+```  
+
+\bigskip      
+      
+\begin{table}[h!]
+  \centering
+  \caption{Linear coefficients for Fig. 6}
+  \smallskip
+  \label{tab:table2}
+  \begin{tabular}{cccc}
+    \toprule
+    Species & Coefficient & $R^{2}$ & $p$ value\\
+    \midrule
+    Acer pensylvanicum & XXX & XXX & XXX\\
+    Betula papyrifera & XXXX & XXXX & XXXX\\
+    Corylus alternifolia & XXXX & XXXX & XXXX\\
+    Faggus grandifolia & XXXX & XXXX & XXXX\\
+    Hamamelis virginiana & XXX & XXX & XXX\\
+    \bottomrule
+  \end{tabular}
+\end{table}  
+  
+\smallskip      
+  
+  
+  \pagebreak
+
+## Figure 7    
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+# TO DO: Plot functional trait (convex hull volume?) vs competitiveness
+
+load("CHVols.RData")
+load("Focal-Centroid.RData")
+
+focal.centroid$Site <- unlist(
+  lapply(strsplit(focal.centroid$Individual, "_"),
+         function(x) x[[2]]))
+
+names(focal.centroid)[names(focal.centroid) == "Site"] <- "site"
+
+ba.chvols <- merge(chvols.focal, focal.centroid, by = c("sp", "site"))
+
+
+myspecieslist <- unique(ba.chvols$sp)
+mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10) # need 6 really!
+
+
+# plot in base package
+plot(ba.chvols$centroiddiff, ba.chvols$relative.vol, type="n", main="Relative Convex Hull Volume across Climatic Envelope", xlab="Distance from Climatic Centroid", ylab="Relative Convex Hull Volume")
+
+for (i in c(1:length(myspecieslist))){
+  subby <- subset(ba.chvols, sp==myspecieslist[i])
+  points(subby$centroiddiff, subby$relative.vol, col=mycolors[i], pch=16)
+  
+}
+
+
+legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola", "H. virginiana", "S. americana"), 
+       lty=1, col=mycolors, bty='n', cex=.75)
+
 
 
 ```  
@@ -539,27 +627,27 @@ De Frenne, Pieter, et al. "Latitudinal Gradients as Natural Laboratories to Infe
 
 Doak, Daniel F., and William F. Morris. "Demographic Compensation and Tipping Points in Climate- Induced Range Shifts." Nature 467.7318 (2010): 959. Print.
 
-ADD FUNES ET AL 1999
+Funes, Guillermo, et al. "Seed Size and Shape are Good Predictors of Seed Persistence in Soil in Temperate Mountain Grasslands of Argentina." Seed Science Research; Seed Sci.Res. 9.4 (1999): 341-5. Print.
 
-ADD GRIME 1974
+Grime, J. P. "Vegetation Classification by Reference to Strategies." Nature 250.5461 (1974): 26. Print.
 
-ADD HARGREAVES 2014
+Hargreaves, Anna L., Karen E. Samis, and Christopher G. Eckert. "Are Species' Range Limits Simply Niche Limits Writ Large? A Review of Transplant Experiments Beyond the Range." The American Naturalist 183.2 (2014): 157. Print.
 
 Holt, Robert. "Population Dynamics and Evolutionary Processes: The Manifold Roles of Habitat Selection." Evolutionary Ecology 1.4 (1987): 331-47. Print.
 
 Jump, Alistair S., Csaba Mátyás, and Josep Peñuelas. "The Altitude-for- Latitude Disparity in the Range Retractions of Woody Species." Trends in Ecology & Evolution 24.12 (2009): 694-701. Print.
 
-ADD JUNG ET AL 2010
+Jung, Vincent, et al. "Intraspecific Variability and Trait-Based Community Assembly." Journal of Ecology 98.5 (2010): 1134-40. Print.
 
 Kraft, Nathan J. B., Renato Valencia, and David D. Ackerly. "Functional Traits and Niche- Based Tree Community Assembly in an Amazonian Forest." Science (New York, N.Y.) 322.5901 (2008): 580. Print.
 
 Louthan, Am, Df Doak, and A. L. Angert. Where and when do Species Interactions Set Range Limits? 30 Vol., 2015. Print.
 
-ADD MACARTHUR 1967
+Macarthur, Robert, and Richard Levins. "The Limiting Similarity, Convergence, and Divergence of Coexisting Species." The American Naturalist 101.921 (1967): 377-85. Print.
 
 Matías, Luis, and Alistair S. Jump. "Asymmetric Changes of Growth and Reproductive Investment Herald Altitudinal and Latitudinal Range Shifts of Two Woody Species." Global Change Biology 21.2 (2015): 882-96. Print.
 
-ADD MCGILL 2006
+Mcgill, Brian J., et al. "Rebuilding Community Ecology from Functional Traits." Trends in Ecology & Evolution 21.4 (2006): 178-85. Print.
 
 McKenney, Daniel W., et al. "Potential Impacts of Climate Change on the Distribution of North American Trees." Bioscience 57.11 (2007): 939-48. Print
 
@@ -581,7 +669,7 @@ Suttle, K. B., Meredith A. Thomsen, and Mary E. Power. "Species Interactions Rev
 
 Thomas, Chris D., Aldina M. A. Franco, and Jane K. Hill. "Range Retractions and Extinction in the Face of Climate Warming." Trends in Ecology & Evolution 21.8 (2006): 415-6. Print.
 
-ADD THOMSON ET AL 1993
+Thompson, K., S. R. Band, and J. G. Hodgson. "Seed Size and Shape Predict Persistence in Soil." Functional Ecology 7.2 (1993): 236-41. Print.
 
 Urban, Mark C., Josh J. Tewksbury, and Kimberly S. Sheldon. "On a Collision Course: Competition and Dispersal Differences Create no- Analogue Communities and Cause Extinctions during Climate Change." Proceedings of the Royal Society B 279.1735 (2012): 2072-80. Print.
 

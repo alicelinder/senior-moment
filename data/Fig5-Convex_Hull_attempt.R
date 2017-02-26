@@ -60,9 +60,37 @@ chvols.focal$log.relative.vol <- log(chvols.focal$relative.vol)
 # plotting linear mixed effects model
 lme1 <- lmer(log.relative.vol ~ lat + (lat | sp), data = chvols.focal)
 
-fixef(lme1)
+ffixef(lme1)
 ranef(lme1)
 summary(lme1)
 
 ranef <- ranef(lme1)
 sjt.lmer(lme1)
+
+
+
+
+load("CHVols.RData")
+load("Focal-Centroid.RData")
+
+focal.centroid$Site <- unlist(
+  lapply(strsplit(focal.centroid$Individual, "_"),
+         function(x) x[[2]]))
+
+names(focal.centroid)[names(focal.centroid) == "Site"] <- "site"
+
+ba.chvols <- merge(chvols.focal, focal.centroid, by = c("sp", "site"))
+
+
+myspecieslist <- unique(ba.chvols$sp)
+mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10) # need 6 really!
+
+
+# plot in base package
+plot(ba.chvols$centroiddiff, ba.chvols$relative.vol, type="n", main="Relative Convex Hull Volume across Latitudes", xlab="Latitude", ylab="Relative Convex Hull Volume")
+
+for (i in c(1:length(myspecieslist))){
+  subby <- subset(ba.chvols, sp==myspecieslist[i])
+  points(subby$centroiddiff, subby$relative.vol, col=mycolors[i], pch=16)
+  
+}
