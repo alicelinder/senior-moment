@@ -199,9 +199,10 @@ over.all
 # find species present in each
 m.hf <- trait.means[trait.means$Site == "HF",]
 m.gr <- trait.means[trait.means$Site == "GR",]
-m.wm <- trait.means[trait.means$Site == "WM",]
+#m.wm <- trait.means[trait.means$Site == "WM",]
 m.sh <- trait.means[trait.means$Site == "SH",]
 
+m.wm <- read.csv("m.wm.csv")
 
 # check for species that are missing
 # harvard forest
@@ -271,7 +272,8 @@ rownames(m.sh) <- m.sh$Species
 d.sh <- d.sh[,colnames(d.sh) %in% indata.sh]
 m.sh <- m.sh[rownames(m.sh) %in% indata.sh,]
 
-
+#write.csv(m.hf, file="m.wm.csv")
+#save(list = c("m.hf", "m.wm", "m.gr", "m.sh", "d.hf", "d.wm", "d.gr", "d.sh"), file="trait.data.Rdata")
 
 # functional richness
 d.hf <- d.hf[rowSums(d.hf) != 0,]
@@ -282,7 +284,11 @@ dim(m.hf)
 chvols.comm <- dbFD(m.hf[3:6], d.hf, corr = 'none')$FRic
 hf <- as.data.frame(chvols.comm)
 
+
+
+
 d.wm <- d.wm[rowSums(d.wm) != 0,]
+
 
 chvols.comm.wm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
 #wm <- as.data.frame(chvols.comm.wm)
@@ -314,7 +320,7 @@ wm <- as.data.frame(chvols.comm)
 #rbind(hf, wm, gr, sh)
 
 dim(sh)
-x <- rbind(hf, gr, sh)
+x <- rbind(hf, gr, wm, sh)
 x
 x$Species = substr(rownames(x), 1, 6)
 
@@ -332,7 +338,7 @@ chvols.mean <- aggregate(x$chvols.comm, list(Site = x$Site), FUN = mean, na.rm=T
 chvols$relative.vol <- NA
 chvols[chvols$site == "HF",]$relative.vol <- chvols[chvols$site == "HF",]$vol/(chvols.mean[chvols.mean$Site == "HF", chvols.mean$x])
 chvols[chvols$site == "GR",]$relative.vol <- chvols[chvols$site == "GR",]$vol/(chvols.mean[chvols.mean$Site == "GR", chvols.mean$x])
-
+chvols[chvols$site == "SH",]$relative.vol <- chvols[chvols$site == "WM",]$vol/(chvols.mean[chvols.mean$Site == "WM", chvols.mean$x])
 chvols[chvols$site == "SH",]$relative.vol <- chvols[chvols$site == "SH",]$vol/(chvols.mean[chvols.mean$Site == "SH", chvols.mean$x])
 
 
@@ -360,7 +366,7 @@ chvols$long[chvols$site == "SH"] <- long.mean[long.mean$Site == "SH",]$x
 
 chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA" | sp == "HAMVIR" | sp == "SORAME")
 
-save(list = c("chvols.focal"), file="CHVols.RData")
+#save(list = c("chvols.focal"), file="CHVols.RData")
 
 
 
