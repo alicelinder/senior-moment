@@ -55,20 +55,33 @@ for (i in c(1:length(myspecieslist))){
   # pch is symbol shape
 }
 
-chvols.focal$log.relative.vol <- log(chvols.focal$relative.vol)
+# rescale the volum
+chvols.focal$scaled.relative.vol <- scale(chvols.focal$relative.vol, center=TRUE)
+hist(chvols.focal$relative.vol, breaks=30)
+
+# How much data?
+range(chvols.focal$relative.vol, na.rm=TRUE)
+chvols.nona <- subset(chvols.focal, is.na(relative.vol)==FALSE)
+table(chvols.nona$sp)
+
+# So, only use the species with more than one data point
+spwithsomedata <- c("ACEPEN", "BETPAP", "CORALT", "FAGGRA")
+chvols.focal.formodel <- chvols.focal[which(chvols.focal$sp %in% spwithsomedata),]
 
 # plotting linear mixed effects model
-lme1 <- lmer(log.relative.vol ~ lat + (lat | sp), data = chvols.focal)
+lme1 <- lmer(scaled.relative.vol~ lat + (lat| sp), data = chvols.focal.formodel)
 
-ffixef(lme1)
+fixef(lme1)
 ranef(lme1)
 summary(lme1)
 
 ranef <- ranef(lme1)
 sjt.lmer(lme1)
 
+mod.here <- lm(scaled.relative.vol~ lat, data = subset(chvols.focal, sp=="CORALT"))
 
-
+anova(mod.here)
+summary(mod.here)
 
 load("CHVols.RData")
 load("Focal-Centroid.RData")

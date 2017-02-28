@@ -49,7 +49,7 @@ tree.traits$DBH[ones] = 1 + runif(length(tree.traits$DBH[ones]), max = 0.01)
 #ex <- subset(tree.traits, Site == "GR" & Species == "MYRGAL")
 
 # choose traits
-tr <- c("Individual", "Species","Leaf.area", "Dry.mass", "Stem.density", "DBH", "X.N", "X.C")
+tr <- c("Individual", "Species","SLA", "Stem.density", "DBH", "c.n")
 #tr <- c("Individual", "Species","SLA", "Stem.density", "DBH", "c.n")
 
 tr <- tree.traits[tr]
@@ -58,7 +58,7 @@ tr <- tree.traits[tr]
 ex <- tr[complete.cases(tr),]
 
 # log transform 
-log.tr <- log(ex[, 3:8])
+log.tr <- log(ex[, 3:6])
 tr.species <- ex[, 2]
 
 # apply PCA - scale. = TRUE is highly 

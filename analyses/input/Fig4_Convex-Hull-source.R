@@ -51,8 +51,8 @@ tree.traits$DBH[zerofives] = 0.5 + runif(length(tree.traits$DBH[zerofives]), max
 ones <- tree.traits$DBH == 1 & !is.na(tree.traits$DBH) 
 tree.traits$DBH[ones] = 1 + runif(length(tree.traits$DBH[ones]), max = 0.01)
 
-ex <- subset(tree.traits, Site == "GR" & Species == "KALANG")
-ex <- subset(tree.traits, Site == "GR" & Species == "MYRGAL")
+#ex <- subset(tree.traits, Site == "GR" & Species == "KALANG")
+#ex <- subset(tree.traits, Site == "GR" & Species == "MYRGAL")
 
 # choose traits
 tr <- c("SLA", "Stem.density", "DBH", "c.n") 
