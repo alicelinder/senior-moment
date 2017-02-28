@@ -52,16 +52,16 @@ compet <- all.dbh[which(all.dbh$DBH.other > all.dbh$DBH.focal),]
 
 # separate out same species to measure intra-specific competition
 compet$sp = substr(compet$Individual, 1, 6)
-compet$intra.sp <- compet$Comp.Species == compet$sp
+compet$inter.sp <- compet$Comp.Species != compet$sp
 #head(compet)
-intra.compet <- compet[which(compet$intra.sp == TRUE & compet$DBH.focal < compet$DBH.other),]
-intra.compet$BA = .5*pi*(intra.compet$DBH.other)^2
-intra.compet$fBA = .5*pi*(intra.compet$DBH.focal)^2
-intra.comp.BA <- data.frame(tapply(intra.compet$BA, intra.compet$Individual, sum))
+inter.compet <- compet[which(compet$inter.sp == TRUE & compet$DBH.focal < compet$DBH.other),]
+inter.compet$BA = .5*pi*(inter.compet$DBH.other)^2
+inter.compet$fBA = .5*pi*(inter.compet$DBH.focal)^2
+inter.comp.BA <- data.frame(tapply(inter.compet$BA, inter.compet$Individual, sum))
 
 # create basal area variables of only those individuals
-compet$BA = .5*pi*(compet$DBH.other)^2
-compet$fBA = .5*pi*(compet$DBH.focal)^2
+inter.compet$BA = .5*pi*(inter.compet$DBH.other)^2
+inter.compet$fBA = .5*pi*(inter.compet$DBH.focal)^2
 
 # sum the basal area for each individual
 
@@ -70,7 +70,7 @@ compet$fBA = .5*pi*(compet$DBH.focal)^2
 # This is what you wanted to do
 # focal <- data.frame(focal, competing.BA = tapply(compet$BA, compet$Individual, sum))
 
-sum.BA <- tapply(compet$BA, compet$Individual, sum)
+sum.BA <- tapply(inter.compet$BA, inter.compet$Individual, sum)
 sum.BA.df <- data.frame(Individual = names(sum.BA), sum.BA = sum.BA)
 focal.ba <- merge(focal, sum.BA.df, by = "Individual", all.y = TRUE, all.x = TRUE)
 focal.ba$DBH = as.numeric(as.character(focal.ba$DBH))
@@ -84,10 +84,11 @@ focal.ba$sp = substr(focal.ba$Individual, 1, 6)
 
 # merge focal.ba with centroid data
 focal.centroid <- merge(focal.ba, centroid, by = "sp", all.x = TRUE, all.y = TRUE)
-
 # create new variable with difference between centroid and latitude of site
 focal.centroid$minLatdiff = focal.centroid$Lat - focal.centroid$minLat
 
 focal.centroid$centroiddiff = focal.centroid$Lat - focal.centroid$midLat
 
+#Save
+#save(focal.centroid, file = "Focal-Centroid.RData")
 

@@ -3,6 +3,7 @@
 ### Jan. 31, 2017
 
 rm(list = ls())
+options(stringsAsFactors=FALSE)
 setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 
 load("CHVols.RData")

@@ -69,12 +69,6 @@ summary(lme1)
 
 ranef <- ranef(lme1)
 
-ranef.df <- c("ACEPEN", -0.107918109,  0.0065249743, 
-            "BETPAP",  0.381783875, -0.0230835213,
-            "CORALT", -0.126421505,  0.0076437317,
-            "FAGGRA", -0.017713339,  0.0010709888,
-            "HAMVIR",  0.005347238, -0.0003233062,
-            "SORAME", -0.135078160,  0.0081671327)
 
 #lme1 <- lmer(relative.BA ~ Lat + (Lat | sp), data = focal.centroid)
 

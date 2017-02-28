@@ -66,7 +66,7 @@ Yet on their southern range edges, species are faced with extinction. In a study
 
 Historically, there is evidence that plant species underwent local adaptation (genetic) in response to changing climates, in addition to shifts in distribution (Davis & Shaw 2001). Yet populations are unlikely to undergo local adaptation at the pace necessary to match invasion of competitors from adjacent positions (Ackerly 2003). Additionally, competition has been shown to hinder the advancement of colonists into new environments during shifts due to changing environments (Suttle, Thomsen & Power 2001; Urban et. al 2012). This limits a species’ options in terms of biotic factors. Simultaneously, the speed of climate change affects how prevalent adaptive responses are (Ackerly 2003). Species are left with only one option: to migrate.   
 
-Work across species range extremes and range interiors such as the work that I have conducted allows us to see whether a species is primed to migrate, and how many limiting factors it might see given its decreasing preferred climatic envelope. Because edge populations may see more variability in survival and reproduction due to the frequency at which they must respond to limiting factors (Sexton et. al 2011), range extremes are a unique opportunity to understand current modes of community assembly, as well as to predict species’ future responses to climate change.   
+Work across species range extremes and range interiors such as the work that I have conducted allows us to see whether a species is primed to migrate, and how many limiting factors it might see given its decreasing preferred climatic envelope. Because edge populations may see more variability in survival and reproduction due to the frequency at which they must respond to limiting factors (Reich & Oleksyn 2008; Sexton et. al 2011), range extremes are a unique opportunity to understand current modes of community assembly, as well as to predict species’ future responses to climate change.   
   
 ## Latitudinal gradients as field laboratories  
   The study of range expansions and retractions is best accomplished through studies across latitudinal gradients. Using a latitudinal gradient as a study system allows for observations of a species across a larger spatial scale than in warming facilities, and provides a much more accurate representation of the habitat that either allows or prevents a species from establishing itself (De Frenne et. al 2013). Generally, there is a reliable poleward decrease in temperature across latitudes. On average, temperature decreases approaching the poles on the order of -0.73 C per degree latitude in the Northern hemisphere. Other climatic variables, such as precipitation, also change across latitudes (De Frenne et. al 2013). Looking at species’ traits and community composition across latitudes can provide insight into the effect of environmental variables on range limits and species’ future success.   
@@ -219,25 +219,25 @@ for (i in c(1:length(myspecieslist))){
   # pch is symbol shape
 }
 #Overall trend
-abline(0.129447941, -0.006064695, col="black", lwd=3) # overall mean
+abline(-0.06413290, 0.01428613, col="black", lwd=3) # overall mean
 
 #ACEPEN
-abline(-0.107918109, 0.0065249743, col="#1B9E77", lwd=2)
+abline(0.04023972, -0.009001288, col="#1B9E77", lwd=2)
 
 #BETPAP
-abline(0.381783875, -0.0230835213, col="#D95F02", lwd=2)
+abline(-0.24810866,  0.055499823, col="#D95F02", lwd=2)
 
 #CORALT
-abline(-0.126421505,  0.0076437317, col="#7570B3", lwd=2)
+abline(0.06201265, -0.013871708, col="#7570B3", lwd=2)
 
 #FAGGRA
-abline(-0.017713339,  0.0010709888, col="#E7298A", lwd=2)
+abline(0.04033458, -0.009022507, col="#E7298A", lwd=2)
 
 #HAMVIR
-abline(0.005347238, -0.0003233062, col="#66A61E", lwd=2)
+abline(0.05346396, -0.011959439, col="#66A61E", lwd=2)
 
 #SORAME
-abline(-0.135078160,  0.0081671327, col="#E6AB02", lwd=2)
+abline(0.05205775, -0.011644882, col="#E6AB02", lwd=2)
 
 legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola", "H. virginiana", "S. americana"), 
        lty=1, col=mycolors, bty='n', cex=.75)
@@ -255,12 +255,12 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
     \toprule
     Species & Coefficient\\
     \midrule
-    Acer pensylvanicum & 6.56 x $10^{-3}$\\
-    Betula papyrifera & -2.33 x $10^{-2}$\\
-    Corylus alternifolia & 7.62 x $10^{-2}$\\
-    Faggus grandifolia & 1.39 x $10^{-2}$\\
-    Hamamelis virginiana & 4.66 x $10^{-4}$\\
-    Sorbus americana & 8.22 x $10^{-3}$\\
+    $Acer$ $pensylvanicum$ & 6.56 x $10^{-3}$\\
+    $Betula$ $papyrifera$ & -2.33 x $10^{-2}$\\
+    $Cornus$ $alternifola$ & 7.62 x $10^{-2}$\\
+    $Faggus$ $grandifolia$ & 1.39 x $10^{-2}$\\
+    $Hamamelis$ $virginiana$ & 4.66 x $10^{-4}$\\
+    $Sorbus$ $americana$ & 8.22 x $10^{-3}$\\
     \bottomrule
   \end{tabular}
 \end{table}  
@@ -307,7 +307,7 @@ myspecieslist <- unique(clim.focal$sp)
 mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10) # need 6 really!
 
 
-plot(clim.focal$distance.to.climatic.centroid, clim.focal$relative.BA, type="n", main="Competitiveness Index across Climatic Envelope", xlab="Distance to Climatic Centroid", ylab="Relative Basal Area")
+plot(clim.focal$distance.to.climatic.centroid, clim.focal$relative.BA, type="n", main="Competitiveness Index across Climatic Envelope", xlab="Distance from Climatic Centroid", ylab="Relative Basal Area")
 
 for (i in c(1:length(myspecieslist))){
   subby <- subset(clim.focal, sp==myspecieslist[i])
@@ -315,25 +315,25 @@ for (i in c(1:length(myspecieslist))){
   # pch is symbol shape
 }
 #Overall trend
-abline(0.09936796, -0.01446959 , col="black", lwd=3) # overall mean
+abline(0.20681811, -0.05411618, col="black", lwd=3) # overall mean
 
 #ACEPEN
-abline(-0.08582783, 0.019607063, col="#1B9E77", lwd=2)
+abline(-0.1990938, 0.06159846, col="#1B9E77", lwd=2)
 
 #BETPAP
-abline(0.40367686, -0.092218542, col="#D95F02", lwd=2)
+abline(0.9400260, -0.29083851, col="#D95F02", lwd=2)
 
 #CORALT
-abline(-0.11111040, 0.025382776, col="#7570B3", lwd=2)
+abline(-0.1887005, 0.05838284, col="#7570B3", lwd=2)
 
 #FAGGRA
-abline(-0.06564860, 0.014997190, col="#E7298A", lwd=2)
+abline(-0.2029749, 0.06279922, col="#E7298A", lwd=2)
 
 #HAMVIR
-abline(-0.04179071, 0.009546939, col="#66A61E", lwd=2)
+abline(-0.1362191, 0.04214539, col="#66A61E", lwd=2)
 
 #SORAME
-abline(-0.09929931, 0.022684574, col="#E6AB02", lwd=2)
+abline(-0.2130377, 0.06591260, col="#E6AB02", lwd=2)
 ?legend
 legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola", "H. virginiana", "S. americana"), 
        lty=1, col=mycolors, bty='n', cex=.75)
@@ -353,12 +353,12 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
     \toprule
     Species & Coefficient\\
     \midrule
-    Acer pensylvanicum & 1.96 x $10^{-2}$\\
-    Betula papyrifera & -9.22 x $10^{-2}$\\
-    Corylus alternifolia & 2.54 x $10^{-2}$\\
-    Faggus grandifolia & 1.50 x $10^{-2}$\\
-    Hamamelis virginiana & 9.54 x $10^{-3}$\\
-    Sorbus americana & 2.27 x $10^{-2}$\\
+     $Acer$ $pensylvanicum$ & 6.56 x $10^{-3}$\\
+     $Betula$ $papyrifera$ & -2.33 x $10^{-2}$\\
+     $Cornus$ $alternifola$ & 7.62 x $10^{-2}$\\
+     $Faggus$ $grandifolia$ & 1.39 x $10^{-2}$\\
+     $Hamamelis$ $virginiana$ & 4.66 x $10^{-4}$\\
+     $Sorbus$ $americana$ & 8.22 x $10^{-3}$\\
     \bottomrule
   \end{tabular}
 \end{table}  
@@ -570,37 +570,41 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
 
 # Discussion  
     
-  Across all deciduous tree species examined there was no consistent pattern in competitiveness or functional trait variability across latitudinal or climatic ranges. Four of the species showed a downward trend in their relative basal area as they moved away from their minimum latitudes (*A. pensylvanicum*, *B. papyrifera*, *C. alternifolia*, and *H. virginiana*). None showed a significant relationship in this negative correlation, and there little pattern with regards to the species that were approaching or moving away from their range limits. The southern range limit for *B. papyrifera*, for instance, is closer to my southernmost site at Harvard Forest. Thus, as it moves farther away from its minimum latitude it moves closer to the interior of its latitudinal range. This is also true of *S. americana*, which has a southern range limit close to my site at Harvard Forest. The two species show opposing trends in their relative basal area across the latitudes, however. The negative trend in the correlation between the relative basal area of *A. pensylvanicum* individuals to their surrounding competing individuals suggests that there is some relationship between the decreasing competitiveness of *A. pensylvanicum* and its proximity to its latitudinal (northern) range edge. The same trend appears for *C. alternifolia* and *H. virginiana*. 
-    
+My results suggest that the effect of biotic and abiotic factors on limiting trees at their range limits vary across species. There is some evidence that interspecific competition limits a species more at its southern range limit, where climate is not as strong of a limiting factor (**AHL: CITE FIGURE HERE: BA vs Latitude for BETPAP**). Similarly, I observed a small negative trend overall in competitiveness index as a species moves  away from its climatic centroid (**AHL CITE FIGURE HERE**). This suggests that there is a complex relationship between abiotic and biotic factors. Both factors are thus important in predicting migration rates of species in a warming world. *AHL: Can I say this: Warming at a species’ northern range edge could ameliorate the limiting effect of biotic factors.*
+
+	A. Observations (possible include MDS?)
+	B. Observations taken together mean… (restate summary statement)
+II. H1: Species become less competitive at their range limits (subsection title: Incorporating biotic and abiotic factors in competitiveness. Review result: no distinct pattern across all deciduous trees. At their northern limits, other factors could be playing a larger part. 
+	A. Fig. 1…how does this finding fit in with the literature?
+	-  species are more limited by competition at their southern edges  (AHL citation?)
+	-  range shifts will probably lag the velocity of climate change **Loarie et al 2009**
+	-  biotic interactions create lags in climate tracking (Fisichelli et. al 2012) models replicate this (Svenning et. al 2014)
+	- environment as more important
+	
+	B. Fig. 2…how does this finding fit in with the literature?
+III. H2: Trees exhibit altered suites of functional traits at their range extremes (subsection title: Functional traits of species possibly tied to local factors
+	A. Fig. 1…how does this finding fit in with the literature?
+	B. Fig. 2…how does this finding fit in with the literature?
+IV: Conclusion/Areas of further research
+	A. Could a change in environment lead to more of an effect seen on competition?
+	B. Looking at competition using different index
+	Examine dispersal! Seed germination and seedling establishment (Ackerly 2003).
+	Positive correlation and performance in the preferred habitat (Holt 1987)
+	Interspecific competition set the lower limits (Brown et. al 1996) (Didn't examine more species at their southern limits.)
+	Examining growth stages (Zhu et. al 2012, Ettinger & HilleRisLambers 2013)
+	just a snapshot in something that should be observed over years to really understand if a shift is possible. Growth/establishment of plants is better indicator of survival
+
+# EMW: Make sure each paragraph has one main message and you don’t mix too many messages across paragraphs. For example you start an example in the first paragraph that sort of fits with that paragraph, but fits much better with the topic sentence of the next paragraph. This, to me, suggests you need to think a little more on your order and organization. You might consider following your hypotheses as an order (i.e., you could have 2-4 subsections after the first one or two paragraphs of the introduction: H1: species become less competitive at their range limits, H2: trees exhibit altered suites of functional traits at their range extremes, and conclusions or ‘areas for future research’ or such).*
+	
+   
+	
 These results are both consistent with my hypothesis that a species will show a decreasing level of competitiveness as it approaches its range extreme, as are the data of *S. americana*. The data suggest that the strong, limiting factors that species experience at their range edges could be affecting the competitiveness of these particular species, though not significantly enough to reject the null hypothesis that competition is not predicted by position in its latitudinal range (A2). This is also reflected in the coefficient of fixed general effects generated by a linear mixed effects model taking into account all species examined, suggesting there is a general trend towards decreasing competitiveness as a species approaches higher latitudes (though it is worth noting that this does not necessarily mean it is approaching its range extremes).
-    
-  I saw similar results in analyzing the relationship between relative basal area of the six focal species and their distance from their respective climatic centroids. A number of the species (*A. pensylvanicum*, *B. papyrifera*, and *F. grandifolia*) showed small or no correlations either way when their competitivenss was examined across their climatic ranges. All three species showed very scattered results. There were inconsistent patterns in the species that did show correlations between the individuals' distance from their climatic centroid and its relative basal area, with *C. alternifolia* showing a slight positive correlation, and both *H. virginiana* and *S. americana* exhibiting negative correlations. Only the results exhibited by *H. virginiana* and *S. americana* are consistent with my hypothesis that increasing distance from a species' climatic centroid would correlate with a decrease in competitiveness (and thus relative basal area). Other than for *H. virginiana* and *S. americana*, the results suggest that there is no significant correlation between a species' distance from its climatic centroid and its competitiveness, or relative basal area. The data does not allow me to reject the null hypothesis that competition is not predicted by position its climatic range, except for the results shown in the data for *S. americana*. This could mean that climate is not a limiting factor for the species that do not show a negative correlation. Instead, it is possible that they do not need to track their habitat and thus will not see a range shift in the face of a warming climate. A positive correlation between habitat preference and performance in the preferred habitat promote specialization to the preferred habitat (Holt 1987). Seeing habitat preference have little effect when examined in relation to performance suggests that these species have not specialized to their preferred habitats, and so may not see the population loss that some species forced to shift in their range due to climate changes have faced in the past (Davis et. al 2001).
-    
+	
+  I saw similar results in analyzing the relationship between relative basal area of the six focal species and their distance from their respective climatic centroids. A number of the species (*A. pensylvanicum*, *B. papyrifera*, and *F. grandifolia*) showed small or no correlations either way when their competitiveness was examined across their climatic ranges. All three species showed very scattered results. There were inconsistent patterns in the species that did show correlations between the individuals' distance from their climatic centroid and its relative basal area, with *C. alternifolia* showing a slight positive correlation, and both *H. virginiana* and *S. americana* exhibiting negative correlations. Only the results exhibited by *H. virginiana* and *S. americana* are consistent with my hypothesis that increasing distance from a species' climatic centroid would correlate with a decrease in competitiveness (and thus relative basal area). Other than for *H. virginiana* and *S. americana*, the results suggest that there is no significant correlation between a species' distance from its climatic centroid and its competitiveness, or relative basal area. The data does not allow me to reject the null hypothesis that competition is not predicted by position its climatic range, except for the results shown in the data for *S. americana*. This could mean that climate is not a limiting factor for the species that do not show a negative correlation. Instead, it is possible that they do not need to track their habitat and thus will not see a range shift in the face of a warming climate. A positive correlation between habitat preference and performance in the preferred habitat promote specialization to the preferred habitat (Holt 1987). Seeing habitat preference have little effect when examined in relation to performance suggests that these species have not specialized to their preferred habitats, and so may not see the population loss that some species forced to shift in their range due to climate changes have faced in the past (Davis et. al 2001).
+	
   The lack of significance and conflicting results indicate that there are other factors playing a part in determining a species' range limits that prevent a clear pattern from emerging. It is possible that the species of trees, such as *H. virginiana*, *A. pensylvanicum*, and *S. americana*, that are mid-sized and never reach the same level of competitiveness in basal area as *B. papyrifera*, for example, are more susceptible to biotic factors as they near their latitudinal range limits. This could be due to biotic factors not examined, such as percentage cover in the canopy, which are widely recognized as constraining plant development over time due to possible loss of energy from sunlight (Biging & Dobbertin 1995, Contreras et. al 2011). To account for this, one could utilize a different competition index in a similar study on latitudinal and climatic ranges. More accurate competition indices are distance-dependent (whereas summing up the surrounding basal area of larger competitors than the focal individual is a distance-indepedent index). The best distance-dependent competition index is the sum of the horizontal angles multiplied by the ratios of the DBHs of the neighbor and the cored individuals (outlined in Rouvinen & Kuuluvainenas 1997 and as tested in Contreras et. al 2011). The downside of this method (and of distance-dependent competition indices in general) is that they require much more time to collect data. This is a major limiting factor in latitudinal studies, since so many resources are required to collect data in the field across such a large area. Additionally, studies have observed that the stronger limiting factors at a species' southern range limit are interspecific competition, while environmental factors limit species at their northern limits (Brown et. al 1996, Nakawatase & Peterson 2006). Due to the limited data I recorded of species with southern range limits close to the four sites, my study was lacking in this respect.
   
   In finding the climatic envelope for each species, there are also a few different strategies that I did not utilize when analyzing the data. As outlined in McKenney et. al (2007), it is common practice to find where the population is most dense (the "core range") and take that into account when calculating the climatic envelope. This provides a more accurate estimate of the true climatic envelope with regards to a species climatic "sweet spot" where it sees the most favorable environment (and by contrast, sees the least limiting abiotic factors). This would provide more accurate or descriptive insight into the real effects of straying from the climatic envelope's centroid, and thus more insight into the plant's physiological tolerances.
-    
-Examine dispersal! Seed germination and seedling establishment (Ackerly 2003).
-
-Positive correlation and performance in the preferred habitat (Holt 1987)
-
-Interspecific competition set the lower limits (Brown et. al 1996) Didn't examine more species at their southern limits.
-
-Examining growth stages (Zhu et. al 2012, Ettinger & HilleRisLambers 2013)
-
-  
-
-
-
-
-
-
-
-
-Questions for next steps:  
-1. include maps with species ranges? Could use Nacho's presence/absence data to show this.  
-2. Should I include something about latitude vs. climatic range to explain why I didn't use just one? 
-
 \pagebreak  
 
 ---
@@ -680,6 +684,8 @@ Parmesan, Camille. "Ecological and Evolutionary Responses to Recent Climate Chan
 Peterson, A. T., J. Soberón, and V. Sánchez-Cordero. "Conservatism of Ecological Niches in Evolutionary Time." Science 285.5431 (1999): 1265-7. Print.
 
 Pigot, Alex L., and Joseph A. Tobias. "Species Interactions Constrain Geographic Range Expansion Over Evolutionary Time." Ecology Letters 16.3 (2013): 330-8. Print.
+
+ADD REICH AND OLEKSYN 2008
 
 Rouvinen, S., and T. Kuuluvainen. "Structure and Asymmetry of Tree Crowns in Relation to Local Competition in a Natural Mature Scots Pine Forest." Canadian Journal of Forest Research 27.6 (1997): 890-902. Print.
 
