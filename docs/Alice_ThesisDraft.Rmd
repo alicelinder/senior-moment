@@ -14,6 +14,7 @@ fig_caption: true
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir='..//data')
 ```
 \doublespacing
 <!-- comments go here! -->
@@ -159,7 +160,7 @@ Unlike *C. alternifolia*, *H. virginiana* and *S. americana* show a negative cor
 
 (should I include this? I can make it higher resolution)
 
-\centerline{\includegraphics[height=5in]{ClimMeanAnnualTemp.jpeg}}
+\centerline{\includegraphics[height=5in]{..//data/ClimMeanAnnualTemp.jpeg}}
 
   
 Caption: Map of all four sites mapped onto a raster image of their mean annual temperatures, compiled from the 30 arcsecond layer from http://worldclim.org.
@@ -168,7 +169,7 @@ Caption: Map of all four sites mapped onto a raster image of their mean annual t
 ## Figure 1  
 
 
- \centerline{\includegraphics[height=10in]{Illustration1.png}}
+ \centerline{\includegraphics[height=10in]{..//data/Illustration1.png}}
     
 Caption: Anthropogenic warming, in altering the climate, cause a shift in a species' ideal "climate envelope". If a species is limited by its preferred environmental variables, it may have to shift its range in order to compensate for the change in climate. It must match its realized niche with the shift climate envelope or face extinction at its southern (warming) edge. 
     
@@ -450,7 +451,7 @@ load("CHVols.RData")
 load("Focal-Centroid.RData")
 
 focal.centroid$Site <- unlist(
-  lapply(strsplit(focal.centroid$Individual, "_"),
+  lapply(strsplit(as.character(focal.centroid$Individual), "_"),
          function(x) x[[2]]))
 
 names(focal.centroid)[names(focal.centroid) == "Site"] <- "site"
@@ -523,7 +524,7 @@ load("CHVols.RData")
 load("Focal-Centroid.RData")
 
 focal.centroid$Site <- unlist(
-  lapply(strsplit(focal.centroid$Individual, "_"),
+  lapply(strsplit(as.character(focal.centroid$Individual), "_"),
          function(x) x[[2]]))
 
 names(focal.centroid)[names(focal.centroid) == "Site"] <- "site"

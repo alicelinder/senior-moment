@@ -38,6 +38,12 @@ tree.traits$SLA = tree.traits$Leaf.area / tree.traits$Dry.mass
 # calculate C:N ratio
 tree.traits$c.n = tree.traits$X.C / tree.traits$X.N
 
+# try removing BETPAP 03 GR because of huge trait values
+tree.traits <- tree.traits[-which(tree.traits$Individual == "BETPAP03_GR"),]
+
+# same for FAGGRA 08 SH
+tree.traits <- tree.traits[-which(tree.traits$Individual == "FAGGRA08_SH"),]
+
 # clean up data and subset it based on species
 #traits <- select(tree.traits, Site, Species, SLA, Stem.density, 
                  #Height, DBH, X.N, X.C, Stomatal.Length, Stomatal.Density)
@@ -95,6 +101,7 @@ for(site in unique(tree.traits$Site)){
   }
 }
 
+chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA" | sp == "HAMVIR" | sp == "SORAME")
 
 
 #save(chvols, file = "Species Level CHV.csv", row.names=F)
@@ -304,7 +311,7 @@ sh <- as.data.frame(chvols.comm)
 
 dim(sh)
 x <- rbind(hf, gr, wm, sh)
-x
+
 x$Species = substr(rownames(x), 1, 6)
 
 x$Site <- unlist(
@@ -316,8 +323,8 @@ chvols.comm <- select(x, vol = chvols.comm, Species, Site)
 # find average functional richness at each site
 chvols.mean <- aggregate(x$chvols.comm, list(Site = x$Site), FUN = mean, na.rm=TRUE)
 
-# find proportion of average functional richness/convex hull for each species (esp. focal species)
 
+# find proportion of average functional richness/convex hull for each species (esp. focal species)
 chvols$relative.vol <- NA
 chvols[chvols$site == "HF",]$relative.vol <- chvols[chvols$site == "HF",]$vol/(chvols.mean[chvols.mean$Site == "HF", chvols.mean$x])
 chvols[chvols$site == "GR",]$relative.vol <- chvols[chvols$site == "GR",]$vol/(chvols.mean[chvols.mean$Site == "GR", chvols.mean$x])
@@ -347,6 +354,8 @@ chvols$long[chvols$site == "WM"] <- long.mean[long.mean$Site == "WM",]$x
 chvols$long[chvols$site == "HF"] <- long.mean[long.mean$Site == "HF",]$x
 chvols$long[chvols$site == "SH"] <- long.mean[long.mean$Site == "SH",]$x
 
+
+
 chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA" | sp == "HAMVIR" | sp == "SORAME")
 
 #save(list = c("chvols.focal"), file="CHVols.RData")
@@ -354,9 +363,35 @@ chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" 
 
 
 
+# plot numerator in ratio to visualize what the data looks like
+chvols.focal.num <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA")
 
 
+ggplot(chvols.focal.num,
+       aes(lat, vol, color = sp)) +
+  geom_point() + 
+  geom_smooth(method="lm", se=F) +
+  xlab("Latitude") +
+  ylab("Convex Hull of Focal Species")
 
+plot(chvols.focal.num$lat , chvols.focal.num$vol, type="n", xlab="Latitude", ylab="Convex Hulls of Species")
+
+myspecieslist <- unique(chvols.focal.num$sp)
+mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10) # need 6 really!
+
+for (i in c(1:length(myspecieslist))){
+  subby <- subset(chvols.focal.num, sp==myspecieslist[i])
+  points(subby$lat, subby$vol, col=mycolors[i], pch=16)
+}
+
+
+# visualize denominator
+ggplot(chvols.comm,
+       aes(Site, vol, color = Species)) +
+  geom_point() + 
+  geom_smooth(method="lm", se=F) +
+  xlab("Site (not ordered)") +
+  ylab("Convex Hull of individual plots")
 
 
 

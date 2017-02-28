@@ -1,6 +1,5 @@
 
 ## source code for Fig. 2 Basal Area vs. Competition Index
-
 centroid <- read.csv("centroid_data.csv")
 centroid$sp = c("ACEPEN", "BETPAP", "CORALT", "FAGGRA", "HAMVIR", "SORAME")
 centroid <- subset(centroid, select = c("sp","minLat", "maxLat", "midLat", "minTemp", "maxTemp", "midTemp", 
