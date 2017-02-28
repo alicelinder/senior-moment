@@ -11,8 +11,7 @@ Random desperate notes:
 - kurtosis of distribution of functional trait values will be smaller if
 niche differentiation is occurring
 - examination of functional traits shows evidence of habitat filtering
-- species with a broad distribution of trait values co-occur more often than
-predicted, whereas co-occurring species are more evenly spaced along the trait
+- look, whereas co-occurring species are more evenly spaced along the trait
 axis than predicted
 
 ================================================================================
