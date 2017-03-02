@@ -55,7 +55,7 @@ for (i in c(1:length(myspecieslist))){
   # pch is symbol shape
 }
 
-# rescale the volum
+# rescale the volume
 chvols.focal$scaled.relative.vol <- scale(chvols.focal$relative.vol, center=TRUE)
 hist(chvols.focal$relative.vol, breaks=30)
 
@@ -100,10 +100,34 @@ mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB0
 
 
 # plot in base package
-plot(ba.chvols$centroiddiff, ba.chvols$relative.vol, type="n", main="Relative Convex Hull Volume across Latitudes", xlab="Latitude", ylab="Relative Convex Hull Volume")
 
 for (i in c(1:length(myspecieslist))){
   subby <- subset(ba.chvols, sp==myspecieslist[i])
   points(subby$centroiddiff, subby$relative.vol, col=mycolors[i], pch=16)
   
 }
+
+hist(chvols$vol, breaks = 30)
+chvols[which(chvols$vol > 100),]
+
+# scale volumes
+chvols.focal$scaled.vol <- scale(chvols.focal$vol, center=TRUE)
+hist(chvols.focal$scaled.vol, breaks=30)
+
+spwithsomedata <- c("ACEPEN", "BETPAP", "CORALT", "FAGGRA")
+chvols.focal <- chvols.focal[which(chvols.focal$sp %in% spwithsomedata),]
+
+
+ggplot(chvols.focal,
+       aes(lat, scaled.vol, color = sp)) +
+  geom_point() + 
+  geom_smooth(method="lm", se=F) +
+  xlab("Site (not ordered)") +
+  ylab("Convex Hull of individual plots")
+
+ggplot(chvols.focal.num,
+       aes(lat, vol, color = sp)) +
+  geom_point() + 
+  geom_smooth(method="lm", se=F) +
+  xlab("Latitude") +
+  ylab("Convex Hull of Focal Species")

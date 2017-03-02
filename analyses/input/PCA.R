@@ -71,6 +71,12 @@ biplot(tr.pca)
 
 print(tr.pca)
 summary(tr.pca)
+tr.pca$x
+
+# find function to plot polygon around points
+
+
+
 
 ## TO DO: this is taken from Nacho's code. 
 ## Why does he reverse the sign of the roation and the PCA? Also how do you explain these numbers?
@@ -112,7 +118,7 @@ for(i in 1:6){
 
 # ACEPEN
 
-log.tr <- log(ex[ex$Species == "ACEPEN", 3:8])
+log.tr <- log(ex[ex$Species == "ACEPEN", 3:6])
 
 pca.sps <- prcomp(log.tr,center = T,scale. = T)
 pca.sps$rotation=-pca.sps$rotation

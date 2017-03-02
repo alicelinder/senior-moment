@@ -21,8 +21,12 @@ IDs.env.matrix<-read.csv("Ids_lon_lats.csv")
 dim(IDs.env.matrix)
 dim(distribution.matrix)
 
+# creating a projection object with specific units and shape
 crswgs84=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+
+# load shapefile of sorbus americana distribution, source: google GECSC
 sorbus.amer=readShapePoly("sorbamer.shp",proj4string=crswgs84,verbose=TRUE)
+
 plot(sorbus.amer)
 points(IDs.env.matrix$longitude,IDs.env.matrix$latitude)
 extent(sorbus.amer)
@@ -82,6 +86,7 @@ head(coords.empirical)
 coords.empirical$index.in.env.matrix<-rep(NA,nrow(coords.empirical))
 index.in.Id<-NULL
 
+# find nearest cell in environmental matrix to the coordinates of the data points
 for(i in 1:nrow(coords.empirical)){
   print(i)
   each.dist<-NULL 
@@ -99,6 +104,8 @@ spsi<-target.spp[i]
 print(spsi)
 coords.empirical.sub<-subset(coords.empirical,species==spsi)
 indices<-coords.empirical.sub$index.in.env.matrix
+
+# to do: check which environmental variables 4:8 is
 climate.env.i<-IDs.env.matrix[,4:8]*distribution.matrix[,spsi]
 climate.env.i<-subset(climate.env.i,Avg_temper!=0)
 pca.spsi <- prcomp(climate.env.i,center = T,scale. = T)

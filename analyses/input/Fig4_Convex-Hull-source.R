@@ -18,7 +18,7 @@ library(plyr) # install.packages("plyr")
 library(dplyr) # install.packages("dplyr")
 library(reshape2) # install.packages("reshape2")
 library(stringr) # install.packages("stringr")
-
+library(ggplot2)
 
 # load data
 tree.traits <- read.csv("tree-traits.csv")
@@ -37,6 +37,10 @@ tree.traits$SLA = tree.traits$Leaf.area / tree.traits$Dry.mass
 
 # calculate C:N ratio
 tree.traits$c.n = tree.traits$X.C / tree.traits$X.N
+
+# save tree traits
+tree.traits.focal <- filter(tree.traits, Species == "ACEPEN" | Species == "BETPAP" | Species == "CORALT" | Species == "FAGGRA" | Species == "HAMVIR" | Species == "SORAME")
+save(tree.traits.focal, file = "Species-Traits.RData")
 
 # try removing BETPAP 03 GR because of huge trait values
 tree.traits <- tree.traits[-which(tree.traits$Individual == "BETPAP03_GR"),]
@@ -66,10 +70,6 @@ tr <- c("SLA", "Stem.density", "DBH", "c.n")
 # getting error with DBH (causing loop to stop) so trying it w/o DBH
 #tr.2 <- c("SLA", "Stem.density", "c.n")
 
-# Find complete cases for this set
-ex <- ex[complete.cases(ex[,tr]),]
-
-vol = convhulln(ex[,tr], "FA")$vol
 
 # select only species of interest because KALANG and MYRGAL are being problematic
 #speciestokeep <- as.factor(c("ACEPEN", "BETPAP", "CORALT", "FAGGRA", "SORAME"))
@@ -111,6 +111,10 @@ chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" 
 sp.tr <- c("SLA", "Stem.density", "DBH", "c.n")
 sp.tr <- tree.traits[,sp.tr]
 sp.tr
+
+#save(sp.tr, file= "Species-Traits.RData")
+
+
 trait.means <- aggregate(sp.tr, list(Species = tree.traits$Species, Site = tree.traits$Site), FUN = mean, na.rm=TRUE)
 trait.means[is.nan(trait.means$SLA), ]$SLA <- NA
 trait.means[is.nan(trait.means$DBH), ]$DBH <- NA
@@ -337,7 +341,7 @@ chvols[chvols$site == "SH",]$relative.vol <- chvols[chvols$site == "SH",]$vol/(c
 
 # find lat longs of each site
 focal.centroid$Site <- unlist(
-  lapply(strsplit(focal.centroid$Individual, "_"),
+  lapply(strsplit(as.character(focal.centroid$Individual), "_"),
          function(x) x[[2]]))
 lat.mean <- aggregate(focal.centroid$Lat, list(Site = focal.centroid$Site), FUN = mean, na.rm=TRUE)
 long.mean <- aggregate(focal.centroid$Long, list(Site = focal.centroid$Site), FUN = mean, na.rm=TRUE)
@@ -364,7 +368,7 @@ chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" 
 
 
 # plot numerator in ratio to visualize what the data looks like
-chvols.focal.num <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA")
+chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA")
 
 
 ggplot(chvols.focal.num,
