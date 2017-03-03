@@ -526,7 +526,20 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
 \smallskip      
   
   
-\pagebreak  
+\pagebreak   
+  
+## Figure 9    
+
+\centerline{\includegraphics[height=5in]{..//analyses/output/CHull_ACEPEN.jpeg}}
+\centerline{\includegraphics[height=5in]{..//analyses/output/CHull_BETPAP.jpeg}}
+\centerline{\includegraphics[height=5in]{..//analyses/output/CHull_CORALT.jpeg}}
+\centerline{\includegraphics[height=5in]{..//analyses/output/CHull_FAGGRA.jpeg}}
+\centerline{\includegraphics[height=5in]{..//analyses/output/CHull_SORAME.jpeg}}
+
+
+\pagebreak
+
+
 
 # Discussion  
     

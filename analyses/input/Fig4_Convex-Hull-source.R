@@ -196,11 +196,15 @@ over.all
 
 # find species present in each
 m.hf <- trait.means[trait.means$Site == "HF",]
+m.hf <- m.hf[complete.cases(m.hf),]
 m.gr <- trait.means[trait.means$Site == "GR",]
+m.gr <- m.gr[complete.cases(m.gr),]
 #m.wm <- trait.means[trait.means$Site == "WM",]
 m.sh <- trait.means[trait.means$Site == "SH",]
 
 m.wm <- read.csv("m.wm.csv")
+
+
 
 # check for species that are missing
 # harvard forest
@@ -305,14 +309,6 @@ write.csv(m.sh, file= "m.sh.csv")
 write.csv(d.sh, file= "d.sh.csv")
 chvols.comm.sh <- dbFD(m.sh[3:6], d.sh, corr = 'none')$FRic
 sh <- as.data.frame(chvols.comm.sh)
-range(m.sh$SLA)
-range(m.hf$SLA)
-range(m.sh$Stem.density)
-range(m.hf$Stem.density)
-range(m.sh$DBH)
-range(m.hf$DBH)
-range(m.sh$c.n)
-range(m.hf$c.n)
 
 # # white mountains troubles
 # myproblemspecies <- unique(m.wm$Species)[-1]
@@ -327,27 +323,20 @@ range(m.hf$c.n)
 ## TO DO: getting error with White Mountain data for some reason.
 #rbind(hf, wm, gr, sh)
 
-dim(sh)
-x <- rbind(hf, gr, wm, sh)
+load("chvols.comm.Rdata")
 
-x$Species = substr(rownames(x), 1, 6)
-
-x$Site <- unlist(
-  lapply(strsplit(rownames(x), "_"),
-         function(x) x[[2]]))
-
-chvols.comm <- select(x, vol = chvols.comm, Species, Site)
+chvols.comm$Species = substr(rownames(x), 1, 6)
 
 # find average functional richness at each site
-chvols.mean <- aggregate(x$chvols.comm, list(Site = x$Site), FUN = mean, na.rm=TRUE)
+chvols.mean <- aggregate(chvols.comm$chvols.comm, list(Site = chvols.comm$site), FUN = mean, na.rm=TRUE)
 
 
 # find proportion of average functional richness/convex hull for each species (esp. focal species)
 chvols$relative.vol <- NA
-chvols[chvols$site == "HF",]$relative.vol <- chvols[chvols$site == "HF",]$vol/(chvols.mean[chvols.mean$Site == "HF", chvols.mean$x])
-chvols[chvols$site == "GR",]$relative.vol <- chvols[chvols$site == "GR",]$vol/(chvols.mean[chvols.mean$Site == "GR", chvols.mean$x])
-chvols[chvols$site == "WM",]$relative.vol <- chvols[chvols$site == "WM",]$vol/(chvols.mean[chvols.mean$Site == "WM", chvols.mean$x])
-chvols[chvols$site == "SH",]$relative.vol <- chvols[chvols$site == "SH",]$vol/(chvols.mean[chvols.mean$Site == "SH", chvols.mean$x])
+chvols[chvols$site == "HF",]$relative.vol <- chvols[chvols$site == "HF",]$vol/(chvols.mean[2, 2])
+chvols[chvols$site == "GR",]$relative.vol <- chvols[chvols$site == "GR",]$vol/(chvols.mean[1, 2])
+chvols[chvols$site == "WM",]$relative.vol <- chvols[chvols$site == "WM",]$vol/(chvols.mean[4, 2])
+chvols[chvols$site == "SH",]$relative.vol <- chvols[chvols$site == "SH",]$vol/(chvols.mean[3, 2])
 
 
 
@@ -376,7 +365,7 @@ chvols$long[chvols$site == "SH"] <- long.mean[long.mean$Site == "SH",]$x
 
 chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA" | sp == "HAMVIR" | sp == "SORAME")
 
-#save(list = c("chvols.focal"), file="CHVols.RData")
+#save(chvols.focal, file="CHVols.RData")
 
 
 
@@ -404,13 +393,12 @@ for (i in c(1:length(myspecieslist))){
 
 
 # visualize denominator
-ggplot(chvols.comm,
-       aes(Site, vol, color = Species)) +
+ggplot(x,
+       aes(site, chvols.comm, color = Species)) +
   geom_point() + 
   geom_smooth(method="lm", se=F) +
   xlab("Site (not ordered)") +
   ylab("Convex Hull of individual plots")
-
 
 
 
