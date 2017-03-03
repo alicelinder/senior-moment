@@ -163,6 +163,10 @@ hamvir <- substr(rownames(over.all), 1, 6) == "HAMVIR"
 hamvir.col <- colnames(over.all) == "HAMVIR"
 over.all[hamvir, hamvir.col] <- 1
 
+sorame <- substr(rownames(over.all), 1, 6) == "SORAME"
+sorame.col <- colnames(over.all) == "SORAME"
+over.all[sorame, sorame.col] <- 1
+
 head(over.all)
 # get sites of each individual for presence/absence matrix
 # x <- colnames(over.all)
@@ -275,8 +279,8 @@ d.hf
 dim(d.hf)
 head(d.hf)
 dim(m.hf)
-chvols.comm <- dbFD(m.hf[3:6], d.hf, corr = 'none')$FRic
-hf <- as.data.frame(chvols.comm)
+chvols.comm.hf <- dbFD(m.hf[3:6], d.hf, corr = 'none')$FRic
+hf <- as.data.frame(chvols.comm.hf)
 
 
 
@@ -284,8 +288,8 @@ hf <- as.data.frame(chvols.comm)
 d.wm <- d.wm[rowSums(d.wm) != 0,]
 
 
-chvols.comm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
-wm <- as.data.frame(chvols.comm)
+chvols.comm.wm <- dbFD(m.wm[3:6], d.wm, corr = 'none')$FRic
+wm <- as.data.frame(chvols.comm.wm)
 
 #d.gr <- d.gr[rowSums(d.gr) != 0,]
 dim(d.gr)
@@ -293,12 +297,22 @@ head(d.gr)
 dim(m.gr)
 m.gr
 d.gr
-chvols.comm <- dbFD(m.gr[3:6], d.gr, corr = 'none')$FRic
-gr <- as.data.frame(chvols.comm)
+chvols.comm.gr <- dbFD(m.gr[3:6], d.gr, corr = 'none')$FRic
+gr <- as.data.frame(chvols.comm.gr)
 
 # saint hippolyte
-chvols.comm <- dbFD(m.sh[3:6], d.sh, corr = 'none')$FRic
-sh <- as.data.frame(chvols.comm)
+write.csv(m.sh, file= "m.sh.csv")
+write.csv(d.sh, file= "d.sh.csv")
+chvols.comm.sh <- dbFD(m.sh[3:6], d.sh, corr = 'none')$FRic
+sh <- as.data.frame(chvols.comm.sh)
+range(m.sh$SLA)
+range(m.hf$SLA)
+range(m.sh$Stem.density)
+range(m.hf$Stem.density)
+range(m.sh$DBH)
+range(m.hf$DBH)
+range(m.sh$c.n)
+range(m.hf$c.n)
 
 # # white mountains troubles
 # myproblemspecies <- unique(m.wm$Species)[-1]
