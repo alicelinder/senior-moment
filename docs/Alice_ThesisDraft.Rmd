@@ -231,14 +231,15 @@ for (i in c(1:length(s.sp))){
   points(subby$minLatdiff, subby$relative.BA, col=s.mycolors[i], pch=16)
   # pch is symbol shape
 }
-#Overall trend
-abline(-0.06413290, 0.01428613, col="black", lwd=3) # overall mean
 
 #BETPAP
 abline(-0.24810866,  0.055499823, col="#1B9E77", lwd=2)
 
 #SORAME
 abline(0.05205775, -0.011644882, col="#D95F02", lwd=2)
+
+#Overall trend
+abline(-0.06413290, 0.01428613, col="black", lwd=3) # overall mean
 
 legend('topright', legend=c("B. papyrifera", "S. americana"), 
        lty=1, col=s.mycolors, bty='n', cex=1)
@@ -257,8 +258,7 @@ for (i in c(1:length(n.sp))){
   # pch is symbol shape
 }
 
-#Overall trend
-abline(-0.06413290, 0.01428613, col="black", lwd=3)
+
 
 #ACEPEN
 abline(0.04023972, -0.009001288, col="#7570B3", lwd=2)
@@ -271,6 +271,9 @@ abline(0.04033458, -0.009022507, col="#66A61E", lwd=2)
 
 #HAMVIR
 abline(0.05346396, -0.011959439, col="#E6AB02", lwd=2)
+
+#Overall trend
+abline(-0.06413290, 0.01428613, col="black", lwd=3)
 
 
 legend('topright', legend=c("A. pensylvanicum", "C. alternifolia", "F. grandifola", "H. virginiana"), 
@@ -312,8 +315,6 @@ for (i in c(1:length(myspecieslist))){
   points(subby$distance.to.climatic.centroid, subby$relative.BA, col=mycolors[i], pch=16)
   # pch is symbol shape
 }
-#Overall trend
-abline(0.20681811, -0.05411618, col="black", lwd=3) # overall mean
 
 #ACEPEN
 abline(-0.1990938, 0.06159846, col="#1B9E77", lwd=2)
@@ -332,7 +333,10 @@ abline(-0.1362191, 0.04214539, col="#66A61E", lwd=2)
 
 #SORAME
 abline(-0.2130377, 0.06591260, col="#E6AB02", lwd=2)
-?legend
+
+#Overall trend
+abline(0.20681811, -0.05411618, col="black", lwd=3) # overall mean
+
 legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola", "H. virginiana", "S. americana"), 
        lty=1, col=mycolors, bty='n', cex=.75)
 
@@ -346,6 +350,9 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 load("CHVols.RData")
 
+chvols.focal <- chvols.focal[-which(chvols.focal$sp == "HAMVIR"),]
+chvols.focal <- chvols.focal[-which(chvols.focal$sp == "SORAME"),]
+
 myspecieslist <- unique(chvols.focal$sp)
 mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10) # need 6 really!
 
@@ -355,13 +362,25 @@ plot(chvols.focal$lat, chvols.focal$relative.vol, type="n", main="Relative Conve
 
 for (i in c(1:length(myspecieslist))){
   subby <- subset(chvols.focal, sp==myspecieslist[i])
-  points(subby$lat, subby$relative.vol, col=mycolors[i], pch=16)
-
+  points(subby$lat, subby$relative.vol, col=mycolors[i], pch="O")
+  
 }
 
+#ACEPEN
+abline(638.557, -14.02, col="#1B9E77", lwd =2)
 
-legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola", "H. virginiana", "S. americana"), 
-       lty=1, col=mycolors, bty='n', cex=.75)
+#BETPAP
+abline(-175.71, 4.19, col="#D95F02", lwd = 2)
+
+#CORALT
+abline(-144.277, 3.375, col="#7570B3", lwd = 2)
+
+#FAGGRA
+abline(93.3, -2, col="#E7298A", lwd = 2)
+
+
+legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola"), 
+       lty=1, col=mycolors, bty='n', cex=1)
 
 
 ```  
@@ -397,20 +416,11 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
 
-load("CHVols.RData")
-load("Focal-Centroid.RData")
-
-focal.centroid$Site <- unlist(
-  lapply(strsplit(as.character(focal.centroid$Individual), "_"),
-         function(x) x[[2]]))
-
-names(focal.centroid)[names(focal.centroid) == "Site"] <- "site"
-
-ba.chvols <- merge(chvols.focal, focal.centroid, by = c("sp", "site"))
+load("CHVols.centroid.Rdata")
 
 
 myspecieslist <- unique(ba.chvols$sp)
-mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10) # need 6 really!
+mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A"), 10) # need 6 really!
 
 
 # plot in base package
@@ -418,23 +428,24 @@ plot(ba.chvols$centroiddiff, ba.chvols$relative.vol, type="n", main="Relative Co
 
 for (i in c(1:length(myspecieslist))){
   subby <- subset(ba.chvols, sp==myspecieslist[i])
-  points(subby$centroiddiff, subby$relative.vol, col=mycolors[i], pch=16)
-  
+  points(subby$centroiddiff, subby$relative.vol, col=mycolors[i], pch="O")
 }
 
+# ACEPEN
+abline(52.2, -15.14, col = "#1B9E77", lwd = 2)
 
-legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola", "H. virginiana", "S. americana"), 
-       lty=1, col=mycolors, bty='n', cex=.75)
+# BETPAP
+abline(41.635, 4.179, col = "#D95F02", lwd = 2)
 
+#CORALT
+abline(-25.406, 7.162, col = "#7570B3", lwd = 2)
 
-# 
-# ggplot(ba.chvols,
-#        aes(vol,relative.BA, color = sp)) +
-#   geom_point() + 
-#   geom_smooth(method="lm", se=F) +
-#   facet_wrap(~sp, ncol = 3, scales = "free") +
-#   xlab("Convex Hull Volume") +
-#   ylab("Relative Basal Area")
+#FAGGRA
+abline(15.559, -1.973, col = "#E7298A", lwd = 2)
+
+legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola"), 
+       lty=1, col=mycolors, bty='n', cex=1)
+
 
 
 ```  
@@ -470,35 +481,35 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
 
 # TO DO: Plot functional trait (convex hull volume?) vs competitiveness
 
-load("CHVols.RData")
-load("Focal-Centroid.RData")
-
-focal.centroid$Site <- unlist(
-  lapply(strsplit(as.character(focal.centroid$Individual), "_"),
-         function(x) x[[2]]))
-
-names(focal.centroid)[names(focal.centroid) == "Site"] <- "site"
-
-ba.chvols <- merge(chvols.focal, focal.centroid, by = c("sp", "site"))
-
-
+# load all data from source code
+load("BA-CHVols.RData")
 myspecieslist <- unique(ba.chvols$sp)
-mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10) # need 6 really!
+mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A"), 10) # need 6 really!
 
 
 # plot in base package
-plot(ba.chvols$centroiddiff, ba.chvols$relative.vol, type="n", main="Relative Convex Hull Volume across Climatic Envelope", xlab="Distance from Climatic Centroid", ylab="Relative Convex Hull Volume")
+plot(ba.chvols$relative.vol, ba.chvols$relative.BA, type="n", ylab="Relative Basal Area", xlab="Relative Convex Hull Volume")
+
 
 for (i in c(1:length(myspecieslist))){
   subby <- subset(ba.chvols, sp==myspecieslist[i])
-  points(subby$centroiddiff, subby$relative.vol, col=mycolors[i], pch=16)
-  
+  points(subby$relative.vol, subby$relative.BA,  col=mycolors[i], pch="O")
 }
 
+# ACEPEN
+abline(0.0254792, -0.0002011, col = "#1B9E77", lwd = 2)
 
-legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola", "H. virginiana", "S. americana"), 
+# BETPAP
+abline(0.255235, 0.007697, col = "#D95F02", lwd = 2)
+
+#CORALT
+abline(-0.0001574, 0.0000892  , col = "#7570B3", lwd = 2)
+
+#FAGGRA
+abline(0.083677, -0.007733, col = "#E7298A", lwd = 2)
+
+legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola"), 
        lty=1, col=mycolors, bty='n', cex=.75)
-
 
 
 ```  

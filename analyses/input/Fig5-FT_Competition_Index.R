@@ -6,12 +6,60 @@ rm(list = ls())
 options(stringsAsFactors=FALSE)
 setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 
-load("CHVols.RData")
 # LIBRARIES HERE
 library(dplyr)
 library(devtools)
 library(ggplot2)
 library(ggfortify) #install.packages("ggfortify")
+
+
+load("BA-CHVols.RData")
+myspecieslist <- unique(ba.chvols$sp)
+mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A"), 10) # need 6 really!
+
+head(ba.chvols)
+# plot in base package
+plot(ba.chvols$relative.vol, ba.chvols$relative.BA, type="n", ylab="Relative Basal Area", xlab="Relative Convex Hull Volume")
+?plot
+
+for (i in c(1:length(myspecieslist))){
+  subby <- subset(ba.chvols, sp==myspecieslist[i])
+  points(subby$relative.vol, subby$relative.BA,  col=mycolors[i], pch="O")
+}
+
+  lm(ba.chvols$relative.BA[ba.chvols$sp == "FAGGRA"] ~ ba.chvols$relative.vol[ba.chvols$sp == "FAGGRA"])
+
+# ACEPEN
+abline(0.0254792, -0.0002011, col = "#1B9E77", lwd = 2)
+
+# BETPAP
+abline(0.255235, 0.007697, col = "#D95F02", lwd = 2)
+
+#CORALT
+abline(-0.0001574, 0.0000892  , col = "#7570B3", lwd = 2)
+
+#FAGGRA
+abline(0.083677, -0.007733, col = "#E7298A", lwd = 2)
+
+legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola"), 
+       lty=1, col=mycolors, bty='n', cex=.75)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -25,9 +73,12 @@ names(focal.centroid)[names(focal.centroid) == "Site"] <- "site"
 
 
 comp.index.mean <- aggregate(focal.centroid$relative.BA, list(Species = focal.centroid$sp, Site = focal.centroid$Site), FUN = mean, na.rm=TRUE)
-?rename
-ba.chvols <- merge(chvols.focal, focal.centroid, by = c("sp", "site"))
 
+ba.chvols <- merge(chvols.focal, focal.centroid, by = c("sp", "site"))
+ba.chvols <- ba.chvols[-which(ba.chvols$sp == "HAMVIR"),]
+ba.chvols <- ba.chvols[-which(ba.chvols$sp == "SORAME"),]
+
+save(ba.chvols, file = "BA-CHVols.RData")
 
 
 summary(lm1 <- lm(relative.BA ~ vol, data = ba.chvols[ba.chvols$sp == "ACEPEN",]))
