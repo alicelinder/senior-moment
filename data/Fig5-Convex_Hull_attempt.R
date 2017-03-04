@@ -40,13 +40,13 @@ tree.traits$c.n = tree.traits$X.C / tree.traits$X.N
 
 # save tree traits
 tree.traits.focal <- filter(tree.traits, Species == "ACEPEN" | Species == "BETPAP" | Species == "CORALT" | Species == "FAGGRA" | Species == "HAMVIR" | Species == "SORAME")
-save(tree.traits.focal, file = "Species-Traits.RData")
+#save(tree.traits.focal, file = "Species-Traits.RData")
 
 # try removing BETPAP 03 GR because of huge trait values
-tree.traits <- tree.traits[-which(tree.traits$Individual == "BETPAP03_GR"),]
+#tree.traits <- tree.traits[-which(tree.traits$Individual == "BETPAP04_GR"),]
 
 # same for FAGGRA 08 SH
-tree.traits <- tree.traits[-which(tree.traits$Individual == "FAGGRA08_SH"),]
+#tree.traits <- tree.traits[-which(tree.traits$Individual == "FAGGRA08_SH"),]
 
 # clean up data and subset it based on species
 #traits <- select(tree.traits, Site, Species, SLA, Stem.density, 
@@ -150,7 +150,7 @@ chvols.comm <- rbind(hf, wm, gr, sh)
 
 save(chvols.comm, file="chvols.comm.Rdata")
 
-chvols[chvols$site == "WM",]$vol/(chvols.mean[chvols.mean$Site == "WM", chvols.mean$x])
+#chvols[chvols$site == "WM",]$vol/(chvols.mean[chvols.mean$Site == "WM", chvols.mean$x])
 
 
 
@@ -158,7 +158,7 @@ chvols[chvols$site == "WM",]$vol/(chvols.mean[chvols.mean$Site == "WM", chvols.m
 
 
 load("CHVols.RData")
-#chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA" | sp == "HAMVIR" | sp == "SORAME")
+chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA" | sp == "HAMVIR" | sp == "SORAME")
 
 # ggplot(chvols.focal,
 #        aes(lat, relative.vol, color = sp)) +
@@ -172,6 +172,7 @@ load("CHVols.RData")
 myspecieslist <- unique(chvols.focal$sp)
 mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10) # need 6 really!
 
+chvols.focal[which(chvols.focal$relative.vol > 50),]
 
 # plot in base package
 plot(chvols.focal$lat, chvols.focal$relative.vol, type="n", main="Relative Convex Hull Volume across Latitudes", xlab="Latitude", ylab="Relative Convex Hull Volume")

@@ -40,13 +40,19 @@ tree.traits$c.n = tree.traits$X.C / tree.traits$X.N
 
 # save tree traits
 tree.traits.focal <- filter(tree.traits, Species == "ACEPEN" | Species == "BETPAP" | Species == "CORALT" | Species == "FAGGRA" | Species == "HAMVIR" | Species == "SORAME")
+
+# remove wonky BETPAP value
+tree.traits <-  tree.traits[-which(tree.traits$Individual == "BETPAP04_GR"),]
+
+
+
 save(tree.traits.focal, file = "Species-Traits.RData")
 
 # try removing BETPAP 03 GR because of huge trait values
-tree.traits <- tree.traits[-which(tree.traits$Individual == "BETPAP03_GR"),]
+#tree.traits <- tree.traits[-which(tree.traits$Individual == "BETPAP03_GR"),]
 
 # same for FAGGRA 08 SH
-tree.traits <- tree.traits[-which(tree.traits$Individual == "FAGGRA08_SH"),]
+tree.traits <- tree.traits[-which(tree.traits$Individual == "FAGGRA10_HF"),]
 
 # clean up data and subset it based on species
 #traits <- select(tree.traits, Site, Species, SLA, Stem.density, 
@@ -100,7 +106,7 @@ for(site in unique(tree.traits$Site)){
     chvols = rbind(chvols, data.frame(site, sp, vol, n = nrow(ex)))
   }
 }
-
+hist(chvols$vol)
 chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA" | sp == "HAMVIR" | sp == "SORAME")
 
 
@@ -256,8 +262,6 @@ rownames(m.wm) <- m.wm$Species
 d.wm <- d.wm[,colnames(d.wm) %in% indata.wm]
 m.wm <- m.wm[rownames(m.wm) %in% indata.wm,]
 
-class(m.wm)
-dist(m.wm)
 
 # saint hippolyte
 
@@ -374,7 +378,7 @@ chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" 
 chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA")
 
 
-ggplot(chvols.focal.num,
+ggplot(chvols.focal,
        aes(lat, vol, color = sp)) +
   geom_point() + 
   geom_smooth(method="lm", se=F) +
