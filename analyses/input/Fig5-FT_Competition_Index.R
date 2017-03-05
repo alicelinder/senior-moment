@@ -3,7 +3,8 @@
 ### Jan. 31, 2017
 
 rm(list = ls())
-options(stringsAsFactors=FALSE)
+
+#options(stringsAsFactors=FALSE)
 setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
 
 # LIBRARIES HERE
@@ -12,8 +13,37 @@ library(devtools)
 library(ggplot2)
 library(ggfortify) #install.packages("ggfortify")
 
+load("CHVols.centroid.Rdata")
+load("CHVols.RData")
+#load("BA-CHVols.RData")
+load("Clim.Focal.RData")
 
-load("BA-CHVols.RData")
+clim.focal <- subset(clim.focal, select = c("Individual", "sp", "distance.to.climatic.centroid"))
+#x <- subset(chvols.focal, sp == "ACEPEN")
+
+clim.focal$site <- unlist(
+  lapply(strsplit(clim.focal$Individual, "_"),
+         function(x) x[[2]]))
+
+clim.focal$relative.vol <- NA
+
+hf <- chvols.focal[chvols.focal$site == "HF",]
+acepen <- clim.focal[chvols.focal$site]
+
+#clim.focal[which(c(clim.focal$sp == "SORAME" & clim.focal$site == "SH")),]$relative.vol <- chvols.focal[which(c(chvols.focal$site == "SH" & chvols.focal$sp == "FAGGRA")),]$relative.vol
+
+  
+
+clim.focal <- clim.focal[-which(clim.focal$sp == "HAMVIR"),]
+clim.focal <- clim.focal[-which(clim.focal$sp == "SORAME"),]
+
+save(clim.focal, file = "CHVol.Clim.RData")
+
+
+clim.vol <- merge(ba.chvols, clim.focal, by = c("Individual"))
+
+ba.chvols <- ba.chvols[-which(ba.chvols$sp == "SORAME"),]
+
 myspecieslist <- unique(ba.chvols$sp)
 mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A"), 10) # need 6 really!
 

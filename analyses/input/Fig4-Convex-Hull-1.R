@@ -1,6 +1,4 @@
 ## plot convex hull volumes
-
-
 rm(list = ls())
 #options(stringsAsFactors = FALSE)
 setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")

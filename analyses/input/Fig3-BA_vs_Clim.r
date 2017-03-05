@@ -40,6 +40,8 @@ focal.centroid <- focal.centroid[-which(focal.centroid$sp == "QUEALB"),]
 
 clim.focal <- merge(focal.centroid, clim, by = "Individual")
 
+save(clim.focal, file="Clim.Focal.RData")
+
 # ggplot(clim.focal,
 #        aes(distance.to.climatic.centroid, relative.BA, color = sp)) +
 #   geom_point() + 
@@ -93,7 +95,6 @@ clim.focal <- merge(focal.centroid, clim, by = "Individual")
 myspecieslist <- unique(clim.focal$sp)
 mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10) # need 6 really!
 
-
 plot(clim.focal$distance.to.climatic.centroid, clim.focal$relative.BA, type="n", main="Competitiveness Index across Climatic Envelope", xlab="Distance to Climatic Centroid", ylab="Relative Basal Area")
 
 for (i in c(1:length(myspecieslist))){
@@ -124,4 +125,6 @@ abline(-0.09929931, 0.022684574, col="#E6AB02", lwd=2)
 ?legend
 legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola", "H. virginiana", "S. americana"), 
        lty=1, col=mycolors, bty='n', cex=.75)
+
+load("BA-CHVols.RData")
 
