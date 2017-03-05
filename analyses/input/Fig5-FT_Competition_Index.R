@@ -15,7 +15,7 @@ library(ggfortify) #install.packages("ggfortify")
 
 load("CHVols.centroid.Rdata")
 load("CHVols.RData")
-#load("BA-CHVols.RData")
+load("BA-CHVols.RData")
 load("Clim.Focal.RData")
 
 clim.focal <- subset(clim.focal, select = c("Individual", "sp", "distance.to.climatic.centroid"))

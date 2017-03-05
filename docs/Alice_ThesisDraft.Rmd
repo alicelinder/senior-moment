@@ -176,7 +176,21 @@ Caption: Map of all four sites mapped onto a raster image of their mean annual t
 Caption: Anthropogenic warming, in altering the climate, cause a shift in a species' ideal "climate envelope". If a species is limited by its preferred environmental variables, it may have to shift its range in order to compensate for the change in climate. It must match its realized niche with the shift climate envelope or face extinction at its southern (warming) edge. 
     
   \pagebreak  
-  
+## Range Maps 
+  \begin{center}
+\includegraphics[width=8in]{..//docs/acerpens.pdf}
+
+\includegraphics[width=8in]{..//docs/betupapy.pdf}
+
+\includegraphics[width=8in]{..//docs/cornalte.pdf}
+
+\includegraphics[width=8in]{..//docs/fagugran.pdf}
+
+\includegraphics[width=8in]{..//docs/hamavirg.pdf}
+
+\includegraphics[width=8in]{..//docs/sorbamer.pdf}
+\end{center}
+
   
 ```{r results='asis', echo=FALSE, include=FALSE,}
 # load all libaries
@@ -192,7 +206,7 @@ library(reshape2)
 ```
 
 
-## Figure 2    
+## Figure     
 
 ```{r echo=FALSE}
 # load MDS figures

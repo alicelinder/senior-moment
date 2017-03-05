@@ -106,7 +106,8 @@ for(site in unique(tree.traits$Site)){
     chvols = rbind(chvols, data.frame(site, sp, vol, n = nrow(ex)))
   }
 }
-hist(chvols$vol)
+
+
 chvols.focal <- filter(chvols, sp == "ACEPEN" | sp == "BETPAP" | sp == "CORALT" | sp == "FAGGRA" | sp == "HAMVIR" | sp == "SORAME")
 
 
