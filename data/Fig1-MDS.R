@@ -66,6 +66,9 @@ overcomp$site <- factor(as.numeric(as.character(overcomp$site)), labels = c("HF"
 # Clear differences with site, changing space along MDS1
 colz = alpha(c("#E7298A", "#1B9E77", "#D95F02", "#7570B3"), 0.5)
 
+save(overcomp, file="Overstory.RData")
+save(mds1, file="MDS1.RData")
+
 # plot MDS overstory
 plot(mds1, type = "n",
      xlim = c(-2, 2),
@@ -125,7 +128,8 @@ undercomp$site <- as.factor(undercomp$site)
 levels(undercomp$site) <- c(3, 1, 4, 2)
 undercomp$site <- factor(as.numeric(as.character(undercomp$site)), labels = c("HF", "WM", "GR", "SH"))
 
-
+save(undercomp, file="Understory.RData")
+save(mds2, file="MDS2.RData")
 # Clear differences with site, changing space along MDS1
 colz = alpha(c("#E7298A", "#1B9E77", "#D95F02", "#7570B3"), 0.5)
 

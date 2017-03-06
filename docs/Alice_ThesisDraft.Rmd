@@ -1,6 +1,8 @@
 ---
 title: NULL
-output: pdf_document
+output: 
+  pdf_document:
+    fig_caption: yes
 fontsize: 12pt
 geometry: margin=1in
 header-includes:
@@ -9,8 +11,6 @@ header-includes:
    - \setlength\parindent{0.5in}
 toc: true
 toc_depth: 1
-linestretch: 2
-fig_caption: true
 
 ---
 
@@ -158,38 +158,54 @@ Unlike *C. alternifolia*, *H. virginiana* and *S. americana* show a negative cor
 
 # Figures  
   
-## (Figure 1?)
-
-(should I include this? I can make it higher resolution)
-
-\centerline{\includegraphics[height=5in]{..//data/ClimMeanAnnualTemp.jpeg}}
-
+\centerline{\includegraphics[height=5in]{..//data/ClimMeanAnnualTemp.jpeg}}  
   
-Caption: Map of all four sites mapped onto a raster image of their mean annual temperatures, compiled from the 30 arcsecond layer from http://worldclim.org.
-  
+\singlespacing
+  \setlength\parindent{0in}
+  \textbf{Figure 1}: Map of all four sites mapped onto a raster image of their mean annual temperatures, compiled from the 30 arcsecond layer from http://worldclim.org.
 
-## Figure 1  
+\pagebreak
 
 
- \centerline{\includegraphics[height=10in]{..//data/Illustration1.png}}
-    
-Caption: Anthropogenic warming, in altering the climate, cause a shift in a species' ideal "climate envelope". If a species is limited by its preferred environmental variables, it may have to shift its range in order to compensate for the change in climate. It must match its realized niche with the shift climate envelope or face extinction at its southern (warming) edge. 
+ \centerline{\includegraphics[height=10in]{..//data/Illustration1.png}}  
+ 
+
+ \setlength\parindent{0in}
+ \singlespacing
+\textbf{Figure 2}: Anthropogenic warming can drastically alter the environment to which a species has adapted. This shift in climate also means that a species' ideal "climate envelope"" shifts. If a species is limited by its preferred environmental variables, it may have to shift its range in order to compensate for the change in climate. It must match its realized niche with the shift climate envelope or face extinction at its southern (warming) edge. 
     
   \pagebreak  
-## Range Maps 
-  \begin{center}
-\includegraphics[width=8in]{..//docs/acerpens.pdf}
+    
+## Range Maps   
 
-\includegraphics[width=8in]{..//docs/betupapy.pdf}
 
-\includegraphics[width=8in]{..//docs/cornalte.pdf}
+  \setlength\parindent{0in}
 
-\includegraphics[width=8in]{..//docs/fagugran.pdf}
 
-\includegraphics[width=8in]{..//docs/hamavirg.pdf}
+\includegraphics[width=5.5in]{..//docs/acerpens.pdf}
+\singlespacing  
+\textbf{Figure 2}: Representation of the range of \textit{A. pensylvanicum}. Individuals were found at allsites, with functional trait data taken across all four. Used as one of four species approaching its northern range at the northernmost site at Saint Hippolyte. Image taken from https://gec.cr.usgs.gov.
 
-\includegraphics[width=8in]{..//docs/sorbamer.pdf}
-\end{center}
+\includegraphics[width=5.5in]{..//docs/betupapy.pdf}
+\singlespacing  
+\textbf{Figure 3}: Representation of the range of \textit{B. papyrifera}. Individuals were found at all sites, with functional trait data taken across all four. Used as one of two species entering its range interior away from Harvard Forest (taken as near its southern range extreme). Image taken from https://gec.cr.usgs.gov.
+
+\includegraphics[width=5.5in]{..//docs/cornalte.pdf}
+\singlespacing  
+\textbf{Figure 4}: Representation of the range of \textit{C. alternifolia}. Community composition and competition index data was collected at the White Mountains, Dartmouth Grant, and Saint Hippolyte sites. Functional trait data was taken at the Harvard Forest, Dartmouth Grant, and Saint Hippolyte sites (over the year between the trait data and community composition data collections, the individuals found at Harvard Forest became very unhealthy). Used as one of four species approaching its northern range at the northernmost site at Saint Hippolyte. Image taken from https://gec.cr.usgs.gov.
+
+\includegraphics[width=5.5in]{..//docs/fagugran.pdf}
+\singlespacing  
+\textbf{Figure 5}: Representation of the range of \textit{F. grandifolia}. Individuals were found at all four sites, with functional trait data taken across all four. Used as one of four species approaching its northern range at the northernmost site at Saint Hippolyte. Image taken from https://gec.cr.usgs.gov.
+
+\includegraphics[width=5.5in]{..//docs/hamavirg.pdf}
+\singlespacing  
+\textbf{Figure 6}: Representation of the range of \textit{H. virginiana}. Individuals were found at only two sites, with functional trait data taken at both (though not enough to compute convex hull volumes). Used as one of four species approaching its northern range at the one of the middle sites in the White Mountains. Image taken from https://gec.cr.usgs.gov.
+
+\includegraphics[width=5.5in]{..//docs/sorbamer.pdf}
+\singlespacing  
+\textbf{Figure 7}: Representation of the range of \textit{S. americana}. Individuals were found at all four sites, though not enough functional trait data was collected to determine convex hull volumes across all four sites (even though data was collected across all four). Used as one of two species that nears its southern range edge at the site near Harvard Forest. Image taken from https://gec.cr.usgs.gov.
+
 
   
 ```{r results='asis', echo=FALSE, include=FALSE,}
@@ -206,21 +222,76 @@ library(reshape2)
 ```
 
 
-## Figure     
-
 ```{r echo=FALSE}
 # load MDS figures
-source("Fig1-MDS.R")
+# plot MDS overstory
+load("MDS1.RData")
+load("Overstory.RData")
+
+colz = alpha(c("#E7298A", "#1B9E77", "#D95F02", "#7570B3"), 0.5)
+
+plot(mds1, type = "n",
+     xlim = c(-2, 2),
+     ylim = c(-1.2, 2))
+
+count = 1
+for(i in unique(overcomp$site)){
+  ordihull(mds1, group = overcomp$site, label = F,
+           draw = "polygon", col = colz[count],
+           show.groups = i)
+  count = count + 1
+}
+
+legend("topleft",
+       fill = colz,
+       legend = c("Harvard Forest", "White Mountains", "Grant", "St. Hippolyte"),
+       bty = "n")
 
 ```
+   
+ \setlength\parindent{0in}
+ \singlespacing
+\textbf{Figure 8}: A multidimensional scalar plot representing the species composition and variation of the overstory across all four sites. The shape of the polygon represents the different combinations of species that appear in the overstory in each plot within each site. The larger the polygon, the more unique combinations of species that appear together at that site. The overlap across the northern three sites (White Mountains, Dartmouth Grant, and Saint Hippolyte) signifies a great deal of similarity in cominations of species (species that appeared together in plots at those sites). There is a clear difference between Harvard Forest (LTER site), and the other three of the sites.
+
 
 
 \pagebreak  
 
-## Figure 3
+```{r echo=FALSE}
+# load MDS figures
+# plot MDS overstory
+load(file="Understory.RData")
+load(file="MDS2.RData")
+# Clear differences with site, changing space along MDS1
+colz = alpha(c("#E7298A", "#1B9E77", "#D95F02", "#7570B3"), 0.5)
+
+plot(mds2, type = "n",
+     xlim = c(-1.5, 1.5),
+     ylim = c(-1.2, 2)
+)
+
+count = 1
+for(i in unique(undercomp$site)){
+  ordihull(mds2, group = undercomp$site, label =F,
+           draw = "polygon", col = colz[count],
+           show.groups = i)
+  count = count + 1
+}
+
+legend("topleft",
+       fill = colz,
+       legend = c("Harvard Forest", "White Mountains", "Grant", "St. Hippolyte"),
+       bty = "n",
+       cex = 1.2)
+
+```
 
 
+ \setlength\parindent{0in}
+ \singlespacing
+\textbf{Figure 9}: A multidimensional scalar plot representing the species composition and variation of the understory (under 1.3m and thus not measured for DBH) across all four sites. The shape of the polygon represents the different combinations of species that appear in the overstory in each plot within each site. The larger the polygon, the more unique combinations of species that appear together at that site. The overlap across the northern three sites (White Mountains, Dartmouth Grant, and Saint Hippolyte) signifies a great deal of similarity in cominations of species (species that appeared together in plots at those sites). There is a clear difference between Harvard Forest (LTER site), and the other three of the sites. Between the overstory and understory species composition, however, there are fewer unique combinations of species that occur in the understory. This is denoted by the slightly smaller polygons.
 
+\pagebreak
 
 ```{r, echo=FALSE, warning=FALSE}
 ## Figure 2: graph of Basal Area across latitudes
@@ -235,7 +306,7 @@ focal.centroid <- focal.centroid[-which(focal.centroid$sp == "FAGGRA" & focal.ce
 focal.centroid <- focal.centroid[-which(focal.centroid$sp == "QUEALB"),]
 
 #myspecieslist <- unique(focal.centroid$sp)
-plot(focal.centroid$minLatdiff,focal.centroid$relative.BA, type="n", xlim <- c(7, 12), ylim <- c(-0.1,1), xlab="Distance from Min. Latitudes (degrees)", ylab="Relative Basal Area")
+plot(focal.centroid$minLatdiff,focal.centroid$relative.BA, type="n", xlim <- c(7, 12), ylim <- c(-0.1,1), xlab="", ylab="Relative Basal Area")
 
 # subset my species list so that BETPAP and SORAME are in separate places
 s.sp <- c("BETPAP", "SORAME")
@@ -297,11 +368,11 @@ legend('topright', legend=c("A. pensylvanicum", "C. alternifolia", "F. grandifol
 
 ```
   
-\bigskip      
-   
+ \setlength\parindent{0in}
+ \singlespacing
+\textbf{Figure 10}: Competitiveness index across latitudes varies by species. Overall, there is a positive trend in competition index as individuals appear farther at sites located farther north. \textit{B. papyrifera} and \textit{S. americana} are separated from the other four species to emphasize that they are the two species that are moving away from their (southern) range extremes, rather than approaching their northern range extremes.
 \pagebreak   
 
-## Figure 4    
 
 ```{r, echo=FALSE, warning=FALSE}
 # load all data from source code
@@ -311,7 +382,7 @@ myspecieslist <- unique(clim.focal$sp)
 mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10) # need 6 really!
 
 
-plot(clim.focal$distance.to.climatic.centroid, clim.focal$relative.BA, type="n", main="Competitiveness Index across Climatic Envelope", xlab="Distance from Climatic Centroid", ylab="Relative Basal Area")
+plot(clim.focal$distance.to.climatic.centroid, clim.focal$relative.BA, type="n", xlab="Distance from Climatic Centroid", ylab="Relative Basal Area")
 
 for (i in c(1:length(myspecieslist))){
   subby <- subset(clim.focal, sp==myspecieslist[i])
@@ -344,11 +415,11 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
        lty=1, col=mycolors, bty='n', cex=.75)
 
 ```
-
+ \setlength\parindent{0in}
+ \singlespacing
+\textbf{Figure 11}: Across the six species, the intraspecific competition index of relative basal are did not vary predictably as species moved away from their climatic centroids. \textit{B. papyrifera} exhibited a strong negative correlation with its competition index, possibly due its larger maximum size compared to the other species. Overall, there was a negative trend in a species' competition index as it moves away from its climatic centroid.
 
 \pagebreak  
-
-## Figure 5  
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 load("CHVols.RData")
@@ -361,7 +432,7 @@ mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB0
 
 
 # plot in base package
-plot(chvols.focal$lat, chvols.focal$relative.vol, type="n", main="Relative Convex Hull Volume across Latitudes", xlab="Latitude", ylab="Relative Convex Hull Volume")
+plot(chvols.focal$lat, chvols.focal$relative.vol, type="n", xlab="Latitude", ylab="Relative Convex Hull Volume")
 
 for (i in c(1:length(myspecieslist))){
   subby <- subset(chvols.focal, sp==myspecieslist[i])
@@ -388,33 +459,12 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
 
 ```  
 
-\bigskip      
-      
-\begin{table}[h!]
-  \centering
-  \caption{Linear coefficients for Fig. 5}
-  \smallskip
-  \label{tab:table2}
-  \begin{tabular}{cccc}
-    \toprule
-    Species & Coefficient & $R^{2}$ & $p$ value\\
-    \midrule
-    Acer pensylvanicum & XXX & XXX & XXX\\
-    Betula papyrifera & XXXX & XXXX & XXXX\\
-    Corylus alternifolia & XXXX & XXXX & XXXX\\
-    Faggus grandifolia & XXXX & XXXX & XXXX\\
-    Hamamelis virginiana & XXX & XXX & XXX\\
-    \bottomrule
-  \end{tabular}
-\end{table}  
-  
-\smallskip  
+ \setlength\parindent{0in}
+ \singlespacing
+\textbf{Figure 12}: The suites of traits examined (SLA, %C:%N, DBH, Stem density) did not vary predictably with latitude. Across the four species that had enough trait data to calculate convex hull volume, two species (\textit{B. papyrifera} and \textit{A. pensylvanicum}) exhibited a decrease in their relative convex hull volume across latitudes. The other two increased across latitudes. All species appeared at all four sites, except for \textit{C. alternifolia}, which appeared at three.
   
   
 \pagebreak  
-
-
-## Figure 6    
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -453,32 +503,14 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
 
 ```  
 
-\bigskip      
-      
-\begin{table}[h!]
-  \centering
-  \caption{Linear coefficients for Fig. 6}
-  \smallskip
-  \label{tab:table2}
-  \begin{tabular}{cccc}
-    \toprule
-    Species & Coefficient & $R^{2}$ & $p$ value\\
-    \midrule
-    Acer pensylvanicum & XXX & XXX & XXX\\
-    Betula papyrifera & XXXX & XXXX & XXXX\\
-    Corylus alternifolia & XXXX & XXXX & XXXX\\
-    Faggus grandifolia & XXXX & XXXX & XXXX\\
-    Hamamelis virginiana & XXX & XXX & XXX\\
-    \bottomrule
-  \end{tabular}
-\end{table}  
-  
-\smallskip      
+ \setlength\parindent{0in}
+ \singlespacing
+<!--AHL: need to check why CORALT doesn't appear at the three sites that it appears at before in the previous figure...it's weird and I can't figure it out at the moment  -->
+\textbf{Figure 13}: Relative convex hull volume decreased consistently across all four species examined as they moved away from their climatic centroids. Three of the species appeared at the four sites, and one appeared at three sites.
   
   
   \pagebreak
 
-## Figure 7    
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -517,41 +549,19 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
 
 ```  
 
-\bigskip      
-      
-\begin{table}[h!]
-  \centering
-  \caption{Linear coefficients for Fig. 6}
-  \smallskip
-  \label{tab:table2}
-  \begin{tabular}{cccc}
-    \toprule
-    Species & Coefficient & $R^{2}$ & $p$ value\\
-    \midrule
-    Acer pensylvanicum & XXX & XXX & XXX\\
-    Betula papyrifera & XXXX & XXXX & XXXX\\
-    Corylus alternifolia & XXXX & XXXX & XXXX\\
-    Faggus grandifolia & XXXX & XXXX & XXXX\\
-    Hamamelis virginiana & XXX & XXX & XXX\\
-    \bottomrule
-  \end{tabular}
-\end{table}  
-  
-\smallskip      
-  
+ \setlength\parindent{0in}
+ \singlespacing
+\textbf{Figure 14}: Across the four species with sufficient trait data, relative convex hull volume of species across all sites did not reliably predict the relative basal area. This suggests more complex factors at play in determining a species' suite of functional traits than an individual's competitiveness.
   
 \pagebreak   
-  
-## Figure 9    
+   
+\centerline{\includegraphics[width=5.5in]{..//analyses/output/Chulls.jpg}}
 
-\centerline{\includegraphics[height=5in]{..//analyses/output/CHull_ACEPEN.jpeg}}
-\centerline{\includegraphics[height=5in]{..//analyses/output/CHull_BETPAP.jpeg}}
-\centerline{\includegraphics[height=5in]{..//analyses/output/CHull_CORALT.jpeg}}
-\centerline{\includegraphics[height=5in]{..//analyses/output/CHull_FAGGRA.jpeg}}
-\centerline{\includegraphics[height=5in]{..//analyses/output/CHull_SORAME.jpeg}}
+\textbf{Figure 15}: Convex hull volumes using a PCA across all species show marked variations in functional traits across sites. 
 
 
 \pagebreak
+\doublespacing  
 
 # Discussion    
 Ecologists have long understood that range limits are caused by complex dynamics between biotic and abiotic factors. These dynamics are especially important to understand in light of climate change. A warming world and shift in abiotic factors necessitates research into the limiting effect of biotic interactions at range limits. As a species’ climatic envelope migrates north, looking at the limiting power of biotic and abiotic factors can provide insight into the future survival of that species. My results suggest that the effect of biotic and abiotic factors on limiting trees at their range limits varies across tree species. They showed no clear pattern with regards to a species’ competitiveness across latitudes or climatic envelopes, even within species positioned closer to their southern range limits.
