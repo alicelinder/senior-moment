@@ -9,6 +9,7 @@ header-includes:
    - \usepackage{booktabs}
    - \usepackage{setspace}
    - \setlength\parindent{0.5in}
+   - \usepackage{color}
 toc: true
 toc_depth: 1
 
@@ -80,13 +81,9 @@ To determine the nature of woody species’ future responses to climate change, 
 **H1:** a species would become less competitive as they approached its latitudinal and climatic range limits, since populations at geographic range edges more frequently experience strong, limiting factors (Sexton et. al 2009).   
 **A1:** Alternatively, a species could grow more competitive as it approaches its range limit due to a mix of possible factors (e.g., the presence of fewer competitors, or increasing competitive ability of species at the abiotic environment of the edge etc.), thus leading to a greater realized niche.   
 **A2:** Finally, it is a possibility that competition is not predicted by position in its climatic or latitudinal range, indicating that local factors, such as habitat or resource availability, might matter more within each population. Similarly, other factors could determine competitiveness, such as community composition and local adaptation, rather than a species’ position within its range limit. It is possible that local community composition around each tree is most predictive of its competitive success, with little overall pattern across the latitudinal gradient. 
-  
-**H2:** I also predicted that trees at their range extremes would exhibit altered suites of functional traits from trees in the range interior (Weiher & Keddy 1998). Similar to the prediction (H1) above, because populations at their range limits often see more extreme environments, I predicted that their functional traits would differ from functional traits of individuals at their range interiors. Since species’ functional traits that are linked to life strategies have been shown to vary based on the latitude of their origin (Cavender-Bares 2007), it seems likely that functional traits will exhibit variation across a species’ range.    
-  
-**A1:** Increases in intra-specific trait variation across a latitudinal gradient at the range limit could indicate increased genetic adaptation and/or increased plasticity. Since populations at their range extremes (and at more northern latitudes) face harsher environments than populations in their range interior, this could be due to resource partitioning in the presence of competitors in a sub-optimal environment, or simply because it is exhibiting greater plasticity in response to the more extreme environment.
-  
-**A2:** Alternatively, decreased intra-specific trait variation approaching a range limit would indicate that only one combination of traits is successful in that particular limiting environment (Burns & Straus 2012).
-  
+**H2:** I also predicted that trees at their range extremes would exhibit altered suites of functional traits from trees in the range interior (Weiher & Keddy 1998). Similar to the prediction (H1) above, because populations at their range limits often see more extreme environments, I predicted that their functional traits would differ from functional traits of individuals at their range interiors. Since species’ functional traits that are linked to life strategies have been shown to vary based on the latitude of their origin (Cavender-Bares 2007), it seems likely that functional traits will exhibit variation across a species’ range.  
+**A1:** Increases in intra-specific trait variation across a latitudinal gradient at the range limit could indicate increased genetic adaptation and/or increased plasticity. Since populations at their range extremes (and at more northern latitudes) face harsher environments than populations in their range interior, this could be due to resource partitioning in the presence of competitors in a sub-optimal environment, or simply because it is exhibiting greater plasticity in response to the more extreme environment.  
+**A2:** Alternatively, decreased intra-specific trait variation approaching a range limit would indicate that only one combination of traits is successful in that particular limiting environment (Burns & Straus 2012).  
 **A3:** Finally, no clear pattern in intra-specific variation in functional traits approaching the range limit of a species would indicate that other rules of community assembly are playing a larger part in the determining of range limits, such as competition or other biotic factors.
   
 By examining community composition of certain woody species in conjunction with their corresponding functional traits across this latitudinal gradient, we can better predict how species composition will change at the forest level. In looking at both the community composition of species at these sites and their functional traits specifically at the range limits, we can understand which species are most at risk with the changing environment, and why they might not survive. 
@@ -554,105 +551,79 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
 
 \pagebreak
 \doublespacing  
-
 # Discussion    
-<!-- I like your opening section! Just need to tighten it up -->
-
-Ecologists have long understood that range limits are caused by complex dynamics between biotic and abiotic factors. These dynamics are especially important to understand in light of climate change. 
-<!-- The next two sentences are too similar, combine into one sentence or make two unique points. Also, do you want to mention competition in this opening, explanatory paragraph?.-->
-A warming world and shift in abiotic factors necessitates research into the limiting effect of both abiotic and biotic interactions at range limits. As a species’ climatic envelope migrates north, looking at the limiting power of biotic and abiotic factors can provide insight into the future survival of that species. 
-
+  
+Ecologists have long understood that range limits are caused by complex dynamics between biotic and abiotic factors. These dynamics are especially important to understand in light of climate change. As a species’ climatic envelope migrates north, looking at the limiting power of biotic and abiotic factors at range limits can provide insight into the future survival of that species. 
+  
 My results suggest that the effect of biotic and abiotic factors on limiting trees at their range limits varies across tree species. They showed no clear pattern with regards to a species’ competitiveness across latitudes or climatic envelopes, even within species positioned closer to their southern range limits.
 
-<!-- Add a short paragraph introducing traits (just the way your first paragraph introduces abiotic and biotic). -->
+Functional traits have recently seen a resurgence among community ecologists. They provide useful continuous variables that can be measured across species. In this way, they provide crucial information on how communities assemble, and can serve as proxies for other traits that are more difficult to measure. By examining functional traits across species’ ranges, we can examine factors that have been shown to strongly influence organismal performances and thus make more accurate predictions about future success of those species.
   
 There was a similar dearth of a clear pattern in examining the functional traits of four of the six focal species across the sites at which they were found. The functional trait space each species occupied relative to the average functional diversity of communities at each site reflected very little effect derived from latitudinal or climatic gradients. 
 
 
 ## Competition across latitudinal and climatic range limits
-I found no strong support for my hypothesis that species would decrease in competitiveness as they approached their latitudinal and/or climatic range limits. The overall trend in competitiveness across latitudes was positive, indicating a slight increase in dominance as a species goes north. This lack of clear pattern probably indicates that latitudinal range limits are caused by a complex interplay of biotic and abiotic factors that is not fully accounted for in simply examining a species’ competitiveness. This suggests that competition is not predicted by its position in its latitudinal range (**H1, A2)**. <!-- Need a little more to this paragraph (or perhaps could be two paragraphs?). What does it mean that "that competition is not predicted by its position in its latitudinal range" and how does it relate to the immediately preceeding sentence? -->
+I found no strong support for my hypothesis that species would decrease in competitiveness as they approached their latitudinal and/or climatic range limits. The overall trend in competitiveness across latitudes was positive, indicating a slight increase in dominance as a species goes north. This lack of clear pattern probably indicates that latitudinal range limits are caused by a complex interplay of biotic and abiotic factors that is not fully accounted for in simply examining a species’ competitiveness. 
   
-The overall lack of a significant relationship competitiveness and position in range, combined with different relationships for certain species, indicate that there are other factors playing a part in determining a species' range limits. These other factors probably prevent a clear pattern from emerging in my data. 
-<!-- Below I think you need a setup sentence where you just say -- size class may matter, then break down why ... right now you're trying to do the work of 2-3 sentences in one sentence and it's very hard on the reader. -->
-It is possible that the species of trees, such as *H. virginiana*, *A. pensylvanicum*, and *S. americana*, that are mid-sized and never reach the same level of competitiveness in basal area as *B. papyrifera*, for example, are more susceptible to biotic factors as they near their latitudinal range limits. This could be due to biotic factors not examined, such as percentage cover in the canopy, which are widely recognized as constraining plant development over time due to possible loss of energy from sunlight (Biging & Dobbertin 1995, Contreras et. al 2011). To account for this, one could utilize a different competition index in a similar study on latitudinal and climatic ranges. 
-<!-- But are distance-dependent indices going to help if the species are just in totally different size classes? I think you either need to make this connection clear or make two separate points (1. Hey readers, maybe you should focus on species in one size class becuase they probably compete and 2. maybe other metrics would be better ... and why. Your stuff below is really nice! I just didn't see how it would help the size class issue. Also, you should link both these topics under a general theme or topic sentence related to "competition is hard to measure.") -->
-More accurate competition indices are distance-dependent (whereas summing up the surrounding basal area of larger competitors than the focal individual is a distance-indepedent index). The best distance-dependent competition index is the sum of the horizontal angles multiplied by the ratios of the DBHs of the neighbor and the cored individuals (outlined in Rouvinen & Kuuluvainenas 1997 and as tested in Contreras et. al 2011). The downside of this method (and of distance-dependent competition indices in general) is that they require much more time to collect data. This is a major limiting factor in latitudinal studies, since so many resources are required to collect data in the field across such a large area. Additionally, studies have observed that the stronger limiting factors at a species' southern range limit are interspecific competition, while environmental factors limit species at their northern limits (Brown et. al 1996, Nakawatase & Peterson 2006). Due to the limited data I recorded of species with southern range limits close to the four sites, my study was lacking in this respect.
+The overall lack of a significant relationship competitiveness and position in range, combined with different relationships for certain species, indicate that there are other factors playing a part in determining a species' range limits. These other factors likely prevent a clear pattern from emerging in my data. For example, the average size of the focal species I chose varies greatly. With varying size, one would expect unequal rates of establishment or survival of saplings depending on the resource needs of the species. Species of trees that are mid-sized (such as *H. virginiana*, *A. pensylvanicum*, and *S. americana*) will never reach the same level of competitiveness in basal area as the larger species, such as *B. papyrifera*. These species could be more susceptible to biotic factors as they near their latitudinal range limits, whereas *B. papyrifera*’s size gives it a large advantage once it is successfully established, regardless of environment. This consideration of size class also highlights that some species of different sizes may compete strongly, but only at different life stages when they are similarly sized. Studies show that climate has been shown to be a strong limiting factor on tree species at their range extremes, depending on their growth stage (Ettinger and HillesRisLambers 2013).
   
-It is possible that community composition and local adaptation matter more. <!-- matter more than? Simple indices of competition?  -->
-In this case, local community composition could be more predictive of a tree’s success. 
-<!-- This next sentence for me does not connect to the one above ... help make the connection for readers! -->
-<!--  Also be careful in assigning trees 'abilities.' -->
-This is a positive outlook in terms of the possibility of a tree species’ potential to migrate north to account for population loss on its southern range edge, though this is not supported by current literature that suggests range shifts will probably lag the velocity of climate change (Loarie et. al 2009). 
-<!-- Flip the order of your sentence below: you tended to focus on northern edges, but it is possible that a species ... -->
-It is also possible that a species is more limited by competition at its southern edge, and thus my results would not reflect this as they are heavily reliant on species that lie closer to their northern range limits across our sites. Biotic interactions have been theorized as the stronger limiting factor at southern range edges. Additionally, ecological models predict that biotic interactions will create lags in climate tracking (Svenning et. al 2014). This has also been supported by experiments on the ground (Fisichelli et. al 2012). <!-- But what about the two of your species near their southern range limit? What do your results say relating to what you just discussed here? -->
+Variation in size and rates of sapling survival make competition difficult to measure more generally. Studies in intra-specific competition often examine percentage cover in the canopy, which is widely recognized as constraining plant development over time due to possible loss of energy from sunlight (Biging & Dobbertin 1995, Contreras et. al 2011). To account for this, one could utilize a different competition index in a similar study on latitudinal and climatic ranges. More accurate competition indices are distance-dependent (whereas summing up the surrounding basal area of larger competitors than the focal individual is a distance-indepedent index). The best distance-dependent competition index is the sum of the horizontal angles multiplied by the ratios of the DBHs of the neighbor and the cored individuals (outlined in Rouvinen & Kuuluvainenas 1997 and as tested in Contreras et. al 2011). The downside of this method (and of distance-dependent competition indices in general) is that they require much more time to collect data. This is a major limiting factor in latitudinal studies, since so many resources are required to collect data in the field across such a large area.
   
-<!-- Define sweet spot or re-word (I recommend re-word). -->  
-I saw a similarly unclear pattern in competitiveness across species’ climatic envelopes. The only species to exhibit a decrease in competitiveness was *B. papyrifera*, suggesting that environment may be more of a limiting factor in its establishment than the other species examined. 
-<!--The above and below don't fully connect for me, either make the connection clear to the reader or divide into two paragraphs. How can you find an unclear pattern then find a clear pattern? You must be discussing two different things but that's not clear to me as a reader.  -->
-Overall, there was a negative trend in a species’ relative basal area in relation to the distance of the individual from its climatic “sweet spot.” This confirms my hypothesis that a species will become less competitive as it approaches its climatic range limit (or moves away from the center of its climatic range, where environmental factors are most favorable for it). This suggests the species examined have climatic ranges that are not necessarily representative of their fundamental niche, and also that the latitudinal range limit as a proxy for harsh environmental conditions may not tell the whole story. 
+It is also possible that community composition and local adaptation matter more for a species’ size than its position within its latitudinal or climatic range. In this case, local community composition could be more predictive of a tree’s success. The more important question to examine in studies of this nature would then be what other organisms are co-occurring with the species of interest, and the nature of their interactions. Invasive species that are more quick to colonize new environments than native species may prevent that native species from migrating north at a rate that allows it to account for population loss at its southern range limit. Ecological models predict that biotic interactions will create lags in climate tracking (Svenning et. al 2014). This has also been supported by experiments on the ground (Fisichelli et. al 2012). *(AHL Citation on invasive species?)*
 
-<!-- Explain 'this' briefly.  -->  
-This could mean that climate is not a limiting factor for the species that do not show a negative correlation. Instead, it is possible that they do not need to track their habitat and thus will not see a range shift in the face of a warming climate. A positive correlation between habitat preference and performance in the preferred habitat promotes specialization to the preferred habitat (Holt 1987). Seeing habitat preference have little effect when examined in relation to performance suggests that these species have not specialized to their preferred habitats, and so may not see the population loss that some species forced to shift in their range due to climate changes have faced in the past (Davis et. al 2001). <!-- Nice stuff here! -->
+It is also possible that a species is more limited by competition at its southern edge, and thus my results would not reflect this as they are heavily reliant on species that lie closer to their northern range limits across our sites. Additionally, studies have observed that the stronger limiting factors at a species' southern range limit are interspecific competition, while environmental factors limit species at their northern limits (Brown et. al 1996, Nakawatase & Peterson 2006). Due to the limited data I recorded of species with southern range limits close to the four sites, my study was lacking in this respect. The two species I did examine, *B. papyrifera* and *S. americana*, that near their southern range extreme at my southern-most site exhibited opposite trends in competitiveness across latitudes. *B. papyrifera* behaved as hypothesized decreasing in competitiveness as it neared its southern latitudinal range edge. For best results, a study would examine a species’ entire latitudinal and climatic range, though this is hindered by logistical difficulties in field sampling.
+  
+I saw a similarly unclear pattern in competitiveness across species’ climatic envelopes. The only species to exhibit a decrease in competitiveness was *B. papyrifera*, suggesting that environment may be more of a limiting factor in its establishment than the other species examined. While overall in the mixed effects model there was a negative trend in a species’ relative basal area in relation to the distance of the individual from its climatic centroid, individual species did not mirror this behavior. This confirms my hypothesis that a species will become less competitive as it approaches its climatic range limit (or moves away from the center of its climatic range, where environmental factors are most favorable for it). This suggests the species examined have climatic ranges that are not necessarily representative of their fundamental niche, and also that the latitudinal range limit as a proxy for harsh environmental conditions may not tell the whole story. 
+  
+My results could mean that climate is not a limiting factor for the species that do not show a negative correlation. Instead, it is possible that they do not need to track their habitat and thus will not see a range shift in the face of a warming climate. A positive correlation between habitat preference and performance in the preferred habitat promotes specialization to the preferred habitat (Holt 1987). Seeing habitat preference have little effect when examined in relation to performance suggests that these species have not specialized to their preferred habitats, and so may not see the population loss that some species forced to shift in their range due to climate changes have faced in the past (Davis et. al 2001).
   	
-<!-- Need to add a transition here. Something like, 'Beyond my findings of XYZ, there is evidence that ... -->
-There is evidence that plant distribution data does not match climatic tolerance estimates (Curtis and Bradley 2016). Additionally, climatic niche shifts are not reflected in species distribution, and many species in naturalized distribution were found outside native climatic conditions (Early and Sax 2014). If a species is not at climatic equilibrium, its competitiveness to individuals around it could reflect the effect of climate from earlier in the individual’s life. This could explain the absence of a strong effect of climate on a species’ size (and competitiveness), and indicates climate could be much less of a limiting factor than initially thought. Climate has also been shown to be a strong limiting factor on tree species at their range extremes, depending on their growth stage (Ettinger and HillesRisLambers 2013). <!-- This is a nice ending here, but for in terms of organization, the point about growth stages makes the most sense above where you discuss different size classes ... Up there you could say at some point 'this consideration of size class also highlights that some species of different sizes may compete strongly, but only at different life stages when they are similarly sized' ... then you could add some of the above there. -->
+Beyond my findings that a species’ position within its climatic cetroid is not a reliable predictor of its competitiveness, there is evidence that plant distribution data does not match climatic tolerance estimates (Curtis and Bradley 2016). Additionally, climatic niche shifts are not reflected in species distribution, and many species in naturalized distribution were found outside native climatic conditions (Early and Sax 2014). If a species is not at climatic equilibrium, its competitiveness to individuals around it could reflect the effect of climate from earlier in the individual’s life. This could explain the absence of a strong effect of climate on a species’ size (and competitiveness), and indicates climate could be much less of a limiting factor than initially thought. 
   
 ## Suites of functional traits across ranges
   
-<!-- I hypothesized .... because (explain why you had this hypothesis). -->  
-I hypothesized that trees at their range extremes would show altered suites of functional traits from trees in their range interior. 
-<!-- This next sentence is so great! I love it.  -->
+I hypothesized that trees at their range extremes would show altered suites of functional traits from trees in their range interior because species at their range limits often see more extreme environments (Sexton et. al 2009), and functional traits have been shown vary based on the individual’s latitude of origin (Cavender-Bares 2007).
+  
 To examine this, I examined how much of a community’s functional richness was occupied by each focal species. Across sites, latitude appeared to have no discernible effect overall on the species’ relative functional richness (Fig. 5). This could indicate that biotic factors or environmental factors not consistent across latitudes are more predictive in a species’ suite of functional traits. Past studies have found that latitude does predict trends of functional traits (De Frenne et. al 2011), but the traits examined differ from those examined in this study. 
   
-<!--Can you also cite a figure here below?  Also, is 'species’ relative functional richness' the same as 'how much of a community’s functional richness was occupied by each focal species'? If so you should add (species’ relative functional richness) above. -->
-<!-- Is the sweet spot a climatic centroid?  -->
-Conversely, across a climatic range there is overall a decrease in species’ relative functional richness. This suggests that environment, more than latitude, is a determining factor in the functional traits exhibited by a species. As a species moves farther away from its climatic “sweet spot,” its functional traits become more similar and show less variability relative to the functional richness of its community. In a study conducted by Guittar et. al (2016), only certain functional traits showed a reliable pattern across climatic gradients (including SLA, as examined in this study), but fewer traits were consistently predictive of changes in species abundances in warmed turf used in the study. <!-- This last sentence is written so that I wonder about your traits, one by one -- you might adjust the sentence so the reader doesn't start wondering about this. You could just say, Other studies examining SLA (Guittar et. al, 2016) have found similar results to mine. -->
-
+Conversely, across a climatic range there is an overall decrease in species’ relative functional richness (Fig. 13). This suggests that environment, more than latitude, is a determining factor in the functional traits exhibited by a species. As a species moves farther away from its climatic centroid, its functional traits become more similar and show less variability relative to the functional richness of its community. Other studies examining SLA (Guittar et. al, 2016) have found consistent patterns across climatic ranges, similar to my results.
   
-This result confirms my hypothesis that trees moving away from their climatic range interior exhibit altered suites of functional traits from trees in their range interior, and specifically *A1*. 
-<!-- Insert A1 written out in parentheses above after A1. Also the below sentence is a bit confusing -- what does 'such' in such suites mean and what does 'that' in that particular environment mean? -->
-This suggests that such suites of traits are successful in that particular limiting environment (Burns and Straus 2012). However, functional trait similarity was not linked to a tree’s relative size (i.e. competitiveness index) within a plot.
-<!-- Below sounds really cool, but I don't quite get it -- try to break it down more for readers (like me).  -->
-This could suggest that abiotic factors play more of a part in the phenotypes observed in a species, though this is not supported by the literature (Burns and Straus 2012; Kunstler et. al 2015). In a study by Funk and Wolf (2016), certain suites of functional traits in grasses were a better predictor of competitive outcome than phylogenetic relatedness.
-
-<!-- Need to reintroduce readers to convex hull, for example -- say this was another method to measure X and be clear if you are talking about across sites, latitudes or climatic sweet spots. If you are talking about convex hull stuff above then make that clear (I wasn't sure at all). If, alternatively, convex hulls are an additional way to look at trait variability so be sure to say how this compares with your findings from your other methods. -->
-There was no discernible pattern across species in the changes of their suites of functional traits, based solely on the overlap of their convex hulls (Fig. AHL Add figure number here with convex hull pictures). Two species, *C. alternifolia* and *F. grandifolia*, exhibited a marked difference in the convex hulls of their traits between the Harvard Forest and the other three of the sites. This mirrors the difference in species composition between Harvard Forest and the other three sites observed in both the understory and overstory (Fig. 3). Such results suggest that the type of species that co-occur with the focal species could affect the suites of traits exhibited in an individual.
+This result supports my hypothesis that trees moving away from their climatic range interior exhibit altered suites of functional traits from trees in their range interior, and specifically *A1* (increases in intra-specific trait variation across a latitudinal gradient could signal increased genetic adaptation and/or increased plasticity). This suggests that certain suites of traits are successful depending on the environment and the species’ location in the climatic range (Burns and Straus 2012).
+  
+However, functional trait similarity was not linked to a tree’s relative size (i.e. competitiveness index) within a plot. This could suggest that environment (and abiotic factors) matter more in terms of what values of traits are observed in a species, though this is not supported by the literature (Burns and Straus 2012; Kunstler et. al 2015). In a study by Funk and Wolf (2016), certain suites of functional traits in grasses were a better predictor of competitive outcome than phylogenetic relatedness.
+  
+As an alternative method to measure variability in the suites of functional traits across sites, I plotted the convex hulls of the first two principal components values of the traits examined (Fig. 15). There was no discernible pattern across species in the changes of their suites of functional traits, based solely on the overlap of their convex hulls (indicating similarity in the values of their suites of traits). Two species, *C. alternifolia* and *F. grandifolia*, exhibited a marked difference in the convex hulls of their traits between the Harvard Forest and the other three of the sites. This mirrors the difference in species composition between Harvard Forest and the other three sites observed in both the understory and overstory (Fig. 3). Such results suggest that the type of species that co-occur with the focal species could affect the suites of traits exhibited in an individual.
   
 ## Areas of future research
-In predicting the future distributions of species in light of climate change, much is still unclear about the effect of biotic and abiotic variables. 
-<!-- I think you could add something here like: above I discusses how size classes, lifestage and how competitive indices are calculated can impact results; another critical factor is whether the communities I measured were at equilibria ... or something. Or somehow add a better transition.  -->
-Based on my results, the relative strength of the two factors in limiting ranges seems to vary across species. The species *B. papyrifera* tends to grow much larger than any of the other species examined (and was one of two trees selected for the focal species that neared its southern edge rather than its northern edge). It seems likely that a major factor in *B. papyrifera’s* consistently larger relative basal area is the size and age of its mature trees, which will likely not be indicative of a species at climatic equilibrium, and thus will not provide an accurate forecast of species distributions due to climate change. 
-
-<!-- Nice! -->
-Yackulic et. al (2015) outlines this problem, and suggests that models and field work take into account colonization and extinction rates of species, thus looking at time-variant relationships between environmental conditions and changes in species distribution. With trees especially, it will be important to look at dispersal and seedling establishment within this, as plants in general are more likely to be limited by the extent of their dispersal when looking ahead at possible migrations due to climate change (Ackerly 2003). Future research into competitiveness across ranges should take this into account, as looking at current competitiveness cannot provide the full picture of the complex dynamics at a species’ range edge.
+In predicting the future distributions of species in light of climate change, much is still unclear about the effect of biotic and abiotic variables. Above I discuss how size classes, life stage, and types of competitive indices can impact results. In modeling future species distributions and making long-term predictions in a warming world, it will be important to take into account these factors. Another critical factor is whether the communities I measured were at environmental equilibria. By examining these factors together, models will provide a much clearer and more accurate idea of species’ responses to climate change.
   
-<!-- For me it feels better to touch on this more in your section way above, then briefly touch on all those factors again here at the start of the new section. But up to you! If you do my plan, you might open this section with a short paragraph that effectively say: I touched on all this above, here's what it means for future studies ... then your section BETPAP could be the second paragraph.  -->
-Another factor that is crucial to an understanding of the relationship between a species, its competitors, and its environment is its growth stage. Indeed, growth stage has been shown to make a marked difference in how a species responds to a warming environment and competitive interactions (Zhu et. al 2012; Ettinger and HillesRisLambers 2013). In modeling future species distributions, taking into account growth stages for more long-lived species such as the deciduous trees examined in my study will provide a much clearer and more accurate idea of species’ responses to climate change.
-
-<!-- Below is great!  -->
+Based on my results, the relative strength of the two factors in limiting ranges seems to vary across species. The species *B. papyrifera* tends to grow much larger than any of the other species examined (and was one of two trees selected for the focal species that neared its southern edge rather than its northern edge). It seems likely that a major factor in *B. papyrifera’s* consistently larger relative basal area is the size and age of its mature trees, which will likely not be indicative of a species at climatic equilibrium, and thus will not provide an accurate forecast of species distributions due to climate change. 
+  
+Yackulic et. al (2015) outlines this problem, and suggests that models and field work take into account colonization and extinction rates of species, thus looking at time-variant relationships between environmental conditions and changes in species distribution. With trees especially, it will be important to look at dispersal and seedling establishment within this, as plants in general are more likely to be limited by the extent of their dispersal when looking ahead at possible migrations due to climate change (Ackerly 2003). Future research into competitiveness across ranges should take this into account, as looking at current competitiveness cannot provide the full picture of the complex dynamics at a species’ range edge.  
+  
 Additionally, my results emphasize the importance of examining species at their southern ranges in future work. Unfortunately, I was only able to examine two species that neared their southern range edges (*S. americana* and *B. papyrifera*). Studies have shown that interspecific competition sets lower limits (Brown et. al 1996), necessitating the inclusion of southern range limits as a way to understand the complex dynamics of biotic factors and future success of species.
-
-<!-- Yes, new section. -->
+  
 Conclusion here — do I make a whole new section for this?
 
 <!-- I think you can try to hammer home in your conclusions, here's what I expected and here's what I found. What I found means XYZ for climate change impacts, but it would be critical to also look at XYZ (different life stages or sizes or such? Pick 1-3 big things) before assuming my results apply all over the place. -->
-Note: these are the stipulations for the Discussion — The discussion section should first of all summarize and analyze the results that you have presented. Also recapitulate your overall argument(s) presented in the Introduction as well as strengths and weaknesses, and address the theoretical issues that were used in approaching and analyzing the problem. You should also explain how you may have modified your view of the issues in the course of conducting the analysis. If your experiments did not produce significant or meaningful results, explain here your thoughts on why this might have occurred, and suggest how things could be done differently. Convince the reader that you have fully thought through and understand the implications of your work, no matter how individual experiments may have turned out. 
 
 <!-- For me, your areas of future research covers how to do things differently pretty well. You could call it 'Future research areas: Opportunities for improvement and critical study topics' or such to make that clearer? Up to you. -->
 
-Question: where should I integrate how things could be done differently?
 
 \pagebreak  
 
-
-# Reference
 \setlength{\parindent}{-0.5in}
 \setlength{\leftskip}{0.5in}
 \setlength{\parskip}{8pt}
-\singlespacing
+\singlespacing  
+
+# References  
+\textcolor{white}{white}  
+  
 Ackerly, David D. "Community Assembly, Niche Conservatism, and Adaptive Evolution in Changing Environments." International journal of plant sciences 164 (2003): S165-84. Print.
 
-Bertrand, Romain, et al. "Changes in Plant Community Composition Lag Behind Climate Warming in Lowland Forests." Nature 479.7374 (2011): 517. Print.
+ADD BEGON ET. AL 1986
+
+Bertrand, Romain, et al. "Changes in Plant Community Composition Lag  Behind Climate Warming in Lowland Forests." Nature 479.7374 (2011): 517. Print.
 
 Biging, G. S., and M. Dobbertin. "Evaluation of Competition Indices in Individual Tree Growth Models." Forest Science; Evaluation of competition indices in individual tree growth models.2 (1995): 360-77. Print.
 
@@ -670,17 +641,27 @@ Cornelissen, J. H. C., et al. "A handbook of protocols for standardised and easy
 
 Cornwell, William K., and David D. Ackerly. "Community Assembly and Shifts in Plant Trait Distributions Across an Environmental Gradient in Coastal California." Ecological Monographs 79.1 (2009): 109-26. Print.
 
+ADD CURTIS AND BRADLEY 2016
+
 Darwin, Charles. On the Origin of Species. Ed. Jim Endersby. Cambridge ; New York:, 2009. Print.
 
 Davis, M. B., and R. G. Shaw. Range Shifts and Adaptive Responses to Quaternary Climate Change. 292 Vol, 2001. Print.
+
+ADD DE FRENNE ET AL 2011
 
 De Frenne, Pieter, et al. "Latitudinal Gradients as Natural Laboratories to Infer Species' Responses to Temperature." The Journal of Ecology 101.3 (2013): 784. Print.
 
 Doak, Daniel F., and William F. Morris. "Demographic Compensation and Tipping Points in Climate- Induced Range Shifts." Nature 467.7318 (2010): 959. Print.
 
+Ettinger, Ailene, and Janneke HilleRisLambers. "Climate Isn't Everything: Competitive Interactions and Variation by Life Stage Will also Affect Range Shifts in a Warming World." American Journal of Botany 100.7 (2013): 1344. Print.
+
 Funes, Guillermo, et al. "Seed Size and Shape are Good Predictors of Seed Persistence in Soil in Temperate Mountain Grasslands of Argentina." Seed Science Research; Seed Sci.Res. 9.4 (1999): 341-5. Print.
 
+ADD FUNK AND WOLF
+
 Grime, J. P. "Vegetation Classification by Reference to Strategies." Nature 250.5461 (1974): 26. Print.
+
+ADD GUITTAR ET. AL 2016
 
 Hargreaves, Anna L., Karen E. Samis, and Christopher G. Eckert. "Are Species' Range Limits Simply Niche Limits Writ Large? A Review of Transplant Experiments Beyond the Range." The American Naturalist 183.2 (2014): 157. Print.
 
@@ -691,6 +672,8 @@ Jump, Alistair S., Csaba Mátyás, and Josep Peñuelas. "The Altitude-for- Latit
 Jung, Vincent, et al. "Intraspecific Variability and Trait-Based Community Assembly." Journal of Ecology 98.5 (2010): 1134-40. Print.
 
 Kraft, Nathan J. B., Renato Valencia, and David D. Ackerly. "Functional Traits and Niche- Based Tree Community Assembly in an Amazonian Forest." Science (New York, N.Y.) 322.5901 (2008): 580. Print.
+
+ADD KUNSTLER ET. AL 2015
 
 Louthan, Am, Df Doak, and A. L. Angert. Where and when do Species Interactions Set Range Limits? 30 Vol., 2015. Print.
 
@@ -716,6 +699,8 @@ ADD REICH AND OLEKSYN 2008
 
 Rouvinen, S., and T. Kuuluvainen. "Structure and Asymmetry of Tree Crowns in Relation to Local Competition in a Natural Mature Scots Pine Forest." Canadian Journal of Forest Research 27.6 (1997): 890-902. Print.
 
+ADD SCHIMPER 1898
+
 Sexton, Jason, et al. "Evolution and Ecology of Species Range Limits." Annual Review of Ecology, Evolution, and Systematics 40 (2009): 415. Print.
 
 Skelly, David K., et al. "Evolutionary Responses to Climate Change." Conservation Biology 21.5 (2007): 1353-5. Print.
@@ -724,6 +709,8 @@ Stahl, Ulrike, Björn Reu, and Christian Wirth. "Predicting Species' Range Limit
 
 Suttle, K. B., Meredith A. Thomsen, and Mary E. Power. "Species Interactions Reverse Grassland Responses to Changing Climate." Science (New York, N.Y.) 315.5812 (2007): 640. Print.
 
+ADD SVENNING ET. AL 2014
+
 Thomas, Chris D., Aldina M. A. Franco, and Jane K. Hill. "Range Retractions and Extinction in the Face of Climate Warming." Trends in Ecology & Evolution 21.8 (2006): 415-6. Print.
 
 Thompson, K., S. R. Band, and J. G. Hodgson. "Seed Size and Shape Predict Persistence in Soil." Functional Ecology 7.2 (1993): 236-41. Print.
@@ -731,5 +718,9 @@ Thompson, K., S. R. Band, and J. G. Hodgson. "Seed Size and Shape Predict Persis
 Urban, Mark C., Josh J. Tewksbury, and Kimberly S. Sheldon. "On a Collision Course: Competition and Dispersal Differences Create no- Analogue Communities and Cause Extinctions during Climate Change." Proceedings of the Royal Society B 279.1735 (2012): 2072-80. Print.
 
 Weiher, Evan, and Paul A. Keddy. "Community Assembly Rules, Morphological Dispersion, and the Coexistence of Plant Species." Oikos 81.2 (1998): 309-22. Print.
+
+ADD WESTOBY AND WRIGHT
+
+Yackulic, Charles B., et al. "To Predict the Niche, Model Colonization and Extinction." Ecology 96.1 (2015): 16-23. Print.
 
 Zhu, Kai, Christopher W. Woodall, and James S. Clark. "Failure to Migrate: Lack of Tree Range Expansion in Response to Climate Change." Global Change Biology 18.3 (2012): 1042-52. Print.
