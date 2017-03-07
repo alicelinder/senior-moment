@@ -1,0 +1,45 @@
+# Statistical tests for theses
+
+library(lme4)
+library(sjPlot)
+library(tidyr)
+library(reshape)
+library(plyr)
+library(reshape2)
+library(ggplot2)
+
+rm(list = ls())
+setwd("~/Library/Mobile Documents/com~apple~CloudDocs/GitHub/senior-moment/data")
+
+# Model for first figure on competition vs. latitude
+
+source("Fig2-source.R")
+
+# ignore extra large DBH for FAGGUS value
+focal.centroid <- focal.centroid[-which(focal.centroid$sp == "FAGGRA" & focal.centroid$sum.BA > 20000),] 
+
+# ignore QUEALB for graphing purposes
+focal.centroid <- focal.centroid[-which(focal.centroid$sp == "QUEALB"),]
+
+lme1 <- lmer(relative.BA ~ minLatdiff + (minLatdiff | sp), data = focal.centroid)
+
+fixef(lme1)
+ranef(lme1)
+summary(lme1)
+
+ranef <- ranef(lme1)
+
+sjt.lmer(lme1)
+
+# Model for second figure on competition vs. climatic centroid
+load("Clim.Focal.RData")
+
+lme1 <- lmer(relative.BA ~ distance.to.climatic.centroid + (distance.to.climatic.centroid | sp), data = clim.focal)
+
+fixef(lme1)
+ranef(lme1)
+summary(lme1)
+
+ranef <- ranef(lme1)
+
+sjt.lmer(lme1)
