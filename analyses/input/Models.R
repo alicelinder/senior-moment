@@ -60,5 +60,13 @@ summary(lm(chvols.focal[chvols.focal$sp == "FAGGRA",]$lat ~ faggra))
 
 # linear model for convex hull volumes and climatic centroid
 
+load("CHVol.Clim.RData")
 
+clim.focal <- clim.focal[-which(clim.focal$sp == "CORALT"),]
+
+summary(lm(clim.focal[clim.focal$sp == "FAGGRA",]$distance.to.climatic.centroid ~ faggra))
+acepen <- clim.focal[clim.focal$sp == "ACEPEN",]$relative.vol
+betpap <- clim.focal[clim.focal$sp == "BETPAP",]$relative.vol
+coralt <- clim.focal[clim.focal$sp == "CORALT",]$relative.vol
+faggra <- clim.focal[clim.focal$sp == "FAGGRA",]$relative.vol
 
