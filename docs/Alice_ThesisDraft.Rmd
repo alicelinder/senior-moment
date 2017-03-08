@@ -152,6 +152,10 @@ The degree of correlation varied across species. There was a stronger negative c
   
 Though the volume of a species’ convex hull and its competitiveness both exhibited a negative relationship with distance from its climatic centroid, relative convex hull volume did not reliably predict competitiveness (Fig. 13). *A. pensylvanicum* exhibited an insignificant slight negative correlation between its relative convex hull volume and its competitiveness  (adjusted $R^{2}$ = -0.03713; $\sigma^{2}$ = 0.0004784; $p$ = 0.6783). *F. grandifolia* showed a more negative relationship between relative convex hull volume and its relative basal area in a plot (adjusted $R^{2}$ = 0.03305 ; $\sigma^{2}$ = 0.005842; $p$ = 0.1998). For both species, there was a slight (insignificant) decrease in their competitiveness as an individual’s relative convex hull volume increased, or when that individual took up more of a community’s functional richness with its own functional traits. And finally, *B. papyrifera* displayed the opposite relationship, with a positive correlation between relative convex hull volume and relative basal area (adjusted $R^{2}$ = -0.007968; $\sigma^{2}$ = 0.008198; $p$ = 0.3637).
   
+## Principal Component Analysis of Functional Traits  
+  
+As a way to visualize traits in non-metric space, I plotted the convex hulls of the four traits I used in my analysis using the first two principal components of a principal component analysis of the traits (Fig. 14). The first principal component explained 34% of variance while the second explained 25.9% (cumulatively explaining 61.6% of variance). The first principal component was strongly negatively correlated with SLA (-0.7337) and strongly positively correlated with DBH (0.54773700). The second principal component placed a heavy bearing on %C:%N (0.667) and stem density (0.687). Thus, using the principal component analysis to take into account all traits, SLA and DBH are inversely related while %C:%N and stem density are directly related.
+  
 \pagebreak  
 
 # Figures  

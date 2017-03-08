@@ -82,6 +82,7 @@ betpap <- ba.chvols[ba.chvols$sp == "BETPAP",]$relative.vol
 #coralt <- ba.chvols[ba.chvols$sp == "CORALT",]$relative.vol
 faggra <- ba.chvols[ba.chvols$sp == "FAGGRA",]$relative.vol
 
-# Principal components analysis
+# Principal component analysis
+
 
 

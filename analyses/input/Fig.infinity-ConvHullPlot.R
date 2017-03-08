@@ -16,19 +16,6 @@ library(ggplot2)
 # N rows (objects) x p columns (variables)
 # each row identified by a unique row name
 
-d <- dist(mydata) # euclidean distances between the rows
-fit <- cmdscale(d,eig=TRUE, k=2) # k is the number of dim
-fit # view results
-
-# plot solution 
-x <- fit$points[,1]
-y <- fit$points[,2]
-plot(x, y, xlab="Coordinate 1", ylab="Coordinate 2", 
-     main="Metric	MDS",	type="n")
-text(x, y, labels = row.names(mydata), cex=.7)
-
-
-
 load("Species-Traits.RData")
 tr <- tree.traits.focal
 cols <- c("Individual", "SLA", "DBH", "Stem.density", "c.n")
@@ -41,17 +28,17 @@ ex <- tr[complete.cases(tr),]
 tr = subset(ex[,traits.of.interest])
 rownames(tr) = ex$Individual
 
-fir <- cmdscale(tr, eig = TRUE, k=4)
+#fir <- cmdscale(tr, eig = TRUE, k=4)
 
 # log transform -- IS THIS NECESSARY?
 log.tr <- log(ex[, 3:6])
 
 # creat principal components analysis with just species of interest
-tr.pca <- prcomp(log.tr,
-                 center = TRUE,
-                 scale. = TRUE)
+#tr.pca <- prcomp(log.tr,
+                 #center = TRUE,
+                 #scale. = TRUE)
 
-tr.pca <- prcomp(ex[, 3:6],
+tr.pca <- prcomp(tr,
                  center = TRUE,
                  scale. = TRUE)
 
