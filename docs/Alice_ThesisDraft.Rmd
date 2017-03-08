@@ -142,6 +142,10 @@ Distance from the climatic centroid also did not consistently predict competitiv
 
 ## Functional traits of focal species and range differences
   
+  The suites of functional traits I examined did not vary predictably with latitude (Fig. 11). In a simple linear model, there was a small overall negative correlation between latitude and relative convex hull volume of species (adjusted $R^{2}$ = -0.0258; $\sigma^{2}$ = 0.02683; $p$ = .435) Only four of the six focal species had enough trait data to calculate convex hull volume (which requires \textit{n} to exceed the number of traits examined).  In a simple linear model for each of the tree species, there was no discernible pattern in the relationship between latitude and the relative convex hull volume of the focal species at the four sites.
+  
+Of the four focal species, *A. pensylvanicum* (adjusted $R^{2}$ = 0.6628; $\sigma^{2}$ = 0.07001; $p$ = .1195) and  *F. grandifolia* (adjusted $R^{2}$ = 0.7788; $\sigma^{2}$ = 0.09291; $p$ = 0.1054) exhibited a slight decrease in their relative convex hull volume across latitudes in simple linear models within each species.  Thus for these two species, the data suggest that individuals take up less functional trait space relative to their community at higher latitudes than at lower latitudes. Conversely,*C. alternifolia* (adjusted $R^{2}$ = 0.7788; $\sigma^{2}$ = 0.09291; $p$ = 0.2158) and *B. papyrifera* (adjusted $R^{2}$ = .7004; $\sigma^{2}$ = 0.1414; $p$ = .53) exhibited slight increases in the relative convex hull volumes of their traits across latitudes. For these two species specifically, the data suggest that the amount of space taken up in a community’s functional richness by the focal species increases as it moves north (at increasing latitudes). 
+  
 
 
   

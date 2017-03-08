@@ -43,3 +43,22 @@ summary(lme1)
 ranef <- ranef(lme1)
 
 sjt.lmer(lme1)
+
+# linear model for convex hull volumes
+
+load("CHVols.RData")
+
+chvols.focal <- chvols.focal[-which(chvols.focal$sp == "HAMVIR"),]
+chvols.focal <- chvols.focal[-which(chvols.focal$sp == "SORAME"),]
+
+summary(lm(chvols.focal$lat ~ chvols.focal$relative.vol))
+acepen <- chvols.focal[chvols.focal$sp == "ACEPEN",]$relative.vol
+betpap <- chvols.focal[chvols.focal$sp == "BETPAP",]$relative.vol
+coralt <- chvols.focal[chvols.focal$sp == "CORALT",]$relative.vol
+faggra <- chvols.focal[chvols.focal$sp == "FAGGRA",]$relative.vol
+summary(lm(chvols.focal[chvols.focal$sp == "FAGGRA",]$lat ~ faggra))
+
+# linear model for convex hull volumes and climatic centroid
+
+
+
