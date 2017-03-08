@@ -144,11 +144,13 @@ Distance from the climatic centroid also did not consistently predict competitiv
   
   The suites of functional traits I examined did not vary predictably with latitude (Fig. 11). In a simple linear model, there was a small overall negative correlation between latitude and relative convex hull volume of species (adjusted $R^{2}$ = -0.0258; $\sigma^{2}$ = 0.02683; $p$ = .435) Only four of the six focal species had enough trait data to calculate convex hull volume (which requires \textit{n} to exceed the number of traits examined).  In a simple linear model for each of the tree species, there was no discernible pattern in the relationship between latitude and the relative convex hull volume of the focal species at the four sites.
   
-Of the four focal species, *A. pensylvanicum* (adjusted $R^{2}$ = 0.6628; $\sigma^{2}$ = 0.07001; $p$ = .1195) and  *F. grandifolia* (adjusted $R^{2}$ = 0.7788; $\sigma^{2}$ = 0.09291; $p$ = 0.1054) exhibited a slight decrease in their relative convex hull volume across latitudes in simple linear models within each species.  Thus for these two species, the data suggest that individuals take up less functional trait space relative to their community at higher latitudes than at lower latitudes. Conversely,*C. alternifolia* (adjusted $R^{2}$ = 0.7788; $\sigma^{2}$ = 0.09291; $p$ = 0.2158) and *B. papyrifera* (adjusted $R^{2}$ = .7004; $\sigma^{2}$ = 0.1414; $p$ = .53) exhibited slight increases in the relative convex hull volumes of their traits across latitudes. For these two species specifically, the data suggest that the amount of space taken up in a community’s functional richness by the focal species increases as it moves north (at increasing latitudes). 
+Of the four focal species, *A. pensylvanicum* (adjusted $R^{2}$ = 0.6628; $\sigma^{2}$ = 0.07001; $p$ = .1195) and  *F. grandifolia* (adjusted $R^{2}$ = 0.7788; $\sigma^{2}$ = 0.09291; $p$ = 0.1054) exhibited a slight decrease in their relative convex hull volume across latitudes in simple linear models within each species.  Thus for these two species, the data suggest that individuals take up less functional trait space relative to their community at higher latitudes than at lower latitudes, though the results were statistically insignificant. Conversely,*C. alternifolia* (adjusted $R^{2}$ = 0.7788; $\sigma^{2}$ = 0.09291; $p$ = 0.2158) and *B. papyrifera* (adjusted $R^{2}$ = .7004; $\sigma^{2}$ = 0.1414; $p$ = .53) exhibited statistically insignificant slight increases in the relative convex hull volumes of their traits across latitudes. For these two species specifically, the data suggest that the amount of space taken up in a community’s functional richness by the focal species increases as it moves north (at increasing latitudes). 
   
-A species’ distance from its climatic centroid was a better predictor than latitude of its relative convex hull volume. The three species included in the analysis all showed a negative relationship between the distance from their climatic centroid and their relative convex hull volume. Without taking into account species type, the data exhibited a strong overall negative correlation between relative convex hull volume and distance from climatic centroid (adjusted $R^{2}$ = 0.2657; $\sigma^{2}$ = 0.007459; $\textbf{p < 0.05}$). Generally across all three species, as a species moved farther away from its climatic centroid, its convex hull volume decreased in relation to the overall functional richness of the community.
-
+A species’ distance from its climatic centroid was a better predictor than latitude of its relative convex hull volume (Fig. 12). The three species included in the analysis all showed a negative relationship between the distance from their climatic centroid and their relative convex hull volume. Without taking into account species type, the data exhibited a strong overall negative correlation between relative convex hull volume and distance from climatic centroid (adjusted $R^{2}$ = 0.2657; $\sigma^{2}$ = 0.007459; $\textbf{p < 0.05}$). Generally across all three species, as a species moved farther away from its climatic centroid, its convex hull volume decreased in relation to the overall functional richness of the community.
   
+The degree of correlation varied across species. There was a stronger negative correlation across the climatic range for *A. pensylvanicum* (adjusted $R^{2}$ = 0.3674; $\sigma^{2}$ = 0.008541; $\textbf{p < 0.05}$) and *B. papyrifera* (adjusted $R^{2}$ = 0.2683; $\sigma^{2}$ = 0.007309; $\textbf{p < 0.05}$). *F. grandifolia* also exhibited a negative relationship between its relative convex hull volume and an individual’s distance from its climatic centroid (adjusted $R^{2}$ = 0.6234; $\sigma^{2}$ = 0.06553; $\textbf{p < 0.05}$). Based on analysis through a simple linear model, I can reject the null hypothesis (H1: A3) that there is no effect of a species’ distance from its climatic centroid on its relative convex hull volume (and its suite of functional traits).
+  
+Though the volume of a species’ convex hull and its competitiveness both exhibited a negative relationship with distance from its climatic centroid, relative convex hull volume did not reliably predict competitiveness (Fig. 13). *A. pensylvanicum* exhibited an insignificant slight negative correlation between its relative convex hull volume and its competitiveness  (adjusted $R^{2}$ = -0.03713; $\sigma^{2}$ = 0.0004784; $p$ = 0.6783). *F. grandifolia* showed a more negative relationship between relative convex hull volume and its relative basal area in a plot (adjusted $R^{2}$ = 0.03305 ; $\sigma^{2}$ = 0.005842; $p$ = 0.1998). For both species, there was a slight (insignificant) decrease in their competitiveness as an individual’s relative convex hull volume increased, or when that individual took up more of a community’s functional richness with its own functional traits. And finally, *B. papyrifera* displayed the opposite relationship, with a positive correlation between relative convex hull volume and relative basal area (adjusted $R^{2}$ = -0.007968; $\sigma^{2}$ = 0.008198; $p$ = 0.3637).
   
 \pagebreak  
 
@@ -452,10 +454,10 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
 
 
 load("CHVol.Clim.RData")
-
+clim.focal <- clim.focal[-which(clim.focal$sp == "CORALT"),]
 
 myspecieslist <- unique(clim.focal$sp)
-mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A"), 10) # need 6 really!
+mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3"), 10) # need 6 really!
 
 
 # plot in base package
@@ -473,12 +475,12 @@ abline(41.98, -12.81, col = "#1B9E77", lwd = 2)
 abline(41.36, -13.37, col = "#D95F02", lwd = 2)
 
 #CORALT
-#abline(-81.39, 41.88, col = "#7570B3", lwd = 2)
+#abline(-81.39, 41.88, col = "#E7298A, lwd = 2)
 
 #FAGGRA
-abline(9.507, -1.678, col = "#E7298A", lwd = 2)
+abline(9.507, -1.678, col = "#7570B3", lwd = 2)
 
-legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola"), 
+legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "F. grandifola"), 
        lty=1, col=mycolors, bty='n', cex=1)
 
 
@@ -500,8 +502,10 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
 
 # load all data from source code
 load("CHVols.BA.RData")
+
+ba.chvols <- ba.chvols[-which(ba.chvols$sp == "CORALT"),]
 myspecieslist <- unique(ba.chvols$sp)
-mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A"), 10) # need 6 really!
+mycolors <- rep(c("#1B9E77", "#D95F02", "#7570B3"), 10) # need 6 really!
 
 
 # plot in base package
@@ -520,12 +524,12 @@ abline(0.0254792, -0.0002011, col = "#1B9E77", lwd = 2)
 abline(0.255235, 0.007697, col = "#D95F02", lwd = 2)
 
 #CORALT
-abline(-0.0001574, 0.0000892  , col = "#7570B3", lwd = 2)
+#abline(-0.0001574, 0.0000892  , col = "#7570B3", lwd = 2)
 
 #FAGGRA
-abline(0.083677, -0.007733, col = "#E7298A", lwd = 2)
+abline(0.083677, -0.007733, col = "#7570B3", lwd = 2)
 
-legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola"), 
+legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "F. grandifola"), 
        lty=1, col=mycolors, bty='n', cex=.75)
 
 

@@ -67,6 +67,21 @@ clim.focal <- clim.focal[-which(clim.focal$sp == "CORALT"),]
 summary(lm(clim.focal[clim.focal$sp == "FAGGRA",]$distance.to.climatic.centroid ~ faggra))
 acepen <- clim.focal[clim.focal$sp == "ACEPEN",]$relative.vol
 betpap <- clim.focal[clim.focal$sp == "BETPAP",]$relative.vol
-coralt <- clim.focal[clim.focal$sp == "CORALT",]$relative.vol
+#coralt <- clim.focal[clim.focal$sp == "CORALT",]$relative.vol
 faggra <- clim.focal[clim.focal$sp == "FAGGRA",]$relative.vol
+
+# linear model for convex hull volumes and competition
+load("CHVols.BA.RData")
+
+# plot in base package
+ba.chvols <- ba.chvols[-which(ba.chvols$sp == "CORALT"),]
+
+summary(lm(ba.chvols[ba.chvols$sp == "BETPAP",]$relative.BA ~ betpap))
+acepen <- ba.chvols[ba.chvols$sp == "ACEPEN",]$relative.vol
+betpap <- ba.chvols[ba.chvols$sp == "BETPAP",]$relative.vol
+#coralt <- ba.chvols[ba.chvols$sp == "CORALT",]$relative.vol
+faggra <- ba.chvols[ba.chvols$sp == "FAGGRA",]$relative.vol
+
+# Principal components analysis
+
 
