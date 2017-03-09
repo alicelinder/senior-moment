@@ -620,109 +620,105 @@ Conclusion here — do I make a whole new section for this?
 
 # References  
 \textcolor{white}{white}  
-  
-Ackerly, David D. "Community Assembly, Niche Conservatism, and Adaptive Evolution in Changing Environments." International journal of plant sciences 164 (2003): S165-84. Print.
 
-ADD BEGON ET. AL 1986
+Ackerly D. 2003. Community assembly, niche conservatism, and adaptive evolution in changing environments. Int J Plant Sci 164:S165-84.
 
-Bertrand, Romain, et al. "Changes in Plant Community Composition Lag  Behind Climate Warming in Lowland Forests." Nature 479.7374 (2011): 517. Print.
+Begon M. 1986. Ecology : Individuals, populations, and communities. Sunderland, Mass.
 
-Biging, G. S., and M. Dobbertin. "Evaluation of Competition Indices in Individual Tree Growth Models." Forest Science; Evaluation of competition indices in individual tree growth models.2 (1995): 360-77. Print.
+Bertrand R, Lenoir J, Piedallu C, Gabriela Riofrío-Dillon, Ruffray PD, Vidal C, Jean-Claude Pierrat, Jean-Claude Gégout. 2011. Changes in plant community composition lag behind climate warming in lowland forests. Nature 479(7374):517.
 
-Brown, James H., George C. Stevens, and Dawn M. Kaufman. "The Geographic Range: Size, Shape, Boundaries, and Internal Structure." Annual Review of Ecology and Systematics 27 (1996): 597-623. Print.
+Biging GS and Dobbertin M. 1995. Evaluation of competition indices in individual tree growth models. For Sci (2):360-77.
 
-Burns, Jean H., and Sharon Y. Strauss. "Effects of Competition on Phylogenetic Signal and Phenotypic Plasticity in Plant Functional Traits." Ecology 93 (2012): S126-37. Print.
+Brown JH, Stevens GC, Kaufman DM. 1996. The geographic range: Size, shape, boundaries, and internal structure. Annu Rev Ecol Syst 27:597-623.
 
-Cavender-Bares, J. 2007. Chilling and freezing stress in live oaks (Quercus section Virentes): intra- and inter-specific variation in PSII sensitivity corresponds to latitude of origin. Photosynthesis Research 94. (2007): 437-53. Print.
+Burns JH and Strauss SY. 2012. Effects of competition on phylogenetic signal and phenotypic plasticity in plant functional traits. Ecology 93:S126-37.
 
-Chen, I. C., et al. "Rapid Range Shifts of Species Associated with High Levels of Climate Warming.” Science 333.6045 (2011): 1024. Print.
+Cavender-Bares J. 2007. Chilling and freezing stress in live oaks (quercus section virentes): Intra- and inter- specific variation in PS II sensitivity corresponds to latitude of origin. Photosynth Res 94(2):437-53.
 
-Contreras, Marco A., David Affleck, and Woodam Chung. "Evaluating Tree Competition Indices as Predictors of Basal Area Increment in Western Montana Forests." Forest Ecology and Management 262.11 (2011): 1939-49. Print.
+Chen I, Hill JK, Ohlemuller R, Roy DB, Thomas CD. 2011. Rapid range shifts of species associated with high levels of climate warming.(REPORTS)(author abstract). Science 333(6045):1024.
 
-Cornelissen, J. H. C., et al. "A handbook of protocols for standardised and easy measurement of plant functional traits worldwide." Australian Journal of Botany 51.4 (2003): 335-380. 
+Contreras MA, Affleck D, Chung W. 2011. Evaluating tree competition indices as predictors of basal area increment in western montana forests. For Ecol Manage 262(11):1939-49.
 
-Cornwell, William K., and David D. Ackerly. "Community Assembly and Shifts in Plant Trait Distributions Across an Environmental Gradient in Coastal California." Ecological Monographs 79.1 (2009): 109-26. Print.
+Cornelissen JHC, Lavorel S, Garnier E, Díaz S, Buchmann N, Gurvich DE, Reich PB, Steege H, Morgan HD, Heijden MGA, et al. 2003. A handbook of protocols for standardised and easy measurement of plant functional traits worldwide. Aust J Bot 51(4):335-80.
 
-ADD CURTIS AND BRADLEY 2016
+Cornwell WK and Ackerly DD. 2009. Community assembly and shifts in plant trait distributions across an environmental gradient in coastal california. Ecol Monogr 79(1):109-26.
 
-Darwin, Charles. On the Origin of Species. Ed. Jim Endersby. Cambridge ; New York:, 2009. Print.
+Curtis CA and Bradley BA. 2016. Plant distribution data show broader climatic limits than expert- based climatic tolerance estimates.(research article). Plos One 11(11):e0166407.
 
-Davis, M. B., and R. G. Shaw. Range Shifts and Adaptive Responses to Quaternary Climate Change. 292 Vol, 2001. Print.
+Darwin C. 2009. On the origin of species. Cambridge ; New York.
 
-ADD DE FRENNE ET AL 2011
+Davis MB and Shaw RG. 2001. Range shifts and adaptive responses to quaternary climate change. Science 292(5517):673-9.
 
-De Frenne, Pieter, et al. "Latitudinal Gradients as Natural Laboratories to Infer Species' Responses to Temperature." The Journal of Ecology 101.3 (2013): 784. Print.
+De Frenne P, Graae BJ, Kolb A, Shevtsova A, Baeten L, Chabrerie O, Brunet J, Cousins SAO, Decocq G, Dhondt R, et al. 2011. An intraspecific application of the leaf- height- seed ecology strategy scheme to forest herbs along a latitudinal gradient. Ecography 34(1):132-40.
 
-Doak, Daniel F., and William F. Morris. "Demographic Compensation and Tipping Points in Climate- Induced Range Shifts." Nature 467.7318 (2010): 959. Print.
+Doak DF and Morris WF. 2010. Demographic compensation and tipping points in climate- induced range shifts. Nature 467(7318):959.
 
-Ettinger, Ailene, and Janneke HilleRisLambers. "Climate Isn't Everything: Competitive Interactions and Variation by Life Stage Will also Affect Range Shifts in a Warming World." American Journal of Botany 100.7 (2013): 1344. Print.
+Ettinger A and Hillerislambers J. 2013. Climate isn't everything: Competitive interactions and variation by life stage will also affect range shifts in a warming world. Am J Bot 100(7):1344.
 
-Funes, Guillermo, et al. "Seed Size and Shape are Good Predictors of Seed Persistence in Soil in Temperate Mountain Grasslands of Argentina." Seed Science Research; Seed Sci.Res. 9.4 (1999): 341-5. Print.
+Frenne P, Graae BJ, Rodriguez-Sanchez F, Kolb A, Chabrerie O, Decocq G, Kort H, Schrijver A, Diekmann M, Eriksson O, et al. 2013. Latitudinal gradients as natural laboratories to infer species' responses to temperature. The Journal of Ecology 101(3):784.
 
-ADD FUNK AND WOLF
+Funes G, Basconcelo S, Díaz S, Cabido M. 1999. Seed size and shape are good predictors of seed persistence in soil in temperate mountain grasslands of argentina. Seed Science Research; Seed Sci.Res. 9(4):341-5.
 
-Grime, J. P. "Vegetation Classification by Reference to Strategies." Nature 250.5461 (1974): 26. Print.
+Funk JL and Wolf AA. 2016. Testing the trait-based community framework: Do functional traits predict competitive outcomes? Ecology 97(9):2206-11.
 
-ADD GUITTAR ET. AL 2016
+Grime JP. 1974. Vegetation classification by reference to strategies. Nature 250(5461):26.
 
-Hargreaves, Anna L., Karen E. Samis, and Christopher G. Eckert. "Are Species' Range Limits Simply Niche Limits Writ Large? A Review of Transplant Experiments Beyond the Range." The American Naturalist 183.2 (2014): 157. Print.
+Guittar J, Goldberg D, Klanderud K, Telford RJ, Vandvik V. 2016. Can trait patterns along gradients predict plant community responses to climate change? Ecology 97(10):2791-801.
 
-Holt, Robert. "Population Dynamics and Evolutionary Processes: The Manifold Roles of Habitat Selection." Evolutionary Ecology 1.4 (1987): 331-47. Print.
+Hargreaves AL, Samis KE, Eckert CG. 2014. Are species' range limits simply niche limits writ large? A review of transplant experiments beyond the range. Am Nat 183(2):157.
 
-Jump, Alistair S., Csaba Mátyás, and Josep Peñuelas. "The Altitude-for- Latitude Disparity in the Range Retractions of Woody Species." Trends in Ecology & Evolution 24.12 (2009): 694-701. Print.
+Holt R. 1987. Population dynamics and evolutionary processes: The manifold roles of habitat selection. Evol Ecol 1(4):331-47.
 
-Jung, Vincent, et al. "Intraspecific Variability and Trait-Based Community Assembly." Journal of Ecology 98.5 (2010): 1134-40. Print.
+Jump AS, Mátyás C, Peñuelas J. 2009. The altitude-for- latitude disparity in the range retractions of woody species. Trends in Ecology & Evolution 24(12):694-701.
 
-Kraft, Nathan J. B., Renato Valencia, and David D. Ackerly. "Functional Traits and Niche- Based Tree Community Assembly in an Amazonian Forest." Science (New York, N.Y.) 322.5901 (2008): 580. Print.
+Jung V, Violle C, Mondy C, Hoffmann L, Muller S. 2010. Intraspecific variability and trait-based community assembly. J Ecol 98(5):1134-40.
 
-ADD KUNSTLER ET. AL 2015
+Kraft NJB, Valencia R, Ackerly DD. 2008. Functional traits and niche- based tree community assembly in an amazonian forest. Science (New York, N.Y.) 322(5901):580.
 
-Louthan, Am, Df Doak, and A. L. Angert. Where and when do Species Interactions Set Range Limits? 30 Vol., 2015. Print.
+Louthan A, Doak D, Angert AL. 2015. Where and when do species interactions set range limits? Trends Ecol Evol (Amst ) 30(12):780-92.
 
-Macarthur, Robert, and Richard Levins. "The Limiting Similarity, Convergence, and Divergence of Coexisting Species." The American Naturalist 101.921 (1967): 377-85. Print.
+Macarthur R and Levins R. 1967. The limiting similarity, convergence, and divergence of coexisting species. Am Nat 101(921):377-85.
 
-Matías, Luis, and Alistair S. Jump. "Asymmetric Changes of Growth and Reproductive Investment Herald Altitudinal and Latitudinal Range Shifts of Two Woody Species." Global Change Biology 21.2 (2015): 882-96. Print.
+Matías L and Jump AS. 2015. Asymmetric changes of growth and reproductive investment herald altitudinal and latitudinal range shifts of two woody species. Global Change Biol 21(2):882-96.
 
-Mcgill, Brian J., et al. "Rebuilding Community Ecology from Functional Traits." Trends in Ecology & Evolution 21.4 (2006): 178-85. Print.
+McKenney DW, Pedlar JH, Lawrence K, Campbell K, Hutchinson MF. 2007. Potential impacts of climate change on the distribution of north american trees. Bioscience 57(11):939-48.
 
-McKenney, Daniel W., et al. "Potential Impacts of Climate Change on the Distribution of North American Trees." Bioscience 57.11 (2007): 939-48. Print
+Nakawatase J and Peterson D. 2006. Spatial variability in forest growth - climate relationships in the olympic mountains, washington. Canadian Journal of Forest Research 36(1):77-91.
 
-Nakawatase, Jill, and David Peterson. "Spatial Variability in Forest Growth - Climate Relationships in the Olympic Mountains, Washington." Canadian Journal of Forest Research 36.1 (2006): 77-91. Print.
+Nussey DH, Postma E, Gienapp P, Visser ME. 2005. Selection on heritable phenotypic plasticity in a wild bird population. Science Magazine 310(5746):304-6.
 
-Nussey, D. H., et al. "Selection on Heritable Phenotypic Plasticity in a Wild Bird Population." Science Magazine 310.5746 (2005): 304-6. Print.
+Parmesan C. 2006. Ecological and evolutionary responses to recent climate change. Annual Review of Ecology, Evolution, and Systematics 37:637.
 
-Parmesan, Camille. "Ecological and Evolutionary Responses to Recent Climate Change." Annual Review of Ecology, Evolution, and Systematics 37 (2006): 637. Print.
+Peterson AT, Soberón J, Sánchez-Cordero V. 1999. Conservatism of ecological niches in evolutionary time. Science 285(5431):1265-7.
 
-Peterson, A. T., J. Soberón, and V. Sánchez-Cordero. "Conservatism of Ecological Niches in Evolutionary Time." Science 285.5431 (1999): 1265-7. Print.
+Pigot AL and Tobias JA. 2013. Species interactions constrain geographic range expansion over evolutionary time. Ecol Lett 16(3):330-8.
 
-Pigot, Alex L., and Joseph A. Tobias. "Species Interactions Constrain Geographic Range Expansion Over Evolutionary Time." Ecology Letters 16.3 (2013): 330-8. Print.
+Reich PB and Oleksyn J. 2008. Climate warming will reduce growth and survival of scots pine except in the far north. Ecol Lett 11(6):588-97.
 
-ADD REICH AND OLEKSYN 2008
+Rouvinen S and Kuuluvainen T. 1997. Structure and asymmetry of tree crowns in relation to local competition in a natural mature scots pine forest. Canadian Journal of Forest Research 27(6):890-902.
 
-Rouvinen, S., and T. Kuuluvainen. "Structure and Asymmetry of Tree Crowns in Relation to Local Competition in a Natural Mature Scots Pine Forest." Canadian Journal of Forest Research 27.6 (1997): 890-902. Print.
+Schimper AFW. 1903. Plant- geography upon a physiological basis.
 
-ADD SCHIMPER 1898
+Sexton J, Mcintyre P, Angert A, Rice K. 2009. Evolution and ecology of species range limits. Annual Review of Ecology, Evolution, and Systematics 40:415.
 
-Sexton, Jason, et al. "Evolution and Ecology of Species Range Limits." Annual Review of Ecology, Evolution, and Systematics 40 (2009): 415. Print.
+Skelly DK, Joseph LN, Possingham HP, Freidenburg LK, Farrugia TJ, Kinnison MT, Hendry AP. 2007. Evolutionary responses to climate change. Conserv Biol 21(5):1353-5.
 
-Skelly, David K., et al. "Evolutionary Responses to Climate Change." Conservation Biology 21.5 (2007): 1353-5. Print.
+Stahl U, Reu B, Wirth C. 2014. Predicting species' range limits from functional traits for the tree flora of north america. Proc Natl Acad Sci U S A 111(38):13739.
 
-Stahl, Ulrike, Björn Reu, and Christian Wirth. "Predicting Species' Range Limits from Functional Traits for the Tree Flora of North America." Proceedings of the National Academy of Sciences of the United States of America 111.38 (2014): 13739. Print.
+Suttle KB, Thomsen MA, Power ME. 2007. Species interactions reverse grassland responses to changing climate. Science (New York, N.Y.) 315(5812):640.
 
-Suttle, K. B., Meredith A. Thomsen, and Mary E. Power. "Species Interactions Reverse Grassland Responses to Changing Climate." Science (New York, N.Y.) 315.5812 (2007): 640. Print.
+Svenning J, Gravel D, Holt RD, Schurr FM, Thuiller W, Münkemüller T, Schiffers KH, Dullinger S, Edwards TC, Hickler T, et al. 2014. The influence of interspecific interactions on species range expansion rates. Ecography 37(12):1198-209.
 
-ADD SVENNING ET. AL 2014
+Thomas CD, Cameron A, Green RE, Bakkenes M, Beaumont LJ, Collingham YC, Barend FNE, Marinez Ferreira DS, Grainger A, Hannah L, et al. 2004. Extinction risk from climate change. Nature 427(6970):145.
 
-Thomas, Chris D., Aldina M. A. Franco, and Jane K. Hill. "Range Retractions and Extinction in the Face of Climate Warming." Trends in Ecology & Evolution 21.8 (2006): 415-6. Print.
+Thompson K, Band SR, Hodgson JG. 1993. Seed size and shape predict persistence in soil. Funct Ecol 7(2):236-41.
 
-Thompson, K., S. R. Band, and J. G. Hodgson. "Seed Size and Shape Predict Persistence in Soil." Functional Ecology 7.2 (1993): 236-41. Print.
+Urban MC, Tewksbury JJ, Sheldon KS. 2012. On a collision course: Competition and dispersal differences create no- analogue communities and cause extinctions during climate change. Proceedings of the Royal Society B 279(1735):2072-80.
 
-Urban, Mark C., Josh J. Tewksbury, and Kimberly S. Sheldon. "On a Collision Course: Competition and Dispersal Differences Create no- Analogue Communities and Cause Extinctions during Climate Change." Proceedings of the Royal Society B 279.1735 (2012): 2072-80. Print.
+Weiher E and Keddy PA. 1998. Community assembly rules, morphological dispersion, and the coexistence of plant species. Oikos 81(2):309-22.
 
-Weiher, Evan, and Paul A. Keddy. "Community Assembly Rules, Morphological Dispersion, and the Coexistence of Plant Species." Oikos 81.2 (1998): 309-22. Print.
+Westoby M and Wright IJ. 2006. Land-plant ecology on the basis of functional traits. Trends in Ecology & Evolution 21(5):261-8.
 
-ADD WESTOBY AND WRIGHT
+Yackulic CB, Nichols JD, Reid J, Der R. 2015. To predict the niche, model colonization and extinction. Ecology 96(1):16-23.
 
-Yackulic, Charles B., et al. "To Predict the Niche, Model Colonization and Extinction." Ecology 96.1 (2015): 16-23. Print.
-
-Zhu, Kai, Christopher W. Woodall, and James S. Clark. "Failure to Migrate: Lack of Tree Range Expansion in Response to Climate Change." Global Change Biology 18.3 (2012): 1042-52. Print.
+Zhu K, Woodall CW, Clark JS. 2012. Failure to migrate: Lack of tree range expansion in response to climate change. Global Change Biol 18(3):1042-52.

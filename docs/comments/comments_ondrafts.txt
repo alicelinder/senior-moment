@@ -1,24 +1,10 @@
 Started 16 Feb 2017
 Comments on Alice’s thesis draft (round 1)
 
-24 Feb 2017
-- error in Dan’s code
-- PCA for traits
-
-
-
 <><><><><><><><><><><>
 12 Feb 2017 draft
 
 Overall comments:
-
-Awesome that it’s in Rmd! I don’t use Rmd so much but I use its sister Sweave. I can make comments and edits directly in your draft if you let me know how to make comments (in Sweave it’s % or # … do you know what it is in Rmd?). And I will try to text you when I work on it so we do not edit it at the same time (be sure to sync often). 
-
-Is it possible to move the draft to docs folder? If it’s a file paths issue I can help make the paths relative (just let me know).
-
-Do you have formatting requirements for the thesis?
-
-Why is the convex hull or Betpap so giant compared to the other values?
 
 Small to do items:
 - Add degrees of freedom to all statistics. 
