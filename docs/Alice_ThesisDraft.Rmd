@@ -163,7 +163,16 @@ Though the volume of a species’ convex hull and its competitiveness both exhib
 ## Principal Component Analysis of Functional Traits  
   
 As a way to visualize traits in non-metric space, I plotted the convex hulls of the four traits I used in my analysis using the first two principal components of a principal component analysis of the traits (Fig. 15). The first principal component explained 34% of variance while the second explained 25.9% (cumulatively explaining 61.6% of variance). The first principal component was strongly negatively correlated with SLA (-0.7337) and strongly positively correlated with DBH (0.54773700). The second principal component placed a heavy bearing on %C:%N (0.667) and stem density (0.687). Thus, using the principal component analysis to take into account all traits, SLA and DBH are inversely related while %C:%N and stem density are directly related.
+
+## Statistical analyses and figures
+To generate the NMDS plots (Fig. 9) and visualize species composition across sites, I used the species presence/absence data using the \textit{vegan} package in \textit{R}.
+
+In order to test my hypothesis about competitiveness across latitudes and climatic ranges, I fit linear mixed effects models to my competitive index for each species (Fig. . Because I was interested in the effect of a species’ position in its latitudinal and climatic range, I used latitude and a species’ distance from its climatic centroid as categorical explanatory variables. A significant effect of a species’ position in its latitudinal or climatic range on its competitiveness would support my hypothesis that a species will see decreased competitiveness at its range extremes.
   
+I used simple linear models to quantify the correlation between the relative convex hull trait volume for each focal species and it’s position in its latitudinal and climatic range (Figs. 12 & 13). I also used simple linear models to test a species' relative convex hull trait volume in relation to their relative basal area (Fig. 14). Because three of my focal species (*S. americana*, *C. alternifolia*, and *H. virginiana*) did not have enough trait data to calculate relative convex hull volumes across all sites, I included only three species. Due to the low number of data-points, I was unable to use a generalized linear mixed-effects model as I had done in testing competitiveness across ranges.
+  
+Finally, to visualize intraspecific functional trait variation across sites (Fig. 15), I conducted a principal component analysis using the four functional traits of interest (SLA, DBH, %C:%N, and stem density). I then plotted the first two principal component values as coordinates for each individual, drawing a convex hull around each set of functional traits at each site and within each species.
+
 \pagebreak  
 
 # Figures  
