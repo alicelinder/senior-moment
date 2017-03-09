@@ -266,3 +266,39 @@ lm(chvols.focal[chvols.focal$sp == "ACEPEN",]$relative.vol ~ chvols.focal[chvols
 
 
 head(chvols.focal)
+
+# finding elevation
+
+tree.traits <- read.csv("tree-traits.csv")
+tree.traits <- subset(tree.traits, select = c("Site", "Elevation", "Latitude", "Longitude"))
+tr <- complete.cases(tree.traits)
+tr <- tree.traits[tr,]
+min(tr[tr$Site == "WM",]$Elevation)
+max(tr[tr$Site == "WM",]$Elevation)
+
+mean(tr[tr$Site == "WM",]$Latitude)
+mean(tr[tr$Site == "WM",]$Longitude)
+
+min(tr[tr$Site == "GR",]$Elevation)
+max(tr[tr$Site == "GR",]$Elevation)
+
+mean(tr[tr$Site == "GR",]$Latitude)
+mean(tr[tr$Site == "GR",]$Longitude)
+
+min(tr[tr$Site == "SH",]$Elevation)
+max(tr[tr$Site == "SH",]$Elevation)
+
+mean(tr[tr$Site == "SH",]$Latitude)
+mean(tr[tr$Site == "SH",]$Longitude)
+
+mean(tr[tr$Site == "GR",]$Elevation)
+mean(tr[tr$Site == "SH",]$Elevation)
+
+tr$Max.Elev <- NULL
+tr$Min.Elev <- NULL
+
+for (i in unique(tr$Site)){
+  tr$Max.Elev <- max(tr[tr$Site == i,]$Elevation)
+  tr$Min.Elev <- min(tr[tr$Site == i,]$Elevation)
+}
+levels(tree.traits$Site)
