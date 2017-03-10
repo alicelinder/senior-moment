@@ -55,13 +55,3 @@ Anthropogenic warming may cause a shift in a species’ ideal “climate envelop
 Also, what is an *ideal* climate envelope? You should introduce this phrasing (or fundamental climate envelope? or such?) in the introduction. 
 
 Also, mention in the caption what color means what. For example, say “realized niche (green) …”
-
-
-Figure 3 (and 4): Can you try plotting all the dots and lines on one figure? It would help compare the results. It would be hard to do in ggplot but you can just use the base graphics to do it. I can help if you point me to code where you make the figure *and* where you do the related model.
-
-Tables 3 and 4: We should meet and discuss what models you’re using and why. I’d prefer if you present simple linear fits *or* a mixed effects model, but not both. Your text is written as being really about across-species patterns so you might stick with the mixed-effects model and plot the output of that (again, I can help). 
-
-
-Questions at the end:
-- Yes, you should show the species ranges in a figure (and the site). If you do this you might be able to skip Figure 1 but having both if sort of nice and theses are big documents. A couple extra figures is not bad. 
-- And yes, you’ll need to explain to the reader why you approached the question both from the latitude and the climatic range perspective (and why you picked what climate variable you picked). 

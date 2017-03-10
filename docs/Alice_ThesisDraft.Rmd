@@ -20,24 +20,55 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir='..//data')
 ```
 \doublespacing
-<!-- comments go here! -->
+\pagebreak  
+
+# Acknowledgements
+First, I would like to thank my advisor, Lizzie Wolkovich, for her guidance, time, and understanding. Without her many hours of help, my writing would be unintelligible, R would still be an unsolved puzzle, and this document would never have existed.
+
+Secondly, I would like to thank my de facto advisor, Dan Flynn, for always remaining calm and patient during my most stressful moments. Without his coding expertise and guidance from the start of this project, I would never know the beauty of a “for” loop.
+
+Thirdly, I would like to thank Ignacio Morales-Castilla for always generously offering his time to walk me through the abstract concept of climatic space, and for taking the (plentiful) time to explain his advanced coding to me.
+
+I would also like to thank:  
+
+My parents for their unrelenting support, the spontaneous phone calls, and their endless confidence in me.  
+  
+Anna Mayrand for making long, humid days in the field seem short (and also for the tick checks).  
+  
+Cat Chamberlain for the many laughs, carpools (long and short), and plenty of string cheese.  
+  
+Dan Buonaiuto for the example of what real adult life should be.  
+  
+Ari Korotkin and Nicole Merrill for helping me with data collection, and Ailene Ettinger for advice and expertise.  
+
+# Attribution of Work  
+The DBH of trees, as well as community composition data of both the under-story and over-story, was primarily collected by me with the help of Anna Mayrand. I also had the help of Dan Flynn, Cat Chamberlain, Ari Korotkin, and Nicole Merrill in measuring and identifying trees, especially at the sites that were not Harvard Forest.
+  
+Functional trait data was collected by Harry Stone, Dan Flynn, Jehane Samaha, Cara O'Connor, and Tim Savas, both as part of Harry’s REU independent project at Harvard Forest in the summer of 2015 and as a part of a larger project with the Wolkovich lab.
+  
+Climate data was taken from http://worldclim.org. The climatic centroid was calculated using species presence/absence data that had been downloaded from the Forest Inventory and Analysis National Program, or the FIA, by a colleague of Ignacio Morales-Castilla. The R code used to calculate the climatic centroid, including the principal component analysis, was written by Ignacio Morales-Castilla.
+  
+The NMDS plots were generated using code written by Dan Flynn. All other plots were generated using R code that I wrote, with the help of Lizzie Wolkovich.
+
+All other statistical analyses were conducted by me, including the principal component analysis used as coordinates for the convex hull plots of species' functional traits, as well as the code to plot the hulls (Fig. 15).
+
 \pagebreak  
 
 # Abstract
 
-Plant species’ ranges are determined through biotic and abiotic factors such as competition and the level of environmental stress (e.g., from drought or cold). Tree species in broadleaf temperate forests in the Northeast face changes to these ecological limits due to shifting temperatures across their range. The effect of this change is predicted to be most apparent at species’ range limits, where the alterations in previously-limiting factors will induce a range shift. By examining species at their range limits, we can predict their future responses to climate change and the implications for their distribution and success. The goal of this study was to determine how competitiveness and suites of functional traits in broadleaf temperate forests in the Northeast change across a latitudinal and climatic gradient. Using six focal tree species at four sites across their ranges, I examined whether deciduous tree species face a competitive disadvantage at their range limit. My results showed no relationship between competitiveness and  position in latitudinal or climatic range. Although functional traits did not consistently vary based on latitude, species approaching their climatic range limit exhibited less variation in functional traits than in their range interior. My findings suggest that competition may not limit species at their range limits to the extent previously thought. They also indicate that species exhibit only specific suites of traits at their climatic range limits. This suggests that species at their climatic range edges may not be able to express the suites of functional traits that will prove more successful in a warming world.
+Plant species’ ranges are determined through biotic and abiotic factors such as competition and the level of environmental stress (e.g., from drought or cold). Tree species in broadleaf temperate forests in the Northeast face changes to these ecological limits due to shifting temperatures across their range. The effect of this change is predicted to be most apparent at species’ range limits, where the alterations in previously-limiting factors will induce a range shift. By examining species at their range limits, we can predict their future responses to climate change and the implications for their distribution and success. The goal of this study was to determine how competitiveness and suites of functional traits in broadleaf temperate forests in the Northeast change across a latitudinal and climatic gradient. Using six focal tree species at four sites across their ranges, I examined whether deciduous tree species face a competitive disadvantage at their range limit. My results showed no relationship between competitiveness and  position in latitudinal or climatic range. Although functional traits did not consistently vary based on latitude, species approaching their climatic range limit exhibited less variation in functional traits than in their range interior. My findings suggest that competition may not limit species at their range limits to the extent previously thought. They also indicate that species exhibit only specific suites of traits at their climatic range limits. This suggests that species at their climatic range edges may not be able to express the suites of functional traits that could prove to be more successful in a warming world.
   
   \pagebreak
   
 # Introduction  
 
-A fundamental aim of community ecology is to determine the rules by which a community assembles. Community assembly is an ecological sorting process that filters out some species, but allows others to survive (Ackerly, 2003). Studies into species distributions shed light on what factors specifically cause the limitations of particular species, with the larger goal of understanding the overarching rules dictating community assembly. Two general processes have been proposed: (1) habitat filtering that limits species’ life strategies, and (2) resource partitioning that limits similarity in co-occurring species (Begon et. al, 1986; Cornwell and Ackerly, 2009). Fundamentally, the rules of community assembly can be described by examining the species that appear in a given community, and their interactions with their environment.   
+A fundamental aim of community ecology is to determine the rules by which a community assembles. Community assembly is an ecological sorting process that filters out some species, but allows others to survive (Ackerly, 2003). Studies into species distributions shed light on what factors specifically cause the limitations of particular species, with the larger goal of illuminating the overarching rules dictating community assembly. Two general processes have been proposed: (1) habitat filtering that limits species’ life strategies, and (2) resource partitioning that limits similarity in co-occurring species (Begon et. al, 1986; Cornwell and Ackerly, 2009). Fundamentally, the rules of community assembly can be described by examining the species that appear in a given community, and their interactions with their environment.   
   
-The concept of a species’ niche is useful in describing both intra- and inter-specific interactions, as well as in illustrating the effect the environment may have on a species. In Hutchinsonian niche space, there are two types of niche (Hutchinson, 1957). The fundamental niche acknowledges the environment a species may tolerate, while the realized niche describes the performance of a species in the presence of factors that may limit it (e.g. facilitators, competitors, or predators). But decades of work on plants has shown the dominant biotic interaction is competition. Numerous studies have found a relationship between competition and growth rate of trees, and even between competition and tree mortality (Biging & Dobbertin, 1992 ; Bravo-Oviedo et. al, 2005; Coomes & Allen, 2007). The final distribution of a species and its community composition results from the interplay of many abiotic (i.e. environmental) and biotic (e.g. competition) factors (Ackerly, 2003). 
+The concept of a species’ niche is useful in describing both intra- and inter-specific interactions, as well as in illustrating the effect the environment may have on a species. In Hutchinsonian niche space, there are two types of niche (Hutchinson, 1957). The fundamental niche acknowledges the environment a species may tolerate, while the realized niche describes the performance of a species in the presence of factors that may limit it (e.g. facilitators, competitors, or predators). Decades of work on plants has shown the dominant biotic interaction is competition; numerous studies have found a relationship between competition and growth rate of trees, and even between competition and tree mortality (Biging & Dobbertin, 1992 ; Bravo-Oviedo et. al, 2005; Coomes & Allen, 2007). The final distribution of a species and its community composition results from the interplay of many abiotic (i.e. environmental) and biotic (e.g. competition) factors (Ackerly, 2003). 
   
 Species distributions serve as an actualization of the concept of a niche. Indeed, understanding the sorting processes that prevent a species from inhabiting space across continuous landscapes has long been the subject of research. Seminal works have theorized about the different causes underlying the filtering out of a species at its range limit (Darwin, 1859). More specifically, the two limitations imposed on species in determining their ranges are theorized as (1) abiotically stressful environments that limit species, and (2) species interactions that further impose restrictions on the species through competition (Louthan et. al, 2015; Pigot & Tobias, 2013). On the edges of its range, a species thus sees either biotic and/or abiotic factors forcing it out in a process called habitat filtering (Weiher & Keddy, 1998).
   
-It is currently uncertain to what extent range limits are caused by biotic versus abiotic factors (Sexton et. al, 2009; Hargreaves et. al, 2014). Darwin long ago theorized that abiotic factors constrain species at high latitudes, high elevation, and likewise environmentally stressful areas. Meanwhile, community interactions limit species in less stressful environments (Louthan et. al, 2015). In a meta-analysis of both elevational and latitudinal range studies, Hargreaves et. al (2014) found that studies conducted with latitudinal range limits showed a pattern that upper range limits were governed solely by abiotic factors. However, there were too few studies conducted at lower latitudes to ascertain a concrete alternative behavior at the lower limits. Thus, it is likely that biotic interactions will increase in importance in governing range limits as the climate warms (Hargreaves et. al, 2014). 
+It is currently uncertain to what extent range limits are caused by biotic versus abiotic factors (Sexton et. al, 2009; Hargreaves et. al, 2014). Darwin long ago theorized that abiotic factors constrain species at high latitudes, high elevation, and likewise environmentally stressful areas. Meanwhile, community interactions limit species in less stressful environments (Louthan et. al, 2015). Climatic envelope models rest upon the assumption that a species' distribution relies on its tolerance of difference environments, and thus on the effect of abiotic factors (Hijmans & Graham, 2006). In a meta-analysis of both elevational and latitudinal range studies, Hargreaves et. al (2014) found that studies conducted with latitudinal range limits showed a pattern that upper range limits were governed solely by abiotic factors. However, there were too few studies conducted at lower latitudes to ascertain a concrete alternative behavior at the lower limits. Thus, it is likely that biotic interactions will increase in importance in governing range limits as the climate warms (Hargreaves et. al, 2014). 
   
 The relative importance of biotic factors and abiotic factors varies greatly among species, complicating our ability to predict how a species within a given community will respond to a warming environment. Additionally, there is a dearth of research looking at both biotic and abiotic factors for the same species, which is needed to control for variation among species (Sexton et. al, 2009). Examining a species at its range edge compared to its range interior, taking note of both the competitive niche it occupies and the environment the species lives in, thus provides important information on the interplay of factors limiting it. By understanding the factors limiting a species, we can predict more accurately how well a species will be able to extend its realized niche in a changing environment.  
 	  
@@ -52,17 +83,17 @@ Functional traits also serve as useful predictors of other traits that are more 
 Functional traits have also been shown to be accurate predictors of species’ geographic ranges (Stahl & Wirth 2014), lending credence to the theory of niche differentiation and resource partitioning as a primary factor in determining a species’ geographic range. The functional traits of a species across its range can thus provide valuable information about the biotic and abiotic factors that limit it beyond its range, and how it is responding to those limiting factors. By using functional traits to describe a plant’s resource partitioning across its geographic range, I can more accurately predict how a species could respond to shifts in climate.
 
 ## Range shifts and response to climate change  
-Studies into range limits have come to the foreground in attempts to understand how species ranges might shift with changes in climate. Observing a species at its range edge can help test the conditions by which some populations adapt successfully (or not) to novel conditions. Based on the niche conservatism hypothesis, when environmental conditions stretch beyond a species’ physiological tolerances, that species will either shift its distribution or face extinction (Peterson, Soberón, & Sánchez-Cordero 1999). More specifically, in response to a changing environment, a population may respond one of a few ways: 1) small-scale changes in distributions of local populations; 2) large-scale shifts in geographic distribution, consisting of range expansions and range contraction in the former range; 3) adaptive evolution of the niche in response to the new conditions; and 4) extinction (Ackerly 2003; Thomas, Franco & Hill 2006).  <!-- Nice! -->  
+Studies into range limits have come to the foreground in attempts to understand how species ranges might shift with changes in climate. Observing a species at its range edge can help test the conditions by which some populations adapt successfully (or not) to novel conditions. Based on the niche conservatism hypothesis, when environmental conditions stretch beyond a species’ physiological tolerances, that species will either shift its distribution or face extinction (Peterson, Soberón, & Sánchez-Cordero 1999). More specifically, in response to a changing environment, a population may respond one of a few ways: 1) small-scale changes in distributions of local populations; 2) large-scale shifts in geographic distribution, consisting of range expansions and range contraction in the former range; 3) adaptive evolution of the niche in response to the new conditions; and 4) extinction (Ackerly 2003; Thomas, Franco & Hill 2006).
 
-Species ranges are very mobile, often contracting or expanding over time (Brown, Stevens & Kaufman 1996; Davis & Shaw 2001). Indeed, range shifts for many species have been observed in response to increasing temperature over time (Chen et. al 2011). The observed pattern is upward, to higher latitudes and elevations, as populations track their preferred environments (Fig. 2, Sexton et. al 2009; Ackerly 2003; Parmesan 2006). Past studies have observed a noticeable expansion of woody plants north past their original northern range limits in response to rising mean annual temperatures (Matías & Jump 2015).
+Species ranges are very mobile, often contracting or expanding over time (Brown, Stevens & Kaufman 1996; Davis & Shaw 2001). Indeed, range shifts for many species have been observed in response to increasing temperature over time (Chen et. al 2011). The observed pattern is upward, to higher latitudes and elevations, as populations track their preferred environments (Fig. 2, Sexton et. al 2009; Ackerly 2003; Parmesan 2006). This is the trend predicted by climatic envelope models (Fig. 2). Past studies have observed a noticeable expansion of woody plants north past their original northern range limits in response to rising mean annual temperatures (Matías & Jump 2015).
   
 Yet on their southern range edges, species are faced with possible extinction. In a study observing the distributional shifts of *Silene acaulis* (moss campion) and the geophyte *Polygonum viviparum* (alpine bistort) across six years, both populations saw die-out at their southern range edge (Doak & Morris 2010). The same effect has been seen earlier in history. As the temperature increased late in the last glacial interval, woody species populations established themselves at increasingly higher latitudes in so-called “migrations” (David & Shaw 2001). 
   
-To compensate for population loss at their southern edge due to the loss of their preferred environment, a species must shift northwards. Evidence shows that this shift may not occur quickly enough to account for the rate of changing temperatures and population loss; in a meta-analysis of plant distributions spanning 40 years, Bertrand et. al (2011) found a lag in the responses of herbaceous forest species to climate change.  Since species often track their optimal environment (Ackerly 2003), strong limiting factors due to intra-specific competition may signal that a species will not be able to migrate at a rate sufficient to counteract population loss at their southern range edge.  
+To compensate for population loss at its southern edge due to the loss of its preferred environment, a species must shift northwards. Evidence shows that this shift may not occur quickly enough to account for the rate of changing temperatures and population loss; in a meta-analysis of plant distributions spanning 40 years, Bertrand et. al (2011) found a lag in the responses of herbaceous forest species to climate change.  Since species often track their optimal environment (Ackerly 2003), strong limiting factors due to intra-specific competition may signal that a species will not be able to migrate at a rate sufficient to counteract population loss at their southern range edge.  
   
 In addition to shifts in distribution, there is evidence that plant species underwent local (genetic) adaptation in response to changing climates over the last 10,000 years (Davis & Shaw, 2001). Yet, research suggests that populations are unlikely to undergo local adaptation at the pace necessary to match many current changes (Davis & Shaw, 2001). Such changes include the invasion of competitors from adjacent positions and climate change (Ackerly, 2003). Furthermore, studies show that competition hinders the advancement of colonists into new environments during shifts due to changing environments (Suttle et. al, 2001; Urban et. al, 2012), which limits a species’ options in terms of biotic factors. Simultaneously, the speed of climate change affects how prevalent adaptive responses are (Ackerly, 2003). Many species are thus left with only one option: to migrate.   
   
-Work across species range extremes and range interiors, such as the work that I have conducted, allows us to see whether a species is primed to migrate. Additionally, such experiments have the potential to reveal how many limiting factors a species might face during migration, given its shifting (and possibly decreasing) preferred climatic envelope. Because edge populations may see more variability in survival and reproduction due to the frequency at which they must respond to limiting factors (Reich & Oleksyn, 2008; Sexton et. al, 2011), range extremes are a unique opportunity to understand current modes of community assembly, as well as to predict species’ future responses to climate change. <
+Work across species range extremes and range interiors, such as the work that I have conducted, allows us to see whether a species is primed to migrate. Additionally, such experiments have the potential to reveal how many limiting factors a species might face during migration, given its shifting (and possibly decreasing) preferred climatic envelope. Because edge populations may see more variability in survival and reproduction due to the frequency at which they must respond to limiting factors (Reich & Oleksyn, 2008; Sexton et. al, 2011), range extremes are a unique opportunity to understand current modes of community assembly, as well as to predict species’ future responses to climate change.
   
 ## Latitudinal gradients as field laboratories  
 The study of range expansions and retractions is best accomplished through studies across latitudinal gradients. Using a latitudinal gradient as a study system allows for observations of a species across a larger spatial scale than in small-scale field or lab-based warming facilities, and provides a much more accurate representation of the habitat that either allows or prevents a species from establishing itself (De Frenne et. al, 2013). Generally, there is a reliable poleward decrease in temperature across latitudes. On average, temperature decreases approaching the poles on the order of -0.73 degrees Celsius per degree latitude in the Northern hemisphere. Other climatic variables, such as precipitation, also change across latitudes (De Frenne et. al, 2013). Looking at species’ traits and community composition across latitudes can provide insight into the effect of environmental variables on range limits and species’ future success.   
@@ -131,6 +162,15 @@ We calculated convex hull volumes at both the species level and the community le
 
 For the species level convex hulls, I used the \textit{R} package \textit{geometry} to find the convex hull volume for all the species. For the community level, I used the \textit{R} package \textit{FD}. The package requires a presence/absence matrix for species composition to calculate the Functional Richness value (equivalent to the convex hull volume). I then used the mean trait values for each species at each site and the distribution matrix to calculate the functional richness at each of the four sites. Using this data, I calculated the relative convex hull volume of my focal species to the community functional richness (or convex hull volume). 
 
+## Statistical analyses and figures
+To generate the NMDS plots (Fig. 9) and visualize species composition across sites, I used the species presence/absence data using the \textit{vegan} package in \textit{R}.
+
+In order to test my hypothesis about competitiveness across latitudes and climatic ranges, I fit linear mixed effects models to my competitive index for each species (Figs. 10 & 11). Because I was interested in the effect of a species’ position in its latitudinal and climatic range, I used latitude and a species’ distance from its climatic centroid as categorical explanatory variables. A significant effect of a species’ position in its latitudinal or climatic range on its competitiveness would support my hypothesis that a species will see decreased competitiveness at its range extremes.
+  
+I used simple linear models to quantify the correlation between the relative convex hull trait volume for each focal species and it’s position in its latitudinal and climatic range (Figs. 12 & 13). I also used simple linear models to test a species' relative convex hull trait volume in relation to their relative basal area (Fig. 14). Because three of my focal species (*S. americana*, *C. alternifolia*, and *H. virginiana*) did not have enough trait data to calculate relative convex hull volumes across all sites, I included only three species. Due to the low number of data-points, I was unable to use a generalized linear mixed-effects model as I had done in testing competitiveness across ranges.
+  
+Finally, to visualize intraspecific functional trait variation across sites (Fig. 15), I conducted a principal component analysis using the four functional traits of interest (SLA, DBH, %C:%N, and stem density). I then plotted the first two principal component values as coordinates for each individual, drawing a convex hull around each set of functional traits at each site and within each species.
+
 \pagebreak
 
 # Results
@@ -139,58 +179,50 @@ For the species level convex hulls, I used the \textit{R} package \textit{geomet
 Species composition varied greatly between the site at Harvard Forest and the northern three sites in both the understory and the overstory (Fig. 9). The convex hulls in the non-linear multidimensional scalar plots overlap significantly at the White Mountains, Dartmouth College Second Grant, and the Saint Hippolyte sites. Many combinations of species appearing together at the sites appeared across all three sites, and were not recorded together at the Harvard Forest site. The understory NMDS plot (Fig. 9b) was composed of a smaller number unique species combinations, compared to the overstory community composition (Fig. 9a).
 
 ## Focal species’ competitiveness across latitudinal and climatic gradients
-Position in latitudinal range did not reliably predict competitiveness across all six species (Fig. 10). There was little to no correlation between increasing latitude (approaching northern edges) and the competitive index of the focal trees. In a linear mixed effects model with all six species, there was a statistically insignificant positive correlation between latitude and relative basal area ($p$ = .368, $R^{2}$ = .404). However, all species except *B. papyrifera* exhibited a negative relationship between the competition index and increasing latitude. *B. papyrifera*’s distribution lies predominantly north of Harvard Forest with the center of its range located near the northern-most testing site (Fig. 4).  Although *S. americana*’s distribution puts it near its southern edge at Harvard Forest as it does for *B. papyrifera* (Fig. 8), *S. americana* exhibited the opposite trend as *B. papyrifera*. In the model, *S. americana* exhibited a negative correlation between its relative basal area and an increase in latitude (moving away from its southern edge).
+Position in latitudinal range did not reliably predict competitiveness across all six species (Fig. 10). There was little to no correlation between increasing latitude (approaching northern edges) and the competitive index of the focal trees. In a linear mixed effects model with all six species, there was a statistically insignificant positive correlation between latitude and relative basal area (Fig. 10, $R^{2}$ = 0.404, n = 101, $p$ = 0.368). However, all species except *B. papyrifera* exhibited a negative relationship between the competition index and increasing latitude. *B. papyrifera*’s distribution lies predominantly north of Harvard Forest with the center of its range located near the northern-most testing site (Fig. 4).  Although *S. americana*’s distribution puts it near its southern edge at Harvard Forest as it does for *B. papyrifera* (Fig. 8), *S. americana* exhibited the opposite trend as *B. papyrifera*. In the model, *S. americana* exhibited a negative correlation between its relative basal area and an increase in latitude (moving away from its southern edge).
   
-Distance from the climatic centroid also did not consistently predict competitiveness across climatic space. In a linear mixed effects model with all six species, there was a statistically insignificant negative correlation between a species’ distance from its climatic centroid and its relative basal area in a plot ($p$ = .376, $R^{2}$ = .473). *B. papyrifera* was once again an outlier out of all species, exhibiting a strong negative relationship between its competitive index (relative basal area) and its position in its climatic range. Thus, individuals of *B. papyrifera* that lie farther from their climatic centroid generally tend to be smaller compared to other species around them. The other five species exhibited slightly positive correlations between their competitiveness and their distance from their climatic centroids, meaning that individuals were generally slightly more competitive the farther away from their climatic centroid they were located.
+Distance from the climatic centroid also did not consistently predict competitiveness across climatic space. In a linear mixed effects model with all six species, there was a statistically insignificant negative correlation between a species’ distance from its climatic centroid and its relative basal area in a plot (Fig. 11, $R^{2}$ = 0.473, n = 101, $p$ = 0.376). *B. papyrifera* was once again an outlier out of all species, exhibiting a strong negative relationship between its competitive index (relative basal area) and its position in its climatic range. Thus, individuals of *B. papyrifera* that lie farther from their climatic centroid generally tend to be smaller compared to other species around them. The other five species exhibited slightly positive correlations between their competitiveness and their distance from their climatic centroids, meaning that individuals were generally slightly more competitive the farther away from their climatic centroid they were located.
 
 ## Functional traits of focal species and range differences
   
-  The suites of functional traits I examined did not vary predictably with latitude (Fig. 12). In a simple linear model, there was a small overall negative correlation between latitude and relative convex hull volume of species (adjusted $R^{2}$ = -0.0258; $\sigma^{2}$ = 0.02683; $p$ = .435) Only four of the six focal species had enough trait data to calculate convex hull volume (which requires \textit{n} to exceed the number of traits examined).  In a simple linear model for each of the tree species, there was no discernible pattern in the relationship between latitude and the relative convex hull volume of the focal species at the four sites.
+  The suites of functional traits I examined did not vary predictably with latitude (Fig. 12). In a simple linear model, there was a small overall negative correlation between latitude and relative convex hull volume of species (Fig. 12, $R^{2}$ = -0.026, n = 15, $p$ = 0.435) Only four of the six focal species had enough trait data to calculate convex hull volume (which requires \textit{n} to exceed the number of traits examined).  In a simple linear model for each of the tree species, there was no discernible pattern in the relationship between latitude and the relative convex hull volume of the focal species at the four sites.
   
-Of the four focal species, *A. pensylvanicum* (adjusted $R^{2}$ = 0.6628; $\sigma^{2}$ = 0.07001; $p$ = .1195) and  *F. grandifolia* (adjusted $R^{2}$ = 0.7788; $\sigma^{2}$ = 0.09291; $p$ = 0.1054) exhibited a slight decrease in their relative convex hull volume across latitudes in simple linear models within each species.  Thus for these two species, the data suggest that individuals take up less functional trait space relative to their community at higher latitudes than at lower latitudes, though the results were statistically insignificant. Conversely,*C. alternifolia* (adjusted $R^{2}$ = 0.7788; $\sigma^{2}$ = 0.09291; $p$ = 0.2158) and *B. papyrifera* (adjusted $R^{2}$ = .7004; $\sigma^{2}$ = 0.1414; $p$ = .53) exhibited statistically insignificant slight increases in the relative convex hull volumes of their traits across latitudes. For these two species specifically, the data suggest that the amount of space taken up in a community’s functional richness by the focal species increases as it moves north (at increasing latitudes). 
+Of the four focal species, *A. pensylvanicum* (Fig. 12, $R^{2}$ = 0.663, n = 4, $p$ = 0.120) and  *F. grandifolia* (Fig. 12, $R^{2}$ = 0.780, n = 4, $p$ = 0.105) exhibited a slight decrease in their relative convex hull volume across latitudes in simple linear models within each species.  Thus for these two species, the data suggest that individuals take up less functional trait space relative to their community at higher latitudes than at lower latitudes, though the results were statistically insignificant. Conversely,*C. alternifolia* (Fig. 12, $R^{2}$ = 0.780, n = 3, $p$ = 0.216) and *B. papyrifera* (Fig. 12, $R^{2}$ = 0.700, n = 4, $p$ = 0.530) exhibited statistically insignificant slight increases in the relative convex hull volumes of their traits across latitudes. For these two species specifically, the data suggest that the amount of space taken up in a community’s functional richness by the focal species increases as it moves north (at increasing latitudes). 
   
-A species’ distance from its climatic centroid was a better predictor than latitude of its relative convex hull volume (Fig. 13). The three species included in the analysis all showed a negative relationship between the distance from their climatic centroid and their relative convex hull volume. Without taking into account species type, the data exhibited a strong overall negative correlation between relative convex hull volume and distance from climatic centroid (adjusted $R^{2}$ = 0.2657; $\sigma^{2}$ = 0.007459; $\textbf{p < 0.05}$). Generally across all three species, as a species moved farther away from its climatic centroid, its convex hull volume decreased in relation to the overall functional richness of the community.
+A species’ distance from its climatic centroid was a better predictor than latitude of its relative convex hull volume (Fig. 13). The three species included in the analysis all showed a negative relationship between the distance from their climatic centroid and their relative convex hull volume. Without taking into account species type, the data exhibited a strong overall negative correlation between relative convex hull volume and distance from climatic centroid (Fig. 13, $R^{2}$ = 0.266, n = 4, $p$ < 0.001). Generally across all three species, as a species moved farther away from its climatic centroid, its convex hull volume decreased in relation to the overall functional richness of the community.
   
-The degree of correlation varied across species. There was a stronger negative correlation across the climatic range for *A. pensylvanicum* (adjusted $R^{2}$ = 0.3674; $\sigma^{2}$ = 0.008541; $\textbf{p < 0.05}$) and *B. papyrifera* (adjusted $R^{2}$ = 0.2683; $\sigma^{2}$ = 0.007309; $\textbf{p < 0.05}$). *F. grandifolia* also exhibited a negative relationship between its relative convex hull volume and an individual’s distance from its climatic centroid (adjusted $R^{2}$ = 0.6234; $\sigma^{2}$ = 0.06553; $\textbf{p < 0.05}$). Based on analysis through a simple linear model, I can reject the null hypothesis (H1: A3) that there is no effect of a species’ distance from its climatic centroid on its relative convex hull volume (and its suite of functional traits).
+The degree of correlation varied across species. There was a stronger negative correlation across the climatic range for *A. pensylvanicum* (Fig. 13, $R^{2}$ = 0.367, n = 4, $p$ = 0.002) and *B. papyrifera* (Fig. 13, $R^{2}$ = 0.2683, n = 4, $p$ = 0.006). *F. grandifolia* also exhibited a negative relationship between its relative convex hull volume and an individual’s distance from its climatic centroid (Fig. 13, $R^{2}$ = 0.623, $p$ < 0.001). Based on analysis through a simple linear model, I can reject the null hypothesis (H1, A3) that there is no effect of a species’ distance from its climatic centroid on its relative convex hull volume (and its suite of functional traits).
   
-Though the volume of a species’ convex hull and its competitiveness both exhibited a negative relationship with distance from its climatic centroid, relative convex hull volume did not reliably predict competitiveness (Fig. 14). *A. pensylvanicum* exhibited an insignificant slight negative correlation between its relative convex hull volume and its competitiveness  (adjusted $R^{2}$ = -0.03713; $\sigma^{2}$ = 0.0004784; $p$ = 0.6783). *F. grandifolia* showed a more negative relationship between relative convex hull volume and its relative basal area in a plot (adjusted $R^{2}$ = 0.03305 ; $\sigma^{2}$ = 0.005842; $p$ = 0.1998). For both species, there was a slight (insignificant) decrease in their competitiveness as an individual’s relative convex hull volume increased, or when that individual took up more of a community’s functional richness with its own functional traits. And finally, *B. papyrifera* displayed the opposite relationship, with a positive correlation between relative convex hull volume and relative basal area (adjusted $R^{2}$ = -0.007968; $\sigma^{2}$ = 0.008198; $p$ = 0.3637).
+Though the volume of a species’ convex hull and its competitiveness both exhibited a negative relationship with distance from its climatic centroid, relative convex hull volume did not reliably predict competitiveness (Fig. 14). *A. pensylvanicum* exhibited an insignificant slight negative correlation between its relative convex hull volume and its competitiveness  (Fig. 14, $R^{2}$ = -0.037, n = 24, $p$ = 0.678). *F. grandifolia* showed a more negative relationship between relative convex hull volume and its relative basal area in a plot (Fig. 14, $R^{2}$ = 0.033, n = 24, $p$ = 0.200). For both species, there was a slight (insignificant) decrease in their competitiveness as an individual’s relative convex hull volume increased, or when that individual took up more of a community’s functional richness with its own functional traits. And finally, *B. papyrifera* displayed the opposite relationship, with a positive correlation between relative convex hull volume and relative basal area (Fig. 14, $R^{2}$ = -0.008; $p$ = 0.364).
   
-## Principal Component Analysis of Functional Traits  
+## Principal Component Analysis of functional traits  
   
-As a way to visualize traits in non-metric space, I plotted the convex hulls of the four traits I used in my analysis using the first two principal components of a principal component analysis of the traits (Fig. 15). The first principal component explained 34% of variance while the second explained 25.9% (cumulatively explaining 61.6% of variance). The first principal component was strongly negatively correlated with SLA (-0.7337) and strongly positively correlated with DBH (0.54773700). The second principal component placed a heavy bearing on %C:%N (0.667) and stem density (0.687). Thus, using the principal component analysis to take into account all traits, SLA and DBH are inversely related while %C:%N and stem density are directly related.
-
-## Statistical analyses and figures
-To generate the NMDS plots (Fig. 9) and visualize species composition across sites, I used the species presence/absence data using the \textit{vegan} package in \textit{R}.
-
-In order to test my hypothesis about competitiveness across latitudes and climatic ranges, I fit linear mixed effects models to my competitive index for each species (Fig. . Because I was interested in the effect of a species’ position in its latitudinal and climatic range, I used latitude and a species’ distance from its climatic centroid as categorical explanatory variables. A significant effect of a species’ position in its latitudinal or climatic range on its competitiveness would support my hypothesis that a species will see decreased competitiveness at its range extremes.
-  
-I used simple linear models to quantify the correlation between the relative convex hull trait volume for each focal species and it’s position in its latitudinal and climatic range (Figs. 12 & 13). I also used simple linear models to test a species' relative convex hull trait volume in relation to their relative basal area (Fig. 14). Because three of my focal species (*S. americana*, *C. alternifolia*, and *H. virginiana*) did not have enough trait data to calculate relative convex hull volumes across all sites, I included only three species. Due to the low number of data-points, I was unable to use a generalized linear mixed-effects model as I had done in testing competitiveness across ranges.
-  
-Finally, to visualize intraspecific functional trait variation across sites (Fig. 15), I conducted a principal component analysis using the four functional traits of interest (SLA, DBH, %C:%N, and stem density). I then plotted the first two principal component values as coordinates for each individual, drawing a convex hull around each set of functional traits at each site and within each species.
+As a way to visualize traits in non-metric space, I plotted the convex hulls of the four traits I used in my analysis using the first two principal components of a principal component analysis of the traits (Fig. 15). The first principal component explained 34% of variance while the second explained 25.9% (cumulatively explaining 61.6% of variance). The first principal component was strongly negatively correlated with SLA (-0.734) and strongly positively correlated with DBH (0.548). The second principal component correlated positively both with %C:%N (0.667) and stem density (0.687). Thus, using the principal component analysis to take into account all traits, SLA and DBH were inversely related while %C:%N and stem density were directly related.
 
 \pagebreak  
 
 # Figures  
-  
+## Figure 1  
 \centerline{\includegraphics[height=5in]{..//data/ClimMeanAnnualTemp.jpeg}}  
   
 \singlespacing
   \setlength\parindent{0in}
-  \textbf{Figure 1}: Map of all four sites mapped onto a raster image of their mean annual temperatures, compiled from the 30 arcsecond layer from http://worldclim.org.
+  \textbf{Figure 1}: Map of four study sites. Colors represent the mean annual temperature (compiled from the 30 arcsecond layer from http://worldclim.org)
 
-\pagebreak
-
+\pagebreak  
+  
+## Figure 2
 
  \centerline{\includegraphics[height=10in]{..//data/Illustration1.png}}  
  
 
  \setlength\parindent{0in}
  \singlespacing
-\textbf{Figure 2}: Anthropogenic warming can drastically alter the environment to which a species has adapted. This shift in climate also means that a species' ideal "climate envelope"" shifts. If a species is limited by its preferred environmental variables, it may have to shift its range in order to compensate for the change in climate. It must match its realized niche with the shift climate envelope or face extinction at its southern (warming) edge. 
+\textbf{Figure 2}: Anthropogenic warming may cause a shift in a species' "climate envelope" (black). If a species is restricted to its preferred environment (or the environment it can tolerate), it may have to shift its distribution (green) in order to compensate for the change in climate. Based on a climate envelope model, a species must match its realized niche (green) with the shift in climate envelope (black) or face extinction at its southern edge. 
     
   \pagebreak  
     
-## Range Maps   
+## Figure 3    
 
 
   \setlength\parindent{0in}
@@ -199,23 +231,28 @@ Finally, to visualize intraspecific functional trait variation across sites (Fig
 \includegraphics[width=5.5in]{..//docs/acerpens.pdf}
 \singlespacing  
 \textbf{Figure 3}: Representation of the range of \textit{A. pensylvanicum}. Individuals were found at allsites, with functional trait data taken across all four. Used as one of four species approaching its northern range at the northernmost site at Saint Hippolyte. Image taken from https://gec.cr.usgs.gov.
-
+  
+## Figure 4  
 \includegraphics[width=5.5in]{..//docs/betupapy.pdf}
 \singlespacing  
 \textbf{Figure 4}: Representation of the range of \textit{B. papyrifera}. Individuals were found at all sites, with functional trait data taken across all four. Used as one of two species entering its range interior away from Harvard Forest (taken as near its southern range extreme). Image taken from https://gec.cr.usgs.gov.
-
+  
+## Figure 5  
 \includegraphics[width=5.5in]{..//docs/cornalte.pdf}
 \singlespacing  
-\textbf{Figure 5}: Representation of the range of \textit{C. alternifolia}. Community composition and competition index data was collected at the White Mountains, Dartmouth Grant, and Saint Hippolyte sites. Functional trait data was taken at the Harvard Forest, Dartmouth Grant, and Saint Hippolyte sites (over the year between the trait data and community composition data collections, the individuals found at Harvard Forest became very unhealthy). Used as one of four species approaching its northern range at the northernmost site at Saint Hippolyte. Image taken from https://gec.cr.usgs.gov.
-
+\textbf{Figure 5}: Representation of the range of \textit{C. alternifolia}. Data was collected at three of four sites. Used as one of four species approaching its northern range at the northernmost site at Saint Hippolyte. Image taken from https://gec.cr.usgs.gov.
+  
+## Figure 6  
 \includegraphics[width=5.5in]{..//docs/fagugran.pdf}
 \singlespacing  
 \textbf{Figure 6}: Representation of the range of \textit{F. grandifolia}. Individuals were found at all four sites, with functional trait data taken across all four. Used as one of four species approaching its northern range at the northernmost site at Saint Hippolyte. Image taken from https://gec.cr.usgs.gov.
-
+  
+## Figure 7  
 \includegraphics[width=5.5in]{..//docs/hamavirg.pdf}
 \singlespacing  
 \textbf{Figure 7}: Representation of the range of \textit{H. virginiana}. Individuals were found at only two sites, with functional trait data taken at both (though not enough to compute convex hull volumes). Used as one of four species approaching its northern range at the one of the middle sites in the White Mountains. Image taken from https://gec.cr.usgs.gov.
-
+  
+## Figure 8  
 \includegraphics[width=5.5in]{..//docs/sorbamer.pdf}
 \singlespacing  
 \textbf{Figure 8}: Representation of the range of \textit{S. americana}. Individuals were found at all four sites, though not enough functional trait data was collected to determine convex hull volumes across all four sites (even though data was collected across all four). Used as one of two species that nears its southern range edge at the site near Harvard Forest. Image taken from https://gec.cr.usgs.gov.
@@ -235,7 +272,7 @@ library(tidyr)
 library(reshape2)
 ```
 
-
+## Figure 9  
 ```{r echo=FALSE}
 # load MDS figures
 # plot MDS overstory
@@ -289,10 +326,11 @@ legend("topleft",
    
  \setlength\parindent{0in}
  \singlespacing
-\textbf{Figure 9}: A non-metric multidimensional scalar plot representing the species composition and variation of the overstory across all four sites. The location of the polygon represents the different combinations of species that appear within each site, and the size represents the nummber of unique combinations of species. The overlap across the northern three sites signifies a great deal of similarity in cominations of species (species that appeared together in plots at those sites). Between the overstory and understory species composition, however, there are fewer unique combinations of species that occur in the understory. This is denoted by the slightly smaller polygons.
+\textbf{Figure 9}: Non-metric multidimensional scalar plots (NMDS) representing species composition. The location of the polygon represents the different combinations of species that appear within each site, and the size signifies the nummber of unique combinations of species. Overlap of the northern three sites shows a great deal of similarity in species that co-occurred in both overstory (top) and understory (bottom). There are fewer unique combinations of species that occur in the understory. This is denoted by the slightly smaller polygons.
 
 \pagebreak
-
+  
+## Figure 10  
 ```{r, echo=FALSE, warning=FALSE}
 ## Figure 2: graph of Basal Area across latitudes
 
@@ -306,7 +344,8 @@ focal.centroid <- focal.centroid[-which(focal.centroid$sp == "FAGGRA" & focal.ce
 focal.centroid <- focal.centroid[-which(focal.centroid$sp == "QUEALB"),]
 
 #myspecieslist <- unique(focal.centroid$sp)
-plot(focal.centroid$minLatdiff,focal.centroid$relative.BA, type="n", xlim <- c(7, 12), ylim <- c(-0.1,1), xlab="", ylab="Relative Basal Area")
+plot(focal.centroid$minLatdiff,focal.centroid$relative.BA, type="n", xlim <- c(7, 17), ylim <- c(-0.2,1), xlab="", ylab="Relative Basal Area")
+          
 
 # subset my species list so that BETPAP and SORAME are in separate places
 s.sp <- c("BETPAP", "SORAME")
@@ -328,8 +367,8 @@ abline(0.05205775, -0.011644882, col="#D95F02", lwd=2)
 #Overall trend
 abline(-0.06413290, 0.01428613, col="black", lwd=3) # overall mean
 
-legend('topright', legend=c("B. papyrifera", "S. americana"), 
-       lty=1, col=s.mycolors, bty='n', cex=1)
+legend('topright', legend=c("B. papyrifera (n = 24)", "S. americana (n = 18)"), 
+       lty=1, col=s.mycolors, bty='n', cex=.8)
 
 
 n.sp <- c("ACEPEN", "CORALT", "FAGGRA", "HAMVIR")
@@ -337,7 +376,7 @@ n.sp <- c("ACEPEN", "CORALT", "FAGGRA", "HAMVIR")
 n.mycolors <- rep(c("#7570B3", "#E7298A", "#66A61E", "#E6AB02"), 10)
 
 plot(focal.centroid$minLatdiff,focal.centroid$relative.BA, type="n", xlab="Distance from Min. Latitudes (degrees)", ylab="Relative Basal Area",
-          xlim <- c(7, 17), ylim <- c(-0.2,0.4))
+          xlim <- c(7, 17), ylim <- c(-0.2,1))
 
 for (i in c(1:length(n.sp))){
   subby <- subset(focal.centroid, sp==n.sp[i])
@@ -363,17 +402,17 @@ abline(0.05346396, -0.011959439, col="#E6AB02", lwd=2)
 abline(-0.06413290, 0.01428613, col="black", lwd=3)
 
 
-legend('topright', legend=c("A. pensylvanicum", "C. alternifolia", "F. grandifola", "H. virginiana"), 
-       lty=1, col=n.mycolors, bty='n', cex=1)
+legend('topright', legend=c("A. pensylvanicum (n = 24)", "C. alternifolia (n = 18)", "F. grandifola (n = 24)", "H. virginiana (n = 12)"), 
+       lty=1, col=n.mycolors, bty='n', cex=.8)
 
 ```
   
  \setlength\parindent{0in}
  \singlespacing
-\textbf{Figure 10}: $p$ = .376, $R^{2}$ = .473, CI = -0.02- 0.05. Competitiveness index across latitudes varies by species. Overall, there is a positive trend in competition index as individuals appear farther at sites located farther north. \textit{B. papyrifera} and \textit{S. americana} are separated from the other four species to emphasize that they are the two species that are moving away from their (southern) range extremes, rather than approaching their northern range extremes.
+\textbf{Figure 10}: Competitiveness index across latitudes varies by species. Overall, there is a positive trend in competition index as individuals appear farther at sites located farther north. \textit{B. papyrifera} and \textit{S. americana} are separated from the other four species to emphasize that they are the two species that are moving away from their (southern) range extremes, rather than approaching their northern range extremes. Three species appeared at all four sites, while two appeared at three sites, and one species appeared at two sites.
 \pagebreak   
 
-
+## Figure 11  
 ```{r, echo=FALSE, warning=FALSE}
 # load all data from source code
 load("Clim.Focal.RData")
@@ -411,16 +450,17 @@ abline(-0.2130377, 0.06591260, col="#E6AB02", lwd=2)
 #Overall trend
 abline(0.20681811, -0.05411618, col="black", lwd=3) # overall mean
 
-legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola", "H. virginiana", "S. americana"), 
+legend('topright', legend=c("A. pensylvanicum (n = 22)", "B. papyrifera (n = 24)", "C. alternifolia (n = 18)", "F. grandifola (n = 23)", "H. virginiana (n = 12)", "S. americana (n = 18)"), 
        lty=1, col=mycolors, bty='n', cex=.75)
 
 ```
  \setlength\parindent{0in}
  \singlespacing
-\textbf{Figure 11}: Across the six species, the intraspecific competition index of relative basal are did not vary predictably as species moved away from their climatic centroids ($p$ = .376, $R^{2}$ = .473, CI = (-0.17 - 0.07)). \textit{B. papyrifera} exhibited a strong negative correlation with its competition index, possibly due its larger maximum size compared to the other species. Overall, there was a negative trend in a species' competition index as it moves away from its climatic centroid.
+\textbf{Figure 11}: Across the six species, the intraspecific competition index of relative basal did not vary predictably as species moved away from their climatic centroids. \textit{B. papyrifera} exhibited a strong negative correlation with its competition index, possibly due its larger maximum size compared to the other species. Overall, there was a negative trend in a species' competition index as it moves away from its climatic centroid. Three species appeared at all four sites, while two appeared at three sites, and one species appeared at two sites. The line representative of *A. pensylvanicum* overlaps with the other four species on the plot, hiding the plotted line.
 
 \pagebreak  
-
+  
+## Figure 12  
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 load("CHVols.RData")
 
@@ -453,7 +493,7 @@ abline(-144.277, 3.375, col="#7570B3", lwd = 2)
 abline(93.3, -2, col="#E7298A", lwd = 2)
 
 
-legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifolia", "F. grandifola"), 
+legend('topright', legend=c("A. pensylvanicum (n = 4)", "B. papyrifera (n = 4)", "C. alternifolia (n = 3)", "F. grandifola (n = 4)"), 
        lty=1, col=mycolors, bty='n', cex=1)
 
 
@@ -461,11 +501,12 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "C. alternifoli
 
  \setlength\parindent{0in}
  \singlespacing
-\textbf{Figure 12}: The suites of traits examined (SLA, %C:%N, DBH, Stem density) did not vary predictably with latitude. Across the four species that had enough trait data to calculate convex hull volume, two species (\textit{B. papyrifera} and \textit{A. pensylvanicum}) exhibited a decrease in their relative convex hull volume across latitudes. The other two increased across latitudes. All species appeared at all four sites, except for \textit{C. alternifolia}, which appeared at three.
+\textbf{Figure 12}: The suites of trait data (SLA, %C:%N, DBH, Stem density) did not vary predictably with latitude. Across the four species that had enough trait data to calculate convex hull volume, two species (\textit{B. papyrifera} and \textit{A. pensylvanicum}) exhibited a decrease in their relative convex hull volume across latitudes. The other two increased across latitudes. All species appeared at all four sites, except for \textit{C. alternifolia}, which appeared at three. Trait data was collected by Harry Stone, Dan Flynn, and colleagues.
   
   
-\pagebreak  
-
+\pagebreak 
+  
+## Figure 13  
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
 
@@ -496,7 +537,7 @@ abline(41.36, -13.37, col = "#D95F02", lwd = 2)
 #FAGGRA
 abline(9.507, -1.678, col = "#7570B3", lwd = 2)
 
-legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "F. grandifola"), 
+legend('topright', legend=c("A. pensylvanicum (n = 4)", "B. papyrifera (n = 4)", "F. grandifola (n = 4)"), 
        lty=1, col=mycolors, bty='n', cex=1)
 
 
@@ -505,12 +546,13 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "F. grandifola"
 
  \setlength\parindent{0in}
  \singlespacing
-<!--AHL: need to check why CORALT doesn't appear at the three sites that it appears at before in the previous figure...it's weird and I can't figure it out at the moment  -->
-\textbf{Figure 13}: Relative convex hull volume decreased consistently across all four species examined as they moved away from their climatic centroids. Three of the species appeared at the four sites, and one appeared at three sites.
+
+\textbf{Figure 13}: Relative convex hull volume decreased consistently across all four species examined as they moved away from their climatic centroids. Three of the species appeared at the four sites, and one appeared at three sites. Trait data was collected by Harry Stone, Dan Flynn, and colleagues.
   
   
   \pagebreak
-
+    
+## Figure 14  
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -545,7 +587,7 @@ abline(0.255235, 0.007697, col = "#D95F02", lwd = 2)
 #FAGGRA
 abline(0.083677, -0.007733, col = "#7570B3", lwd = 2)
 
-legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "F. grandifola"), 
+legend('topright', legend=c("A. pensylvanicum (n = 24)", "B. papyrifera (n = 24)", "F. grandifola (n = 24)"), 
        lty=1, col=mycolors, bty='n', cex=.75)
 
 
@@ -553,13 +595,14 @@ legend('topright', legend=c("A. pensylvanicum", "B. papyrifera", "F. grandifola"
 
  \setlength\parindent{0in}
  \singlespacing
-\textbf{Figure 14}: Across the four species with sufficient trait data, relative convex hull volume of species across all sites did not reliably predict the relative basal area. This suggests more complex factors at play in determining a species' suite of functional traits than an individual's competitiveness.
+\textbf{Figure 14}: Across the four species with sufficient trait data, relative convex hull volume of species across all sites did not reliably predict the relative basal area. This suggests more complex factors at play in determining a species' suite of functional traits than an individual's competitiveness. All three species appeared at all sites. Trait data was collected by Harry Stone, Dan Flynn, and colleagues.
   
 \pagebreak   
-   
+  
+## Figure 15     
 \centerline{\includegraphics[width=5.5in]{..//analyses/output/Chulls.jpg}}
 
-\textbf{Figure 15}: Convex hull volumes using a PCA across all species show marked variations in functional traits across sites. 
+\textbf{Figure 15}: Convex hull volumes using a PCA across all species show marked variations in functional traits across sites where they appeared. 
 
 
 \pagebreak
@@ -635,107 +678,119 @@ In spite of my results, it would be critical to examine other factors in additio
 \textcolor{white}{white}  
 
 Ackerly D. 2003. Community assembly, niche conservatism, and adaptive evolution in changing environments. Int J Plant Sci 164:S165-84.
-
+  
 Begon M. 1986. Ecology : Individuals, populations, and communities. Sunderland, Mass.
-
+  
 Bertrand R, Lenoir J, Piedallu C, Gabriela Riofrío-Dillon, Ruffray PD, Vidal C, Jean-Claude Pierrat, Jean-Claude Gégout. 2011. Changes in plant community composition lag behind climate warming in lowland forests. Nature 479(7374):517.
-
+  
+Biging GS and Dobbertin M. 1992. A comparison of distance- dependent competition measures for height and basal area growth of individual conifer trees. For Sci 38(3):695-720.
+  
 Biging GS and Dobbertin M. 1995. Evaluation of competition indices in individual tree growth models. For Sci (2):360-77.
-
+  
+Bravo-Oviedo A, Sterba H, Del Río M, Bravo F. 2006. Competition- induced mortality for mediterranean pinus pinaster ait. and P. sylvestris L. For Ecol Manage 222(1):88-98.
+  
 Brown JH, Stevens GC, Kaufman DM. 1996. The geographic range: Size, shape, boundaries, and internal structure. Annu Rev Ecol Syst 27:597-623.
-
+  
 Burns JH and Strauss SY. 2012. Effects of competition on phylogenetic signal and phenotypic plasticity in plant functional traits. Ecology 93:S126-37.
-
-Cavender-Bares J. 2007. Chilling and freezing stress in live oaks (quercus section virentes): Intra- and inter- specific variation in PS II sensitivity corresponds to latitude of origin. Photosynth Res 94(2):437-53.
-
+  
+Cavender-Bares J. 2007. Chilling and freezing stress in live oaks ( quercus section virentes ): Intra- and inter- specific variation in PS II sensitivity corresponds to latitude of origin. Photosynth Res 94(2):437-53.
+  
 Chen I, Hill JK, Ohlemuller R, Roy DB, Thomas CD. 2011. Rapid range shifts of species associated with high levels of climate warming.(REPORTS)(author abstract). Science 333(6045):1024.
-
+  
 Contreras MA, Affleck D, Chung W. 2011. Evaluating tree competition indices as predictors of basal area increment in western montana forests. For Ecol Manage 262(11):1939-49.
-
+  
+Coomes DA and Allen RB. 2007. Effects of size, competition and altitude on tree growth. J Ecol 95(5):1084-97.
+  
 Cornelissen JHC, Lavorel S, Garnier E, Díaz S, Buchmann N, Gurvich DE, Reich PB, Steege H, Morgan HD, Heijden MGA, et al. 2003. A handbook of protocols for standardised and easy measurement of plant functional traits worldwide. Aust J Bot 51(4):335-80.
-
+  
 Cornwell WK and Ackerly DD. 2009. Community assembly and shifts in plant trait distributions across an environmental gradient in coastal california. Ecol Monogr 79(1):109-26.
-
+  
 Curtis CA and Bradley BA. 2016. Plant distribution data show broader climatic limits than expert- based climatic tolerance estimates.(research article). Plos One 11(11):e0166407.
-
+  
 Darwin C. 2009. On the origin of species. Cambridge ; New York.
-
+  
 Davis MB and Shaw RG. 2001. Range shifts and adaptive responses to quaternary climate change. Science 292(5517):673-9.
-
+  
 De Frenne P, Graae BJ, Kolb A, Shevtsova A, Baeten L, Chabrerie O, Brunet J, Cousins SAO, Decocq G, Dhondt R, et al. 2011. An intraspecific application of the leaf- height- seed ecology strategy scheme to forest herbs along a latitudinal gradient. Ecography 34(1):132-40.
-
+  
+De Frenne P, Graae BJ, Rodriguez-Sanchez F, Kolb A, Chabrerie O, Decocq G, Kort H, Schrijver A, Diekmann M, Eriksson O, et al. 2013. Latitudinal gradients as natural laboratories to infer species' responses to temperature. The Journal of Ecology 101(3):784.
+  
 Doak DF and Morris WF. 2010. Demographic compensation and tipping points in climate- induced range shifts. Nature 467(7318):959.
-
+  
 Ettinger A and Hillerislambers J. 2013. Climate isn't everything: Competitive interactions and variation by life stage will also affect range shifts in a warming world. Am J Bot 100(7):1344.
-
-Frenne P, Graae BJ, Rodriguez-Sanchez F, Kolb A, Chabrerie O, Decocq G, Kort H, Schrijver A, Diekmann M, Eriksson O, et al. 2013. Latitudinal gradients as natural laboratories to infer species' responses to temperature. The Journal of Ecology 101(3):784.
-
+  
 Funes G, Basconcelo S, Díaz S, Cabido M. 1999. Seed size and shape are good predictors of seed persistence in soil in temperate mountain grasslands of argentina. Seed Science Research; Seed Sci.Res. 9(4):341-5.
-
+  
 Funk JL and Wolf AA. 2016. Testing the trait-based community framework: Do functional traits predict competitive outcomes? Ecology 97(9):2206-11.
-
+  
 Grime JP. 1974. Vegetation classification by reference to strategies. Nature 250(5461):26.
-
+  
 Guittar J, Goldberg D, Klanderud K, Telford RJ, Vandvik V. 2016. Can trait patterns along gradients predict plant community responses to climate change? Ecology 97(10):2791-801.
-
+  
 Hargreaves AL, Samis KE, Eckert CG. 2014. Are species' range limits simply niche limits writ large? A review of transplant experiments beyond the range. Am Nat 183(2):157.
-
+  
 Holt R. 1987. Population dynamics and evolutionary processes: The manifold roles of habitat selection. Evol Ecol 1(4):331-47.
-
+  
+Hutchinson GE. 1957. Concluding remarks. Cold Spring Harbor Symposia on Quantitative Biology 22(0):415-27.
+  
 Jump AS, Mátyás C, Peñuelas J. 2009. The altitude-for- latitude disparity in the range retractions of woody species. Trends in Ecology & Evolution 24(12):694-701.
-
+  
 Jung V, Violle C, Mondy C, Hoffmann L, Muller S. 2010. Intraspecific variability and trait-based community assembly. J Ecol 98(5):1134-40.
-
+  
 Kraft NJB, Valencia R, Ackerly DD. 2008. Functional traits and niche- based tree community assembly in an amazonian forest. Science (New York, N.Y.) 322(5901):580.
 
-Little, E.L., Jr., 1971, Atlas of United States trees, volume 1, conifers and important hardwoods: U.S. Department of Agriculture Miscellaneous Publication.
-
-Little, E.L., Jr., 1977. Atlas of United States trees, volume 4, minor Eastern hardwoods: U.S. Department of Agriculture Miscellaneous Publication.
-
+Kunstler G, Falster D, Coomes DA, Hui F, Kooyman RM, Laughlin DC, Poorter L, Vanderwel M, Vieilledent G, Wright SJ, et al. 2016. Plant functional traits have globally consistent effects on competition. .
+ 
 Louthan A, Doak D, Angert AL. 2015. Where and when do species interactions set range limits? Trends Ecol Evol (Amst ) 30(12):780-92.
-
+  
 Macarthur R and Levins R. 1967. The limiting similarity, convergence, and divergence of coexisting species. Am Nat 101(921):377-85.
-
+  
+Mason NWH, Mouillot D, Lee WG, Wilson JB. 2005. Functional richness, functional evenness and functional divergence: The primary components of functional diversity. Oikos 111(1):112-8.
+  
 Matías L and Jump AS. 2015. Asymmetric changes of growth and reproductive investment herald altitudinal and latitudinal range shifts of two woody species. Global Change Biol 21(2):882-96.
-
+  
 McKenney DW, Pedlar JH, Lawrence K, Campbell K, Hutchinson MF. 2007. Potential impacts of climate change on the distribution of north american trees. Bioscience 57(11):939-48.
-
+  
 Nakawatase J and Peterson D. 2006. Spatial variability in forest growth - climate relationships in the olympic mountains, washington. Canadian Journal of Forest Research 36(1):77-91.
-
+  
 Nussey DH, Postma E, Gienapp P, Visser ME. 2005. Selection on heritable phenotypic plasticity in a wild bird population. Science Magazine 310(5746):304-6.
-
+  
 Parmesan C. 2006. Ecological and evolutionary responses to recent climate change. Annual Review of Ecology, Evolution, and Systematics 37:637.
-
+  
 Peterson AT, Soberón J, Sánchez-Cordero V. 1999. Conservatism of ecological niches in evolutionary time. Science 285(5431):1265-7.
-
+  
 Pigot AL and Tobias JA. 2013. Species interactions constrain geographic range expansion over evolutionary time. Ecol Lett 16(3):330-8.
 
+R Core Team. 2016. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/
+  
 Reich PB and Oleksyn J. 2008. Climate warming will reduce growth and survival of scots pine except in the far north. Ecol Lett 11(6):588-97.
-
+  
 Rouvinen S and Kuuluvainen T. 1997. Structure and asymmetry of tree crowns in relation to local competition in a natural mature scots pine forest. Canadian Journal of Forest Research 27(6):890-902.
-
+  
 Schimper AFW. 1903. Plant- geography upon a physiological basis.
-
+  
 Sexton J, Mcintyre P, Angert A, Rice K. 2009. Evolution and ecology of species range limits. Annual Review of Ecology, Evolution, and Systematics 40:415.
-
+  
 Skelly DK, Joseph LN, Possingham HP, Freidenburg LK, Farrugia TJ, Kinnison MT, Hendry AP. 2007. Evolutionary responses to climate change. Conserv Biol 21(5):1353-5.
-
+  
 Stahl U, Reu B, Wirth C. 2014. Predicting species' range limits from functional traits for the tree flora of north america. Proc Natl Acad Sci U S A 111(38):13739.
-
+  
 Suttle KB, Thomsen MA, Power ME. 2007. Species interactions reverse grassland responses to changing climate. Science (New York, N.Y.) 315(5812):640.
-
+  
 Svenning J, Gravel D, Holt RD, Schurr FM, Thuiller W, Münkemüller T, Schiffers KH, Dullinger S, Edwards TC, Hickler T, et al. 2014. The influence of interspecific interactions on species range expansion rates. Ecography 37(12):1198-209.
-
+  
 Thomas CD, Cameron A, Green RE, Bakkenes M, Beaumont LJ, Collingham YC, Barend FNE, Marinez Ferreira DS, Grainger A, Hannah L, et al. 2004. Extinction risk from climate change. Nature 427(6970):145.
-
+  
 Thompson K, Band SR, Hodgson JG. 1993. Seed size and shape predict persistence in soil. Funct Ecol 7(2):236-41.
-
+  
 Urban MC, Tewksbury JJ, Sheldon KS. 2012. On a collision course: Competition and dispersal differences create no- analogue communities and cause extinctions during climate change. Proceedings of the Royal Society B 279(1735):2072-80.
-
+  
 Weiher E and Keddy PA. 1998. Community assembly rules, morphological dispersion, and the coexistence of plant species. Oikos 81(2):309-22.
-
+  
 Westoby M and Wright IJ. 2006. Land-plant ecology on the basis of functional traits. Trends in Ecology & Evolution 21(5):261-8.
-
+  
 Yackulic CB, Nichols JD, Reid J, Der R. 2015. To predict the niche, model colonization and extinction. Ecology 96(1):16-23.
-
+  
 Zhu K, Woodall CW, Clark JS. 2012. Failure to migrate: Lack of tree range expansion in response to climate change. Global Change Biol 18(3):1042-52.
+
+

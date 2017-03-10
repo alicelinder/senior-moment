@@ -64,7 +64,7 @@ load("CHVol.Clim.RData")
 
 clim.focal <- clim.focal[-which(clim.focal$sp == "CORALT"),]
 
-summary(lm(clim.focal[clim.focal$sp == "FAGGRA",]$distance.to.climatic.centroid ~ faggra))
+summary(lm(clim.focal[clim.focal$sp == "BETPAP",]$distance.to.climatic.centroid ~ betpap))
 acepen <- clim.focal[clim.focal$sp == "ACEPEN",]$relative.vol
 betpap <- clim.focal[clim.focal$sp == "BETPAP",]$relative.vol
 #coralt <- clim.focal[clim.focal$sp == "CORALT",]$relative.vol
